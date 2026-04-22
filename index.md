@@ -3,7 +3,7 @@ layout: home
 title: Home
 ---
 
-# Xinjian Yang(杨欣键)
+# Xinjian Yang (杨欣键)
 
 NUS undergraduate student in **Electrical Engineering and Physics**, with strong interests in **artificial intelligence, applied mathematics, and linguistics**.
 
