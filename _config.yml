@@ -1,0 +1,24 @@
+title: Xinjian Yang
+description: Personal website of Xinjian Yang — physics, electrical engineering, mathematics, computation, and notes.
+url: "https://xyavecasdf.github.io"
+baseurl: ""
+author: Xinjian Yang
+markdown: kramdown
+kramdown:
+  input: GFM
+highlighter: rouge
+permalink: /blog/:year/:month/:day/:title/
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+header_pages:
+  - about.md
+  - projects.md
+  - blog.md
+  - contact.md
+minima:
+  social_links:
+    - title: GitHub
+      icon: github
+      url: "https://github.com/XYavecasdf"
