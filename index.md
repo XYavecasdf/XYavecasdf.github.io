@@ -3,6 +3,10 @@ layout: home
 title: Home
 ---
 
+<canvas id="rain-canvas"></canvas>
+<button id="rain-toggle-btn" class="rain-toggle">Rain: off</button>
+<script src="/assets/rain.js"></script>
+
 # Xinjian Yang
 
 Undergraduate Student in **Electrical Engineering and Physics**, with interests in **AI, Mathematics, Linguistics, and Computer Science**
