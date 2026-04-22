@@ -5,7 +5,7 @@ title: Home
 
 # Xinjian Yang
 
-Student in **Physics, Electrical Engineering, Mathematics, and Computer Science**
+Undergraduate Student in **Electrical Engineering and Physics**, with interests in **AI, Mathematics, Linguistics, and Computer Science**
 
 I am interested in the mathematical structure of intelligent systems and in the use of rigorous analytical tools to study modern problems in computation, learning, and physics. My current interests lie at the intersection of **applied mathematics, machine learning, signal processing, and scientific computation**.
 
