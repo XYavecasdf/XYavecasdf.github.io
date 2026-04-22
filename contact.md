@@ -3,7 +3,6 @@ layout: page
 title: Contact
 ---
 
-## Contact
 
 - Email: E1710532@u.nus.edu
 - Phone: +65 88965351
