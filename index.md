@@ -3,31 +3,29 @@ layout: home
 title: Home
 ---
 
-# Xinjian Yang
+# Xinjian Yang(杨欣键)
 
-NUS student in **Electrical Engineering and Physics**, with strong interests in **artificial intelligence, applied mathematics, and linguistics**.
+NUS undergraduate student in **Electrical Engineering and Physics**, with strong interests in **artificial intelligence, applied mathematics, and linguistics**.
 
-I am interested in the mathematical structure of intelligent systems and in the use of rigorous analytical tools to study modern problems in computation, learning, and physics. My current interests lie at the intersection of **applied mathematics, machine learning, signal processing, and scientific computation**.
+Topics I'm currently interested in:
 
-I am particularly drawn to problems where theory and practice genuinely constrain one another: partial differential equations, optimisation, dynamical systems, inverse problems, and the mathematical foundations of machine learning.
+- Math4AI
+- PINN and Computational Physics
+- Next Generation Computation
+
+My daily hobbies include cross-country running, hiking, swimming, cycling, table tennis, learning history/geography-related random stuff, and stargazing. I'm fluent in Mandarin and English. I'm also able to understand and to speak basic Spanish(A2 level), Japanese(N5 level), and Cantonese. Besides, astronomy is always my hideout from the hustle and bustle. I'm not good at singing, but I can rap a little.
 
 ---
 
 ## Research Interests
 
-- Mathematical foundations of machine learning
-- Partial differential equations and scientific computing
-- Signal processing and systems
-- Computational physics and modelling
-- Optimization, inverse problems, and dynamical systems
+- PINN and Computational Physics
+- Next Generation Computation (SNN)
+- Computational Linguistics
 
 ---
 
-## Current Direction
-
-At present, I am building a stronger foundation in probability, signals and systems, differential equations, and computational methods, while exploring how these areas connect to modern AI and data-driven modelling.
-
-This site serves as a record of my projects, technical notes, and evolving research interests.
+This site serves as a record of my projects, blogs, and evolving research interests.
 
 ---
 
