@@ -5,7 +5,7 @@ title: Home
 
 <canvas id="rain-canvas"></canvas>
 <button id="rain-toggle-btn" class="rain-toggle">Rain: off</button>
-<script src="/assets/rain.js"></script>
+<script src="assets/rain.js"></script>
 
 # Xinjian Yang
 
@@ -37,7 +37,7 @@ This site serves as a record of my projects, technical notes, and evolving resea
 
 ## Explore
 
-- [About](./about.html) — background, interests, and academic direction
-- [Projects](./projects.html) — selected technical and research work
-- [Blog](./blog.html) — notes on mathematics, physics, and computation
-- [Contact](./contact.html) — ways to reach me
+- [About](./about.html)
+- [Projects](./projects.html)
+- [Blog](./blog.html)
+- [Contact](./contact.html)
