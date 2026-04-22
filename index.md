@@ -10,7 +10,7 @@ This site serves as a record of my projects, blogs, and evolving research intere
 
 ## Explore
 
-- [About](./about.html)
+- [About Me](./about.html)
 - [Projects](./projects.html)
 - [Blog](./blog.html)
 - [Contact](./contact.html)
