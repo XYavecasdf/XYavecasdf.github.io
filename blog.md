@@ -5,29 +5,12 @@ title: Blog
 
 ## Blog / Notes
 
-This page collects my research notes, language-learning reflections, mathematical and scientific miscellany, informal essays, and other miscellaneous writing.
-
-<div class="category-grid">
-  <a class="category-card" href="#research-notes">
-    <strong>Research Notes</strong>
-    <span>Research summaries, PyTorch, CUDA, Math4AI, and technical notes.</span>
-  </a>
-  <a class="category-card" href="#language-learning">
-    <strong>Language Learning</strong>
-    <span>Notes on Spanish, Japanese, Cantonese, pronunciation, and linguistics.</span>
-  </a>
-  <a class="category-card" href="#mathematical-and-scientific-miscellany">
-    <strong>Mathematical and Scientific Miscellany</strong>
-    <span>Mathematics, physics, computation, and scientific curiosities.</span>
-  </a>
-  <a class="category-card" href="#informal-essays">
-    <strong>Informal Essays</strong>
-    <span>Short reflections, ideas, and less formal writing.</span>
-  </a>
-  <a class="category-card" href="#miscellaneous-stuff">
-    <strong>Miscellaneous Stuff</strong>
-    <span>Everything that does not fit neatly elsewhere.</span>
-  </a>
+<div class="blog-category-list">
+  <a href="#research-notes">Research Notes</a>
+  <a href="#language-learning">Language Learning</a>
+  <a href="#mathematical-and-scientific-miscellany">Mathematical and Scientific Miscellany</a>
+  <a href="#informal-essays">Informal Essays</a>
+  <a href="#miscellaneous-stuff">Miscellaneous Stuff</a>
 </div>
 
 ---
