@@ -3,6 +3,8 @@ layout: page
 title: About Me
 ---
 
+<img src="/assets/images/profile.jpg" alt="Xinjian Yang" style="width:180px; border-radius: 10px; margin-bottom: 1rem;">
+
 # Xinjian Yang (杨欣键)
 
 I am an undergraduate student at the National University of Singapore (NUS), studying **Electrical Engineering and Physics**, with strong interests in **artificial intelligence, applied mathematics, and linguistics**.
