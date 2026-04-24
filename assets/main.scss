@@ -22,33 +22,51 @@ body {
   backdrop-filter: blur(6px);
 }
 
-.about-container {
+/* NEW SIDEBAR LAYOUT */
+.about-sidebar-layout {
   display: flex;
-  align-items: flex-start;
-  gap: 2rem;
-  margin-top: 1rem;
+  gap: 3rem;
 }
 
-.about-photo img {
-  width: 200px;
+.about-sidebar {
+  width: 220px;
+  position: sticky;
+  top: 100px;
+  align-self: flex-start;
+  font-size: 0.95rem;
+}
+
+.about-sidebar-photo {
+  width: 180px;
   border-radius: 12px;
+  margin-bottom: 1rem;
 }
 
-.about-text {
+.about-sidebar h2 {
+  margin: 0.3rem 0 0.1rem 0;
+}
+
+.about-sidebar-name {
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+.about-main {
   flex: 1;
 }
 
-@media (max-width: 768px) {
-  .about-container {
+@media (max-width: 900px) {
+  .about-sidebar-layout {
     flex-direction: column;
-    align-items: center;
   }
 
-  .about-photo img {
-    width: 160px;
+  .about-sidebar {
+    position: static;
+    width: 100%;
   }
 }
 
+/* EXISTING */
 .blog-category-list {
   margin: 1.1rem 0 1.4rem 0;
 }
