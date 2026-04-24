@@ -7,9 +7,33 @@ title: Blog
 
 This page collects my research notes, language-learning reflections, mathematical and scientific miscellany, informal essays, and other miscellaneous writing.
 
+<div class="category-grid">
+  <a class="category-card" href="#research-notes">
+    <strong>Research Notes</strong>
+    <span>Research summaries, PyTorch, CUDA, Math4AI, and technical notes.</span>
+  </a>
+  <a class="category-card" href="#language-learning">
+    <strong>Language Learning</strong>
+    <span>Notes on Spanish, Japanese, Cantonese, pronunciation, and linguistics.</span>
+  </a>
+  <a class="category-card" href="#mathematical-and-scientific-miscellany">
+    <strong>Mathematical and Scientific Miscellany</strong>
+    <span>Mathematics, physics, computation, and scientific curiosities.</span>
+  </a>
+  <a class="category-card" href="#informal-essays">
+    <strong>Informal Essays</strong>
+    <span>Short reflections, ideas, and less formal writing.</span>
+  </a>
+  <a class="category-card" href="#miscellaneous-stuff">
+    <strong>Miscellaneous Stuff</strong>
+    <span>Everything that does not fit neatly elsewhere.</span>
+  </a>
+</div>
+
 ---
 
 ## Research Notes
+{: #research-notes }
 
 <ul>
   {% assign posts = site.categories.research %}
@@ -23,6 +47,7 @@ This page collects my research notes, language-learning reflections, mathematica
 </ul>
 
 ## Language Learning
+{: #language-learning }
 
 <ul>
   {% assign posts = site.categories.language %}
@@ -36,6 +61,7 @@ This page collects my research notes, language-learning reflections, mathematica
 </ul>
 
 ## Mathematical and Scientific Miscellany
+{: #mathematical-and-scientific-miscellany }
 
 <ul>
   {% assign posts = site.categories.math-science %}
@@ -49,6 +75,7 @@ This page collects my research notes, language-learning reflections, mathematica
 </ul>
 
 ## Informal Essays
+{: #informal-essays }
 
 <ul>
   {% assign posts = site.categories.essay %}
@@ -62,6 +89,7 @@ This page collects my research notes, language-learning reflections, mathematica
 </ul>
 
 ## Miscellaneous Stuff
+{: #miscellaneous-stuff }
 
 <ul>
   {% assign posts = site.categories.misc %}
