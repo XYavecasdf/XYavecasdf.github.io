@@ -3,9 +3,19 @@ layout: page
 title: About Me
 ---
 
-<img src="/assets/images/955fb680f525cd2567fe7c176fdf790a.jpg" alt="Xinjian Yang" width="180" style="display:block; border-radius: 10px; margin: 0 0 1.2rem 0;">
+<div class="about-sidebar-layout">
+  <aside class="about-sidebar">
+    <img src="/assets/images/955fb680f525cd2567fe7c176fdf790a.jpg" alt="Xinjian Yang" class="about-sidebar-photo">
+    <h2>Xinjian Yang</h2>
+    <p class="about-sidebar-name">杨欣键</p>
+    <p>NUS EE + Physics</p>
+    <p>AI · Applied Mathematics · Linguistics</p>
+    <p><a href="https://github.com/XYavecasdf">GitHub</a></p>
+  </aside>
 
-# Xinjian Yang (杨欣键)
+  <section class="about-main">
+
+# About Me
 
 I am an undergraduate student at the National University of Singapore (NUS), studying **Electrical Engineering and Physics**, with strong interests in **artificial intelligence, applied mathematics, and linguistics**.
 
@@ -28,3 +38,6 @@ I am also a player of several PC games, including City: Skylines, Arma 3, Civili
 - Physics-Informed Neural Networks (PINNs) and computational physics
 - Next-generation computation, especially spiking neural networks (SNNs)
 - Computational linguistics
+
+  </section>
+</div>
