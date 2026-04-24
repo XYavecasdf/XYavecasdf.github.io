@@ -5,13 +5,13 @@ title: Blog
 
 ## Blog / Notes
 
-<div class="blog-category-list">
-  <a href="#research-notes">Research Notes</a>
-  <a href="#language-learning">Language Learning</a>
-  <a href="#mathematical-and-scientific-miscellany">Mathematical and Scientific Miscellany</a>
-  <a href="#informal-essays">Informal Essays</a>
-  <a href="#miscellaneous-stuff">Miscellaneous Stuff</a>
-</div>
+<ul class="blog-category-list">
+  <li><a href="#research-notes">Research Notes</a></li>
+  <li><a href="#language-learning">Language Learning</a></li>
+  <li><a href="#mathematical-and-scientific-miscellany">Mathematical and Scientific Miscellany</a></li>
+  <li><a href="#informal-essays">Informal Essays</a></li>
+  <li><a href="#miscellaneous-stuff">Miscellaneous Stuff</a></li>
+</ul>
 
 ---
 
