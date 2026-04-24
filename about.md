@@ -14,30 +14,32 @@ title: About Me
   </aside>
 
   <section class="about-main">
+    <h1>About Me</h1>
 
-# About Me
+    <p>I am an undergraduate student at the National University of Singapore (NUS), studying <strong>Electrical Engineering and Physics</strong>, with strong interests in <strong>artificial intelligence, applied mathematics, and linguistics</strong>.</p>
 
-I am an undergraduate student at the National University of Singapore (NUS), studying **Electrical Engineering and Physics**, with strong interests in **artificial intelligence, applied mathematics, and linguistics**.
+    <p>I am currently particularly interested in the following areas:</p>
 
-I am currently particularly interested in the following areas:
+    <ul>
+      <li>Math4AI</li>
+      <li>Physics-Informed Neural Networks (PINNs) and computational physics</li>
+      <li>Next-generation computation</li>
+    </ul>
 
-- Math4AI
-- Physics-Informed Neural Networks (PINNs) and computational physics
-- Next-generation computation
+    <p>Outside academics, I enjoy cross-country running, hiking, swimming, cycling, and table tennis. I am also curious about history, geography, and astronomy, and I often turn to stargazing as a quiet escape from the pace of daily life.</p>
 
-Outside academics, I enjoy cross-country running, hiking, swimming, cycling, and table tennis. I am also curious about history, geography, and astronomy, and I often turn to stargazing as a quiet escape from the pace of daily life.
+    <p>I am fluent in <strong>Mandarin</strong> and <strong>English</strong>, and I can also understand and speak basic <strong>Spanish</strong> (A2), <strong>Japanese</strong> (N5-N4), and <strong>Cantonese</strong>. I am not much of a singer, but I can rap a little.</p>
 
-I am fluent in **Mandarin** and **English**, and I can also understand and speak basic **Spanish** (A2), **Japanese** (N5-N4), and **Cantonese**. I am not much of a singer, but I can rap a little.
+    <p>I am also a player of several PC games, including City: Skylines, Arma 3, Civilization, and Kerbal Space Program.</p>
 
-I am also a player of several PC games, including City: Skylines, Arma 3, Civilization, and Kerbal Space Program.
+    <hr>
 
----
+    <h2>Research Interests</h2>
 
-## Research Interests
-
-- Physics-Informed Neural Networks (PINNs) and computational physics
-- Next-generation computation, especially spiking neural networks (SNNs)
-- Computational linguistics
-
+    <ul>
+      <li>Physics-Informed Neural Networks (PINNs) and computational physics</li>
+      <li>Next-generation computation, especially spiking neural networks (SNNs)</li>
+      <li>Computational linguistics</li>
+    </ul>
   </section>
 </div>
