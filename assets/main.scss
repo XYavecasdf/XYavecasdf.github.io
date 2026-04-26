@@ -22,7 +22,7 @@ body {
   backdrop-filter: blur(6px);
 }
 
-/* NEW SIDEBAR LAYOUT */
+/* SIDEBAR */
 .about-sidebar-layout {
   display: flex;
   gap: 3rem;
@@ -42,15 +42,6 @@ body {
   margin-bottom: 1rem;
 }
 
-.about-sidebar h2 {
-  margin: 0.3rem 0 0.1rem 0;
-}
-
-.about-sidebar-name {
-  color: #666;
-  margin-bottom: 0.5rem;
-}
-
 .about-main {
   flex: 1;
 }
@@ -66,7 +57,38 @@ body {
   }
 }
 
-/* EXISTING */
+/* EXPERIENCE CARD */
+.experience-card {
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 1rem 1.2rem;
+  margin-bottom: 1.2rem;
+  background: #ffffff;
+  transition: box-shadow 0.2s ease, transform 0.15s ease;
+}
+
+.experience-card:hover {
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  transform: translateY(-2px);
+}
+
+.experience-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.4rem;
+}
+
+.experience-card-header h3 {
+  margin: 0;
+}
+
+.experience-card-header span {
+  font-size: 0.9rem;
+  color: #64748b;
+}
+
+/* BLOG */
 .blog-category-list {
   margin: 1.1rem 0 1.4rem 0;
 }
