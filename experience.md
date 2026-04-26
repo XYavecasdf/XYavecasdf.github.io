@@ -5,9 +5,7 @@ title: Experience
 
 ## Experience
 
-### Coming Soon
+### NVAITC MATH4AI Student Ambassador
+**May 2026 – Jul 2026**
 
-I will share my experience here, including:
-- Research experience
-- Internship experience
-- Academic and extracurricular activities
+- Conduct research (Math4AI-related) under the guidance of Nvidia mentors
