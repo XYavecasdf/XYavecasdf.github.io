@@ -16,6 +16,7 @@ header_pages:
   - about.md
   - projects.md
   - blog.md
+  - experience.md
   - contact.md
 minima:
   social_links:

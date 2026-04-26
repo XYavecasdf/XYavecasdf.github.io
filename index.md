@@ -13,4 +13,5 @@ This site serves as a record of my projects, blogs, and evolving research intere
 - [About Me](/about/)
 - [Projects](/projects/)
 - [Blog](/blog/)
+- [Experience](/experience/)
 - [Contact](/contact/)
