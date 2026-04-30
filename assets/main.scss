@@ -110,6 +110,25 @@ body {
   padding-left: 0.45rem;
 }
 
+/* READING LIST */
+.reading-list-table .status-reading {
+  color: #1d4ed8;
+  font-weight: 600;
+  background: #dbeafe;
+  border-radius: 999px;
+  padding: 0.12rem 0.55rem;
+  white-space: nowrap;
+}
+
+.reading-list-table .status-finished {
+  color: #64748b;
+  font-weight: 600;
+  background: #e5e7eb;
+  border-radius: 999px;
+  padding: 0.12rem 0.55rem;
+  white-space: nowrap;
+}
+
 .site-footer {
   border-top: 1px solid #d9e5fb;
   background: rgba(255,255,255,0.62);
