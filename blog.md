@@ -76,6 +76,8 @@ title: Blog
 {: #miscellaneous-stuff }
 
 <ul>
+  <li><a href="/reading-list/">📌 Reading List (live)</a></li>
+
   {% assign posts = site.categories.misc %}
   {% if posts.size > 0 %}
     {% for post in posts %}
