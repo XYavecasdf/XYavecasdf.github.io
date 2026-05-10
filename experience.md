@@ -10,5 +10,5 @@ title: Experience
     <h3>NVAITC MATH4AI Student Ambassador</h3>
     <span>May 2026 – Jul 2026</span>
   </div>
-  <p>Conduct research (Math4AI-related) under the guidance of Nvidia mentors.</p>
+  <p>Research Project: Spectral Compensation in Spiking Neural Networks via Fourier Analysis Networks</p>
 </div>
