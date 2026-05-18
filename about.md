@@ -28,7 +28,7 @@ title: About Me
 
     <p>Outside academics, I enjoy cross-country running, hiking, swimming, cycling, and table tennis. I am also curious about history, geography, and astronomy, and I often turn to stargazing as a quiet escape from the pace of daily life.</p>
 
-    <p>I am fluent in <strong>Mandarin</strong> and <strong>English</strong>, and I can also understand and speak basic <strong>Spanish</strong> (A2), <strong>Japanese</strong> (N5-N4), and <strong>Cantonese</strong>. I am not much of a singer, but I can rap a little.</p>
+    <p>I am fluent in <strong>Mandarin</strong> and <strong>English</strong>, and I can also understand and speak basic <strong>Spanish</strong> (A2), <strong>Japanese</strong> (N5-N4), and <strong>Cantonese</strong>. I am currently learning <strong>Spanish</strong> and <strong>French</strong>. I am not much of a singer, but I can rap a little.</p>
 
     <p>I am also a player of several PC games, including City: Skylines, Arma 3, Civilization, and Kerbal Space Program.</p>
 
