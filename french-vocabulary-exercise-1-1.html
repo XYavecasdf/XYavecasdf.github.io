@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>French Vocabulary — Exercise 1.1</title>
+  <style>
+    :root { font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #1f2937; background: #fff7fb; }
+    body { margin: 0; padding: 32px; }
+    main { max-width: 980px; margin: 0 auto; }
+    h1 { margin-bottom: 8px; }
+    .subtitle { color: #6b7280; margin-bottom: 24px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+    .card { background: white; border: 1px solid #f3cfe0; border-radius: 16px; padding: 18px; box-shadow: 0 4px 14px rgba(0,0,0,.05); }
+    .word { font-size: 1.45rem; font-weight: 750; margin-bottom: 4px; }
+    .ipa { font-family: 'Charis SIL', 'Doulos SIL', serif; color: #374151; margin-bottom: 8px; }
+    .meaning { color: #4b5563; margin-bottom: 12px; }
+    button { border: 0; border-radius: 999px; padding: 9px 14px; cursor: pointer; background: #ec4899; color: white; font-weight: 650; }
+    button:hover { background: #db2777; }
+    a { color: #2563eb; text-decoration: none; font-size: .92rem; margin-left: 8px; }
+    a:hover { text-decoration: underline; }
+    .note { margin-top: 26px; padding: 16px; border-left: 4px solid #ec4899; background: #fff; border-radius: 8px; color: #4b5563; }
+  </style>
+</head>
+<body>
+<main>
+  <h1>French Vocabulary — Exercise 1.1</h1>
+  <p class="subtitle">Click “Listen” to hear browser French TTS. IPA and source links are based on Wiktionary entries.</p>
+  <section class="grid" id="cards"></section>
+  <div class="note">
+    <strong>Pronunciation reminders:</strong> French stress usually falls near the end of the phrase. In <em>l’homme</em> and <em>l’hôtel</em>, the h is <em>h muet</em>, so the article contracts to <em>l’</em>.
+  </div>
+</main>
+<script>
+const words = [
+  {fr:"l’ami", ipa:"/la.mi/", meaning:"friend", url:"https://fr.wiktionary.org/wiki/ami"},
+  {fr:"l’homme", ipa:"/l‿ɔm/", meaning:"man; human being", url:"https://fr.wiktionary.org/wiki/homme"},
+  {fr:"la lampe", ipa:"/la lɑ̃p/", meaning:"lamp", url:"https://fr.wiktionary.org/wiki/lampe"},
+  {fr:"la fenêtre", ipa:"/la fə.nɛtʁ/", meaning:"window", url:"https://fr.wiktionary.org/wiki/fen%C3%AAtre"},
+  {fr:"l’hôtel", ipa:"/lo.tɛl/", meaning:"hotel", url:"https://fr.wiktionary.org/wiki/h%C3%B4tel"},
+  {fr:"le réalisme", ipa:"/lə ʁe.a.lism/", meaning:"realism", url:"https://fr.wiktionary.org/wiki/r%C3%A9alisme"},
+  {fr:"l’ingénieur", ipa:"/l‿ɛ̃.ʒe.njœʁ/", meaning:"engineer", url:"https://fr.wiktionary.org/wiki/ing%C3%A9nieur"},
+  {fr:"la publicité", ipa:"/la py.bli.si.te/", meaning:"advertising; publicity", url:"https://fr.wiktionary.org/wiki/publicit%C3%A9"},
+  {fr:"la comédie", ipa:"/la kɔ.me.di/", meaning:"comedy", url:"https://fr.wiktionary.org/wiki/com%C3%A9die"},
+  {fr:"la différence", ipa:"/la di.fe.ʁɑ̃s/", meaning:"difference", url:"https://fr.wiktionary.org/wiki/diff%C3%A9rence"},
+  {fr:"le médecin", ipa:"/lə med.sɛ̃/", meaning:"doctor; physician", url:"https://fr.wiktionary.org/wiki/m%C3%A9decin"},
+  {fr:"la sculpture", ipa:"/la skyl.tyʁ/", meaning:"sculpture", url:"https://fr.wiktionary.org/wiki/sculpture"},
+  {fr:"la prononciation", ipa:"/la pʁɔ.nɔ̃.sja.sjɔ̃/", meaning:"pronunciation", url:"https://fr.wiktionary.org/wiki/prononciation"},
+  {fr:"le gâteau", ipa:"/lə ɡa.to/", meaning:"cake", url:"https://fr.wiktionary.org/wiki/g%C3%A2teau"}
+];
+
+const cards = document.getElementById('cards');
+for (const w of words) {
+  const el = document.createElement('article');
+  el.className = 'card';
+  el.innerHTML = `<div class="word">${w.fr}</div><div class="ipa">${w.ipa}</div><div class="meaning">${w.meaning}</div><button type="button">Listen</button><a href="${w.url}" target="_blank" rel="noopener">Wiktionary</a>`;
+  el.querySelector('button').addEventListener('click', () => speak(w.fr));
+  cards.appendChild(el);
+}
+
+function speak(text) {
+  if (!('speechSynthesis' in window)) { alert('Your browser does not support speech synthesis.'); return; }
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'fr-FR';
+  u.rate = 0.78;
+  const voices = speechSynthesis.getVoices();
+  const frVoice = voices.find(v => v.lang && v.lang.toLowerCase().startsWith('fr'));
+  if (frVoice) u.voice = frVoice;
+  speechSynthesis.speak(u);
+}
+</script>
+</body>
+</html>
