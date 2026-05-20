@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "ChatGPT Wordbook / ChatGPT 生词本",
+  "description": "Bilingual local-first vocabulary saver and suggester for ChatGPT conversations.",
+  "version": "0.1.0",
+  "permissions": ["storage", "contextMenus", "activeTab", "scripting"],
+  "host_permissions": [
+    "https://chatgpt.com/*",
+    "https://chat.openai.com/*"
+  ],
+  "background": { "service_worker": "src/background.js" },
+  "content_scripts": [
+    {
+      "matches": ["https://chatgpt.com/*", "https://chat.openai.com/*"],
+      "js": ["src/i18n.js", "src/extractor.js", "src/contentScript.js"],
+      "css": ["src/styles.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_popup": "src/popup.html",
+    "default_title": "ChatGPT Wordbook / ChatGPT 生词本"
+  },
+  "options_page": "src/options.html"
+}
