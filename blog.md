@@ -77,6 +77,7 @@ title: Blog
 
 <ul>
   <li><a href="/reading-list/">📌 Reading List (live)</a></li>
+  <li><a href="/wordbook/">📖 生词本 Wordbook</a></li>
 
   {% assign posts = site.categories.misc %}
   {% if posts.size > 0 %}
