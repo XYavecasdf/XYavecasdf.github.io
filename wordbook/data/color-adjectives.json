@@ -1,0 +1,18 @@
+[
+  {
+    "title": "Adjectives of Color",
+    "words": [
+      {"fr":"bleu / bleue / bleus / bleues","ipa":"/blø/","meaning":"blue","tags":["color","adjective","agreement"],"url":"https://fr.wiktionary.org/wiki/bleu","examples":[{"fr":"une chemise bleue","en":"a blue shirt"}]},
+      {"fr":"gris / grise / gris / grises","ipa":"/ɡʁi/ / /ɡʁiz/","meaning":"gray","tags":["color","adjective","agreement","plural unchanged masculine","ends in -s"],"url":"https://fr.wiktionary.org/wiki/gris","examples":[{"fr":"des livres gris","en":"gray books"}]},
+      {"fr":"vert / verte / verts / vertes","ipa":"/vɛʁ/ / /vɛʁt/","meaning":"green","tags":["color","adjective","agreement"],"url":"https://fr.wiktionary.org/wiki/vert","examples":[{"fr":"des chaussures vertes","en":"green shoes"}]},
+      {"fr":"blanc / blanche / blancs / blanches","ipa":"/blɑ̃/ / /blɑ̃ʃ/","meaning":"white","tags":["color","adjective","irregular feminine","-c → -che"],"url":"https://fr.wiktionary.org/wiki/blanc","examples":[{"fr":"un crayon blanc","en":"a white pencil"},{"fr":"une chemise blanche","en":"a white shirt"}]},
+      {"fr":"violet / violette / violets / violettes","ipa":"/vjɔ.lɛ/ / /vjɔ.lɛt/","meaning":"purple","tags":["color","adjective","irregular feminine","-t → -tte"],"url":"https://fr.wiktionary.org/wiki/violet","examples":[{"fr":"des cahiers violets","en":"purple notebooks"},{"fr":"des voitures violettes","en":"purple cars"}]},
+      {"fr":"jaune","ipa":"/ʒon/","meaning":"yellow","tags":["color","adjective","same masculine and feminine","final -e"],"url":"https://fr.wiktionary.org/wiki/jaune","examples":[{"fr":"des cahiers jaunes","en":"yellow notebooks"},{"fr":"des fleurs jaunes","en":"yellow flowers"}]},
+      {"fr":"rouge","ipa":"/ʁuʒ/","meaning":"red","tags":["color","adjective","same masculine and feminine","final -e"],"url":"https://fr.wiktionary.org/wiki/rouge","examples":[{"fr":"une chaise rouge","en":"a red chair"},{"fr":"un manteau rouge","en":"a red coat"}]},
+      {"fr":"rose","ipa":"/ʁoz/","meaning":"pink","tags":["color","adjective","same masculine and feminine","final -e"],"url":"https://fr.wiktionary.org/wiki/rose","examples":[{"fr":"des pull-overs roses","en":"pink sweaters"},{"fr":"des chaussettes roses","en":"pink socks"}]},
+      {"fr":"marron","ipa":"/ma.ʁɔ̃/","meaning":"brown","tags":["color","adjective","invariable"],"url":"https://fr.wiktionary.org/wiki/marron","examples":[{"fr":"des chaussures marron","en":"brown shoes"}]},
+      {"fr":"orange","ipa":"/ɔ.ʁɑ̃ʒ/","meaning":"orange","tags":["color","adjective","invariable"],"url":"https://fr.wiktionary.org/wiki/orange","examples":[{"fr":"des sacs orange","en":"orange handbags"}]},
+      {"fr":"le rose et le bleu","ipa":"/lə ʁoz e lə blø/","meaning":"pink and blue","tags":["color as noun","masculine noun"],"url":"https://fr.wiktionary.org/wiki/rose","examples":[{"fr":"J’aime le rose et le bleu.","en":"I love pink and blue."}]}
+    ]
+  }
+]
