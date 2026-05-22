@@ -1,0 +1,65 @@
+[
+  {
+    "title": "Exercise 1.1",
+    "words": [
+      {"fr":"l’ami","ipa":"/la.mi/","meaning":"friend","tags":["masculine"],"url":"https://fr.wiktionary.org/wiki/ami"},
+      {"fr":"l’homme","ipa":"/l‿ɔm/","meaning":"man; human being","tags":["masculine","h muet"],"url":"https://fr.wiktionary.org/wiki/homme"},
+      {"fr":"la lampe","ipa":"/la lɑ̃p/","meaning":"lamp","tags":["feminine"],"url":"https://fr.wiktionary.org/wiki/lampe"},
+      {"fr":"la fenêtre","ipa":"/la fə.nɛtʁ/","meaning":"window","tags":["feminine"],"url":"https://fr.wiktionary.org/wiki/fen%C3%AAtre"},
+      {"fr":"l’hôtel","ipa":"/lo.tɛl/","meaning":"hotel","tags":["masculine","h muet"],"url":"https://fr.wiktionary.org/wiki/h%C3%B4tel"},
+      {"fr":"le réalisme","ipa":"/lə ʁe.a.lism/","meaning":"realism","tags":["masculine"],"url":"https://fr.wiktionary.org/wiki/r%C3%A9alisme"},
+      {"fr":"l’ingénieur","ipa":"/l‿ɛ̃.ʒe.njœʁ/","meaning":"engineer","tags":["masculine"],"url":"https://fr.wiktionary.org/wiki/ing%C3%A9nieur"},
+      {"fr":"la publicité","ipa":"/la py.bli.si.te/","meaning":"advertising; publicity","tags":["feminine"],"url":"https://fr.wiktionary.org/wiki/publicit%C3%A9"},
+      {"fr":"la comédie","ipa":"/la kɔ.me.di/","meaning":"comedy","tags":["feminine"],"url":"https://fr.wiktionary.org/wiki/com%C3%A9die"},
+      {"fr":"la différence","ipa":"/la di.fe.ʁɑ̃s/","meaning":"difference","tags":["feminine"],"url":"https://fr.wiktionary.org/wiki/diff%C3%A9rence"},
+      {"fr":"le médecin","ipa":"/lə med.sɛ̃/","meaning":"doctor; physician","tags":["masculine"],"url":"https://fr.wiktionary.org/wiki/m%C3%A9decin"},
+      {"fr":"la sculpture","ipa":"/la skyl.tyʁ/","meaning":"sculpture","tags":["feminine"],"url":"https://fr.wiktionary.org/wiki/sculpture"},
+      {"fr":"la prononciation","ipa":"/la pʁɔ.nɔ̃.sja.sjɔ̃/","meaning":"pronunciation","tags":["feminine"],"url":"https://fr.wiktionary.org/wiki/prononciation"},
+      {"fr":"le gâteau","ipa":"/lə ɡa.to/","meaning":"cake","tags":["masculine"],"url":"https://fr.wiktionary.org/wiki/g%C3%A2teau"}
+    ]
+  },
+  {
+    "title": "Masculine Nouns",
+    "words": [
+      {"fr":"un ami","ipa":"/œ̃.n‿a.mi/","meaning":"a friend","tags":["masculine"],"url":"https://fr.wiktionary.org/wiki/ami"},
+      {"fr":"un autobus","ipa":"/œ̃.n‿ɔ.tɔ.bys/","meaning":"a bus","tags":["masculine"],"url":"https://fr.wiktionary.org/wiki/autobus"},
+      {"fr":"un billet","ipa":"/œ̃ bi.jɛ/","meaning":"a ticket","tags":["masculine"],"url":"https://fr.wiktionary.org/wiki/billet"},
+      {"fr":"un dictionnaire","ipa":"/œ̃ dik.sjɔ.nɛʁ/","meaning":"a dictionary","tags":["masculine"],"url":"https://fr.wiktionary.org/wiki/dictionnaire"},
+      {"fr":"un fauteuil","ipa":"/œ̃ fo.tœj/","meaning":"an easy chair; armchair","tags":["masculine"],"url":"https://fr.wiktionary.org/wiki/fauteuil"},
+      {"fr":"un hôtel","ipa":"/œ̃.n‿o.tɛl/","meaning":"a hotel","tags":["masculine","h muet"],"url":"https://fr.wiktionary.org/wiki/h%C3%B4tel"},
+      {"fr":"un jardin","ipa":"/œ̃ ʒaʁ.dɛ̃/","meaning":"a garden","tags":["masculine"],"url":"https://fr.wiktionary.org/wiki/jardin"},
+      {"fr":"un musée","ipa":"/œ̃ my.ze/","meaning":"a museum","tags":["masculine"],"url":"https://fr.wiktionary.org/wiki/mus%C3%A9e"},
+      {"fr":"un pianiste","ipa":"/œ̃ pja.nist/","meaning":"a pianist","tags":["masculine"],"url":"https://fr.wiktionary.org/wiki/pianiste"},
+      {"fr":"un salon","ipa":"/œ̃ sa.lɔ̃/","meaning":"a living room","tags":["masculine"],"url":"https://fr.wiktionary.org/wiki/salon"}
+    ]
+  },
+  {
+    "title": "Feminine Nouns",
+    "words": [
+      {"fr":"une amie","ipa":"/y.n‿a.mi/","meaning":"a female friend","tags":["feminine"],"url":"https://fr.wiktionary.org/wiki/amie"},
+      {"fr":"une bibliothèque","ipa":"/yn bi.bli.jɔ.tɛk/","meaning":"a library","tags":["feminine","false friend"],"url":"https://fr.wiktionary.org/wiki/biblioth%C3%A8que"},
+      {"fr":"une héroïne","ipa":"/y.n‿e.ʁɔ.in/","meaning":"a heroine","tags":["feminine","h muet"],"url":"https://fr.wiktionary.org/wiki/h%C3%A9ro%C3%AFne"},
+      {"fr":"une Hollandaise","ipa":"/yn ɔ.lɑ̃.dɛz/","meaning":"a Dutch woman","tags":["feminine"],"url":"https://fr.wiktionary.org/wiki/Hollandaise"},
+      {"fr":"une leçon","ipa":"/yn lə.sɔ̃/","meaning":"a lesson","tags":["feminine"],"url":"https://fr.wiktionary.org/wiki/le%C3%A7on"},
+      {"fr":"une librairie","ipa":"/yn li.bʁɛ.ʁi/","meaning":"a bookstore","tags":["feminine","false friend"],"url":"https://fr.wiktionary.org/wiki/librairie"},
+      {"fr":"une mère","ipa":"/yn mɛʁ/","meaning":"a mother","tags":["feminine"],"url":"https://fr.wiktionary.org/wiki/m%C3%A8re"},
+      {"fr":"une page","ipa":"/yn paʒ/","meaning":"a book page","tags":["feminine"],"url":"https://fr.wiktionary.org/wiki/page"},
+      {"fr":"une valise","ipa":"/yn va.liz/","meaning":"a suitcase","tags":["feminine"],"url":"https://fr.wiktionary.org/wiki/valise"},
+      {"fr":"une ville","ipa":"/yn vil/","meaning":"a city","tags":["feminine"],"url":"https://fr.wiktionary.org/wiki/ville"}
+    ]
+  },
+  {
+    "title": "Plural Forms and Irregular Plurals",
+    "words": [
+      {"fr":"un choix → des choix","ipa":"/œ̃ ʃwa/ → /de ʃwa/","meaning":"a choice → choices","tags":["masculine","plural unchanged","ends in -x"],"url":"https://fr.wiktionary.org/wiki/choix"},
+      {"fr":"le cours → les cours","ipa":"/lə kuʁ/ → /le kuʁ/","meaning":"the course/class → the courses/classes","tags":["masculine","plural unchanged","ends in -s"],"url":"https://fr.wiktionary.org/wiki/cours"},
+      {"fr":"le nez → les nez","ipa":"/lə ne/ → /le ne/","meaning":"the nose → the noses","tags":["masculine","plural unchanged","ends in -z"],"url":"https://fr.wiktionary.org/wiki/nez"},
+      {"fr":"le bureau → les bureaux","ipa":"/lə by.ʁo/ → /le by.ʁo/","meaning":"the desk/office → the desks/offices","tags":["masculine","irregular plural","-eau → -eaux"],"url":"https://fr.wiktionary.org/wiki/bureau"},
+      {"fr":"un hôpital → des hôpitaux","ipa":"/œ̃.n‿o.pi.tal/ → /de.z‿o.pi.to/","meaning":"a hospital → hospitals","tags":["masculine","irregular plural","h muet","-al → -aux"],"url":"https://fr.wiktionary.org/wiki/h%C3%B4pital"},
+      {"fr":"le lieu → les lieux","ipa":"/lə ljø/ → /le ljø/","meaning":"the place → the places","tags":["masculine","irregular plural","-eu → -eux"],"url":"https://fr.wiktionary.org/wiki/lieu"},
+      {"fr":"le travail → les travaux","ipa":"/lə tʁa.vaj/ → /le tʁa.vo/","meaning":"the work/task/job → the works/tasks/jobs","tags":["masculine","irregular plural","-ail → -aux"],"url":"https://fr.wiktionary.org/wiki/travail"},
+      {"fr":"un Français → des Français","ipa":"/œ̃ fʁɑ̃.sɛ/ → /de fʁɑ̃.sɛ/","meaning":"a French man → French people","tags":["masculine","nationality","plural unchanged"],"url":"https://fr.wiktionary.org/wiki/Fran%C3%A7ais"},
+      {"fr":"une Française → des Français","ipa":"/yn fʁɑ̃.sɛz/ → /de fʁɑ̃.sɛ/","meaning":"a French woman → French people","tags":["feminine","nationality","masculine plural for mixed group"],"url":"https://fr.wiktionary.org/wiki/Fran%C3%A7aise"}
+    ]
+  }
+]
