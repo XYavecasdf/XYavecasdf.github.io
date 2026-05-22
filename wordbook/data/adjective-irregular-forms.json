@@ -1,0 +1,52 @@
+[
+  {
+    "title": "Invariable Adjectives and Adjectival Phrases",
+    "words": [
+      {
+        "fr": "chic",
+        "ipa": "/ʃik/",
+        "meaning": "stylish; chic",
+        "tags": ["adjective", "invariable", "fashion"],
+        "url": "https://fr.wiktionary.org/wiki/chic",
+        "examples": [
+          {"fr": "Ce sont des chaussures chic.", "en": "These are stylish shoes."}
+        ]
+      },
+      {
+        "fr": "bon marché",
+        "ipa": "/bɔ̃ maʁ.ʃe/",
+        "meaning": "inexpensive; cheap",
+        "tags": ["adjective phrase", "invariable", "shopping"],
+        "url": "https://fr.wiktionary.org/wiki/bon_march%C3%A9",
+        "examples": [
+          {"fr": "Ce sont des chaussures chic et bon marché.", "en": "These are stylish and inexpensive shoes."}
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Irregular Adjective Forms",
+    "words": [
+      {"fr":"conservateur / conservatrice","ipa":"/kɔ̃.sɛʁ.va.tœʁ/ / /kɔ̃.sɛʁ.va.tʁis/","meaning":"conservative","tags":["adjective","irregular feminine","-teur → -trice"],"url":"https://fr.wiktionary.org/wiki/conservateur"},
+      {"fr":"courageux / courageuse","ipa":"/ku.ʁa.ʒø/ / /ku.ʁa.ʒøz/","meaning":"courageous","tags":["adjective","irregular feminine","-eux → -euse"],"url":"https://fr.wiktionary.org/wiki/courageux"},
+      {"fr":"fier / fière","ipa":"/fjɛʁ/ / /fjɛʁ/","meaning":"proud","tags":["adjective","irregular feminine","-er → -ère"],"url":"https://fr.wiktionary.org/wiki/fier"},
+      {"fr":"gentil / gentille","ipa":"/ʒɑ̃.ti/ / /ʒɑ̃.tij/","meaning":"nice; kind","tags":["adjective","irregular feminine","-il → -ille"],"url":"https://fr.wiktionary.org/wiki/gentil"},
+      {"fr":"naturel / naturelle","ipa":"/na.ty.ʁɛl/","meaning":"natural","tags":["adjective","irregular feminine","-el → -elle"],"url":"https://fr.wiktionary.org/wiki/naturel"},
+      {"fr":"parisien / parisienne","ipa":"/pa.ʁi.zjɛ̃/ / /pa.ʁi.zjɛn/","meaning":"Parisian","tags":["adjective","nationality or origin","irregular feminine","-en → -enne"],"url":"https://fr.wiktionary.org/wiki/parisien"},
+      {"fr":"sportif / sportive","ipa":"/spɔʁ.tif/ / /spɔʁ.tiv/","meaning":"athletic; sporty","tags":["adjective","irregular feminine","-if → -ive"],"url":"https://fr.wiktionary.org/wiki/sportif"},
+      {"fr":"travailleur / travailleuse","ipa":"/tʁa.va.jœʁ/ / /tʁa.va.jøz/","meaning":"hardworking; worker","tags":["adjective","profession-related","irregular feminine","-eur → -euse"],"url":"https://fr.wiktionary.org/wiki/travailleur"}
+    ]
+  },
+  {
+    "title": "More Irregular Adjective Examples",
+    "words": [
+      {"fr":"canadien / canadienne","ipa":"/ka.na.djɛ̃/ / /ka.na.djɛn/","meaning":"Canadian","tags":["adjective","nationality","irregular feminine","-en → -enne"],"url":"https://fr.wiktionary.org/wiki/canadien"},
+      {"fr":"cher / chère","ipa":"/ʃɛʁ/","meaning":"expensive; dear","tags":["adjective","irregular feminine","-er → -ère"],"url":"https://fr.wiktionary.org/wiki/cher"},
+      {"fr":"conspirateur / conspiratrice","ipa":"/kɔ̃s.pi.ʁa.tœʁ/ / /kɔ̃s.pi.ʁa.tʁis/","meaning":"conspiratorial; conspirator","tags":["adjective","irregular feminine","-teur → -trice"],"url":"https://fr.wiktionary.org/wiki/conspirateur"},
+      {"fr":"ennuyeux / ennuyeuse","ipa":"/ɑ̃.nɥi.jø/ / /ɑ̃.nɥi.jøz/","meaning":"boring","tags":["adjective","irregular feminine","-eux → -euse"],"url":"https://fr.wiktionary.org/wiki/ennuyeux"},
+      {"fr":"naïf / naïve","ipa":"/na.if/ / /na.iv/","meaning":"naïve","tags":["adjective","irregular feminine","-f → -ve"],"url":"https://fr.wiktionary.org/wiki/na%C3%AFf"},
+      {"fr":"paresseux / paresseuse","ipa":"/pa.ʁɛ.sø/ / /pa.ʁɛ.søz/","meaning":"lazy","tags":["adjective","irregular feminine","-eux → -euse"],"url":"https://fr.wiktionary.org/wiki/paresseux"},
+      {"fr":"sérieux / sérieuse","ipa":"/se.ʁjø/ / /se.ʁjøz/","meaning":"serious","tags":["adjective","irregular feminine","-eux → -euse"],"url":"https://fr.wiktionary.org/wiki/s%C3%A9rieux"}
+    ]
+  }
+]
