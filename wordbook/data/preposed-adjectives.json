@@ -1,1 +1,36 @@
-[{"title":"Adjectives That Usually Precede the Noun","words":[{"fr":"autre","meaning":"other","tags":["preposed adjective"]},{"fr":"beau / bel / belle / beaux","meaning":"beautiful; handsome","tags":["preposed adjective","irregular"]},{"fr":"bon / bonne","meaning":"good","tags":["preposed adjective"]},{"fr":"nouveau / nouvel / nouvelle / nouveaux","meaning":"new","tags":["preposed adjective","irregular"]},{"fr":"vieux / vieil / vieille","meaning":"old","tags":["preposed adjective","irregular"]}]},{"title":"Meaning Changes by Position","words":[{"fr":"un ancien professeur","meaning":"a former teacher","tags":["ancien"]},{"fr":"une maison ancienne","meaning":"an ancient house","tags":["ancien"]},{"fr":"le dernier exercice","meaning":"the final exercise","tags":["dernier"]}]}]
+[
+  {
+    "title": "Adjectives That Usually Precede the Noun",
+    "words": [
+      {"fr":"autre","ipa":"/otʁ/","meaning":"other","tags":["preposed adjective"],"url":"https://fr.wiktionary.org/wiki/autre"},
+      {"fr":"beau / bel / belle / beaux / belles","ipa":"/bo/ / /bɛl/ / /bɛl/","meaning":"beautiful; handsome","tags":["preposed adjective","irregular","before-vowel form"],"url":"https://fr.wiktionary.org/wiki/beau","examples":[{"fr":"un beau livre","en":"a beautiful book"},{"fr":"un bel objet","en":"a beautiful object"},{"fr":"une belle auto","en":"a beautiful car"},{"fr":"C’est une belle maison.","en":"It is a pretty house."}]},
+      {"fr":"bon / bonne / bons / bonnes","ipa":"/bɔ̃/ / /bɔn/","meaning":"good","tags":["preposed adjective"],"url":"https://fr.wiktionary.org/wiki/bon","examples":[{"fr":"Ce sont des bons copains !","en":"They are good pals."}]},
+      {"fr":"joli / jolie / jolis / jolies","ipa":"/ʒɔ.li/","meaning":"pretty","tags":["preposed adjective"],"url":"https://fr.wiktionary.org/wiki/joli"},
+      {"fr":"mauvais / mauvaise / mauvais / mauvaises","ipa":"/mo.vɛ/ / /mo.vɛz/","meaning":"bad","tags":["preposed adjective"],"url":"https://fr.wiktionary.org/wiki/mauvais"},
+      {"fr":"même / mêmes","ipa":"/mɛm/","meaning":"same","tags":["preposed adjective"],"url":"https://fr.wiktionary.org/wiki/m%C3%AAme"},
+      {"fr":"grand / grande / grands / grandes","ipa":"/ɡʁɑ̃/ / /ɡʁɑ̃d/","meaning":"big; tall; great","tags":["preposed adjective"],"url":"https://fr.wiktionary.org/wiki/grand","examples":[{"fr":"de grandes autos","en":"some big cars"}]},
+      {"fr":"gros / grosse / gros / grosses","ipa":"/ɡʁo/ / /ɡʁos/","meaning":"fat; big","tags":["preposed adjective","plural unchanged masculine","ends in -s"],"url":"https://fr.wiktionary.org/wiki/gros"},
+      {"fr":"jeune / jeunes","ipa":"/ʒœn/","meaning":"young","tags":["preposed adjective","same masculine and feminine"],"url":"https://fr.wiktionary.org/wiki/jeune"},
+      {"fr":"nouveau / nouvel / nouvelle / nouveaux / nouvelles","ipa":"/nu.vo/ / /nu.vɛl/ / /nu.vɛl/","meaning":"new","tags":["preposed adjective","irregular","before-vowel form"],"url":"https://fr.wiktionary.org/wiki/nouveau","examples":[{"fr":"un nouveau livre","en":"a new book"},{"fr":"un nouvel objet","en":"a new object"},{"fr":"une nouvelle auto","en":"a new car"},{"fr":"C’est le nouveau professeur.","en":"That is the new teacher."},{"fr":"de nouvelles idées","en":"some new ideas"}]},
+      {"fr":"petit / petite / petits / petites","ipa":"/pə.ti/ / /pə.tit/","meaning":"small; short","tags":["preposed adjective"],"url":"https://fr.wiktionary.org/wiki/petit"},
+      {"fr":"vieux / vieil / vieille / vieux / vieilles","ipa":"/vjø/ / /vjɛj/ / /vjɛj/","meaning":"old","tags":["preposed adjective","irregular","before-vowel form","plural unchanged masculine"],"url":"https://fr.wiktionary.org/wiki/vieux","examples":[{"fr":"un vieux livre","en":"an old book"},{"fr":"un vieil homme","en":"an old man"},{"fr":"une vieille auto","en":"an old car"},{"fr":"C’est un vieil homme.","en":"He is an old man."}]}
+    ]
+  },
+  {
+    "title": "Preposed Adjective Examples and Article Change",
+    "words": [
+      {"fr":"d’autres amis","ipa":"/dotʁ a.mi/","meaning":"some other friends","tags":["preposed adjective","des → de/d’ before plural adjective"],"url":"https://fr.wiktionary.org/wiki/autre"},
+      {"fr":"de grandes autos","ipa":"/də ɡʁɑ̃d o.to/","meaning":"some big cars","tags":["preposed adjective","des → de before plural adjective"],"url":"https://fr.wiktionary.org/wiki/grand"},
+      {"fr":"de nouvelles idées","ipa":"/də nu.vɛl i.de/","meaning":"some new ideas","tags":["preposed adjective","des → de before plural adjective"],"url":"https://fr.wiktionary.org/wiki/nouveau"},
+      {"fr":"des bons copains","ipa":"/de bɔ̃ kɔ.pɛ̃/","meaning":"good pals","tags":["colloquial","preposed adjective"],"url":"https://fr.wiktionary.org/wiki/copain"}
+    ]
+  },
+  {
+    "title": "Meaning Changes by Position",
+    "words": [
+      {"fr":"un ancien professeur","ipa":"/œ̃.n‿ɑ̃.sjɛ̃ pʁɔ.fɛ.sœʁ/","meaning":"a former teacher","tags":["position changes meaning","ancien","preposed adjective"],"url":"https://fr.wiktionary.org/wiki/ancien"},
+      {"fr":"une maison ancienne","ipa":"/yn mɛ.zɔ̃ ɑ̃.sjɛn/","meaning":"an ancient house","tags":["position changes meaning","ancien","adjective after noun"],"url":"https://fr.wiktionary.org/wiki/ancien"},
+      {"fr":"le dernier exercice","ipa":"/lə dɛʁ.nje ɛɡ.zɛʁ.sis/","meaning":"the final exercise","tags":["position changes meaning","dernier","preposed adjective"],"url":"https://fr.wiktionary.org/wiki/dernier"}
+    ]
+  }
+]
