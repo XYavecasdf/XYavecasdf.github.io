@@ -1,0 +1,132 @@
+[
+  {
+    "title": "Descriptive Adjectives — Agreement in Gender and Number",
+    "words": [
+      {
+        "fr": "intéressant / intéressante / intéressants / intéressantes",
+        "ipa": "/ɛ̃.te.ʁe.sɑ̃/ / /ɛ̃.te.ʁe.sɑ̃t/",
+        "meaning": "interesting",
+        "tags": ["adjective", "agreement", "regular feminine -e", "regular plural -s"],
+        "url": "https://fr.wiktionary.org/wiki/int%C3%A9ressant",
+        "examples": [
+          {"fr": "un professeur intéressant", "en": "an interesting teacher"}
+        ]
+      },
+      {
+        "fr": "sincère",
+        "ipa": "/sɛ̃.sɛʁ/",
+        "meaning": "sincere",
+        "tags": ["adjective", "same masculine and feminine", "final -e"],
+        "url": "https://fr.wiktionary.org/wiki/sinc%C3%A8re",
+        "examples": [
+          {"fr": "un ami sincère", "en": "a sincere friend"}
+        ]
+      },
+      {
+        "fr": "pratique",
+        "ipa": "/pʁa.tik/",
+        "meaning": "practical",
+        "tags": ["adjective", "same masculine and feminine", "final -e"],
+        "url": "https://fr.wiktionary.org/wiki/pratique",
+        "examples": [
+          {"fr": "Il est pratique.", "en": "He/It is practical."}
+        ]
+      },
+      {
+        "fr": "sportif / sportive",
+        "ipa": "/spɔʁ.tif/ / /spɔʁ.tiv/",
+        "meaning": "athletic; sporty",
+        "tags": ["adjective", "gender agreement", "-if → -ive"],
+        "url": "https://fr.wiktionary.org/wiki/sportif",
+        "examples": [
+          {"fr": "Elle est sportive.", "en": "She is athletic."}
+        ]
+      },
+      {
+        "fr": "intelligent / intelligente / intelligents / intelligentes",
+        "ipa": "/ɛ̃.te.li.ʒɑ̃/ / /ɛ̃.te.li.ʒɑ̃t/",
+        "meaning": "intelligent",
+        "tags": ["adjective", "agreement", "regular feminine -e", "regular plural -s"],
+        "url": "https://fr.wiktionary.org/wiki/intelligent",
+        "examples": [
+          {"fr": "un ami intelligent", "en": "an intelligent male friend"},
+          {"fr": "une amie intelligente", "en": "an intelligent female friend"},
+          {"fr": "des amis intelligents", "en": "intelligent male/mixed friends"},
+          {"fr": "des amies intelligentes", "en": "intelligent female friends"}
+        ]
+      },
+      {
+        "fr": "extraordinaire",
+        "ipa": "/ɛks.tʁa.ɔʁ.di.nɛʁ/",
+        "meaning": "extraordinary",
+        "tags": ["adjective", "same masculine and feminine", "final -e"],
+        "url": "https://fr.wiktionary.org/wiki/extraordinaire",
+        "examples": [
+          {"fr": "C’est un homme extraordinaire.", "en": "He is an extraordinary man."},
+          {"fr": "C’est une femme extraordinaire.", "en": "She is an extraordinary woman."}
+        ]
+      },
+      {
+        "fr": "optimiste",
+        "ipa": "/ɔp.ti.mist/",
+        "meaning": "optimistic; optimist",
+        "tags": ["adjective", "same masculine and feminine", "final -e"],
+        "url": "https://fr.wiktionary.org/wiki/optimiste",
+        "examples": [
+          {"fr": "Paul est optimiste.", "en": "Paul is optimistic."}
+        ]
+      },
+      {
+        "fr": "pessimiste",
+        "ipa": "/pe.si.mist/",
+        "meaning": "pessimistic; pessimist",
+        "tags": ["adjective", "same masculine and feminine", "final -e"],
+        "url": "https://fr.wiktionary.org/wiki/pessimiste",
+        "examples": [
+          {"fr": "Mais Claire est pessimiste.", "en": "But Claire is pessimistic."}
+        ]
+      },
+      {
+        "fr": "anglais / anglaise / anglais / anglaises",
+        "ipa": "/ɑ̃.ɡlɛ/ / /ɑ̃.ɡlɛz/",
+        "meaning": "English",
+        "tags": ["adjective", "nationality", "ends in -s", "plural unchanged masculine"],
+        "url": "https://fr.wiktionary.org/wiki/anglais",
+        "examples": [
+          {"fr": "Bradley est anglais.", "en": "Bradley is English."},
+          {"fr": "Les amis de Bradley sont aussi anglais.", "en": "Bradley’s friends are also English."}
+        ]
+      },
+      {
+        "fr": "généreux / généreuse / généreux / généreuses",
+        "ipa": "/ʒe.ne.ʁø/ / /ʒe.ne.ʁøz/",
+        "meaning": "generous",
+        "tags": ["adjective", "ends in -x", "plural unchanged masculine", "-eux → -euse"],
+        "url": "https://fr.wiktionary.org/wiki/g%C3%A9n%C3%A9reux",
+        "examples": [
+          {"fr": "M. Blin est généreux.", "en": "Mr. Blin is generous."},
+          {"fr": "Ses enfants sont aussi généreux.", "en": "His children are also generous."}
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Adjective Agreement — Example Sentences",
+    "words": [
+      {
+        "fr": "Suzanne et Georges sont intelligents.",
+        "ipa": "/sy.zan e ʒɔʁʒ sɔ̃ ɛ̃.te.li.ʒɑ̃/",
+        "meaning": "Suzanne and Georges are intelligent.",
+        "tags": ["sentence", "adjective agreement", "mixed group masculine plural"],
+        "url": "https://fr.wiktionary.org/wiki/intelligent"
+      },
+      {
+        "fr": "Suzanne et Amélie sont intelligentes.",
+        "ipa": "/sy.zan e a.me.li sɔ̃ ɛ̃.te.li.ʒɑ̃t/",
+        "meaning": "Suzanne and Amélie are intelligent.",
+        "tags": ["sentence", "adjective agreement", "feminine plural"],
+        "url": "https://fr.wiktionary.org/wiki/intelligent"
+      }
+    ]
+  }
+]
