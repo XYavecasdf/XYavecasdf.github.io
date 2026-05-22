@@ -1,0 +1,21 @@
+[
+  {
+    "title": "Exercise 1.2 — Plural Practice",
+    "words": [
+      {"fr":"une artiste → des artistes","ipa":"/yn aʁ.tist/ → /de.z‿aʁ.tist/","meaning":"an artist → artists","tags":["feminine","plural","liaison"],"url":"https://fr.wiktionary.org/wiki/artiste"},
+      {"fr":"un hors-d’œuvre → des hors-d’œuvre","ipa":"/œ̃ ɔʁ.dœvʁ/ → /de ɔʁ.dœvʁ/","meaning":"an appetizer/starter → appetizers/starters","tags":["masculine","plural unchanged","invariable"],"url":"https://fr.wiktionary.org/wiki/hors-d%27%C5%93uvre"},
+      {"fr":"le milieu → les milieux","ipa":"/lə mi.ljø/ → /le mi.ljø/","meaning":"the middle/environment → the middles/environments","tags":["masculine","irregular plural","-eu → -eux"],"url":"https://fr.wiktionary.org/wiki/milieu"},
+      {"fr":"l’étudiante → les étudiantes","ipa":"/le.ty.djɑ̃t/ → /le.z‿e.ty.djɑ̃t/","meaning":"the female student → the female students","tags":["feminine","plural","liaison"],"url":"https://fr.wiktionary.org/wiki/%C3%A9tudiante"},
+      {"fr":"un Français → des Français","ipa":"/œ̃ fʁɑ̃.sɛ/ → /de fʁɑ̃.sɛ/","meaning":"a French man → French people","tags":["masculine","nationality","plural unchanged"],"url":"https://fr.wiktionary.org/wiki/Fran%C3%A7ais"},
+      {"fr":"un café → des cafés","ipa":"/œ̃ ka.fe/ → /de ka.fe/","meaning":"a café/coffee → cafés/coffees","tags":["masculine","regular plural"],"url":"https://fr.wiktionary.org/wiki/caf%C3%A9"},
+      {"fr":"le chapeau → les chapeaux","ipa":"/lə ʃa.po/ → /le ʃa.po/","meaning":"the hat → the hats","tags":["masculine","irregular plural","-eau → -eaux"],"url":"https://fr.wiktionary.org/wiki/chapeau"},
+      {"fr":"l’eau → les eaux","ipa":"/lo/ → /le.z‿o/","meaning":"the water → the waters","tags":["feminine","irregular plural","-eau → -eaux","liaison"],"url":"https://fr.wiktionary.org/wiki/eau"},
+      {"fr":"la fenêtre → les fenêtres","ipa":"/la fə.nɛtʁ/ → /le fə.nɛtʁ/","meaning":"the window → the windows","tags":["feminine","regular plural"],"url":"https://fr.wiktionary.org/wiki/fen%C3%AAtre"},
+      {"fr":"un choix → des choix","ipa":"/œ̃ ʃwa/ → /de ʃwa/","meaning":"a choice → choices","tags":["masculine","plural unchanged","ends in -x"],"url":"https://fr.wiktionary.org/wiki/choix"},
+      {"fr":"une préférence → des préférences","ipa":"/yn pʁe.fe.ʁɑ̃s/ → /de pʁe.fe.ʁɑ̃s/","meaning":"a preference → preferences","tags":["feminine","regular plural"],"url":"https://fr.wiktionary.org/wiki/pr%C3%A9f%C3%A9rence"},
+      {"fr":"le travail → les travaux","ipa":"/lə tʁa.vaj/ → /le tʁa.vo/","meaning":"the work/task/job → the works/tasks/jobs","tags":["masculine","irregular plural","-ail → -aux"],"url":"https://fr.wiktionary.org/wiki/travail"},
+      {"fr":"le nez → les nez","ipa":"/lə ne/ → /le ne/","meaning":"the nose → the noses","tags":["masculine","plural unchanged","ends in -z"],"url":"https://fr.wiktionary.org/wiki/nez"},
+      {"fr":"un cours → des cours","ipa":"/œ̃ kuʁ/ → /de kuʁ/","meaning":"a course/class → courses/classes","tags":["masculine","plural unchanged","ends in -s"],"url":"https://fr.wiktionary.org/wiki/cours"}
+    ]
+  }
+]
