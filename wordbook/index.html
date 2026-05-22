@@ -3,18 +3,20 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>生词本 Wordbook — French Vocabulary Exercise 1.1</title>
+  <title>生词本 Wordbook — French Vocabulary</title>
   <style>
     :root { font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: #1f2937; background: #fff7fb; }
     body { margin: 0; padding: 32px; }
     main { max-width: 980px; margin: 0 auto; }
     h1 { margin-bottom: 8px; }
+    h2 { margin-top: 34px; }
     .subtitle { color: #6b7280; margin-bottom: 24px; }
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
     .card { background: white; border: 1px solid #f3cfe0; border-radius: 16px; padding: 18px; box-shadow: 0 4px 14px rgba(0,0,0,.05); }
     .word { font-size: 1.45rem; font-weight: 750; margin-bottom: 4px; }
     .ipa { font-family: 'Charis SIL', 'Doulos SIL', serif; color: #374151; margin-bottom: 8px; }
     .meaning { color: #4b5563; margin-bottom: 12px; }
+    .tag { display: inline-block; font-size: .78rem; margin: 0 6px 10px 0; padding: 3px 8px; border-radius: 999px; background: #fce7f3; color: #9d174d; }
     button { border: 0; border-radius: 999px; padding: 9px 14px; cursor: pointer; background: #ec4899; color: white; font-weight: 650; }
     button:hover { background: #db2777; }
     a { color: #2563eb; text-decoration: none; font-size: .92rem; margin-left: 8px; }
@@ -27,37 +29,71 @@
 <main>
   <a class="back" href="/blog/#miscellaneous-stuff">← Back to Blog / Miscellaneous Stuff</a>
   <h1>生词本 Wordbook</h1>
-  <p class="subtitle">French Vocabulary — Exercise 1.1. Click “Listen” to hear browser French TTS. IPA and source links are based on Wiktionary entries.</p>
-  <section class="grid" id="cards"></section>
+  <p class="subtitle">French vocabulary from textbook exercises. Click “Listen” to hear browser French TTS. IPA/source links are based on Wiktionary where available.</p>
+  <div id="sections"></div>
   <div class="note">
-    <strong>Pronunciation reminders:</strong> French stress usually falls near the end of the phrase. In <em>l’homme</em> and <em>l’hôtel</em>, the h is <em>h muet</em>, so the article contracts to <em>l’</em>.
+    <strong>Pronunciation reminders:</strong> French stress usually falls near the end of the phrase. In <em>l’homme</em>, <em>l’hôtel</em>, and <em>l’héroïne</em>, the h is <em>h muet</em>. But <em>le héros</em> has <em>h aspiré</em>, so there is no elision.
   </div>
 </main>
 <script>
-const words = [
-  {fr:"l’ami", ipa:"/la.mi/", meaning:"friend", url:"https://fr.wiktionary.org/wiki/ami"},
-  {fr:"l’homme", ipa:"/l‿ɔm/", meaning:"man; human being", url:"https://fr.wiktionary.org/wiki/homme"},
-  {fr:"la lampe", ipa:"/la lɑ̃p/", meaning:"lamp", url:"https://fr.wiktionary.org/wiki/lampe"},
-  {fr:"la fenêtre", ipa:"/la fə.nɛtʁ/", meaning:"window", url:"https://fr.wiktionary.org/wiki/fen%C3%AAtre"},
-  {fr:"l’hôtel", ipa:"/lo.tɛl/", meaning:"hotel", url:"https://fr.wiktionary.org/wiki/h%C3%B4tel"},
-  {fr:"le réalisme", ipa:"/lə ʁe.a.lism/", meaning:"realism", url:"https://fr.wiktionary.org/wiki/r%C3%A9alisme"},
-  {fr:"l’ingénieur", ipa:"/l‿ɛ̃.ʒe.njœʁ/", meaning:"engineer", url:"https://fr.wiktionary.org/wiki/ing%C3%A9nieur"},
-  {fr:"la publicité", ipa:"/la py.bli.si.te/", meaning:"advertising; publicity", url:"https://fr.wiktionary.org/wiki/publicit%C3%A9"},
-  {fr:"la comédie", ipa:"/la kɔ.me.di/", meaning:"comedy", url:"https://fr.wiktionary.org/wiki/com%C3%A9die"},
-  {fr:"la différence", ipa:"/la di.fe.ʁɑ̃s/", meaning:"difference", url:"https://fr.wiktionary.org/wiki/diff%C3%A9rence"},
-  {fr:"le médecin", ipa:"/lə med.sɛ̃/", meaning:"doctor; physician", url:"https://fr.wiktionary.org/wiki/m%C3%A9decin"},
-  {fr:"la sculpture", ipa:"/la skyl.tyʁ/", meaning:"sculpture", url:"https://fr.wiktionary.org/wiki/sculpture"},
-  {fr:"la prononciation", ipa:"/la pʁɔ.nɔ̃.sja.sjɔ̃/", meaning:"pronunciation", url:"https://fr.wiktionary.org/wiki/prononciation"},
-  {fr:"le gâteau", ipa:"/lə ɡa.to/", meaning:"cake", url:"https://fr.wiktionary.org/wiki/g%C3%A2teau"}
+const groups = [
+  { title: 'Exercise 1.1', words: [
+    {fr:'l’ami', ipa:'/la.mi/', meaning:'friend', tags:['masculine'], url:'https://fr.wiktionary.org/wiki/ami'},
+    {fr:'l’homme', ipa:'/l‿ɔm/', meaning:'man; human being', tags:['masculine','h muet'], url:'https://fr.wiktionary.org/wiki/homme'},
+    {fr:'la lampe', ipa:'/la lɑ̃p/', meaning:'lamp', tags:['feminine'], url:'https://fr.wiktionary.org/wiki/lampe'},
+    {fr:'la fenêtre', ipa:'/la fə.nɛtʁ/', meaning:'window', tags:['feminine'], url:'https://fr.wiktionary.org/wiki/fen%C3%AAtre'},
+    {fr:'l’hôtel', ipa:'/lo.tɛl/', meaning:'hotel', tags:['masculine','h muet'], url:'https://fr.wiktionary.org/wiki/h%C3%B4tel'},
+    {fr:'le réalisme', ipa:'/lə ʁe.a.lism/', meaning:'realism', tags:['masculine'], url:'https://fr.wiktionary.org/wiki/r%C3%A9alisme'},
+    {fr:'l’ingénieur', ipa:'/l‿ɛ̃.ʒe.njœʁ/', meaning:'engineer', tags:['masculine'], url:'https://fr.wiktionary.org/wiki/ing%C3%A9nieur'},
+    {fr:'la publicité', ipa:'/la py.bli.si.te/', meaning:'advertising; publicity', tags:['feminine'], url:'https://fr.wiktionary.org/wiki/publicit%C3%A9'},
+    {fr:'la comédie', ipa:'/la kɔ.me.di/', meaning:'comedy', tags:['feminine'], url:'https://fr.wiktionary.org/wiki/com%C3%A9die'},
+    {fr:'la différence', ipa:'/la di.fe.ʁɑ̃s/', meaning:'difference', tags:['feminine'], url:'https://fr.wiktionary.org/wiki/diff%C3%A9rence'},
+    {fr:'le médecin', ipa:'/lə med.sɛ̃/', meaning:'doctor; physician', tags:['masculine'], url:'https://fr.wiktionary.org/wiki/m%C3%A9decin'},
+    {fr:'la sculpture', ipa:'/la skyl.tyʁ/', meaning:'sculpture', tags:['feminine'], url:'https://fr.wiktionary.org/wiki/sculpture'},
+    {fr:'la prononciation', ipa:'/la pʁɔ.nɔ̃.sja.sjɔ̃/', meaning:'pronunciation', tags:['feminine'], url:'https://fr.wiktionary.org/wiki/prononciation'},
+    {fr:'le gâteau', ipa:'/lə ɡa.to/', meaning:'cake', tags:['masculine'], url:'https://fr.wiktionary.org/wiki/g%C3%A2teau'}
+  ]},
+  { title: 'Masculine Nouns', words: [
+    {fr:'un ami', ipa:'/œ̃.n‿a.mi/', meaning:'a friend', tags:['masculine'], url:'https://fr.wiktionary.org/wiki/ami'},
+    {fr:'un autobus', ipa:'/œ̃.n‿ɔ.tɔ.bys/', meaning:'a bus', tags:['masculine'], url:'https://fr.wiktionary.org/wiki/autobus'},
+    {fr:'un billet', ipa:'/œ̃ bi.jɛ/', meaning:'a ticket', tags:['masculine'], url:'https://fr.wiktionary.org/wiki/billet'},
+    {fr:'un dictionnaire', ipa:'/œ̃ dik.sjɔ.nɛʁ/', meaning:'a dictionary', tags:['masculine'], url:'https://fr.wiktionary.org/wiki/dictionnaire'},
+    {fr:'un fauteuil', ipa:'/œ̃ fo.tœj/', meaning:'an easy chair; armchair', tags:['masculine'], url:'https://fr.wiktionary.org/wiki/fauteuil'},
+    {fr:'un hôtel', ipa:'/œ̃.n‿o.tɛl/', meaning:'a hotel', tags:['masculine','h muet'], url:'https://fr.wiktionary.org/wiki/h%C3%B4tel'},
+    {fr:'un jardin', ipa:'/œ̃ ʒaʁ.dɛ̃/', meaning:'a garden', tags:['masculine'], url:'https://fr.wiktionary.org/wiki/jardin'},
+    {fr:'un musée', ipa:'/œ̃ my.ze/', meaning:'a museum', tags:['masculine'], url:'https://fr.wiktionary.org/wiki/mus%C3%A9e'},
+    {fr:'un pianiste', ipa:'/œ̃ pja.nist/', meaning:'a pianist', tags:['masculine'], url:'https://fr.wiktionary.org/wiki/pianiste'},
+    {fr:'un salon', ipa:'/œ̃ sa.lɔ̃/', meaning:'a living room', tags:['masculine'], url:'https://fr.wiktionary.org/wiki/salon'}
+  ]},
+  { title: 'Feminine Nouns', words: [
+    {fr:'une amie', ipa:'/y.n‿a.mi/', meaning:'a female friend', tags:['feminine'], url:'https://fr.wiktionary.org/wiki/amie'},
+    {fr:'une bibliothèque', ipa:'/yn bi.bli.jɔ.tɛk/', meaning:'a library', tags:['feminine','false friend'], url:'https://fr.wiktionary.org/wiki/biblioth%C3%A8que'},
+    {fr:'une héroïne', ipa:'/y.n‿e.ʁɔ.in/', meaning:'a heroine', tags:['feminine','h muet'], url:'https://fr.wiktionary.org/wiki/h%C3%A9ro%C3%AFne'},
+    {fr:'une Hollandaise', ipa:'/yn ɔ.lɑ̃.dɛz/', meaning:'a Dutch woman', tags:['feminine'], url:'https://fr.wiktionary.org/wiki/Hollandaise'},
+    {fr:'une leçon', ipa:'/yn lə.sɔ̃/', meaning:'a lesson', tags:['feminine'], url:'https://fr.wiktionary.org/wiki/le%C3%A7on'},
+    {fr:'une librairie', ipa:'/yn li.bʁɛ.ʁi/', meaning:'a bookstore', tags:['feminine','false friend'], url:'https://fr.wiktionary.org/wiki/librairie'},
+    {fr:'une mère', ipa:'/yn mɛʁ/', meaning:'a mother', tags:['feminine'], url:'https://fr.wiktionary.org/wiki/m%C3%A8re'},
+    {fr:'une page', ipa:'/yn paʒ/', meaning:'a book page', tags:['feminine'], url:'https://fr.wiktionary.org/wiki/page'},
+    {fr:'une valise', ipa:'/yn va.liz/', meaning:'a suitcase', tags:['feminine'], url:'https://fr.wiktionary.org/wiki/valise'},
+    {fr:'une ville', ipa:'/yn vil/', meaning:'a city', tags:['feminine'], url:'https://fr.wiktionary.org/wiki/ville'}
+  ]}
 ];
 
-const cards = document.getElementById('cards');
-for (const w of words) {
-  const el = document.createElement('article');
-  el.className = 'card';
-  el.innerHTML = `<div class="word">${w.fr}</div><div class="ipa">${w.ipa}</div><div class="meaning">${w.meaning}</div><button type="button">Listen</button><a href="${w.url}" target="_blank" rel="noopener">Wiktionary</a>`;
-  el.querySelector('button').addEventListener('click', () => speak(w.fr));
-  cards.appendChild(el);
+const sections = document.getElementById('sections');
+for (const group of groups) {
+  const h = document.createElement('h2');
+  h.textContent = group.title;
+  sections.appendChild(h);
+  const grid = document.createElement('section');
+  grid.className = 'grid';
+  for (const w of group.words) {
+    const el = document.createElement('article');
+    el.className = 'card';
+    el.innerHTML = `<div class="word">${w.fr}</div><div class="ipa">${w.ipa || ''}</div><div>${(w.tags || []).map(t => `<span class="tag">${t}</span>`).join('')}</div><div class="meaning">${w.meaning}</div><button type="button">Listen</button><a href="${w.url}" target="_blank" rel="noopener">Wiktionary</a>`;
+    el.querySelector('button').addEventListener('click', () => speak(w.fr));
+    grid.appendChild(el);
+  }
+  sections.appendChild(grid);
 }
 
 function speak(text) {
