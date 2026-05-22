@@ -5,6 +5,12 @@ title: Projects
 
 ## Projects
 
+### 法语生词本
+
+A data-driven French vocabulary notebook for textbook exercises, plural forms, IPA notes, tags, search, and browser TTS pronunciation practice.
+
+- [Open 法语生词本](/wordbook/)
+
 ### Coming Soon
 
 You can list:
