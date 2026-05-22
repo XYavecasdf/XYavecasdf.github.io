@@ -33,7 +33,7 @@
 <main>
   <a class="back" href="/blog/#miscellaneous-stuff">← Back to Blog / Miscellaneous Stuff</a>
   <h1>生词本 Wordbook</h1>
-  <p class="subtitle">French vocabulary from textbook exercises. Click “Listen” to hear browser French TTS. Vocabulary data is loaded from <code>/wordbook/data/french.json</code>.</p>
+  <p class="subtitle">French vocabulary from textbook exercises. Click “Listen” to hear browser French TTS. Vocabulary datasets are loaded from <code>/wordbook/data/index.json</code>.</p>
 
   <div class="toolbar">
     <input id="search" type="search" placeholder="Search word, meaning, tag, or section…" />
@@ -49,7 +49,8 @@
   </div>
 </main>
 <script>
-const DATA_URL = '/wordbook/data/french.json';
+const DATA_INDEX_URL = '/wordbook/data/index.json';
+const DATA_BASE_URL = '/wordbook/data/';
 let groups = [];
 let allTags = [];
 
@@ -61,15 +62,32 @@ init();
 
 async function init() {
   try {
-    const res = await fetch(DATA_URL, { cache: 'no-store' });
-    if (!res.ok) throw new Error(`Could not load ${DATA_URL}: ${res.status}`);
-    groups = await res.json();
+    sections.innerHTML = '<div class="empty">Loading Wordbook data…</div>';
+    const indexRes = await fetch(DATA_INDEX_URL, { cache: 'no-store' });
+    if (!indexRes.ok) throw new Error(`Could not load ${DATA_INDEX_URL}: ${indexRes.status}`);
+    const files = await indexRes.json();
+    if (!Array.isArray(files)) throw new Error('Wordbook data index must be an array of JSON filenames.');
+
+    const datasets = await Promise.all(files.map(loadDataset));
+    groups = datasets.flat();
     allTags = collectTags(groups);
     populateTagFilter(allTags);
     render();
   } catch (err) {
     sections.innerHTML = `<div class="error"><strong>Could not load Wordbook data.</strong><br>${escapeHtml(err.message)}</div>`;
   }
+}
+
+async function loadDataset(fileName) {
+  if (typeof fileName !== 'string' || !fileName.endsWith('.json') || fileName.includes('..')) {
+    throw new Error(`Invalid dataset filename: ${fileName}`);
+  }
+  const url = DATA_BASE_URL + fileName;
+  const res = await fetch(url, { cache: 'no-store' });
+  if (!res.ok) throw new Error(`Could not load ${url}: ${res.status}`);
+  const data = await res.json();
+  if (!Array.isArray(data)) throw new Error(`Dataset ${fileName} must contain an array of sections.`);
+  return data;
 }
 
 searchInput.addEventListener('input', render);
@@ -86,12 +104,15 @@ function collectTags(data) {
 }
 
 function populateTagFilter(tags) {
+  const current = tagFilter.value;
+  tagFilter.innerHTML = '<option value="">All tags</option>';
   for (const tag of tags) {
     const opt = document.createElement('option');
     opt.value = tag;
     opt.textContent = tag;
     tagFilter.appendChild(opt);
   }
+  tagFilter.value = current;
 }
 
 function render() {
