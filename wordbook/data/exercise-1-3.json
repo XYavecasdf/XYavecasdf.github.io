@@ -1,0 +1,17 @@
+[
+  {
+    "title": "Exercise 1.3 — Vocabulary and Gender",
+    "words": [
+      {"fr":"le cyclisme","ipa":"/lə si.klism/","meaning":"cycling","tags":["masculine","sport"],"url":"https://fr.wiktionary.org/wiki/cyclisme"},
+      {"fr":"une sentinelle","ipa":"/yn sɑ̃.ti.nɛl/","meaning":"a sentry; guard","tags":["feminine"],"url":"https://fr.wiktionary.org/wiki/sentinelle"},
+      {"fr":"les écrivains","ipa":"/le.z‿e.kʁi.vɛ̃/","meaning":"writers; authors","tags":["masculine","profession","liaison"],"url":"https://fr.wiktionary.org/wiki/%C3%A9crivain"},
+      {"fr":"des hommes","ipa":"/de.z‿ɔm/","meaning":"men","tags":["masculine","plural","h muet","liaison"],"url":"https://fr.wiktionary.org/wiki/homme"},
+      {"fr":"la peau","ipa":"/la po/","meaning":"skin","tags":["feminine"],"url":"https://fr.wiktionary.org/wiki/peau"},
+      {"fr":"l’Allemande","ipa":"/a.lə.mɑ̃d/","meaning":"German woman","tags":["feminine","nationality"],"url":"https://fr.wiktionary.org/wiki/Allemande"},
+      {"fr":"les livres","ipa":"/le livʁ/","meaning":"books","tags":["masculine","plural"],"url":"https://fr.wiktionary.org/wiki/livre"},
+      {"fr":"des histoires","ipa":"/de.z‿is.twaʁ/","meaning":"stories","tags":["feminine","plural","h muet","liaison"],"url":"https://fr.wiktionary.org/wiki/histoire"},
+      {"fr":"une horloge","ipa":"/yn ɔʁ.lɔʒ/","meaning":"clock","tags":["feminine"],"url":"https://fr.wiktionary.org/wiki/horloge"},
+      {"fr":"la femme","ipa":"/la fam/","meaning":"woman; wife","tags":["feminine"],"url":"https://fr.wiktionary.org/wiki/femme"}
+    ]
+  }
+]
