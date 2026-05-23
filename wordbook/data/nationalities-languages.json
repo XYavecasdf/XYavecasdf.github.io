@@ -1,0 +1,17 @@
+[
+  {
+    "title": "Nationalities and Languages",
+    "words": [
+      {"fr":"allemand / allemande","meaning":"German","tags":["nationality","adjective"],"person":"un Allemand / une Allemande","language":"l'allemand"},
+      {"fr":"americain / americaine","meaning":"American","tags":["nationality","adjective"],"person":"un Americain / une Americaine"},
+      {"fr":"anglais / anglaise","meaning":"English","tags":["nationality","adjective"],"person":"un Anglais / une Anglaise","language":"l'anglais"},
+      {"fr":"belge","meaning":"Belgian","tags":["nationality","adjective"],"person":"un Belge / une Belge"},
+      {"fr":"canadien / canadienne","meaning":"Canadian","tags":["nationality","adjective"],"person":"un Canadien / une Canadienne","language":"l'anglais, le francais"},
+      {"fr":"chinois / chinoise","meaning":"Chinese","tags":["nationality","adjective"],"person":"un Chinois / une Chinoise","language":"le chinois"},
+      {"fr":"espagnol / espagnole","meaning":"Spanish","tags":["nationality","adjective"],"person":"un Espagnol / une Espagnole","language":"l'espagnol"},
+      {"fr":"francais / francaise","meaning":"French","tags":["nationality","adjective"],"person":"un Francais / une Francaise","language":"le francais"},
+      {"fr":"italien / italienne","meaning":"Italian","tags":["nationality","adjective"],"person":"un Italien / une Italienne","language":"l'italien"},
+      {"fr":"japonais / japonaise","meaning":"Japanese","tags":["nationality","adjective"],"person":"un Japonais / une Japonaise","language":"le japonais"}
+    ]
+  }
+]
