@@ -19,6 +19,12 @@
     .word { font-size: 1.45rem; font-weight: 750; margin-bottom: 4px; }
     .ipa { font-family: 'Charis SIL', 'Doulos SIL', serif; color: #374151; margin-bottom: 8px; }
     .meaning { color: #4b5563; margin-bottom: 12px; }
+    .extra { margin: 10px 0 12px; display: grid; gap: 7px; }
+    .extra-row { font-size: .93rem; color: #374151; line-height: 1.4; }
+    .extra-label { font-weight: 700; color: #9d174d; margin-right: 4px; }
+    .examples { margin: 10px 0 12px; padding: 10px 12px; border-radius: 12px; background: #fff7fb; border: 1px solid #f3cfe0; }
+    .example { font-size: .92rem; color: #374151; margin: 4px 0; }
+    .example-en { color: #6b7280; }
     .tag { display: inline-block; font-size: .78rem; margin: 0 6px 10px 0; padding: 3px 8px; border-radius: 999px; background: #fce7f3; color: #9d174d; }
     button { border: 0; border-radius: 999px; padding: 9px 14px; cursor: pointer; background: #ec4899; color: white; font-weight: 650; }
     button:hover { background: #db2777; }
@@ -34,7 +40,7 @@
   <p class="subtitle">French Wordbook — vocabulary, pronunciation, grammar notes and examples. Click “Listen” to hear browser French TTS. Vocabulary datasets are loaded from <code>/wordbook/data/index.json</code>.</p>
 
   <div class="toolbar">
-    <input id="search" type="search" placeholder="Search word, meaning, tag, or section…" />
+    <input id="search" type="search" placeholder="Search word, meaning, tag, person, language, example, or section…" />
     <select id="tagFilter">
       <option value="">All tags</option>
     </select>
@@ -145,8 +151,21 @@ function matchesFilters(word, sectionTitle, query, selectedTag) {
   const tags = word.tags || [];
   if (selectedTag && !tags.includes(selectedTag)) return false;
   if (!query) return true;
-  const haystack = [word.fr, word.ipa, word.meaning, sectionTitle, ...tags].join(' ').toLowerCase();
-  return haystack.includes(query);
+  return buildSearchText(word, sectionTitle).includes(query);
+}
+
+function buildSearchText(word, sectionTitle) {
+  const parts = [sectionTitle];
+  for (const value of Object.values(word)) {
+    if (Array.isArray(value)) {
+      parts.push(value.map(item => typeof item === 'object' ? Object.values(item).join(' ') : item).join(' '));
+    } else if (value && typeof value === 'object') {
+      parts.push(Object.values(value).join(' '));
+    } else {
+      parts.push(value ?? '');
+    }
+  }
+  return parts.join(' ').toLowerCase();
 }
 
 function createCard(w) {
@@ -154,15 +173,34 @@ function createCard(w) {
   el.className = 'card';
 
   const tags = (w.tags || []).map(t => `<span class="tag">${escapeHtml(t)}</span>`).join('');
+  const extraRows = [
+    ['Person', w.person],
+    ['Language', w.language],
+    ['Note', w.note],
+    ['Rule', w.rule]
+  ].filter(([, value]) => value).map(([label, value]) => `
+    <div class="extra-row"><span class="extra-label">${label}:</span>${escapeHtml(value)}</div>
+  `).join('');
+
+  const examples = Array.isArray(w.examples) && w.examples.length
+    ? `<div class="examples"><div class="extra-label">Examples:</div>${w.examples.map(ex => `
+        <div class="example">${escapeHtml(ex.fr || ex)}</div>
+        ${ex.en ? `<div class="example example-en">${escapeHtml(ex.en)}</div>` : ''}
+      `).join('')}</div>`
+    : '';
+
+  const wordText = w.fr || w.adjective || w.rule || '';
   el.innerHTML = `
-    <div class="word">${escapeHtml(w.fr)}</div>
+    <div class="word">${escapeHtml(wordText)}</div>
     <div class="ipa">${escapeHtml(w.ipa || '')}</div>
     <div>${tags}</div>
     <div class="meaning">${escapeHtml(w.meaning || '')}</div>
+    ${extraRows ? `<div class="extra">${extraRows}</div>` : ''}
+    ${examples}
     <button type="button">Listen</button>
     ${w.url ? `<a href="${escapeHtml(w.url)}" target="_blank" rel="noopener">Wiktionary</a>` : ''}
   `;
-  el.querySelector('button').addEventListener('click', () => speak(w.fr));
+  el.querySelector('button').addEventListener('click', () => speak(wordText));
   return el;
 }
 
@@ -172,7 +210,7 @@ function speak(text) {
     return;
   }
   speechSynthesis.cancel();
-  const u = new SpeechSynthesisUtterance(text.replace(/→/g, ', '));
+  const u = new SpeechSynthesisUtterance(String(text).replace(/→/g, ', '));
   u.lang = 'fr-FR';
   u.rate = 0.78;
   const voices = speechSynthesis.getVoices();
