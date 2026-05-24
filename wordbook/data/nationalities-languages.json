@@ -3,33 +3,33 @@
     "title": "Nationalities and Languages",
     "words": [
       {"fr":"allemand / allemande","meaning":"German","tags":["nationality","adjective"],"person":"un Allemand / une Allemande","language":"l'allemand"},
-      {"fr":"americain / americaine","meaning":"American","tags":["nationality","adjective"],"person":"un Americain / une Americaine"},
+      {"fr":"américain / américaine","meaning":"American","tags":["nationality","adjective"],"person":"un Américain / une Américaine"},
       {"fr":"anglais / anglaise","meaning":"English","tags":["nationality","adjective"],"person":"un Anglais / une Anglaise","language":"l'anglais"},
       {"fr":"belge","meaning":"Belgian","tags":["nationality","adjective","same masculine and feminine"],"person":"un Belge / une Belge"},
-      {"fr":"canadien / canadienne","meaning":"Canadian","tags":["nationality","adjective","-en to -enne"],"person":"un Canadien / une Canadienne","language":"l'anglais, le francais"},
+      {"fr":"canadien / canadienne","meaning":"Canadian","tags":["nationality","adjective","-en to -enne"],"person":"un Canadien / une Canadienne","language":"l'anglais, le français"},
       {"fr":"chinois / chinoise","meaning":"Chinese","tags":["nationality","adjective"],"person":"un Chinois / une Chinoise","language":"le chinois"},
       {"fr":"espagnol / espagnole","meaning":"Spanish","tags":["nationality","adjective"],"person":"un Espagnol / une Espagnole","language":"l'espagnol"},
-      {"fr":"francais / francaise","meaning":"French","tags":["nationality","adjective"],"person":"un Francais / une Francaise","language":"le francais"},
-      {"fr":"haitien / haitienne","meaning":"Haitian","tags":["nationality","adjective","-en to -enne"],"person":"un Haitien / une Haitienne","language":"le francais, le creole"},
-      {"fr":"israelien / israelienne","meaning":"Israeli","tags":["nationality","adjective","-en to -enne"],"person":"un Israelien / une Israelienne","language":"l'hebreu"},
+      {"fr":"français / française","meaning":"French","tags":["nationality","adjective"],"person":"un Français / une Française","language":"le français"},
+      {"fr":"haïtien / haïtienne","meaning":"Haitian","tags":["nationality","adjective","-en to -enne"],"person":"un Haïtien / une Haïtienne","language":"le français, le créole"},
+      {"fr":"israélien / israélienne","meaning":"Israeli","tags":["nationality","adjective","-en to -enne"],"person":"un Israélien / une Israélienne","language":"l'hébreu"},
       {"fr":"italien / italienne","meaning":"Italian","tags":["nationality","adjective","-en to -enne"],"person":"un Italien / une Italienne","language":"l'italien"},
       {"fr":"japonais / japonaise","meaning":"Japanese","tags":["nationality","adjective"],"person":"un Japonais / une Japonaise","language":"le japonais"},
       {"fr":"libanais / libanaise","meaning":"Lebanese","tags":["nationality","adjective"],"person":"un Libanais / une Libanaise","language":"l'arabe"},
-      {"fr":"marocain / marocaine","meaning":"Moroccan","tags":["nationality","adjective"],"person":"un Marocain / une Marocaine","language":"l'arabe, le francais"},
+      {"fr":"marocain / marocaine","meaning":"Moroccan","tags":["nationality","adjective"],"person":"un Marocain / une Marocaine","language":"l'arabe, le français"},
       {"fr":"mexicain / mexicaine","meaning":"Mexican","tags":["nationality","adjective"],"person":"un Mexicain / une Mexicaine","language":"l'espagnol"},
       {"fr":"russe","meaning":"Russian","tags":["nationality","adjective","same masculine and feminine"],"person":"un Russe / une Russe","language":"le russe"},
-      {"fr":"senegalais / senegalaise","meaning":"Senegalese","tags":["nationality","adjective"],"person":"un Senegalais / une Senegalaise","language":"le francais, le wolof"},
-      {"fr":"suisse","meaning":"Swiss","tags":["nationality","adjective","same masculine and feminine"],"person":"un Suisse / une Suissesse","language":"l'allemand, le francais, l'italien, le romanche"},
-      {"fr":"vietnamien / vietnamienne","meaning":"Vietnamese","tags":["nationality","adjective","-en to -enne"],"person":"un Vietnamien / une Vietnamienne","language":"le vietnamien, le francais"}
+      {"fr":"sénégalais / sénégalaise","meaning":"Senegalese","tags":["nationality","adjective"],"person":"un Sénégalais / une Sénégalaise","language":"le français, le wolof"},
+      {"fr":"suisse","meaning":"Swiss","tags":["nationality","adjective","same masculine and feminine"],"person":"un Suisse / une Suissesse","language":"l'allemand, le français, l'italien, le romanche"},
+      {"fr":"vietnamien / vietnamienne","meaning":"Vietnamese","tags":["nationality","adjective","-en to -enne"],"person":"un Vietnamien / une Vietnamienne","language":"le vietnamien, le français"}
     ]
   },
   {
     "title": "Nationality Grammar Notes",
     "words": [
-      {"fr":"un professeur francais","meaning":"a French teacher","tags":["grammar note","lowercase nationality adjective"]},
-      {"fr":"un Francais / une Francaise","meaning":"a Frenchman / a Frenchwoman","tags":["grammar note","capitalized nationality noun"]},
-      {"fr":"le francais, l'anglais, le chinois","meaning":"French, English, Chinese","tags":["grammar note","languages are masculine nouns"]},
-      {"fr":"Je parle chinois, anglais et un peu francais.","meaning":"I speak Chinese, English, and a little French.","tags":["example sentence","self-introduction"]}
+      {"fr":"un professeur français","meaning":"a French teacher","tags":["grammar note","lowercase nationality adjective"]},
+      {"fr":"un Français / une Française","meaning":"a Frenchman / a Frenchwoman","tags":["grammar note","capitalized nationality noun"]},
+      {"fr":"le français, l'anglais, le chinois","meaning":"French, English, Chinese","tags":["grammar note","languages are masculine nouns"]},
+      {"fr":"Je parle chinois, anglais et un peu français.","meaning":"I speak Chinese, English, and a little French.","tags":["example sentence","self-introduction"]}
     ]
   }
 ]
