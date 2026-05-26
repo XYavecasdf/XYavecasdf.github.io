@@ -1,0 +1,41 @@
+[
+  {
+    "title": "Chapter 2 — Conjunctions, Qualifiers, and Adverbs",
+    "words": [
+      {"fr":"assez","meaning":"fairly; rather","tags":["chapter 2","adverb","qualifier"],"examples":[{"fr":"Mon appartement est assez grand.","en":"My apartment is rather large."}]},
+      {"fr":"assez de","meaning":"enough","tags":["chapter 2","quantity expression","qualifier"]},
+      {"fr":"aujourd'hui","meaning":"today","tags":["chapter 2","adverb","time"]},
+      {"fr":"aussi","meaning":"also","tags":["chapter 2","adverb"]},
+      {"fr":"beaucoup de","meaning":"much; many; a lot of","tags":["chapter 2","quantity expression"]},
+      {"fr":"bien","meaning":"very; well","tags":["chapter 2","adverb","qualifier"]},
+      {"fr":"donc","meaning":"therefore; so","tags":["chapter 2","conjunction"]},
+      {"fr":"et","meaning":"and","tags":["chapter 2","conjunction"]},
+      {"fr":"ici","meaning":"here","tags":["chapter 2","adverb","place"]},
+      {"fr":"là-bas","meaning":"over there","tags":["chapter 2","adverb","place"]},
+      {"fr":"maintenant","meaning":"now","tags":["chapter 2","adverb","time"]},
+      {"fr":"mais","meaning":"but","tags":["chapter 2","conjunction"]},
+      {"fr":"ou","meaning":"or","tags":["chapter 2","conjunction"]},
+      {"fr":"parfois","meaning":"sometimes","tags":["chapter 2","adverb","frequency"]},
+      {"fr":"peu","meaning":"hardly; not very","tags":["chapter 2","adverb","quantity"]},
+      {"fr":"plutôt","meaning":"rather","tags":["chapter 2","adverb","qualifier"]},
+      {"fr":"quelquefois","meaning":"sometimes","tags":["chapter 2","adverb","frequency"]},
+      {"fr":"rarement","meaning":"rarely","tags":["chapter 2","adverb","frequency"]},
+      {"fr":"si","meaning":"if","tags":["chapter 2","conjunction"]},
+      {"fr":"souvent","meaning":"often","tags":["chapter 2","adverb","frequency"]},
+      {"fr":"toujours","meaning":"always","tags":["chapter 2","adverb","frequency"],"examples":[{"fr":"Tu es toujours ponctuel.","en":"You are always punctual."}]},
+      {"fr":"très","meaning":"very","tags":["chapter 2","adverb","qualifier"],"examples":[{"fr":"Nous sommes très en retard.","en":"We are very late."}]},
+      {"fr":"trop de","meaning":"too; too much; many","tags":["chapter 2","quantity expression"]},
+      {"fr":"un peu de","meaning":"a little","tags":["chapter 2","quantity expression"]}
+    ]
+  },
+  {
+    "title": "Chapter 2 — Useful Example Sentences",
+    "words": [
+      {"fr":"Je suis de Bruxelles, mais Sylvie est de Paris.","meaning":"I am from Brussels, but Sylvie is from Paris.","tags":["chapter 2","example sentence","mais"]},
+      {"fr":"Claude est professeur, donc il est en vacances.","meaning":"Claude is a teacher, so he is on vacation.","tags":["chapter 2","example sentence","donc"]},
+      {"fr":"Nous sommes parfois mécontents.","meaning":"We are sometimes unhappy.","tags":["chapter 2","example sentence","parfois"]},
+      {"fr":"Tu es un peu fatiguée ?","meaning":"Are you a little tired?","tags":["chapter 2","example sentence","un peu"]},
+      {"fr":"Ils ont souvent trop de travail.","meaning":"They often have too much work.","tags":["chapter 2","example sentence","souvent","trop de"]}
+    ]
+  }
+]
