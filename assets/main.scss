@@ -172,3 +172,264 @@ body {
   color: #41536f;
   margin-bottom: 0.35rem;
 }
+
+/* SPANISH LYRICS STUDY NOTEBOOK */
+.lyrics-study-app {
+  --lyrics-border: #c7d7f2;
+  --lyrics-shadow: 0 10px 30px rgba(29, 78, 216, 0.09);
+}
+
+.lyrics-hero,
+.lyrics-toolbar,
+.song-panel,
+.study-panel > section,
+.line-card {
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid var(--lyrics-border);
+  border-radius: 16px;
+  box-shadow: var(--lyrics-shadow);
+}
+
+.lyrics-hero {
+  padding: 1.6rem;
+  margin-bottom: 1.2rem;
+}
+
+.lyrics-hero h1 {
+  margin-bottom: 0.45rem;
+}
+
+.lyrics-kicker {
+  color: #1d4ed8;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.3rem;
+  text-transform: uppercase;
+}
+
+.lyrics-subtitle {
+  font-size: 1.08rem;
+  color: #41536f;
+}
+
+.privacy-warning,
+.export-warning,
+.inline-warning {
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  border-radius: 10px;
+  color: #9a3412;
+  padding: 0.75rem 0.9rem;
+}
+
+.lyrics-toolbar {
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  margin-bottom: 1.2rem;
+  padding: 1rem;
+}
+
+.lyrics-actions,
+.line-actions,
+.inline-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.lyrics-grid {
+  display: grid;
+  gap: 1.2rem;
+  grid-template-columns: minmax(240px, 310px) minmax(0, 1fr);
+}
+
+.song-panel,
+.study-panel > section,
+.line-card {
+  padding: 1rem;
+}
+
+.song-panel {
+  align-self: start;
+  position: sticky;
+  top: 88px;
+}
+
+.panel-heading,
+.line-card-header {
+  align-items: flex-start;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  margin-bottom: 0.9rem;
+}
+
+.pill {
+  background: #dbeafe;
+  border-radius: 999px;
+  color: #1e3a8a;
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.16rem 0.55rem;
+  white-space: nowrap;
+}
+
+.song-list {
+  display: grid;
+  gap: 0.65rem;
+  margin: 0.9rem 0;
+}
+
+.song-card {
+  background: #f8fbff;
+  border: 1px solid #d9e5fb;
+  border-radius: 12px;
+  color: var(--site-text);
+  cursor: pointer;
+  padding: 0.75rem;
+  text-align: left;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+  width: 100%;
+}
+
+.song-card:hover,
+.song-card.active {
+  border-color: #1d4ed8;
+  box-shadow: 0 6px 16px rgba(29, 78, 216, 0.13);
+  transform: translateY(-1px);
+}
+
+.song-card span,
+.song-card small {
+  color: #64748b;
+  display: block;
+}
+
+.add-song-box {
+  border-top: 1px solid #d9e5fb;
+  padding-top: 0.8rem;
+}
+
+.stacked-form,
+.study-flow,
+.paste-box {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.lyrics-study-app label,
+.lyrics-study-app legend {
+  color: #334155;
+  font-weight: 700;
+}
+
+.lyrics-study-app input,
+.lyrics-study-app textarea,
+.lyrics-study-app select {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 9px;
+  box-sizing: border-box;
+  color: var(--site-text);
+  display: block;
+  font: inherit;
+  margin-top: 0.25rem;
+  padding: 0.55rem 0.65rem;
+  width: 100%;
+}
+
+.lyrics-study-app textarea {
+  min-height: 4.5rem;
+  resize: vertical;
+}
+
+.lyrics-study-app button,
+.button-like {
+  background: #1d4ed8;
+  border: 1px solid #1d4ed8;
+  border-radius: 999px;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font: inherit;
+  font-weight: 700;
+  padding: 0.48rem 0.85rem;
+  text-decoration: none;
+}
+
+.lyrics-study-app button:hover,
+.button-like:hover {
+  background: #1e3a8a;
+}
+
+.lyrics-study-app button.danger {
+  background: #b91c1c;
+  border-color: #b91c1c;
+}
+
+.metadata-grid,
+.filter-grid {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-bottom: 1rem;
+}
+
+.study-panel {
+  display: grid;
+  gap: 1rem;
+}
+
+.line-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.line-card fieldset {
+  border: 1px solid #d9e5fb;
+  border-radius: 12px;
+  display: grid;
+  gap: 0.7rem;
+  margin: 0;
+  padding: 0.9rem;
+}
+
+.study-flow > label:not(:last-child)::after,
+.line-card fieldset::after {
+  color: #93a4bd;
+  content: "↓";
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-top: 0.45rem;
+  text-align: center;
+}
+
+.empty-state {
+  color: #64748b;
+  font-style: italic;
+  margin: 0.5rem 0;
+}
+
+@media (max-width: 860px) {
+  .lyrics-toolbar,
+  .panel-heading,
+  .line-card-header {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .lyrics-grid,
+  .metadata-grid,
+  .filter-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .song-panel {
+    position: static;
+  }
+}
