@@ -11,6 +11,13 @@ A data-driven French vocabulary notebook for textbook exercises, plural forms, I
 
 - [Open 法语生词本](/wordbook/)
 
+
+### Spanish Lyrics Study Notebook
+
+A private local-first tool for studying Spanish vocabulary, grammar, and pronunciation through song lyrics.
+
+- [Open Spanish Lyrics Study Notebook](/projects/spanish-lyrics-study/)
+
 ### Coming Soon
 
 You can list:

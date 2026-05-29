@@ -172,3 +172,466 @@ body {
   color: #41536f;
   margin-bottom: 0.35rem;
 }
+
+/* SPANISH LYRICS STUDY NOTEBOOK */
+.lyrics-study-app {
+  --lyrics-border: #c7d7f2;
+  --lyrics-shadow: 0 10px 30px rgba(29, 78, 216, 0.09);
+}
+
+.lyrics-hero,
+.lyrics-toolbar,
+.song-panel,
+.study-panel > section,
+.line-card {
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid var(--lyrics-border);
+  border-radius: 16px;
+  box-shadow: var(--lyrics-shadow);
+}
+
+.lyrics-hero {
+  padding: 1.6rem;
+  margin-bottom: 1.2rem;
+}
+
+.lyrics-hero h1 {
+  margin-bottom: 0.45rem;
+}
+
+.lyrics-kicker {
+  color: #1d4ed8;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.3rem;
+  text-transform: uppercase;
+}
+
+.lyrics-subtitle {
+  font-size: 1.08rem;
+  color: #41536f;
+}
+
+.privacy-warning,
+.export-warning,
+.inline-warning {
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  border-radius: 10px;
+  color: #9a3412;
+  padding: 0.75rem 0.9rem;
+}
+
+.lyrics-toolbar {
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  margin-bottom: 1.2rem;
+  padding: 1rem;
+}
+
+.lyrics-actions,
+.line-actions,
+.inline-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.lyrics-grid {
+  display: grid;
+  gap: 1.2rem;
+  grid-template-columns: minmax(240px, 310px) minmax(0, 1fr);
+}
+
+.song-panel,
+.study-panel > section,
+.line-card {
+  padding: 1rem;
+}
+
+.song-panel {
+  align-self: start;
+  position: sticky;
+  top: 88px;
+}
+
+.panel-heading,
+.line-card-header {
+  align-items: flex-start;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  margin-bottom: 0.9rem;
+}
+
+.pill {
+  background: #dbeafe;
+  border-radius: 999px;
+  color: #1e3a8a;
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 0.16rem 0.55rem;
+  white-space: nowrap;
+}
+
+.song-list {
+  display: grid;
+  gap: 0.65rem;
+  margin: 0.9rem 0;
+}
+
+.song-card {
+  background: #f8fbff;
+  border: 1px solid #d9e5fb;
+  border-radius: 12px;
+  color: var(--site-text);
+  cursor: pointer;
+  padding: 0.75rem;
+  text-align: left;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
+  width: 100%;
+}
+
+.song-card:hover,
+.song-card.active {
+  border-color: #1d4ed8;
+  box-shadow: 0 6px 16px rgba(29, 78, 216, 0.13);
+  transform: translateY(-1px);
+}
+
+.song-card span,
+.song-card small {
+  color: #64748b;
+  display: block;
+}
+
+.add-song-box {
+  border-top: 1px solid #d9e5fb;
+  padding-top: 0.8rem;
+}
+
+.stacked-form,
+.study-flow,
+.paste-box {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.lyrics-study-app label,
+.lyrics-study-app legend {
+  color: #334155;
+  font-weight: 700;
+}
+
+.lyrics-study-app input,
+.lyrics-study-app textarea,
+.lyrics-study-app select {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 9px;
+  box-sizing: border-box;
+  color: var(--site-text);
+  display: block;
+  font: inherit;
+  margin-top: 0.25rem;
+  padding: 0.55rem 0.65rem;
+  width: 100%;
+}
+
+.lyrics-study-app textarea {
+  min-height: 4.5rem;
+  resize: vertical;
+}
+
+.lyrics-study-app button,
+.button-like {
+  background: #1d4ed8;
+  border: 1px solid #1d4ed8;
+  border-radius: 999px;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font: inherit;
+  font-weight: 700;
+  padding: 0.48rem 0.85rem;
+  text-decoration: none;
+}
+
+.lyrics-study-app button:hover,
+.button-like:hover {
+  background: #1e3a8a;
+}
+
+.lyrics-study-app button.danger {
+  background: #b91c1c;
+  border-color: #b91c1c;
+}
+
+.metadata-grid,
+.filter-grid {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-bottom: 1rem;
+}
+
+.study-panel {
+  display: grid;
+  gap: 1rem;
+}
+
+.line-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.line-card fieldset {
+  border: 1px solid #d9e5fb;
+  border-radius: 12px;
+  display: grid;
+  gap: 0.7rem;
+  margin: 0;
+  padding: 0.9rem;
+}
+
+.study-flow > label:not(:last-child)::after,
+.line-card fieldset::after {
+  color: #93a4bd;
+  content: "↓";
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-top: 0.45rem;
+  text-align: center;
+}
+
+.empty-state {
+  color: #64748b;
+  font-style: italic;
+  margin: 0.5rem 0;
+}
+
+@media (max-width: 860px) {
+  .lyrics-toolbar,
+  .panel-heading,
+  .line-card-header {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .lyrics-grid,
+  .metadata-grid,
+  .filter-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .song-panel {
+    position: static;
+  }
+}
+
+/* Compact Spanish lyrics study UI */
+.song-summary,
+.song-quick-actions,
+.line-main-row,
+.line-meta-row {
+  align-items: center;
+  display: flex;
+  gap: 0.75rem;
+}
+
+.song-summary {
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.progress-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: flex-end;
+}
+
+.song-quick-actions {
+  align-items: flex-end;
+  border-top: 1px solid #e2e8f0;
+  margin-top: 0.8rem;
+  padding-top: 0.8rem;
+}
+
+.song-search-label {
+  flex: 1;
+  min-width: 220px;
+}
+
+.compact-metadata {
+  color: #64748b;
+  font-size: 0.9rem;
+  margin-top: 0.8rem;
+}
+
+.song-settings,
+.advanced-filters {
+  border-top: 1px solid #e2e8f0;
+  margin-top: 0.8rem;
+  padding-top: 0.8rem;
+}
+
+.compact-line-card {
+  padding: 0.85rem;
+}
+
+.line-compact-view {
+  display: grid;
+  gap: 0.6rem;
+}
+
+.line-main-row {
+  align-items: flex-start;
+}
+
+.line-number {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 999px;
+  color: #1e3a8a;
+  flex: 0 0 auto;
+  font-size: 0.78rem;
+  font-weight: 800;
+  line-height: 1;
+  padding: 0.35rem 0.5rem;
+}
+
+.spanish-line {
+  color: #0f172a;
+  font-size: 1.2rem;
+  font-weight: 800;
+  line-height: 1.35;
+  margin: 0 0 0.25rem 0;
+}
+
+.zh-meaning {
+  color: #1e3a8a;
+  font-size: 1.02rem;
+  margin: 0 0 0.18rem 0;
+}
+
+.en-meaning,
+.empty-meaning {
+  color: #64748b;
+  font-size: 0.92rem;
+  margin: 0;
+}
+
+.line-meta-row {
+  color: #64748b;
+  flex-wrap: wrap;
+  font-size: 0.78rem;
+}
+
+.line-meta-row span {
+  background: #f1f5f9;
+  border-radius: 999px;
+  padding: 0.12rem 0.45rem;
+}
+
+.small-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.lyrics-study-app .small-actions button,
+.lyrics-study-app .song-quick-actions button {
+  font-size: 0.82rem;
+  padding: 0.28rem 0.58rem;
+}
+
+.line-read-sections {
+  display: grid;
+  gap: 0.45rem;
+  margin-top: 0.7rem;
+}
+
+.read-section,
+.ai-workspace,
+.line-edit-panel {
+  background: #f8fbff;
+  border: 1px solid #dbeafe;
+  border-radius: 12px;
+  padding: 0.65rem 0.75rem;
+}
+
+.read-section summary,
+.line-edit-panel summary,
+.advanced-filters summary,
+.song-settings summary {
+  color: #1e3a8a;
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.read-section dl {
+  display: grid;
+  gap: 0.6rem;
+  margin: 0.65rem 0 0 0;
+}
+
+.read-section dt {
+  color: #475569;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.read-section dd {
+  margin: 0.1rem 0 0 0;
+  white-space: pre-wrap;
+}
+
+.ai-workspace,
+.line-edit-panel {
+  margin-top: 0.7rem;
+}
+
+.ai-workspace h3 {
+  margin-top: 0;
+}
+
+.helper-text {
+  color: #64748b;
+  font-size: 0.9rem;
+  margin-top: 0;
+}
+
+.preview-basics p {
+  margin: 0.35rem 0;
+}
+
+.line-edit-panel fieldset {
+  margin-top: 0.75rem;
+}
+
+.line-edit-panel fieldset label {
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 860px) {
+  .song-summary,
+  .song-quick-actions {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .progress-row {
+    justify-content: flex-start;
+  }
+
+  .spanish-line {
+    font-size: 1.08rem;
+  }
+}
