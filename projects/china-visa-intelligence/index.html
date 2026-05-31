@@ -7,9 +7,7 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <style>
-:root{--green:#22c55e;--blue:#3b82f6;--yellow:#eab308;--orange:#f97316;--red:#ef4444;--gray:#94a3b8;--ink:#0f172a;--muted:#64748b;--line:#e2e8f0;--bg:#f8fafc;--card:#ffffff}
-*{box-sizing:border-box}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--ink)}
-a{color:#2563eb}.wrap{max-width:1280px;margin:0 auto;padding:24px}.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;margin-bottom:18px}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:0 10px 30px rgba(15,23,42,.05)}h1{font-size:32px;margin:0 0 10px}h2{font-size:20px;margin:0 0 12px}.sub{color:var(--muted);line-height:1.55}.controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:12px}.pill,.legend span{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:999px;padding:7px 10px;background:#fff;font-size:13px}select,button,input{border:1px solid var(--line);border-radius:10px;padding:10px;background:#fff;font:inherit}button{cursor:pointer;background:#0f172a;color:#fff;border-color:#0f172a}button.secondary{background:#fff;color:#0f172a}.grid{display:grid;grid-template-columns:1.5fr .85fr;gap:18px}.mapcard{padding:0;overflow:hidden}#map{height:580px;width:100%}.side{display:flex;flex-direction:column;gap:18px}.legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.dot{width:11px;height:11px;border-radius:50%;display:inline-block}.g{background:var(--green)}.b{background:var(--blue)}.y{background:var(--yellow)}.o{background:var(--orange)}.r{background:var(--red)}.x{background:var(--gray)}table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;border-bottom:1px solid var(--line);padding:9px;vertical-align:top}th{font-size:12px;text-transform:uppercase;color:var(--muted);letter-spacing:.04em}.badge{display:inline-flex;border-radius:999px;padding:3px 8px;font-size:12px;font-weight:650;color:#fff}.passport_visa_free{background:var(--green)}.third_country_visa_exemption{background:var(--blue)}.evisa,.visa_on_arrival{background:var(--yellow);color:#111827}.transit_only{background:var(--orange)}.visa_required{background:var(--red)}.unknown{background:var(--gray)}.review{color:#b45309;font-weight:700}.ok{color:#15803d;font-weight:700}.small{font-size:13px;color:var(--muted)}pre{white-space:pre-wrap;background:#0f172a;color:#e2e8f0;border-radius:14px;padding:14px;overflow:auto}.country-title{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}.source-list{padding-left:18px;margin:8px 0}.kpi{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}.kpi div{background:#f8fafc;border:1px solid var(--line);border-radius:14px;padding:12px}.kpi strong{font-size:22px;display:block}.warn{background:#fffbeb;border:1px solid #fde68a;color:#92400e;border-radius:14px;padding:12px;margin-top:12px}.footer{margin-top:18px;color:var(--muted);font-size:13px}@media(max-width:900px){.hero,.grid{grid-template-columns:1fr}#map{height:430px}.kpi{grid-template-columns:1fr}}
+:root{--green:#22c55e;--blue:#3b82f6;--yellow:#eab308;--orange:#f97316;--red:#ef4444;--gray:#94a3b8;--ink:#0f172a;--muted:#64748b;--line:#e2e8f0;--bg:#f8fafc;--card:#ffffff}*{box-sizing:border-box}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--ink)}a{color:#2563eb}.wrap{max-width:1280px;margin:0 auto;padding:24px}.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;margin-bottom:18px}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:0 10px 30px rgba(15,23,42,.05)}h1{font-size:32px;margin:0 0 10px}h2{font-size:20px;margin:0 0 12px}.sub{color:var(--muted);line-height:1.55}.controls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:12px}.pill,.legend span{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:999px;padding:7px 10px;background:#fff;font-size:13px}select,button,input{border:1px solid var(--line);border-radius:10px;padding:10px;background:#fff;font:inherit}button{cursor:pointer;background:#0f172a;color:#fff;border-color:#0f172a}button.secondary{background:#fff;color:#0f172a}.grid{display:grid;grid-template-columns:1.5fr .85fr;gap:18px}.mapcard{padding:0;overflow:hidden}#map{height:620px;width:100%;background:#dbeafe}.side{display:flex;flex-direction:column;gap:18px}.legend{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.dot{width:11px;height:11px;border-radius:50%;display:inline-block}.g{background:var(--green)}.b{background:var(--blue)}.y{background:var(--yellow)}.o{background:var(--orange)}.r{background:var(--red)}.x{background:var(--gray)}table{width:100%;border-collapse:collapse;font-size:14px}th,td{text-align:left;border-bottom:1px solid var(--line);padding:9px;vertical-align:top}th{font-size:12px;text-transform:uppercase;color:var(--muted);letter-spacing:.04em}.badge{display:inline-flex;border-radius:999px;padding:3px 8px;font-size:12px;font-weight:650;color:#fff}.passport_visa_free{background:var(--green)}.third_country_visa_exemption{background:var(--blue)}.evisa,.visa_on_arrival{background:var(--yellow);color:#111827}.transit_only{background:var(--orange)}.visa_required{background:var(--red)}.unknown{background:var(--gray)}.review{color:#b45309;font-weight:700}.ok{color:#15803d;font-weight:700}.small{font-size:13px;color:var(--muted)}pre{white-space:pre-wrap;background:#0f172a;color:#e2e8f0;border-radius:14px;padding:14px;overflow:auto}.country-title{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}.source-list{padding-left:18px;margin:8px 0}.kpi{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}.kpi div{background:#f8fafc;border:1px solid var(--line);border-radius:14px;padding:12px}.kpi strong{font-size:22px;display:block}.warn{background:#fffbeb;border:1px solid #fde68a;color:#92400e;border-radius:14px;padding:12px;margin-top:12px}.footer{margin-top:18px;color:var(--muted);font-size:13px}.loading{padding:20px;color:#475569}@media(max-width:900px){.hero,.grid{grid-template-columns:1fr}#map{height:460px}.kpi{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -17,7 +15,7 @@ a{color:#2563eb}.wrap{max-width:1280px;margin:0 auto;padding:24px}.hero{display:
   <section class="hero">
     <div class="card">
       <h1>China Passport Visa Intelligence Prototype</h1>
-      <p class="sub">A rule-engine prototype for PRC ordinary passport holders. It evaluates passport-only access, access unlocked by existing visas, eVisa / visa-on-arrival records, transit-only records, and visa-required destinations. The design prioritizes source traceability and manual review flags over visual polish.</p>
+      <p class="sub">Country-level choropleth prototype for PRC ordinary passport holders. The full world map is loaded from GeoJSON, while visa rules are separated into verified / review / unknown states. Unknown countries are deliberately gray rather than guessed.</p>
       <div class="controls">
         <label class="pill"><input type="checkbox" class="visa" value="US"> US visa</label>
         <label class="pill"><input type="checkbox" class="visa" value="Canada"> Canada visa</label>
@@ -28,149 +26,64 @@ a{color:#2563eb}.wrap{max-width:1280px;margin:0 auto;padding:24px}.hero{display:
         <button class="secondary" onclick="resetVisas()">Reset</button>
       </div>
       <div class="legend">
-        <span><i class="dot g"></i> Passport visa-free</span>
-        <span><i class="dot b"></i> Existing visa unlock</span>
-        <span><i class="dot y"></i> eVisa / VOA</span>
-        <span><i class="dot o"></i> Transit only</span>
-        <span><i class="dot r"></i> Visa required</span>
-        <span><i class="dot x"></i> Unknown / insufficient data</span>
+        <span><i class="dot g"></i> Passport visa-free</span><span><i class="dot b"></i> Existing visa unlock</span><span><i class="dot y"></i> eVisa / VOA</span><span><i class="dot o"></i> Transit only</span><span><i class="dot r"></i> Visa required</span><span><i class="dot x"></i> Unknown / not collected</span>
       </div>
-      <div class="warn">Prototype warning: only a small starter dataset is included. Records marked “manual review” must not be treated as legal travel advice.</div>
+      <div class="warn">Legal-accuracy mode: this prototype now covers the whole map visually, but it does not invent missing visa rules. Countries without official-source records remain gray until collected and reviewed.</div>
     </div>
     <div class="card">
-      <h2>Current rule-engine input</h2>
-      <pre id="inputJson"></pre>
-      <div class="kpi">
-        <div><strong id="kAccess">0</strong><span class="small">accessible records</span></div>
-        <div><strong id="kReview">0</strong><span class="small">manual review</span></div>
-        <div><strong id="kSources">0</strong><span class="small">official source links</span></div>
-      </div>
+      <h2>Current rule-engine input</h2><pre id="inputJson"></pre>
+      <div class="kpi"><div><strong id="kTotal">0</strong><span class="small">countries loaded</span></div><div><strong id="kAccess">0</strong><span class="small">accessible records</span></div><div><strong id="kUnknown">0</strong><span class="small">unknown / pending</span></div></div>
     </div>
   </section>
-
   <section class="grid">
-    <div class="card mapcard"><div id="map"></div></div>
-    <aside class="side">
-      <div class="card" id="detail"><h2>Country detail</h2><p class="sub">Click a marker on the map or a row in the table.</p></div>
-      <div class="card">
-        <h2>Machine-readable output</h2>
-        <pre id="outputJson"></pre>
-      </div>
-    </aside>
+    <div class="card mapcard"><div id="map"><div class="loading">Loading country polygons...</div></div></div>
+    <aside class="side"><div class="card" id="detail"><h2>Country detail</h2><p class="sub">Click a country polygon or a row in the table.</p></div><div class="card"><h2>Machine-readable output</h2><pre id="outputJson"></pre></div></aside>
   </section>
-
-  <section class="card" style="margin-top:18px">
-    <h2>Evaluated destinations</h2>
-    <input id="search" placeholder="Search country..." oninput="renderTable()" style="width:100%;margin-bottom:10px">
-    <table id="results"></table>
-  </section>
-
-  <section class="card" style="margin-top:18px">
-    <h2>Prototype data model</h2>
-    <pre>{
-  "passport": "CN",
-  "passport_type": "ordinary",
-  "existing_visas": ["US", "Canada", "UK", "Schengen", "Japan"],
-  "rule": {
-    "destination": "South Korea",
-    "access_type": "third_country_visa_exemption",
-    "requires_existing_visa": "Canada",
-    "requires_valid_visa": true,
-    "requires_used_visa": false,
-    "max_stay_days": 30,
-    "source_url": "official source URL",
-    "manual_review_required": true
-  }
-}</pre>
-  </section>
-  <p class="footer">Built as a GitHub Pages static prototype. Future version: PostgreSQL + Next.js API routes + admin review queue + source snapshots.</p>
+  <section class="card" style="margin-top:18px"><h2>All countries / territories in current map layer</h2><input id="search" placeholder="Search country..." oninput="renderTable()" style="width:100%;margin-bottom:10px"><table id="results"></table></section>
+  <p class="footer">v0.3 choropleth prototype. Next hard part: collecting official rules country-by-country and replacing gray records with source-backed JSON.</p>
 </div>
 <script>
-const sourceRegistry={
-  singapore:['https://www.ica.gov.sg/','https://beijing.mfa.gov.sg/consular-services/visa-information/'],
-  malaysia:['https://www.imi.gov.my/'],
-  korea:['https://www.immigration.go.kr/','https://www.visa.go.kr/'],
-  japan:['https://www.mofa.go.jp/'],
-  thailand:['https://www.thaievisa.go.th/','https://www.consular.go.th/'],
-  uae:['https://icp.gov.ae/'],
-  qatar:['https://visitqatar.com/'],
-  turkey:['https://www.evisa.gov.tr/'],
-  mexico:['https://www.gob.mx/inm/'],
-  canada:['https://www.canada.ca/en/immigration-refugees-citizenship.html'],
-  usa:['https://travel.state.gov/'],
-  uk:['https://www.gov.uk/check-uk-visa'],
-  schengen:['https://home-affairs.ec.europa.eu/']
-};
-
-const rules=[
-{id:'SG',country:'Singapore',lat:1.3521,lng:103.8198,access:'passport_visa_free',stay:30,confidence:.98,review:false,sources:sourceRegistry.singapore,rule:'PRC ordinary passport holder may enter Singapore under the bilateral visa exemption arrangement. Verify purpose and stay conditions before travel.'},
-{id:'MY',country:'Malaysia',lat:4.2105,lng:101.9758,access:'passport_visa_free',stay:30,confidence:.92,review:true,sources:sourceRegistry.malaysia,rule:'Starter record. Verify current China passport visa-exemption wording and expiry/extension status from Malaysia Immigration.'},
-{id:'KR',country:'South Korea',lat:35.9078,lng:127.7669,access:'third_country_visa_exemption',requires:['US','Canada','UK','Schengen'],stay:30,confidence:.62,review:true,sources:sourceRegistry.korea,rule:'Third-country visa / transit exemption starter record. Conditions may include onward travel, route, valid visa, and previous use; manual official review required.'},
-{id:'JP',country:'Japan',lat:36.2048,lng:138.2529,access:'visa_required',stay:null,confidence:.9,review:true,sources:sourceRegistry.japan,rule:'Baseline record: PRC ordinary passport generally requires a visa unless a specific exemption applies. Manual review needed for transit and cruise exceptions.'},
-{id:'TH',country:'Thailand',lat:15.87,lng:100.9925,access:'passport_visa_free',stay:30,confidence:.7,review:true,sources:sourceRegistry.thailand,rule:'Starter record. Thailand policy has changed repeatedly; verify current PRC ordinary passport stay length from official Thai sources.'},
-{id:'AE',country:'United Arab Emirates',lat:23.4241,lng:53.8478,access:'passport_visa_free',stay:30,confidence:.85,review:true,sources:sourceRegistry.uae,rule:'Starter record for PRC ordinary passport visa-free access. Verify maximum stay, passport validity, and entry purpose from UAE ICP.'},
-{id:'QA',country:'Qatar',lat:25.3548,lng:51.1839,access:'passport_visa_free',stay:30,confidence:.8,review:true,sources:sourceRegistry.qatar,rule:'Starter record. Verify stay length and hotel/insurance requirements from official Qatar sources.'},
-{id:'TR',country:'Turkey',lat:38.9637,lng:35.2433,access:'evisa',stay:30,confidence:.75,review:true,sources:sourceRegistry.turkey,rule:'Starter eVisa record. Verify eligibility conditions, required supporting visa/residence permit, and single/multiple entry rules.'},
-{id:'MX',country:'Mexico',lat:23.6345,lng:-102.5528,access:'third_country_visa_exemption',requires:['US','Canada','UK','Schengen','Japan'],stay:180,confidence:.65,review:true,sources:sourceRegistry.mexico,rule:'Starter record: Mexico has third-country visa exemption mechanisms. Verify exact visa/residence-permit list, validity, and entry mode from INM.'},
-{id:'US',country:'United States',lat:37.0902,lng:-95.7129,access:'visa_required',stay:null,confidence:.95,review:false,sources:sourceRegistry.usa,rule:'PRC ordinary passport holders generally require a US visa for entry or transit unless covered by narrow exceptions.'},
-{id:'CA',country:'Canada',lat:56.1304,lng:-106.3468,access:'visa_required',stay:null,confidence:.95,review:false,sources:sourceRegistry.canada,rule:'PRC ordinary passport holders generally require a Canadian visitor visa or other authorization, depending on status and itinerary.'},
-{id:'GB',country:'United Kingdom',lat:55.3781,lng:-3.4360,access:'visa_required',stay:null,confidence:.9,review:true,sources:sourceRegistry.uk,rule:'Baseline record: visa usually required. Direct Airside Transit Visa / Visitor in Transit exceptions require separate rule modeling.'},
-{id:'FR',country:'Schengen Area example: France',lat:46.2276,lng:2.2137,access:'visa_required',stay:null,confidence:.9,review:true,sources:sourceRegistry.schengen,rule:'Schengen short-stay visa generally required for PRC ordinary passport holders. Airport transit rules vary by nationality and airport route.'},
-{id:'RS',country:'Serbia',lat:44.0165,lng:21.0059,access:'passport_visa_free',stay:30,confidence:.82,review:true,sources:['https://www.mfa.gov.rs/'],rule:'Starter record. Verify bilateral visa-free stay length from Serbian MFA.'},
-{id:'MA',country:'Morocco',lat:31.7917,lng:-7.0926,access:'passport_visa_free',stay:90,confidence:.82,review:true,sources:['https://www.consulat.ma/'],rule:'Starter record. Verify stay length and passport validity from Moroccan official consular sources.'},
-{id:'AU',country:'Australia',lat:-25.2744,lng:133.7751,access:'visa_required',stay:null,confidence:.9,review:false,sources:['https://immi.homeaffairs.gov.au/'],rule:'PRC ordinary passport holders generally require an Australian visa or ETA/subclass pathway where eligible.'},
-{id:'NZ',country:'New Zealand',lat:-40.9006,lng:174.8860,access:'visa_required',stay:null,confidence:.9,review:false,sources:['https://www.immigration.govt.nz/'],rule:'PRC ordinary passport holders generally require a New Zealand visa unless a specific transit/other exemption applies.'}
-];
-
 const colors={passport_visa_free:'#22c55e',third_country_visa_exemption:'#3b82f6',evisa:'#eab308',visa_on_arrival:'#eab308',transit_only:'#f97316',visa_required:'#ef4444',unknown:'#94a3b8'};
-const labels={passport_visa_free:'Passport visa-free',third_country_visa_exemption:'Existing visa unlock',evisa:'eVisa',visa_on_arrival:'Visa on arrival',transit_only:'Transit only',visa_required:'Visa required',unknown:'Unknown'};
-let evaluated=[];let markers=[];
-const map=L.map('map',{worldCopyJump:true}).setView([25,35],2);
+const labels={passport_visa_free:'Passport visa-free',third_country_visa_exemption:'Existing visa unlock',evisa:'eVisa',visa_on_arrival:'Visa on arrival',transit_only:'Transit only',visa_required:'Visa required',unknown:'Unknown / not collected'};
+const sourceRegistry={SG:['https://www.ica.gov.sg/','https://beijing.mfa.gov.sg/consular-services/visa-information/'],MY:['https://www.imi.gov.my/'],KR:['https://www.immigration.go.kr/','https://www.visa.go.kr/'],JP:['https://www.mofa.go.jp/'],TH:['https://www.thaievisa.go.th/','https://www.consular.go.th/'],AE:['https://icp.gov.ae/'],QA:['https://visitqatar.com/'],TR:['https://www.evisa.gov.tr/'],MX:['https://www.gob.mx/inm/'],US:['https://travel.state.gov/'],CA:['https://www.canada.ca/en/immigration-refugees-citizenship.html'],GB:['https://www.gov.uk/check-uk-visa'],FR:['https://home-affairs.ec.europa.eu/'],RS:['https://www.mfa.gov.rs/'],MA:['https://www.consulat.ma/'],AU:['https://immi.homeaffairs.gov.au/'],NZ:['https://www.immigration.govt.nz/']};
+const ruleSeeds={
+SG:{access:'passport_visa_free',stay:30,confidence:.98,review:false,sources:sourceRegistry.SG,rule:'PRC ordinary passport bilateral visa-exemption starter record. Confirm purpose, passport validity, and stay conditions before travel.'},
+MY:{access:'passport_visa_free',stay:30,confidence:.92,review:true,sources:sourceRegistry.MY,rule:'Starter record. Verify current China passport visa-exemption wording and extension status from Malaysia Immigration.'},
+KR:{access:'third_country_visa_exemption',requires:['US','Canada','UK','Schengen'],stay:30,confidence:.62,review:true,sources:sourceRegistry.KR,rule:'Third-country visa / transit exemption starter record. Route, onward ticket, visa validity, and previous-use conditions require official review.'},
+JP:{access:'visa_required',stay:null,confidence:.9,review:true,sources:sourceRegistry.JP,rule:'PRC ordinary passport generally requires a visa. Transit and special exceptions are not fully modeled yet.'},
+TH:{access:'passport_visa_free',stay:30,confidence:.7,review:true,sources:sourceRegistry.TH,rule:'Starter record. Thailand policy changes require careful official re-check.'},
+AE:{access:'passport_visa_free',stay:30,confidence:.85,review:true,sources:sourceRegistry.AE,rule:'Starter record for UAE access. Verify maximum stay and conditions from ICP.'},
+QA:{access:'passport_visa_free',stay:30,confidence:.8,review:true,sources:sourceRegistry.QA,rule:'Starter record. Verify stay length and entry requirements from official Qatar sources.'},
+TR:{access:'evisa',stay:30,confidence:.75,review:true,sources:sourceRegistry.TR,rule:'Starter eVisa record. Supporting visa/residence permit conditions require official review.'},
+MX:{access:'third_country_visa_exemption',requires:['US','Canada','UK','Schengen','Japan'],stay:180,confidence:.65,review:true,sources:sourceRegistry.MX,rule:'Starter record. Verify exact third-country visa/residence-permit list and validity from Mexican INM.'},
+US:{access:'visa_required',stay:null,confidence:.95,review:false,sources:sourceRegistry.US,rule:'PRC ordinary passport holders generally require a US visa for entry or transit.'},
+CA:{access:'visa_required',stay:null,confidence:.95,review:false,sources:sourceRegistry.CA,rule:'PRC ordinary passport holders generally require a Canadian visa or authorization depending on itinerary.'},
+GB:{access:'visa_required',stay:null,confidence:.9,review:true,sources:sourceRegistry.GB,rule:'Visa generally required. Transit exceptions need separate modeling.'},
+FR:{access:'visa_required',stay:null,confidence:.9,review:true,sources:sourceRegistry.FR,rule:'Schengen short-stay visa generally required. Airport transit varies by route and status.'},
+RS:{access:'passport_visa_free',stay:30,confidence:.82,review:true,sources:sourceRegistry.RS,rule:'Starter record. Verify bilateral visa-free stay length from Serbian MFA.'},
+MA:{access:'passport_visa_free',stay:90,confidence:.82,review:true,sources:sourceRegistry.MA,rule:'Starter record. Verify stay length from Moroccan official consular sources.'},
+AU:{access:'visa_required',stay:null,confidence:.9,review:false,sources:sourceRegistry.AU,rule:'PRC ordinary passport holders generally require an Australian visa.'},
+NZ:{access:'visa_required',stay:null,confidence:.9,review:false,sources:sourceRegistry.NZ,rule:'PRC ordinary passport holders generally require a New Zealand visa unless a specific exemption applies.'}
+};
+let evaluated=[];let countryLayer=null;let features=[];
+const map=L.map('map',{worldCopyJump:true,preferCanvas:true}).setView([25,20],2);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:6,attribution:'&copy; OpenStreetMap contributors'}).addTo(map);
-
 function selectedVisas(){return [...document.querySelectorAll('.visa:checked')].map(x=>x.value)}
 function resetVisas(){document.querySelectorAll('.visa').forEach(x=>x.checked=false);evaluateRules()}
-function evaluateRule(r,visas){
-  let visible=true; let access=r.access; let unlockedBy=null;
-  if(r.requires){
-    unlockedBy=r.requires.find(v=>visas.includes(v));
-    if(!unlockedBy){access='visa_required'; visible=true;}
-  }
-  return {...r,evaluated_access:access,unlocked_by:unlockedBy};
-}
-function evaluateRules(){
-  const visas=selectedVisas();
-  evaluated=rules.map(r=>evaluateRule(r,visas));
-  document.getElementById('inputJson').textContent=JSON.stringify({passport:'CN',passport_type:'ordinary',visas:visas,residence_permits:[]},null,2);
-  renderMap();renderTable();renderOutput();updateKpis();
-}
-function renderMap(){
-  markers.forEach(m=>map.removeLayer(m));markers=[];
-  evaluated.forEach(r=>{
-    const marker=L.circleMarker([r.lat,r.lng],{radius:10,color:'#fff',weight:2,fillColor:colors[r.evaluated_access],fillOpacity:.88}).addTo(map);
-    marker.bindPopup(`<b>${r.country}</b><br>${labels[r.evaluated_access]}<br>${r.stay?('Stay: '+r.stay+' days'):''}<br>${r.review?'Manual review required':'Source-linked record'}`);
-    marker.on('click',()=>showDetail(r));markers.push(marker);
-  });
-}
-function renderTable(){
-  const q=(document.getElementById('search')?.value||'').toLowerCase();
-  const rows=evaluated.filter(r=>r.country.toLowerCase().includes(q));
-  document.getElementById('results').innerHTML='<tr><th>Country</th><th>Result</th><th>Stay</th><th>Unlock</th><th>Review</th><th>Source</th></tr>'+rows.map(r=>`<tr onclick="showDetailById('${r.id}')" style="cursor:pointer"><td>${r.country}</td><td><span class="badge ${r.evaluated_access}">${labels[r.evaluated_access]}</span></td><td>${r.stay?`${r.stay} days`:'—'}</td><td>${r.unlocked_by||'—'}</td><td>${r.review?'<span class="review">manual review</span>':'<span class="ok">linked</span>'}</td><td>${r.sources[0]?`<a href="${r.sources[0]}" onclick="event.stopPropagation()">official</a>`:'—'}</td></tr>`).join('');
-}
-function renderOutput(){
-  document.getElementById('outputJson').textContent=JSON.stringify(evaluated.map(r=>({country:r.country,iso2:r.id,access_type:r.evaluated_access,stay_days:r.stay,unlocked_by:r.unlocked_by,confidence:r.confidence,manual_review_required:r.review,sources:r.sources})),null,2);
-}
-function updateKpis(){
-  document.getElementById('kAccess').textContent=evaluated.filter(r=>r.evaluated_access!=='visa_required'&&r.evaluated_access!=='unknown').length;
-  document.getElementById('kReview').textContent=evaluated.filter(r=>r.review).length;
-  document.getElementById('kSources').textContent=new Set(evaluated.flatMap(r=>r.sources)).size;
-}
+function isoOf(f){return f.id||f.properties.ISO_A2||f.properties.iso_a2||f.properties.ISO2||''}
+function nameOf(f){return f.properties.name||f.properties.ADMIN||f.properties.NAME||f.properties.name_long||isoOf(f)}
+function baseRecord(f){const iso=isoOf(f);const seed=ruleSeeds[iso];return {id:iso,country:nameOf(f),feature:f,access:seed?.access||'unknown',requires:seed?.requires,stay:seed?.stay??null,confidence:seed?.confidence??0,review:seed?.review??true,sources:seed?.sources||[],rule:seed?.rule||'No official-source rule has been collected yet. This country is intentionally kept gray until manual collection and verification.'}}
+function evaluateRecord(r,visas){let access=r.access,unlocked_by=null;if(r.requires){unlocked_by=r.requires.find(v=>visas.includes(v));if(!unlocked_by)access='visa_required'}return {...r,evaluated_access:access,unlocked_by}}
+function evaluateRules(){const visas=selectedVisas();evaluated=features.map(f=>evaluateRecord(baseRecord(f),visas));document.getElementById('inputJson').textContent=JSON.stringify({passport:'CN',passport_type:'ordinary',visas,residence_permits:[]},null,2);renderMap();renderTable();renderOutput();updateKpis()}
+function styleFeature(feature){const iso=isoOf(feature);const r=evaluated.find(x=>x.id===iso);return {fillColor:colors[r?.evaluated_access||'unknown'],weight:.7,opacity:1,color:'#ffffff',fillOpacity:.72}}
+function renderMap(){if(!countryLayer)return;countryLayer.setStyle(styleFeature)}
+function onEachFeature(feature,layer){layer.on({click:()=>{const r=evaluated.find(x=>x.id===isoOf(feature));if(r)showDetail(r)},mouseover:e=>e.target.setStyle({weight:2,fillOpacity:.9}),mouseout:e=>countryLayer.resetStyle(e.target)});layer.bindTooltip(nameOf(feature),{sticky:true})}
+function renderTable(){const q=(document.getElementById('search')?.value||'').toLowerCase();const rows=evaluated.filter(r=>r.country.toLowerCase().includes(q)).sort((a,b)=>a.country.localeCompare(b.country));document.getElementById('results').innerHTML='<tr><th>Country</th><th>Result</th><th>Stay</th><th>Unlock</th><th>Review</th><th>Source</th></tr>'+rows.map(r=>`<tr onclick="showDetailById('${r.id}')" style="cursor:pointer"><td>${r.country}</td><td><span class="badge ${r.evaluated_access}">${labels[r.evaluated_access]}</span></td><td>${r.stay?`${r.stay} days`:'—'}</td><td>${r.unlocked_by||'—'}</td><td>${r.review?'<span class="review">manual review</span>':'<span class="ok">linked</span>'}</td><td>${r.sources[0]?`<a href="${r.sources[0]}" onclick="event.stopPropagation()">official</a>`:'—'}</td></tr>`).join('')}
+function renderOutput(){document.getElementById('outputJson').textContent=JSON.stringify(evaluated.map(r=>({country:r.country,iso2:r.id,access_type:r.evaluated_access,stay_days:r.stay,unlocked_by:r.unlocked_by,confidence:r.confidence,manual_review_required:r.review,sources:r.sources})),null,2)}
+function updateKpis(){document.getElementById('kTotal').textContent=evaluated.length;document.getElementById('kAccess').textContent=evaluated.filter(r=>!['visa_required','unknown'].includes(r.evaluated_access)).length;document.getElementById('kUnknown').textContent=evaluated.filter(r=>r.evaluated_access==='unknown').length}
 function showDetailById(id){const r=evaluated.find(x=>x.id===id);if(r)showDetail(r)}
-function showDetail(r){
-  document.getElementById('detail').innerHTML=`<div class="country-title"><h2>${r.country}</h2><span class="badge ${r.evaluated_access}">${labels[r.evaluated_access]}</span></div><p><b>Stay:</b> ${r.stay?`${r.stay} days`:'Not applicable / not modeled'}</p><p><b>Unlocked by:</b> ${r.unlocked_by||'Passport only or no unlock'}</p><p><b>Confidence:</b> ${r.confidence}</p><p><b>Status:</b> ${r.review?'<span class="review">Manual official review required</span>':'<span class="ok">Source-linked starter record</span>'}</p><p><b>Rule:</b> ${r.rule}</p><p><b>Official sources:</b></p><ul class="source-list">${r.sources.map(s=>`<li><a href="${s}" target="_blank" rel="noopener">${s}</a></li>`).join('')}</ul><pre>${JSON.stringify(r,null,2)}</pre>`;
-}
-evaluateRules();
-showDetail(evaluated[0]);
+function showDetail(r){document.getElementById('detail').innerHTML=`<div class="country-title"><h2>${r.country}</h2><span class="badge ${r.evaluated_access}">${labels[r.evaluated_access]}</span></div><p><b>Stay:</b> ${r.stay?`${r.stay} days`:'Not modeled'}</p><p><b>Unlocked by:</b> ${r.unlocked_by||'Passport only / none'}</p><p><b>Confidence:</b> ${r.confidence}</p><p><b>Status:</b> ${r.review?'<span class="review">Manual official review required</span>':'<span class="ok">Source-linked starter record</span>'}</p><p><b>Rule:</b> ${r.rule}</p><p><b>Official sources:</b></p><ul class="source-list">${r.sources.length?r.sources.map(s=>`<li><a href="${s}" target="_blank" rel="noopener">${s}</a></li>`).join(''):'<li>No official source collected yet.</li>'}</ul><pre>${JSON.stringify({iso2:r.id,country:r.country,access_type:r.evaluated_access,stay_days:r.stay,requires_existing_visa:r.requires||null,unlocked_by:r.unlocked_by,confidence:r.confidence,manual_review_required:r.review,sources:r.sources},null,2)}</pre>`}
+fetch('https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json').then(r=>r.json()).then(geo=>{features=geo.features.filter(f=>isoOf(f)!=='AQ');countryLayer=L.geoJSON(geo,{filter:f=>isoOf(f)!=='AQ',style:styleFeature,onEachFeature}).addTo(map);evaluateRules();showDetail(evaluated.find(r=>r.id==='SG')||evaluated[0])}).catch(err=>{document.getElementById('map').innerHTML='<div class="loading">Failed to load country polygons. Check network access to the GeoJSON source.</div>';console.error(err)});
 </script>
 </body>
 </html>
