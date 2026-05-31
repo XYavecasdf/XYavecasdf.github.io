@@ -11,18 +11,16 @@ A data-driven French vocabulary notebook for textbook exercises, plural forms, I
 
 - [Open 法语生词本](/wordbook/)
 
-
 ### Spanish Lyrics Study Notebook
 
 A private local-first tool for studying Spanish vocabulary, grammar, and pronunciation through song lyrics.
 
 - [Open Spanish Lyrics Study Notebook](/projects/spanish-lyrics-study/)
 
+### China Passport Visa Intelligence Prototype
+
+Prototype visa intelligence tool.
+
+- [Open Prototype](/projects/china-visa-intelligence/)
+
 ### Coming Soon
-
-You can list:
-- Course projects
-- Research work
-- Coding projects
-
-Each project should include description, methods, and results.
