@@ -1,1 +1,57 @@
-<html><body><h1>China Visa Intelligence Prototype</h1></body></html>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>China Passport Visa Intelligence Prototype</title>
+<style>
+body{font-family:system-ui;max-width:1100px;margin:auto;padding:24px;background:#f8fafc}
+.card{background:white;padding:20px;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,.08)}
+select,button{padding:8px;margin:4px}
+table{width:100%;border-collapse:collapse;margin-top:20px}
+td,th{border:1px solid #ddd;padding:8px}
+.green{background:#d7f8d7}
+.blue{background:#dbeafe}
+.yellow{background:#fef3c7}
+.red{background:#fecaca}
+code{background:#eee;padding:2px 4px}
+</style>
+</head>
+<body>
+<div class="card">
+<h1>China Passport Visa Intelligence Prototype</h1>
+<p>Prototype rule engine for PRC ordinary passport holders.</p>
+<p>Select existing visas:</p>
+<select id="visas" multiple>
+<option>US</option>
+<option>Canada</option>
+<option>UK</option>
+<option>Schengen</option>
+</select>
+<button onclick="evaluateRules()">Evaluate Access</button>
+<table id="results">
+<tr><th>Country</th><th>Access Type</th><th>Stay</th><th>Source</th></tr>
+</table>
+<h2>Rule Engine Input</h2>
+<pre><code>{ passport: 'CN', visas: [...] }</code></pre>
+</div>
+<script>
+const rules=[
+{country:'Singapore',access:'passport_visa_free',stay:30,source:'https://www.ica.gov.sg/'},
+{country:'Malaysia',access:'passport_visa_free',stay:30,source:'https://www.imi.gov.my/'},
+{country:'South Korea',access:'third_country_visa_exemption',requires:'Canada',stay:30,source:'OFFICIAL REVIEW REQUIRED'}
+];
+function evaluateRules(){
+const selected=[...document.getElementById('visas').selectedOptions].map(v=>v.value);
+const table=document.getElementById('results');
+table.innerHTML='<tr><th>Country</th><th>Access Type</th><th>Stay</th><th>Source</th></tr>';
+for(const r of rules){
+if(r.requires && !selected.includes(r.requires)) continue;
+const cls=r.access.includes('free')?'green':r.access.includes('third')?'blue':'yellow';
+table.innerHTML+=`<tr class="${cls}"><td>${r.country}</td><td>${r.access}</td><td>${r.stay} days</td><td><a href="${r.source}">${r.source}</a></td></tr>`;
+}
+}
+evaluateRules();
+</script>
+</body>
+</html>
