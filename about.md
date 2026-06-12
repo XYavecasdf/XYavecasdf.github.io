@@ -5,7 +5,7 @@ title: About Me
 
 <div class="about-sidebar-layout">
   <aside class="about-sidebar">
-    <img src="/assets/images/955fb680f525cd2567fe7c176fdf790a.jpg" alt="Xinjian Yang" class="about-sidebar-photo">
+    <img src="/assets/images/微信图片_20260610201438_1047_201.jpg" alt="Xinjian Yang" class="about-sidebar-photo">
     <h2>Xinjian Yang</h2>
     <p class="about-sidebar-name">杨欣键</p>
     <p>NUS EE + Physics</p>
