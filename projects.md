@@ -23,4 +23,10 @@ Prototype visa intelligence tool.
 
 - [Open Prototype](/projects/china-visa-intelligence/)
 
+### Actual Multi-Currency
+
+A community fork of Actual Budget adding per-account currencies, converted account totals, automatic reference exchange rates, and manual rate overrides.
+
+- [View on GitHub](https://github.com/XYavecasdf/actual-multicurrency)
+
 ### Coming Soon
