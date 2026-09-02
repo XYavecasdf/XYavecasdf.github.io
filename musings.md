@@ -105,7 +105,8 @@ A small place for casual notes, scattered thoughts, and fragments that are too i
   <div class="note-wall">
     <article class="note-card">
       <div class="note-card-date">2026-09-02</div>
-      <p>To be updated.</p>
+      <p>今天再次打开 YouTube 上好久前收藏的中古汉语课程，感受到对于学习汉语族语言（方言）甚至日语、韩语、越南语，中古汉语之于它们的地位好似 Vulgar Latin 之于罗曼语族语言 :}</p>
+      <p>有趣。</p>
     </article>
   </div>
 </div>
