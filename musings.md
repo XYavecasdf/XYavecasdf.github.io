@@ -6,6 +6,11 @@ permalink: /musings/
 
 ## 碎碎念
 
-A small page for casual notes, scattered thoughts, and fragments that do not need to become formal blog posts.
+A small place for casual notes, scattered thoughts, and fragments that are too informal to become full blog posts.
 
-- To be updated.
+<div class="note-wall">
+  <article class="note-card">
+    <div class="note-card-date">2026-09-02</div>
+    <p>To be updated.</p>
+  </article>
+</div>
