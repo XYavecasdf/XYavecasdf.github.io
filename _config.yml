@@ -14,6 +14,7 @@ plugins:
   - jekyll-seo-tag
 header_pages:
   - about.md
+  - musings.md
   - projects.md
   - blog.md
   - experience.md
