@@ -82,6 +82,24 @@
     .target{background:#f7faf8;border:1px solid #e5ece7;border-radius:9px;min-width:38px;padding:7px 10px;color:#53746d;font-family:"Charis SIL","Noto Sans", "Times New Roman",serif;font-size:19px}
     .target.active{background:#dceee6;border-color:#8fc1a8;color:#155849}
     .target-explanation{font-size:11px;color:#879891;margin:12px 0 0;line-height:1.6}
+    .profile-picker{margin:0 0 16px;padding:15px 16px;border:1px solid #e6ede8;border-radius:13px;background:#f8faf8}
+    .profile-header{font-size:11px;color:#648176;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
+    .profile-header span{font-size:10px;letter-spacing:0;text-transform:none;font-weight:500;color:#94a39a;margin-left:7px}
+    .profile-buttons{display:flex;flex-wrap:wrap;gap:7px}
+    .profile-btn{border:1px solid #dce6df;border-radius:10px;padding:9px 12px;min-height:39px;background:white;color:#63766b;font-size:12px;font-weight:700}
+    .profile-btn:hover{border-color:#91b9a6;background:#f1f8f4}
+    .profile-btn.active{background:#1f695a;border-color:#1f695a;color:#fff;box-shadow:0 3px 11px #286e5b25}
+    .profile-explainer{margin-top:15px;padding:14px 16px;border-radius:12px;background:#f6f9f6;border:1px solid #e5eee7}
+    .profile-topline{display:flex;align-items:center;justify-content:space-between;gap:10px}
+    .profile-topline strong{font-size:13px}
+    .profile-topline span{color:#6f9381;font-size:11px;font-weight:700}
+    .profile-explainer p{margin:7px 0 9px;color:#60756a;font-size:11px;line-height:1.65}
+    .profile-inventory{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+    .phoneme-chip{min-width:28px;border:1px solid #aed6c3;border-radius:7px;background:#eaf7ef;color:#186551;font:600 16px "Charis SIL","Times New Roman",serif;padding:4px 8px;text-align:center}
+    .phoneme-chip.optional{background:#fff8e8;color:#927032;border-color:#ead49d;border-style:dashed}
+    .profile-extras{font-size:11px!important;color:#819089!important;margin-bottom:0!important}
+    .profile-legend{font-size:11px;color:#7c9284;margin-top:10px}
+    @media(max-width:620px){.profile-picker{padding:12px}.profile-buttons{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.profile-btn{padding:9px 5px}.profile-header span{display:block;margin:3px 0 0}.profile-explainer{padding:12px}}
     .notes{margin-top:17px;padding:19px 23px;border-radius:16px;border:1px solid #e5e8e2;background:#fdfdfb;display:flex;gap:16px;align-items:flex-start}
     .notes .icon{height:36px;width:36px;border-radius:10px;display:grid;place-items:center;background:#edf5ef;color:#457569;flex-shrink:0}
     .notes strong{font-size:13px}
@@ -106,8 +124,19 @@
     <main class="app-grid">
       <section class="panel chart-panel" aria-labelledby="chartHeading">
         <div class="panel-head"><div><h3 class="panel-title" id="chartHeading">IPA Vowel Chart <span class="subtle">/ 元音空间</span></h3></div><div class="status" id="status"><span class="status-dot"></span><span id="statusText">尚未开启</span></div></div>
+        <div class="profile-picker" role="group" aria-label="选择元音音系基准">
+          <div class="profile-header">LANGUAGE VOWEL INVENTORY <span>选定语言后，高亮其元音类别</span></div>
+          <div class="profile-buttons" id="profileButtons"></div>
+        </div>
         <div class="chart-wrap"><canvas id="vowelChart" width="1000" height="750" role="img" aria-label="F1 F2 vowel chart; horizontal F2 decreases to the right and vertical F1 increases downward"></canvas><div class="chart-placeholder" id="placeholder"><strong>准备好听你的声音</strong><small>请点击右侧「开启麦克风」</small></div></div>
         <div class="chart-caption"><div class="chart-legend"><span><i class="swatch" style="background:#9bb1a6"></i>参考元音</span><span><i class="swatch" style="background:#e18b62"></i>你的发音</span><span><i class="swatch" style="background:#98c6b2"></i>运动轨迹</span></div><div>横轴 F2：前 ↔ 后　｜　纵轴 F1：闭 ↔ 开</div></div>
+        <div class="profile-explainer" aria-live="polite">
+          <div class="profile-topline"><strong id="profileName">全部 IPA 参考元音</strong><span id="profileCount"></span></div>
+          <p id="profileDescription">点击上方语言按钮，查看该语言中常见的元音音质。</p>
+          <div class="profile-inventory" id="profileInventory"></div>
+          <p class="profile-extras" id="profileExtras"></p>
+          <div class="profile-legend">绿色：该基准列出的音质　·　虚线金色：存在口音差异　·　灰色：其他参考音质</div>
+        </div>
       </section>
       <aside class="controls" aria-label="麦克风与分析参数">
         <div class="panel control-panel">
@@ -121,7 +150,7 @@
           <div class="panel-head" style="margin:0"><h3 class="panel-title">当前元音</h3><span class="subtle">ESTIMATED IPA</span></div>
           <div class="reading"><div class="ipa-symbol" id="ipaSymbol">—</div><div class="reading-info"><strong id="ipaName">等待发音</strong><span id="ipaHint">保持一个稳定、响亮的元音约 1 秒</span></div></div>
           <div class="metric-grid"><div class="metric"><span>F1</span><strong id="f1">—</strong></div><div class="metric"><span>F2</span><strong id="f2">—</strong></div><div class="metric"><span>F3</span><strong id="f3">—</strong></div></div>
-          <p class="help-text">单位：Hz。IPA 是基于 F1/F2 的近似匹配，不能作为严格的发音正确性判断。</p>
+          <p class="help-text">单位：Hz。IPA 是基于 F1/F2 的近似匹配；选择语言仅改变图上高亮，不改变识别算法或构成口音评分。</p>
         </div>
         <div class="panel setting-panel">
           <div class="panel-head" style="margin:0"><h3 class="panel-title">检测设置</h3><span class="subtle">TUNE</span></div>
@@ -136,7 +165,7 @@
         </div>
       </aside>
     </main>
-    <div class="notes"><div class="icon">ⓘ</div><div><strong>实验说明</strong><p>这是个人学习用声学演示：用 LPC 估计语音的共振峰，再在 IPA 元音空间中绘图。标准元音参考位置是近似值，会随语言、个体、声道长度和发音环境变化。声道或舌头的实际形状不能仅凭这些读数唯一反推。请优先试发 /i/（衣）、/a/（啊）、/u/（乌），并持续发音而不是说完整句子。</p></div></div>
+    <div class="notes"><div class="icon">ⓘ</div><div><strong>实验说明</strong><p>这是个人学习用声学演示：用 LPC 估计语音的共振峰，再在 IPA 元音空间中绘图。语言选择只高亮常见元音类别，并非更换语言专属的实测 F1/F2 位置或识别模型。标准元音参考位置是近似值，会随语言、个体、声道长度和发音环境变化。声道或舌头的实际形状不能仅凭这些读数唯一反推。请优先试发 /i/（衣）、/a/（啊）、/u/（乌），并持续发音而不是说完整句子。</p></div></div>
     <footer class="footer"><span>VowelScope · Local-only experimental phonetics dashboard</span><span>Web Audio API · LPC / Autocorrelation · No external libraries</span></footer>
   </div>
   <script>
@@ -144,20 +173,45 @@
     'use strict';
     const VOWELS = [
       {symbol:'i',f1:280,f2:2350,name:'闭前不圆唇元音'},{symbol:'y',f1:310,f2:2050,name:'闭前圆唇元音'},
-      {symbol:'ɨ',f1:300,f2:1650,name:'闭央不圆唇元音'},{symbol:'ɯ',f1:320,f2:1200,name:'闭后不圆唇元音'},
+      {symbol:'ɨ',f1:300,f2:1650,name:'闭央不圆唇元音'},{symbol:'ɵ',f1:480,f2:1430,name:'半闭央圆唇元音'},{symbol:'ɯ',f1:320,f2:1200,name:'闭后不圆唇元音'},
       {symbol:'u',f1:350,f2:850,name:'闭后圆唇元音'},{symbol:'ɪ',f1:390,f2:1980,name:'次闭次前不圆唇元音'},
       {symbol:'ʊ',f1:440,f2:1030,name:'次闭次后圆唇元音'},{symbol:'e',f1:400,f2:2100,name:'半闭前不圆唇元音'},
       {symbol:'ø',f1:390,f2:1840,name:'半闭前圆唇元音'},{symbol:'ɤ',f1:460,f2:1150,name:'半闭后不圆唇元音'},
       {symbol:'o',f1:490,f2:880,name:'半闭后圆唇元音'},{symbol:'ə',f1:520,f2:1480,name:'中央元音'},
-      {symbol:'ɛ',f1:570,f2:1870,name:'半开前不圆唇元音'},{symbol:'œ',f1:560,f2:1660,name:'半开前圆唇元音'},
+      {symbol:'ɛ',f1:570,f2:1870,name:'半开前不圆唇元音'},{symbol:'ɜ',f1:590,f2:1425,name:'半开央不圆唇元音'},{symbol:'œ',f1:560,f2:1660,name:'半开前圆唇元音'},
       {symbol:'ʌ',f1:640,f2:1170,name:'半开后不圆唇元音'},{symbol:'ɔ',f1:600,f2:900,name:'半开后圆唇元音'},
       {symbol:'æ',f1:700,f2:1790,name:'次开前不圆唇元音'},{symbol:'ɐ',f1:700,f2:1430,name:'次开央元音'},
       {symbol:'a',f1:810,f2:1680,name:'开前不圆唇元音'},{symbol:'ɑ',f1:810,f2:1150,name:'开后不圆唇元音'},
       {symbol:'ɒ',f1:810,f2:920,name:'开后圆唇元音'}
     ];
+    // Inventory overlays are phonological teaching approximations, not measured dialect-specific F1/F2 standards.
+    // Diphthongs, rhotic vowels and Mandarin apical vowels cannot be represented reliably by one static F1/F2 point.
+    const PROFILES = [
+      {id:'all',label:'全部 IPA',name:'IPA 元音空间 · 全部参考音质',vowels:null,optional:[],notation:{},
+        description:'显示所有内置 IPA 参考元音。切换基准只改变元音图的高亮，不会更改麦克风分析与最近音质估计。',
+        extras:'提示：参考点是近似的 F1/F2 示意位置，不是语言、年龄或性别校准后的声学实测值。'},
+      {id:'en-us',label:'美式英语',name:'General American · 通用美式英语',
+        vowels:['i','ɪ','ɛ','æ','ʌ','ə','ɑ','ʊ','u'],optional:['ɔ'],notation:{},
+        description:'显示通用美式英语的主要单元音音质。/ɔ/ 是否独立，取决于 cot–caught merger；各地口音仍有差异。',
+        extras:'未作为固定点绘制：双元音 /eɪ, oʊ, aɪ, aʊ, ɔɪ/；卷舌元音 /ɝ, ɚ/。'},
+      {id:'en-gb',label:'英式英语',name:'Standard Southern British · 标准南部英式英语',
+        vowels:['i','ɪ','e','æ','ɑ','ɒ','ɔ','ʊ','u','ʌ','ɜ','ə'],optional:[],
+        notation:{i:'iː',ɑ:'ɑː',ɔ:'ɔː',u:'uː',ɜ:'ɜː'},
+        description:'采用常见英式英语（传统 RP / 标准南部英式英语）教学式音系。长音的 ː 表示时长对立；此图没有显示长度维度。',
+        extras:'未作为固定点绘制：双元音 /eɪ, əʊ, aɪ, aʊ, ɔɪ/；现代英式音值可能不同于传统 RP。'},
+      {id:'zh-cmn',label:'普通话',name:'Standard Mandarin · 现代标准汉语普通话',
+        vowels:['i','y','u','ɤ','ə','a'],optional:[],notation:{},
+        description:'展示普通话主要元音音质的教学式概括，如「衣」[i]、「鱼」[y]、「乌」[u]、「饿」[ɤ]。元音音位数量有多种学术分析。',
+        extras:'未单独绘制：拼音 zi/ci/si 与 zhi/chi/shi/ri 的舌尖性韵核、复合韵母中的滑音与条件变体。'},
+      {id:'yue-hk',label:'粤语',name:'Hong Kong Cantonese · 香港粤语',
+        vowels:['i','y','u','e','ɛ','ɵ','œ','o','ɔ','ɐ','a'],optional:[],
+        notation:{i:'iː',y:'yː',u:'uː',ɛ:'ɛː',œ:'œː',ɔ:'ɔː',a:'aː'},
+        description:'展示香港粤语声韵母分析中主要的 11 类元音音质；其中 /e, o, ɵ/ 等常受韵尾环境限制，并不都是自由出现的独立单元音。',
+        extras:'例如「沙」/saː/ 与「失」/sɐt/ 的 /aː/、/ɐ/ 对立。双元音及 /m̩, ŋ̍/ 等成音节鼻音不以固定点绘制。'}
+    ];
     const $ = (id) => document.getElementById(id);
     const canvas=$('vowelChart'),ctx=canvas.getContext('2d');
-    const state={running:false,frozen:false,ctx:null,stream:null,source:null,analyser:null,mute:null,lastProcess:0,lastSound:0,formants:null,trail:[],target:null,level:0,sampleCount:0};
+    const state={running:false,frozen:false,ctx:null,stream:null,source:null,analyser:null,mute:null,lastProcess:0,lastSound:0,formants:null,trail:[],target:null,profileId:'all',level:0,sampleCount:0};
     const Fs=11025, MinF1=180, MaxF1=1100, MinF2=600, MaxF2=3000;
     const margin={left:84,right:50,top:52,bottom:67};
     const W=1000,H=750,PW=W-margin.left-margin.right,PH=H-margin.top-margin.bottom;
@@ -177,8 +231,35 @@
       ctx.save();ctx.translate(22,margin.top+PH/2);ctx.rotate(-Math.PI/2);ctx.fillText('F1 (Hz) · 开口度增加 ←',0,0);ctx.restore();
       ctx.font='600 13px system-ui, sans-serif';ctx.fillStyle='#90a29a';ctx.textAlign='left';ctx.fillText('FRONT / 前',margin.left+13,margin.top+23);
       ctx.textAlign='right';ctx.fillText('BACK / 后',W-margin.right-13,margin.top+23);
-      for(const v of VOWELS){const p=xy(v.f1,v.f2),active=state.target===v.symbol;ctx.beginPath();ctx.arc(p.x,p.y,active?9:5,0,Math.PI*2);ctx.fillStyle=active?'#2c8872':'#aec0b5';ctx.fill();if(active){ctx.beginPath();ctx.arc(p.x,p.y,18,0,Math.PI*2);ctx.strokeStyle='#72af9c';ctx.lineWidth=2;ctx.stroke();}
-        ctx.font=`${active?'700':'500'} 21px "Times New Roman",serif`;ctx.textAlign='left';ctx.fillStyle=active?'#246659':'#60796e';ctx.fillText(v.symbol,p.x+10,p.y-9);}
+      const profile=PROFILES.find(p=>p.id===state.profileId)||PROFILES[0];
+      for(const v of VOWELS){
+        const p=xy(v.f1,v.f2),targeted=state.target===v.symbol;
+        const included=!profile.vowels||profile.vowels.includes(v.symbol);
+        const optional=profile.optional.includes(v.symbol);
+        const emphasized=included||optional||targeted;
+        ctx.save();
+        ctx.globalAlpha=emphasized?1:0.23;
+        ctx.beginPath();ctx.arc(p.x,p.y,targeted?9:emphasized?7:3.5,0,Math.PI*2);
+        ctx.fillStyle=targeted?'#e48760':optional?'#f0d092':emphasized?'#2f9679':'#b4c1b6';ctx.fill();
+        if(included&&profile.id!=='all'){
+          ctx.beginPath();ctx.arc(p.x,p.y,13,0,Math.PI*2);ctx.strokeStyle='#4ba789';ctx.lineWidth=1.5;ctx.stroke();
+        }
+        if(optional){
+          ctx.beginPath();ctx.arc(p.x,p.y,15,0,Math.PI*2);ctx.strokeStyle='#c49c4f';ctx.lineWidth=2;ctx.setLineDash([3,4]);ctx.stroke();ctx.setLineDash([]);
+        }
+        if(targeted){
+          ctx.beginPath();ctx.arc(p.x,p.y,20,0,Math.PI*2);ctx.strokeStyle='#e48760';ctx.lineWidth=2.5;ctx.stroke();
+        }
+        if(emphasized){
+          const label=(profile.notation||{})[v.symbol]||v.symbol;
+          const offsets={ɜ:[-29,22],ə:[12,-13],ɵ:[17,20],a:[8,-10],ɐ:[10,20]};
+          const shift=offsets[v.symbol]||[10,-9];
+          ctx.font=`${targeted||included?'700':'600'} 21px "Charis SIL","Times New Roman",serif`;
+          ctx.textAlign='left';ctx.fillStyle=targeted?'#ab593b':optional?'#96753c':profile.id==='all'?'#60796e':'#206c57';
+          ctx.fillText(label,p.x+shift[0],p.y+shift[1]);
+        }
+        ctx.restore();
+      }
       if(state.target){const v=VOWELS.find(x=>x.symbol===state.target);if(v){const p=xy(v.f1,v.f2);ctx.beginPath();ctx.setLineDash([5,7]);ctx.moveTo(p.x,margin.top);ctx.lineTo(p.x,H-margin.bottom);ctx.moveTo(margin.left,p.y);ctx.lineTo(W-margin.right,p.y);ctx.strokeStyle='#95bca8';ctx.lineWidth=1.3;ctx.stroke();ctx.setLineDash([]);}}
     }
     function drawChart(now){baseChart();
@@ -247,7 +328,27 @@
     $('clearBtn').addEventListener('click',()=>{state.trail=[];});
     $('smooth').addEventListener('input',e=>{$('smoothOut').textContent=Number(e.target.value)<30?'快速':Number(e.target.value)>75?'很平滑':'适中';});
     $('sensitivity').addEventListener('input',e=>{$('sensitivityOut').textContent=e.target.value+'%';});
-    const targets=['i','y','e','ɛ','æ','a','ɑ','ə','ɔ','o','u','ɯ'];
+    function renderProfile(){
+      const profile=PROFILES.find(p=>p.id===state.profileId)||PROFILES[0];
+      $('profileName').textContent=profile.name;
+      const active=profile.vowels||VOWELS.map(v=>v.symbol);
+      $('profileCount').textContent=profile.id==='all'?active.length+' 类参考音质':active.length+' 类主要音质'+(profile.optional.length?' + '+profile.optional.length+' 类可变':'');
+      $('profileDescription').textContent=profile.description;
+      $('profileExtras').textContent=profile.extras;
+      const inventory=$('profileInventory');inventory.replaceChildren();
+      const add=(symbol,optional)=>{const chip=document.createElement('span');chip.className='phoneme-chip'+(optional?' optional':'');chip.textContent=(profile.notation||{})[symbol]||symbol;chip.title=optional?'音系/口音相关':'所选基准的主要音质';inventory.appendChild(chip);};
+      for(const symbol of active)add(symbol,false);
+      for(const symbol of profile.optional)add(symbol,true);
+      for(const btn of $('profileButtons').children){const isSelected=btn.dataset.profile===profile.id;btn.classList.toggle('active',isSelected);btn.setAttribute('aria-pressed',String(isSelected));}
+    }
+    for(const profile of PROFILES){
+      const btn=document.createElement('button');btn.type='button';btn.className='profile-btn';
+      btn.dataset.profile=profile.id;btn.textContent=profile.label;
+      btn.addEventListener('click',()=>{state.profileId=profile.id;renderProfile();});
+      $('profileButtons').appendChild(btn);
+    }
+    renderProfile();
+    const targets=['i','y','e','ɛ','æ','a','ɑ','ə','ɔ','o','u','ɯ','ɵ','œ','ɜ','ɐ','ɒ','ʌ'];
     for(const symbol of targets){const el=document.createElement('button');el.type='button';el.className='target';el.textContent=symbol;el.setAttribute('aria-label','高亮参考元音 '+symbol);el.addEventListener('click',()=>{state.target=state.target===symbol?null:symbol;for(const child of $('targetButtons').children)child.classList.toggle('active',child.textContent===state.target);const v=VOWELS.find(a=>a.symbol===state.target);$('targetDescription').textContent=v?`/ ${v.symbol} / · ${v.name} · 参考 F1 ${v.f1} Hz / F2 ${v.f2} Hz。数值仅为示意，不等于个人标准。`:'点击一个 IPA 音标，在图中高亮其参考位置；这不是个人发音准确度评分。';});$('targetButtons').appendChild(el);}
     window.addEventListener('pagehide',()=>{state.stream?.getTracks().forEach(t=>t.stop());});
     requestAnimationFrame(frame);
