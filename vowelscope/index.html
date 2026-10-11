@@ -125,17 +125,17 @@
       <section class="panel chart-panel" aria-labelledby="chartHeading">
         <div class="panel-head"><div><h3 class="panel-title" id="chartHeading">IPA Vowel Chart <span class="subtle">/ 元音空间</span></h3></div><div class="status" id="status"><span class="status-dot"></span><span id="statusText">尚未开启</span></div></div>
         <div class="profile-picker" role="group" aria-label="选择元音音系基准">
-          <div class="profile-header">LANGUAGE VOWEL INVENTORY <span>选定语言后，高亮其元音类别</span></div>
+          <div class="profile-header">LANGUAGE VOWEL INVENTORY <span>高亮选定语言，同时保留全部参考元音</span></div>
           <div class="profile-buttons" id="profileButtons"></div>
         </div>
         <div class="chart-wrap"><canvas id="vowelChart" width="1000" height="750" role="img" aria-label="F1 F2 vowel chart; horizontal F2 decreases to the right and vertical F1 increases downward"></canvas><div class="chart-placeholder" id="placeholder"><strong>准备好听你的声音</strong><small>请点击右侧「开启麦克风」</small></div></div>
-        <div class="chart-caption"><div class="chart-legend"><span><i class="swatch" style="background:#9bb1a6"></i>参考元音</span><span><i class="swatch" style="background:#e18b62"></i>你的发音</span><span><i class="swatch" style="background:#98c6b2"></i>运动轨迹</span></div><div>横轴 F2：前 ↔ 后　｜　纵轴 F1：闭 ↔ 开</div></div>
+        <div class="chart-caption"><div class="chart-legend"><span><i class="swatch" style="background:#9bb1a6"></i>全部参考元音</span><span><i class="swatch" style="background:#278a71"></i>语言高亮</span><span><i class="swatch" style="background:#e18b62"></i>你的发音</span><span><i class="swatch" style="background:#98c6b2"></i>运动轨迹</span></div><div>横轴 F2：前 ↔ 后　｜　纵轴 F1：闭 ↔ 开</div></div>
         <div class="profile-explainer" aria-live="polite">
           <div class="profile-topline"><strong id="profileName">全部 IPA 参考元音</strong><span id="profileCount"></span></div>
           <p id="profileDescription">点击上方语言按钮，查看该语言中常见的元音音质。</p>
           <div class="profile-inventory" id="profileInventory"></div>
           <p class="profile-extras" id="profileExtras"></p>
-          <div class="profile-legend">绿色：该基准列出的音质　·　虚线金色：存在口音差异　·　灰色：其他参考音质</div>
+          <div class="profile-legend">所有参考元音始终可见。绿色外圈：所选语言的主要元音　·　金色虚线：口音差异　·　灰色：其他 IPA 元音</div>
         </div>
       </section>
       <aside class="controls" aria-label="麦克风与分析参数">
@@ -232,33 +232,56 @@
       ctx.font='600 13px system-ui, sans-serif';ctx.fillStyle='#90a29a';ctx.textAlign='left';ctx.fillText('FRONT / 前',margin.left+13,margin.top+23);
       ctx.textAlign='right';ctx.fillText('BACK / 后',W-margin.right-13,margin.top+23);
       const profile=PROFILES.find(p=>p.id===state.profileId)||PROFILES[0];
+      // Keep ALL IPA reference vowels and their labels visible in every language view.
+      // Overlay selected-language vowels with green rings rather than hiding the rest.
+      const labelPlan=[];
       for(const v of VOWELS){
         const p=xy(v.f1,v.f2),targeted=state.target===v.symbol;
-        const included=!profile.vowels||profile.vowels.includes(v.symbol);
+        const included=profile.vowels!==null&&profile.vowels.includes(v.symbol);
         const optional=profile.optional.includes(v.symbol);
-        const emphasized=included||optional||targeted;
         ctx.save();
-        ctx.globalAlpha=emphasized?1:0.23;
-        ctx.beginPath();ctx.arc(p.x,p.y,targeted?9:emphasized?7:3.5,0,Math.PI*2);
-        ctx.fillStyle=targeted?'#e48760':optional?'#f0d092':emphasized?'#2f9679':'#b4c1b6';ctx.fill();
-        if(included&&profile.id!=='all'){
-          ctx.beginPath();ctx.arc(p.x,p.y,13,0,Math.PI*2);ctx.strokeStyle='#4ba789';ctx.lineWidth=1.5;ctx.stroke();
+        ctx.beginPath();ctx.arc(p.x,p.y,targeted?9:included?7.5:optional?7:5,0,Math.PI*2);
+        ctx.fillStyle=targeted?'#e48760':included?'#278a71':optional?'#d4aa60':'#9bada3';ctx.fill();
+        if(included){
+          ctx.beginPath();ctx.arc(p.x,p.y,14,0,Math.PI*2);ctx.strokeStyle='#2f9c7d';ctx.lineWidth=2.4;ctx.stroke();
         }
         if(optional){
-          ctx.beginPath();ctx.arc(p.x,p.y,15,0,Math.PI*2);ctx.strokeStyle='#c49c4f';ctx.lineWidth=2;ctx.setLineDash([3,4]);ctx.stroke();ctx.setLineDash([]);
+          ctx.beginPath();ctx.arc(p.x,p.y,15,0,Math.PI*2);ctx.strokeStyle='#b68d43';ctx.lineWidth=2;ctx.setLineDash([3,4]);ctx.stroke();ctx.setLineDash([]);
         }
         if(targeted){
           ctx.beginPath();ctx.arc(p.x,p.y,20,0,Math.PI*2);ctx.strokeStyle='#e48760';ctx.lineWidth=2.5;ctx.stroke();
         }
-        if(emphasized){
-          const label=(profile.notation||{})[v.symbol]||v.symbol;
-          const offsets={ɜ:[-29,22],ə:[12,-13],ɵ:[17,20],a:[8,-10],ɐ:[10,20]};
-          const shift=offsets[v.symbol]||[10,-9];
-          ctx.font=`${targeted||included?'700':'600'} 21px "Charis SIL","Times New Roman",serif`;
-          ctx.textAlign='left';ctx.fillStyle=targeted?'#ab593b':optional?'#96753c':profile.id==='all'?'#60796e':'#206c57';
-          ctx.fillText(label,p.x+shift[0],p.y+shift[1]);
-        }
         ctx.restore();
+        labelPlan.push({v,p,targeted,included,optional,priority:targeted?3:included?2:optional?1:0});
+      }
+      // Place the higher-priority labels first and gently offset neighbours to
+      // reduce collisions while preserving every IPA symbol on the reference map.
+      const labelBoxes=[];
+      const candidates=[[11,-10],[11,23],[-12,-10],[-12,23],[15,6],[-15,6],[4,-21],[4,34]];
+      labelPlan.sort((a,b)=>b.priority-a.priority);
+      for(const item of labelPlan){
+        const {v,p,targeted,included,optional}=item;
+        const label=(included||optional)?((profile.notation||{})[v.symbol]||v.symbol):v.symbol;
+        ctx.save();
+        ctx.font=`${targeted||included?'700':'500'} 21px "Charis SIL","Times New Roman",serif`;
+        ctx.fillStyle=targeted?'#a95a3b':included?'#196d56':optional?'#93713a':'#627970';
+        const width=ctx.measureText(label).width;
+        let chosen=null,leastOverlap=Infinity;
+        for(const [dx,dy] of candidates){
+          const x=dx<0?p.x+dx-width:p.x+dx,y=p.y+dy;
+          const box={left:x-3,right:x+width+3,top:y-20,bottom:y+5};
+          if(box.left<margin.left+2||box.right>W-margin.right-2||box.top<margin.top+2||box.bottom>H-margin.bottom-2)continue;
+          const overlap=labelBoxes.reduce((sum,other)=>{
+            const w=Math.max(0,Math.min(box.right,other.right)-Math.max(box.left,other.left));
+            const h=Math.max(0,Math.min(box.bottom,other.bottom)-Math.max(box.top,other.top));
+            return sum+w*h;
+          },0);
+          if(overlap<leastOverlap){leastOverlap=overlap;chosen={x,y,box};}
+          if(overlap===0)break;
+        }
+        if(!chosen){const x=Math.max(margin.left+3,Math.min(p.x+11,W-margin.right-width-4));const y=Math.max(margin.top+23,Math.min(p.y-10,H-margin.bottom-4));chosen={x,y,box:{left:x-3,right:x+width+3,top:y-20,bottom:y+5}};}
+        labelBoxes.push(chosen.box);
+        ctx.textAlign='left';ctx.fillText(label,chosen.x,chosen.y);ctx.restore();
       }
       if(state.target){const v=VOWELS.find(x=>x.symbol===state.target);if(v){const p=xy(v.f1,v.f2);ctx.beginPath();ctx.setLineDash([5,7]);ctx.moveTo(p.x,margin.top);ctx.lineTo(p.x,H-margin.bottom);ctx.moveTo(margin.left,p.y);ctx.lineTo(W-margin.right,p.y);ctx.strokeStyle='#95bca8';ctx.lineWidth=1.3;ctx.stroke();ctx.setLineDash([]);}}
     }
