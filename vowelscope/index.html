@@ -83,23 +83,39 @@
     .target.active{background:#dceee6;border-color:#8fc1a8;color:#155849}
     .target-explanation{font-size:11px;color:#879891;margin:12px 0 0;line-height:1.6}
     .profile-picker{margin:0 0 16px;padding:15px 16px;border:1px solid #e6ede8;border-radius:13px;background:#f8faf8}
-    .profile-header{font-size:11px;color:#648176;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
+    .profile-header{font-size:11px;color:#648176;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-bottom:11px}
     .profile-header span{font-size:10px;letter-spacing:0;text-transform:none;font-weight:500;color:#94a39a;margin-left:7px}
-    .profile-buttons{display:flex;flex-wrap:wrap;gap:7px}
-    .profile-btn{border:1px solid #dce6df;border-radius:10px;padding:9px 12px;min-height:39px;background:white;color:#63766b;font-size:12px;font-weight:700}
-    .profile-btn:hover{border-color:#91b9a6;background:#f1f8f4}
-    .profile-btn.active{background:#1f695a;border-color:#1f695a;color:#fff;box-shadow:0 3px 11px #286e5b25}
-    .profile-explainer{margin-top:15px;padding:14px 16px;border-radius:12px;background:#f6f9f6;border:1px solid #e5eee7}
-    .profile-topline{display:flex;align-items:center;justify-content:space-between;gap:10px}
+    .compare-selectors{display:grid;gap:11px}
+    .profile-group{padding:11px 12px 12px;border:1px solid #e1eae4;border-radius:12px;background:#fff}
+    .profile-group-title{display:flex;align-items:center;gap:8px;margin-bottom:9px;font-size:12px}
+    .profile-group-title strong{font-size:12px}
+    .profile-group-title .chosen{margin-left:auto;font-size:11px;color:#738e80;font-weight:650}
+    .profile-letter{display:grid;place-items:center;width:23px;height:23px;border-radius:7px;color:#fff;font-size:12px;font-weight:800}
+    .profile-letter.a{background:#217d62}.profile-letter.b{background:#3475c5}
+    .profile-buttons{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+    .profile-btn{border:1px solid #e1e8e3;border-radius:8px;padding:8px 4px;min-height:37px;background:#fbfcfa;color:#596f66;font-size:12px;font-weight:650}
+    .profile-btn:hover{background:#edf6f1}
+    .profile-btn.active-a{background:#217d62;border-color:#217d62;color:#fff}
+    .profile-btn.active-b{background:#3475c5;border-color:#3475c5;color:#fff}
+    .profile-explainer{margin-top:15px;padding:14px 16px;border-radius:12px;background:#f7faf8;border:1px solid #e5eee7}
+    .profile-topline{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
     .profile-topline strong{font-size:13px}
-    .profile-topline span{color:#6f9381;font-size:11px;font-weight:700}
-    .profile-explainer p{margin:7px 0 9px;color:#60756a;font-size:11px;line-height:1.65}
-    .profile-inventory{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
-    .phoneme-chip{min-width:28px;border:1px solid #aed6c3;border-radius:7px;background:#eaf7ef;color:#186551;font:600 16px "Charis SIL","Times New Roman",serif;padding:4px 8px;text-align:center}
-    .phoneme-chip.optional{background:#fff8e8;color:#927032;border-color:#ead49d;border-style:dashed}
-    .profile-extras{font-size:11px!important;color:#819089!important;margin-bottom:0!important}
-    .profile-legend{font-size:11px;color:#7c9284;margin-top:10px}
-    @media(max-width:620px){.profile-picker{padding:12px}.profile-buttons{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.profile-btn{padding:9px 5px}.profile-header span{display:block;margin:3px 0 0}.profile-explainer{padding:12px}}
+    .profile-topline span{color:#728a80;font-size:11px;font-weight:700}
+    .profile-explainer p{margin:8px 0 10px;color:#60756a;font-size:11px;line-height:1.7}
+    .compare-results{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin-top:12px}
+    .compare-column{background:#fff;border:1px solid #e8ece9;border-radius:9px;padding:10px;min-width:0}
+    .compare-column .compare-caption{font-size:11px;font-weight:750;display:flex;justify-content:space-between;gap:5px;align-items:center;margin-bottom:8px}
+    .compare-column.a .compare-caption{color:#217d62}
+    .compare-column.shared .compare-caption{color:#7659ac}
+    .compare-column.b .compare-caption{color:#3475c5}
+    .profile-inventory{display:flex;gap:5px;flex-wrap:wrap;min-height:28px;align-content:start}
+    .phoneme-chip{min-width:28px;border:1px solid #add9c2;border-radius:7px;background:#eaf7ef;color:#176b54;font:600 17px "Charis SIL","Times New Roman",serif;padding:4px 6px;text-align:center}
+    .phoneme-chip.b{background:#eaf2ff;color:#2b68af;border-color:#abc8ef}
+    .phoneme-chip.shared{background:#f0ebfc;color:#7252a6;border-color:#c9b8e9}
+    .phoneme-empty{font-size:12px;color:#a1ada6}
+    .profile-extras{white-space:pre-line;font-size:11px!important;color:#819089!important;margin-bottom:0!important}
+    .profile-legend{font-size:11px;color:#71887b;margin-top:10px;line-height:1.8}
+    @media(max-width:620px){.profile-picker{padding:12px}.profile-header span{display:block;margin:3px 0 0}.profile-group{padding:9px}.profile-btn{font-size:11px;padding:7px 1px;min-height:38px}.profile-explainer{padding:12px}.compare-results{gap:5px}.compare-column{padding:7px 5px}.compare-column .compare-caption{font-size:10px;display:block}.phoneme-chip{font-size:15px;min-width:25px;padding:4px}.profile-topline{gap:5px}}
     .notes{margin-top:17px;padding:19px 23px;border-radius:16px;border:1px solid #e5e8e2;background:#fdfdfb;display:flex;gap:16px;align-items:flex-start}
     .notes .icon{height:36px;width:36px;border-radius:10px;display:grid;place-items:center;background:#edf5ef;color:#457569;flex-shrink:0}
     .notes strong{font-size:13px}
@@ -124,18 +140,25 @@
     <main class="app-grid">
       <section class="panel chart-panel" aria-labelledby="chartHeading">
         <div class="panel-head"><div><h3 class="panel-title" id="chartHeading">IPA Vowel Chart <span class="subtle">/ 元音空间</span></h3></div><div class="status" id="status"><span class="status-dot"></span><span id="statusText">尚未开启</span></div></div>
-        <div class="profile-picker" role="group" aria-label="选择元音音系基准">
-          <div class="profile-header">LANGUAGE VOWEL INVENTORY <span>高亮选定语言，同时保留全部参考元音</span></div>
-          <div class="profile-buttons" id="profileButtons"></div>
+        <div class="profile-picker" aria-label="语言元音对照选择">
+          <div class="profile-header">COMPARE VOWEL INVENTORIES <span>选择 A、B 两种语言 · 全部 IPA 元音始终保留</span></div>
+          <div class="compare-selectors">
+            <div class="profile-group"><div class="profile-group-title"><span class="profile-letter a">A</span><strong>基准 A</strong><span class="chosen" id="profileAName"></span></div><div class="profile-buttons" id="profileAButtons" role="group" aria-label="选择基准 A"></div></div>
+            <div class="profile-group"><div class="profile-group-title"><span class="profile-letter b">B</span><strong>基准 B</strong><span class="chosen" id="profileBName"></span></div><div class="profile-buttons" id="profileBButtons" role="group" aria-label="选择基准 B"></div></div>
+          </div>
         </div>
-        <div class="chart-wrap"><canvas id="vowelChart" width="1000" height="750" role="img" aria-label="F1 F2 vowel chart; horizontal F2 decreases to the right and vertical F1 increases downward"></canvas><div class="chart-placeholder" id="placeholder"><strong>准备好听你的声音</strong><small>请点击右侧「开启麦克风」</small></div></div>
-        <div class="chart-caption"><div class="chart-legend"><span><i class="swatch" style="background:#9bb1a6"></i>全部参考元音</span><span><i class="swatch" style="background:#278a71"></i>语言高亮</span><span><i class="swatch" style="background:#e18b62"></i>你的发音</span><span><i class="swatch" style="background:#98c6b2"></i>运动轨迹</span></div><div>横轴 F2：前 ↔ 后　｜　纵轴 F1：闭 ↔ 开</div></div>
+                <div class="chart-wrap"><canvas id="vowelChart" width="1000" height="750" role="img" aria-label="F1 F2 vowel chart; horizontal F2 decreases to the right and vertical F1 increases downward"></canvas><div class="chart-placeholder" id="placeholder"><strong>准备好听你的声音</strong><small>请点击右侧「开启麦克风」</small></div></div>
+        <div class="chart-caption"><div class="chart-legend"><span><i class="swatch" style="background:#9bb1a6"></i>全部参考元音</span><span><i class="swatch" style="background:#217d62"></i>基准 A</span><span><i class="swatch" style="background:#3475c5"></i>基准 B</span><span><i class="swatch" style="background:#e18b62"></i>你的发音</span><span><i class="swatch" style="background:#98c6b2"></i>运动轨迹</span></div><div>横轴 F2：前 ↔ 后　｜　纵轴 F1：闭 ↔ 开</div></div>
         <div class="profile-explainer" aria-live="polite">
-          <div class="profile-topline"><strong id="profileName">全部 IPA 参考元音</strong><span id="profileCount"></span></div>
-          <p id="profileDescription">点击上方语言按钮，查看该语言中常见的元音音质。</p>
-          <div class="profile-inventory" id="profileInventory"></div>
+          <div class="profile-topline"><strong id="profileName">语言元音对照</strong><span id="profileCount"></span></div>
+          <p id="profileDescription">绿色和蓝色分别是 A、B 基准；共同元音显示双色圈。相同 IPA 符号不表示两种语言的精确发音完全一致。</p>
+          <div class="compare-results">
+            <div class="compare-column a"><div class="compare-caption">仅 A <span id="onlyACount"></span></div><div class="profile-inventory" id="onlyAInventory"></div></div>
+            <div class="compare-column shared"><div class="compare-caption">共同 <span id="sharedCount"></span></div><div class="profile-inventory" id="sharedInventory"></div></div>
+            <div class="compare-column b"><div class="compare-caption">仅 B <span id="onlyBCount"></span></div><div class="profile-inventory" id="onlyBInventory"></div></div>
+          </div>
           <p class="profile-extras" id="profileExtras"></p>
-          <div class="profile-legend">所有参考元音始终可见。绿色外圈：所选语言的主要元音　·　金色虚线：口音差异　·　灰色：其他 IPA 元音</div>
+          <div class="profile-legend">绿色圆圈：A　·　蓝色圆圈：B　·　双色圆圈：共有　·　虚线圈：口音可变　·　灰色：其他 IPA 元音</div>
         </div>
       </section>
       <aside class="controls" aria-label="麦克风与分析参数">
@@ -187,7 +210,7 @@
     // Inventory overlays are phonological teaching approximations, not measured dialect-specific F1/F2 standards.
     // Diphthongs, rhotic vowels and Mandarin apical vowels cannot be represented reliably by one static F1/F2 point.
     const PROFILES = [
-      {id:'all',label:'全部 IPA',name:'IPA 元音空间 · 全部参考音质',vowels:null,optional:[],notation:{},
+      {id:'none',label:'不高亮',name:'无高亮',vowels:[],optional:[],notation:{},
         description:'显示所有内置 IPA 参考元音。切换基准只改变元音图的高亮，不会更改麦克风分析与最近音质估计。',
         extras:'提示：参考点是近似的 F1/F2 示意位置，不是语言、年龄或性别校准后的声学实测值。'},
       {id:'en-us',label:'美式英语',name:'General American · 通用美式英语',
@@ -207,11 +230,15 @@
         vowels:['i','y','u','e','ɛ','ɵ','œ','o','ɔ','ɐ','a'],optional:[],
         notation:{i:'iː',y:'yː',u:'uː',ɛ:'ɛː',œ:'œː',ɔ:'ɔː',a:'aː'},
         description:'展示香港粤语声韵母分析中主要的 11 类元音音质；其中 /e, o, ɵ/ 等常受韵尾环境限制，并不都是自由出现的独立单元音。',
-        extras:'例如「沙」/saː/ 与「失」/sɐt/ 的 /aː/、/ɐ/ 对立。双元音及 /m̩, ŋ̍/ 等成音节鼻音不以固定点绘制。'}
+        extras:'例如「沙」/saː/ 与「失」/sɐt/ 的 /aː/、/ɐ/ 对立。双元音及 /m̩, ŋ̍/ 等成音节鼻音不以固定点绘制。'},
+      {id:'es-es',label:'西班牙西语',name:'Español peninsular · 西班牙本土西语',
+        vowels:['i','e','a','o','u'],optional:[],notation:{},
+        description:'西班牙本土标准西语（castellano）通常分析为五个元音音位 /i e a o u/；图上仅高亮五个基本元音音质。',
+        extras:'双元音如 /ai̯, ei̯, au̯/ 不适合只画成一个静态点；音位符号相同，不表示与英语等语言有完全一致的 F1/F2。'}
     ];
     const $ = (id) => document.getElementById(id);
     const canvas=$('vowelChart'),ctx=canvas.getContext('2d');
-    const state={running:false,frozen:false,ctx:null,stream:null,source:null,analyser:null,mute:null,lastProcess:0,lastSound:0,formants:null,trail:[],target:null,profileId:'all',level:0,sampleCount:0};
+    const state={running:false,frozen:false,ctx:null,stream:null,source:null,analyser:null,mute:null,lastProcess:0,lastSound:0,formants:null,trail:[],target:null,profileA:'en-us',profileB:'zh-cmn',level:0,sampleCount:0};
     const Fs=11025, MinF1=180, MaxF1=1100, MinF2=600, MaxF2=3000;
     const margin={left:84,right:50,top:52,bottom:67};
     const W=1000,H=750,PW=W-margin.left-margin.right,PH=H-margin.top-margin.bottom;
@@ -231,28 +258,37 @@
       ctx.save();ctx.translate(22,margin.top+PH/2);ctx.rotate(-Math.PI/2);ctx.fillText('F1 (Hz) · 开口度增加 ←',0,0);ctx.restore();
       ctx.font='600 13px system-ui, sans-serif';ctx.fillStyle='#90a29a';ctx.textAlign='left';ctx.fillText('FRONT / 前',margin.left+13,margin.top+23);
       ctx.textAlign='right';ctx.fillText('BACK / 后',W-margin.right-13,margin.top+23);
-      const profile=PROFILES.find(p=>p.id===state.profileId)||PROFILES[0];
-      // Keep ALL IPA reference vowels and their labels visible in every language view.
-      // Overlay selected-language vowels with green rings rather than hiding the rest.
+      const A=PROFILES.find(p=>p.id===state.profileA)||PROFILES[0];
+      const B=PROFILES.find(p=>p.id===state.profileB)||PROFILES[0];
+      // All reference vowels remain visible. Filled dots/rings encode A-only,
+      // B-only, shared, or optional membership; their locations never move.
       const labelPlan=[];
       for(const v of VOWELS){
         const p=xy(v.f1,v.f2),targeted=state.target===v.symbol;
-        const included=profile.vowels!==null&&profile.vowels.includes(v.symbol);
-        const optional=profile.optional.includes(v.symbol);
+        const inA=A.vowels.includes(v.symbol),inB=B.vowels.includes(v.symbol);
+        const optionalA=A.optional.includes(v.symbol),optionalB=B.optional.includes(v.symbol);
         ctx.save();
-        ctx.beginPath();ctx.arc(p.x,p.y,targeted?9:included?7.5:optional?7:5,0,Math.PI*2);
-        ctx.fillStyle=targeted?'#e48760':included?'#278a71':optional?'#d4aa60':'#9bada3';ctx.fill();
-        if(included){
-          ctx.beginPath();ctx.arc(p.x,p.y,14,0,Math.PI*2);ctx.strokeStyle='#2f9c7d';ctx.lineWidth=2.4;ctx.stroke();
+        ctx.beginPath();ctx.arc(p.x,p.y,targeted?9:inA||inB?7.5:5,0,Math.PI*2);
+        ctx.fillStyle=targeted?'#e48760':inA&&inB?'#795bac':inA?'#217d62':inB?'#3475c5':'#9bada3';ctx.fill();
+        if(inA&&inB){
+          // Split the shared marker's ring into the two reference colors.
+          ctx.lineWidth=3.5;
+          ctx.beginPath();ctx.arc(p.x,p.y,14,Math.PI/2,3*Math.PI/2);ctx.strokeStyle='#217d62';ctx.stroke();
+          ctx.beginPath();ctx.arc(p.x,p.y,14,-Math.PI/2,Math.PI/2);ctx.strokeStyle='#3475c5';ctx.stroke();
+        }else if(inA||inB){
+          ctx.beginPath();ctx.arc(p.x,p.y,14,0,Math.PI*2);
+          ctx.strokeStyle=inA?'#217d62':'#3475c5';ctx.lineWidth=2.6;ctx.stroke();
         }
-        if(optional){
-          ctx.beginPath();ctx.arc(p.x,p.y,15,0,Math.PI*2);ctx.strokeStyle='#b68d43';ctx.lineWidth=2;ctx.setLineDash([3,4]);ctx.stroke();ctx.setLineDash([]);
+        if(optionalA||optionalB){
+          ctx.beginPath();ctx.arc(p.x,p.y,19,0,Math.PI*2);
+          ctx.strokeStyle=optionalA&&optionalB?'#8265a5':optionalA?'#217d62':'#3475c5';
+          ctx.lineWidth=2;ctx.setLineDash([3,4]);ctx.stroke();ctx.setLineDash([]);
         }
         if(targeted){
-          ctx.beginPath();ctx.arc(p.x,p.y,20,0,Math.PI*2);ctx.strokeStyle='#e48760';ctx.lineWidth=2.5;ctx.stroke();
+          ctx.beginPath();ctx.arc(p.x,p.y,23,0,Math.PI*2);ctx.strokeStyle='#e48760';ctx.lineWidth=2.5;ctx.stroke();
         }
         ctx.restore();
-        labelPlan.push({v,p,targeted,included,optional,priority:targeted?3:included?2:optional?1:0});
+        labelPlan.push({v,p,targeted,inA,inB,optionalA,optionalB,priority:targeted?4:inA&&inB?3:inA||inB?2:optionalA||optionalB?1:0});
       }
       // Place the higher-priority labels first and gently offset neighbours to
       // reduce collisions while preserving every IPA symbol on the reference map.
@@ -260,11 +296,13 @@
       const candidates=[[11,-10],[11,23],[-12,-10],[-12,23],[15,6],[-15,6],[4,-21],[4,34]];
       labelPlan.sort((a,b)=>b.priority-a.priority);
       for(const item of labelPlan){
-        const {v,p,targeted,included,optional}=item;
-        const label=(included||optional)?((profile.notation||{})[v.symbol]||v.symbol):v.symbol;
+        const {v,p,targeted,inA,inB}=item;
+        // In dual mode, chart labels use bare IPA vowel qualities; vowel
+        // length is language-dependent and is not encoded by an F1/F2 dot.
+        const label=v.symbol;
         ctx.save();
-        ctx.font=`${targeted||included?'700':'500'} 21px "Charis SIL","Times New Roman",serif`;
-        ctx.fillStyle=targeted?'#a95a3b':included?'#196d56':optional?'#93713a':'#627970';
+        ctx.font=`${targeted||inA||inB?'700':'500'} 21px "Charis SIL","Times New Roman",serif`;
+        ctx.fillStyle=targeted?'#a95a3b':inA&&inB?'#7659a6':inA?'#176a50':inB?'#2c68b0':'#627970';
         const width=ctx.measureText(label).width;
         let chosen=null,leastOverlap=Infinity;
         for(const [dx,dy] of candidates){
@@ -351,24 +389,48 @@
     $('clearBtn').addEventListener('click',()=>{state.trail=[];});
     $('smooth').addEventListener('input',e=>{$('smoothOut').textContent=Number(e.target.value)<30?'快速':Number(e.target.value)>75?'很平滑':'适中';});
     $('sensitivity').addEventListener('input',e=>{$('sensitivityOut').textContent=e.target.value+'%';});
+    function getProfile(id){return PROFILES.find(p=>p.id===id)||PROFILES[0];}
     function renderProfile(){
-      const profile=PROFILES.find(p=>p.id===state.profileId)||PROFILES[0];
-      $('profileName').textContent=profile.name;
-      const active=profile.vowels||VOWELS.map(v=>v.symbol);
-      $('profileCount').textContent=profile.id==='all'?active.length+' 类参考音质':active.length+' 类主要音质'+(profile.optional.length?' + '+profile.optional.length+' 类可变':'');
-      $('profileDescription').textContent=profile.description;
-      $('profileExtras').textContent=profile.extras;
-      const inventory=$('profileInventory');inventory.replaceChildren();
-      const add=(symbol,optional)=>{const chip=document.createElement('span');chip.className='phoneme-chip'+(optional?' optional':'');chip.textContent=(profile.notation||{})[symbol]||symbol;chip.title=optional?'音系/口音相关':'所选基准的主要音质';inventory.appendChild(chip);};
-      for(const symbol of active)add(symbol,false);
-      for(const symbol of profile.optional)add(symbol,true);
-      for(const btn of $('profileButtons').children){const isSelected=btn.dataset.profile===profile.id;btn.classList.toggle('active',isSelected);btn.setAttribute('aria-pressed',String(isSelected));}
+      const A=getProfile(state.profileA),B=getProfile(state.profileB);
+      const setA=new Set(A.vowels),setB=new Set(B.vowels);
+      const onlyA=A.vowels.filter(s=>!setB.has(s));
+      const shared=A.vowels.filter(s=>setB.has(s));
+      const onlyB=B.vowels.filter(s=>!setA.has(s));
+      $('profileAName').textContent=A.label;
+      $('profileBName').textContent=B.label;
+      $('profileName').textContent=A.label+' ↔ '+B.label;
+      $('profileCount').textContent='共同 '+shared.length+' 类';
+      $('profileDescription').textContent='共同元音代表 IPA 音质符号重合，并不保证两种语言的实际 F1/F2、时长或音位地位完全一致。选定语言不会改变实时识别算法。';
+      const fill=(id,phones,kind)=>{
+        const el=$(id);el.replaceChildren();
+        if(!phones.length){const empty=document.createElement('span');empty.className='phoneme-empty';empty.textContent='—';el.appendChild(empty);return;}
+        for(const phone of phones){
+          const chip=document.createElement('span');chip.className='phoneme-chip'+(kind==='a'?'':kind==='b'?' b':' shared');
+          chip.textContent=phone;chip.title='IPA 音质 '+phone;el.appendChild(chip);
+        }
+      };
+      fill('onlyAInventory',onlyA,'a');fill('sharedInventory',shared,'shared');fill('onlyBInventory',onlyB,'b');
+      $('onlyACount').textContent=onlyA.length;$('sharedCount').textContent=shared.length;$('onlyBCount').textContent=onlyB.length;
+      const explain=(title,p)=>p.id==='none'?title+'：未选择高亮。':title+' · '+p.name+'：'+p.description+' '+p.extras+(p.optional.length?'（可变音质：'+p.optional.map(s=>'/'+s+'/').join('、')+'，图中以虚线标记。）':'');
+      $('profileExtras').textContent=explain('A',A)+'\n'+explain('B',B);
+      for(const [side,profileId] of [['A',A.id],['B',B.id]]){
+        for(const btn of $('profile'+side+'Buttons').children){
+          const selected=btn.dataset.profile===profileId;
+          btn.classList.toggle('active-'+side.toLowerCase(),selected);
+          btn.setAttribute('aria-pressed',String(selected));
+        }
+      }
     }
-    for(const profile of PROFILES){
-      const btn=document.createElement('button');btn.type='button';btn.className='profile-btn';
-      btn.dataset.profile=profile.id;btn.textContent=profile.label;
-      btn.addEventListener('click',()=>{state.profileId=profile.id;renderProfile();});
-      $('profileButtons').appendChild(btn);
+    for(const side of ['A','B']){
+      for(const profile of PROFILES){
+        const btn=document.createElement('button');btn.type='button';btn.className='profile-btn';
+        btn.dataset.profile=profile.id;btn.textContent=profile.label;
+        btn.addEventListener('click',()=>{
+          if(side==='A')state.profileA=profile.id;else state.profileB=profile.id;
+          renderProfile();
+        });
+        $('profile'+side+'Buttons').appendChild(btn);
+      }
     }
     renderProfile();
     const targets=['i','y','e','ɛ','æ','a','ɑ','ə','ɔ','o','u','ɯ','ɵ','œ','ɜ','ɐ','ɒ','ʌ'];
