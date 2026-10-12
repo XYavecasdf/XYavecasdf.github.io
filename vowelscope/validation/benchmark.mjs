@@ -9,19 +9,20 @@ import {dspExperimentPatch} from './dsp_variants.mjs';
 
 function fail(message) { throw Error(message); }
 function parseArgs(argv) {
-  const args = { mode: 'classic', split: 'test', dspVariant: 'original', page: path.resolve('vowelscope/index.html') };
+  const args = { mode: 'classic', split: 'test', dspVariant: 'original', smoothing: 'default', page: path.resolve('vowelscope/index.html') };
   for (let i=0; i<argv.length; i++) {
     const a=argv[i];
-    if(a==='--help') { console.log('Usage: node vowelscope/validation/benchmark.mjs --manifest /path/to/manifest.json [--page vowelscope/index.html] [--mode classic|stable] [--out report.json] [--split test|train|dev|all] [--self-test] [--oracle-only] [--dsp-variant original|antialias|burg|burg_antialias|peak_prominence|peak_bandwidth|peak_tracking|peak_guard|peak_guard_strict]'); process.exit(0); }
+    if(a==='--help') { console.log('Usage: node vowelscope/validation/benchmark.mjs --manifest /path/to/manifest.json [--page vowelscope/index.html] [--mode classic|stable] [--out report.json] [--split test|train|dev|all] [--self-test] [--oracle-only] [--dsp-variant original|antialias|burg|burg_antialias|peak_prominence|peak_bandwidth|peak_tracking|peak_guard|peak_guard_strict] [--smoothing default|fast|none]'); process.exit(0); }
     if(a==='--self-test') args.selfTest=true;
     else if(a==='--oracle-only') args.oracleOnly=true;
-    else if(['--manifest','--page','--mode','--out','--split','--dsp-variant'].includes(a)) args[a==='--dsp-variant'?'dspVariant':a.slice(2)]=argv[++i];
+    else if(['--manifest','--page','--mode','--out','--split','--dsp-variant','--smoothing'].includes(a)) args[a==='--dsp-variant'?'dspVariant':a.slice(2)]=argv[++i];
     else fail('Unknown argument: '+a);
   }
   if(!args.selfTest&&!args.manifest)fail('A --manifest file is required.');
   if(!['classic','stable'].includes(args.mode))fail('Invalid --mode.');
   if(!['test','train','dev','all'].includes(args.split))fail('Invalid --split.');
   if(!['original','antialias','burg','burg_antialias','peak_prominence','peak_bandwidth','peak_tracking','peak_guard','peak_guard_strict'].includes(args.dspVariant))fail('Invalid DSP experiment.');
+  if(!['default','fast','none'].includes(args.smoothing))fail('Invalid smoothing experiment.');
   return args;
 }
 function loadWav(filename) {
@@ -83,13 +84,17 @@ function safeAudioPath(root,relative) {
   if(!full.startsWith(base+path.sep))fail('Audio path escapes dataset root: '+relative);
   return full;
 }
-function analyzeRow(row,manifestDir,mode,page,variant='original') {
+function analyzeRow(row,manifestDir,mode,page,variant='original',smoothing='default') {
   const audioFile=safeAudioPath(manifestDir,row.audio_path);
   const wav=loadWav(audioFile);
   const t0=Number(row.start_s),t1=Number(row.end_s);
   if(!Number.isFinite(t0)||!Number.isFinite(t1)||t0<0||t1<=t0||t1>wav.duration+0.002)
     fail('Invalid vowel start/end for '+row.audio_path);
   const {api,nodes}=createEngine(page,variant);
+  // Research-only override of the existing interface smoothing parameter.
+  // 'fast' means UI smooth=0 (alpha=.68); 'none' makes alpha~1.
+  if(smoothing!=='default')nodes.get('smooth').value=
+    smoothing==='fast'?'0':'-53.3333333333333';
   const buffer=new Float32Array(8192);
   let currentT=0;
   api.state.mode=mode;api.state.running=true;
@@ -221,11 +226,11 @@ function main(){
   }
   const results=[];
   for(const row of selected){
-    try{results.push(analyzeRow(row,path.dirname(mf),args.mode,page,args.dspVariant));}
+    try{results.push(analyzeRow(row,path.dirname(mf),args.mode,page,args.dspVariant,args.smoothing));}
     catch(e){fail('Failed on '+(row.audio_path||'?')+': '+e.message);}
   }
   const report={schema_version:1,source:manifest.source||'unspecified',dataset_version:manifest.version||'unspecified',
-    checked_at:new Date().toISOString(),source_html:path.relative(process.cwd(),page),split:args.split,dsp_variant:args.dspVariant,summary:summarize(results,args.mode),results};
+    checked_at:new Date().toISOString(),source_html:path.relative(process.cwd(),page),split:args.split,dsp_variant:args.dspVariant,smoothing:args.smoothing,summary:summarize(results,args.mode),results};
   const content=JSON.stringify(report,null,2);
   if(args.out){fs.mkdirSync(path.dirname(path.resolve(args.out)),{recursive:true});fs.writeFileSync(args.out,content+'\n');}
   else console.log(content);
