@@ -1,0 +1,604 @@
+{
+  "schema_version": 1,
+  "description": "Research decomposition on previously viewed speaker-disjoint Hillenbrand holdout. Exploratory only; do not tune on this holdout.",
+  "source": "Hillenbrand et al. (1995)",
+  "dataset_version": "2560548591e3a726",
+  "selected_tokens": 276,
+  "oracle": {
+    "comparable_tokens": 205,
+    "matching_symbols": 55,
+    "accuracy": 0.2682926829268293,
+    "by_vowel": {
+      "æ": {
+        "n": 23,
+        "correct": 6,
+        "accuracy": 0.2608695652173913
+      },
+      "ɑ": {
+        "n": 23,
+        "correct": 3,
+        "accuracy": 0.13043478260869565
+      },
+      "ɔ": {
+        "n": 22,
+        "correct": 2,
+        "accuracy": 0.09090909090909091
+      },
+      "ɛ": {
+        "n": 23,
+        "correct": 7,
+        "accuracy": 0.30434782608695654
+      },
+      "ɪ": {
+        "n": 23,
+        "correct": 3,
+        "accuracy": 0.13043478260869565
+      },
+      "i": {
+        "n": 23,
+        "correct": 22,
+        "accuracy": 0.9565217391304348
+      },
+      "ʊ": {
+        "n": 23,
+        "correct": 4,
+        "accuracy": 0.17391304347826086
+      },
+      "ʌ": {
+        "n": 23,
+        "correct": 5,
+        "accuracy": 0.21739130434782608
+      },
+      "u": {
+        "n": 22,
+        "correct": 3,
+        "accuracy": 0.13636363636363635
+      }
+    },
+    "confusion": {
+      "æ": {
+        "æ": 6,
+        "ɛ": 15,
+        "a": 1,
+        "ɐ": 1
+      },
+      "ɑ": {
+        "a": 11,
+        "ɶ": 3,
+        "ɐ": 4,
+        "ʌ": 2,
+        "ɑ": 3
+      },
+      "ɔ": {
+        "ɑ": 11,
+        "ɐ": 1,
+        "a": 1,
+        "ʌ": 6,
+        "ɔ": 2,
+        "ɒ": 1
+      },
+      "ɛ": {
+        "æ": 12,
+        "a": 2,
+        "ɛ": 7,
+        "œ": 2
+      },
+      "ɪ": {
+        "e": 18,
+        "ɪ": 3,
+        "ɛ": 1,
+        "i": 1
+      },
+      "i": {
+        "i": 22,
+        "e": 1
+      },
+      "ʊ": {
+        "ɞ": 1,
+        "ɛ": 1,
+        "œ": 3,
+        "ɤ": 11,
+        "ɐ": 1,
+        "ʊ": 4,
+        "ə": 1,
+        "o": 1
+      },
+      "ʌ": {
+        "ɐ": 4,
+        "a": 2,
+        "ɶ": 6,
+        "ʌ": 5,
+        "æ": 1,
+        "ɞ": 4,
+        "ɑ": 1
+      },
+      "u": {
+        "ɞ": 1,
+        "e": 1,
+        "ə": 1,
+        "ɤ": 3,
+        "œ": 1,
+        "ɵ": 2,
+        "ʊ": 7,
+        "u": 3,
+        "o": 3
+      }
+    }
+  },
+  "original_classifier": {
+    "comparable_tokens": 207,
+    "matching_symbols": 33,
+    "accuracy": 0.15942028985507245
+  },
+  "error_decomposition": {
+    "counts": {
+      "both_correct": 24,
+      "oracle_correct_but_live_wrong_or_missing": 31,
+      "both_wrong": 141,
+      "live_correct_but_oracle_wrong": 9
+    },
+    "explanation": {
+      "both_wrong": "IPA chart/label mismatch is sufficient to fail even with corpus F1/F2, but cannot prove it is the only cause.",
+      "oracle_correct_but_live_wrong_or_missing": "Acoustic estimation, tracking or detection changes the classification from correct to wrong.",
+      "live_correct_but_oracle_wrong": "Estimation noise can coincidentally move the marker toward the nominal target label.",
+      "both_correct": "Both ideal input and live estimate identify the same annotated broad IPA symbol."
+    }
+  },
+  "acoustic_error": {
+    "all": {
+      "n": 264,
+      "f1_abs_hz": {
+        "n": 264,
+        "mean": 75.73,
+        "median": 62.0,
+        "p90": 157.0
+      },
+      "f2_abs_hz": {
+        "n": 264,
+        "mean": 193.46,
+        "median": 74.0,
+        "p90": 593.5
+      },
+      "f2_gt300_hz": 37,
+      "f2_gt500_hz": 33
+    },
+    "by_speaker_group": {
+      "boys": {
+        "tokens": 60,
+        "detected": 56,
+        "coverage": 0.9333,
+        "acoustics": {
+          "n": 55,
+          "f1_abs_hz": {
+            "n": 55,
+            "mean": 56.26,
+            "median": 45.5,
+            "p90": 137.9
+          },
+          "f2_abs_hz": {
+            "n": 55,
+            "mean": 212.38,
+            "median": 92.62,
+            "p90": 691.5
+          },
+          "f2_gt300_hz": 10,
+          "f2_gt500_hz": 9
+        }
+      },
+      "girls": {
+        "tokens": 24,
+        "detected": 22,
+        "coverage": 0.9167,
+        "acoustics": {
+          "n": 22,
+          "f1_abs_hz": {
+            "n": 22,
+            "mean": 82.55,
+            "median": 71.59,
+            "p90": 161.78
+          },
+          "f2_abs_hz": {
+            "n": 22,
+            "mean": 281.51,
+            "median": 183.15,
+            "p90": 629.06
+          },
+          "f2_gt300_hz": 5,
+          "f2_gt500_hz": 4
+        }
+      },
+      "adult_men": {
+        "tokens": 84,
+        "detected": 83,
+        "coverage": 0.9881,
+        "acoustics": {
+          "n": 83,
+          "f1_abs_hz": {
+            "n": 83,
+            "mean": 78.71,
+            "median": 61.5,
+            "p90": 156.5
+          },
+          "f2_abs_hz": {
+            "n": 83,
+            "mean": 124.73,
+            "median": 56.0,
+            "p90": 210.5
+          },
+          "f2_gt300_hz": 5,
+          "f2_gt500_hz": 5
+        }
+      },
+      "adult_women": {
+        "tokens": 108,
+        "detected": 105,
+        "coverage": 0.9722,
+        "acoustics": {
+          "n": 104,
+          "f1_abs_hz": {
+            "n": 104,
+            "mean": 82.19,
+            "median": 69.75,
+            "p90": 184.5
+          },
+          "f2_abs_hz": {
+            "n": 104,
+            "mean": 219.67,
+            "median": 86.99,
+            "p90": 593.5
+          },
+          "f2_gt300_hz": 17,
+          "f2_gt500_hz": 15
+        }
+      }
+    },
+    "by_reference_f0_group": {
+      "230_Hz_and_above": {
+        "tokens": 76,
+        "coverage": 0.9474,
+        "acoustics": {
+          "n": 71,
+          "f1_abs_hz": {
+            "n": 71,
+            "mean": 67.76,
+            "median": 53.16,
+            "p90": 157.0
+          },
+          "f2_abs_hz": {
+            "n": 71,
+            "mean": 203.88,
+            "median": 92.62,
+            "p90": 607.0
+          },
+          "f2_gt300_hz": 14,
+          "f2_gt500_hz": 11
+        }
+      },
+      "140_to_230_Hz": {
+        "tokens": 162,
+        "coverage": 0.9691,
+        "acoustics": {
+          "n": 156,
+          "f1_abs_hz": {
+            "n": 156,
+            "mean": 80.29,
+            "median": 70.56,
+            "p90": 156.0
+          },
+          "f2_abs_hz": {
+            "n": 156,
+            "mean": 204.55,
+            "median": 86.39,
+            "p90": 593.5
+          },
+          "f2_gt300_hz": 20,
+          "f2_gt500_hz": 19
+        }
+      },
+      "under_140_Hz": {
+        "tokens": 38,
+        "coverage": 0.9737,
+        "acoustics": {
+          "n": 37,
+          "f1_abs_hz": {
+            "n": 37,
+            "mean": 71.77,
+            "median": 43.0,
+            "p90": 177.5
+          },
+          "f2_abs_hz": {
+            "n": 37,
+            "mean": 126.7,
+            "median": 38.5,
+            "p90": 211.5
+          },
+          "f2_gt300_hz": 3,
+          "f2_gt500_hz": 3
+        }
+      }
+    },
+    "by_annotated_vowel": {
+      "æ": {
+        "tokens": 23,
+        "detected": 22,
+        "coverage": 0.9565,
+        "acoustics": {
+          "n": 22,
+          "f1_abs_hz": {
+            "n": 22,
+            "mean": 51.21,
+            "median": 47.18,
+            "p90": 125.16
+          },
+          "f2_abs_hz": {
+            "n": 22,
+            "mean": 99.69,
+            "median": 45.67,
+            "p90": 215.94
+          },
+          "f2_gt300_hz": 2,
+          "f2_gt500_hz": 1
+        }
+      },
+      "ɑ": {
+        "tokens": 23,
+        "detected": 18,
+        "coverage": 0.7826,
+        "acoustics": {
+          "n": 18,
+          "f1_abs_hz": {
+            "n": 18,
+            "mean": 83.59,
+            "median": 53.55,
+            "p90": 196.79
+          },
+          "f2_abs_hz": {
+            "n": 18,
+            "mean": 128.28,
+            "median": 67.0,
+            "p90": 435.64
+          },
+          "f2_gt300_hz": 2,
+          "f2_gt500_hz": 1
+        }
+      },
+      "ɔ": {
+        "tokens": 23,
+        "detected": 22,
+        "coverage": 0.9565,
+        "acoustics": {
+          "n": 21,
+          "f1_abs_hz": {
+            "n": 21,
+            "mean": 51.11,
+            "median": 45.0,
+            "p90": 110.7
+          },
+          "f2_abs_hz": {
+            "n": 21,
+            "mean": 471.44,
+            "median": 171.0,
+            "p90": 1206.7
+          },
+          "f2_gt300_hz": 8,
+          "f2_gt500_hz": 8
+        }
+      },
+      "ɛ": {
+        "tokens": 23,
+        "detected": 22,
+        "coverage": 0.9565,
+        "acoustics": {
+          "n": 22,
+          "f1_abs_hz": {
+            "n": 22,
+            "mean": 68.68,
+            "median": 70.88,
+            "p90": 122.0
+          },
+          "f2_abs_hz": {
+            "n": 22,
+            "mean": 68.17,
+            "median": 57.0,
+            "p90": 170.64
+          },
+          "f2_gt300_hz": 0,
+          "f2_gt500_hz": 0
+        }
+      },
+      "eɪ": {
+        "tokens": 23,
+        "detected": 23,
+        "coverage": 1.0,
+        "acoustics": {
+          "n": 23,
+          "f1_abs_hz": {
+            "n": 23,
+            "mean": 105.35,
+            "median": 95.47,
+            "p90": 160.82
+          },
+          "f2_abs_hz": {
+            "n": 23,
+            "mean": 62.31,
+            "median": 45.5,
+            "p90": 123.0
+          },
+          "f2_gt300_hz": 0,
+          "f2_gt500_hz": 0
+        }
+      },
+      "ɝ": {
+        "tokens": 23,
+        "detected": 23,
+        "coverage": 1.0,
+        "acoustics": {
+          "n": 23,
+          "f1_abs_hz": {
+            "n": 23,
+            "mean": 81.03,
+            "median": 54.56,
+            "p90": 179.0
+          },
+          "f2_abs_hz": {
+            "n": 23,
+            "mean": 96.65,
+            "median": 71.76,
+            "p90": 166.36
+          },
+          "f2_gt300_hz": 1,
+          "f2_gt500_hz": 0
+        }
+      },
+      "ɪ": {
+        "tokens": 23,
+        "detected": 23,
+        "coverage": 1.0,
+        "acoustics": {
+          "n": 23,
+          "f1_abs_hz": {
+            "n": 23,
+            "mean": 48.35,
+            "median": 19.5,
+            "p90": 101.5
+          },
+          "f2_abs_hz": {
+            "n": 23,
+            "mean": 87.25,
+            "median": 53.56,
+            "p90": 132.5
+          },
+          "f2_gt300_hz": 1,
+          "f2_gt500_hz": 1
+        }
+      },
+      "i": {
+        "tokens": 23,
+        "detected": 23,
+        "coverage": 1.0,
+        "acoustics": {
+          "n": 23,
+          "f1_abs_hz": {
+            "n": 23,
+            "mean": 90.74,
+            "median": 85.35,
+            "p90": 179.78
+          },
+          "f2_abs_hz": {
+            "n": 23,
+            "mean": 216.7,
+            "median": 54.0,
+            "p90": 629.06
+          },
+          "f2_gt300_hz": 5,
+          "f2_gt500_hz": 4
+        }
+      },
+      "oʊ": {
+        "tokens": 23,
+        "detected": 23,
+        "coverage": 1.0,
+        "acoustics": {
+          "n": 23,
+          "f1_abs_hz": {
+            "n": 23,
+            "mean": 107.08,
+            "median": 100.4,
+            "p90": 189.29
+          },
+          "f2_abs_hz": {
+            "n": 23,
+            "mean": 474.54,
+            "median": 190.5,
+            "p90": 1249.85
+          },
+          "f2_gt300_hz": 9,
+          "f2_gt500_hz": 9
+        }
+      },
+      "ʊ": {
+        "tokens": 23,
+        "detected": 22,
+        "coverage": 0.9565,
+        "acoustics": {
+          "n": 22,
+          "f1_abs_hz": {
+            "n": 22,
+            "mean": 73.58,
+            "median": 46.25,
+            "p90": 184.5
+          },
+          "f2_abs_hz": {
+            "n": 22,
+            "mean": 186.78,
+            "median": 61.25,
+            "p90": 564.6
+          },
+          "f2_gt300_hz": 3,
+          "f2_gt500_hz": 3
+        }
+      },
+      "ʌ": {
+        "tokens": 23,
+        "detected": 22,
+        "coverage": 0.9565,
+        "acoustics": {
+          "n": 22,
+          "f1_abs_hz": {
+            "n": 22,
+            "mean": 84.37,
+            "median": 83.72,
+            "p90": 153.5
+          },
+          "f2_abs_hz": {
+            "n": 22,
+            "mean": 240.48,
+            "median": 133.25,
+            "p90": 691.5
+          },
+          "f2_gt300_hz": 4,
+          "f2_gt500_hz": 4
+        }
+      },
+      "u": {
+        "tokens": 23,
+        "detected": 23,
+        "coverage": 1.0,
+        "acoustics": {
+          "n": 22,
+          "f1_abs_hz": {
+            "n": 22,
+            "mean": 61.49,
+            "median": 49.25,
+            "p90": 148.66
+          },
+          "f2_abs_hz": {
+            "n": 22,
+            "mean": 191.33,
+            "median": 132.94,
+            "p90": 297.0
+          },
+          "f2_gt300_hz": 2,
+          "f2_gt500_hz": 2
+        }
+      }
+    },
+    "f2_outliers_gt300_hz": 37,
+    "f2_outliers_gt500_hz": 33,
+    "note": "Conditional errors on successful frames. All participants anonymous; group metrics are exploratory."
+  },
+  "paired_modes": {
+    "common_tokens": 111,
+    "classic_f1_mae_hz": 65.78,
+    "stable_f1_mae_hz": 41.62,
+    "classic_f2_mae_hz": 173.52,
+    "stable_f2_mae_hz": 96.55
+  },
+  "caveats": [
+    "Corpus F1/F2 annotations are reference estimates, not perfectly objective truths.",
+    "IPA labels are broad category symbols; a fixed 28-point diagram is not a validated American English phoneme recognizer.",
+    "The held-out tokens have already been inspected in previous reports. Use distinct development speakers or another unseen corpus for choosing hyperparameters.",
+    "F0 strata and age/sex categories are descriptive and confounded; group differences do not establish cause.",
+    "This replays waveforms numerically into browser functions, not actual mobile microphones."
+  ]
+}
