@@ -64,7 +64,7 @@ def main():
                         if not filename.endswith(".wav"):continue
                         name=filename.removesuffix(".wav")
                         if not ROW.fullmatch(name) or name not in source or name not in times:continue
-                        if split(name[:3])!="test":continue
+                        if split(name[:3]) not in ("test","dev"):continue
                         target=root/"audio"/filename
                         if target.exists():raise ValueError("Duplicate WAV: "+filename)
                         with target.open("wb") as target_file:
@@ -106,11 +106,17 @@ def main():
             if f1 is None or f2 is None:continue
             t=times[name];start=positive(t[1]);end=positive(t[2])
             if not start or not end or start>=end:continue
+            c1=positive(t[3]);c2=positive(t[4])
+            if not c1 or not c2:continue
+            ref_t=(c1+c2)/2000
+            if not (start/1000<=ref_t<=end/1000):continue
             rr={"audio_path":"audio/"+name+".wav","speaker_id":name[:3],
                 "vowel_ipa":IPA[name[-2:]],"language":"en-us",
                 "gt_f1_hz":f1,"gt_f2_hz":f2,"start_s":start/1000,
-                "end_s":end/1000,"split":split(name[:3])}
+                "end_s":end/1000,"gt_time_s":ref_t,"split":split(name[:3])}
             if pitch:rr["gt_f0_hz"]=pitch
+            f3=positive(fields[5]);
+            if f3:rr["gt_f3_hz"]=f3
             model_rows.append(rr)
         model_manifest={**{k:v for k,v in manifest.items() if k!="samples"},"samples":model_rows}
         model_path=root/"model-manifest.json"
@@ -123,7 +129,8 @@ def main():
                "whole_corpus_timing_rows":len(times),
                "selected_heldout_tokens":len(rows),
                "selected_heldout_speakers":len(set(r["speaker_id"] for r in rows)),
-               "audio_files_loaded_in_runner":audio_count,
+               "audio_files_loaded_in_runner":len(rows),
+               "audio_files_extracted_for_dev_and_test":audio_count,
                "heldout_rule":"SHA256(speaker_id)[:8] modulo 100 >= 85; stable speaker-disjoint test set",
                "reference_annotation":"Original Hillenbrand steady-state formants; reference time approximated as mean of Center1/Center2; audio is not redistributed",
                "measure_window":"~150 ms total around mean judged steady-state center",
@@ -170,9 +177,16 @@ def main():
         dp=subprocess.run(dev_cmd,capture_output=True,text=True,timeout=90)
         print("Development oracle:",dp.returncode,dp.stdout.strip(),dp.stderr.strip(),flush=True)
         if dp.returncode:raise RuntimeError("Development oracle failed: "+dp.stderr)
+        dev_live=root/"dev-live.json"
+        live_cmd=["node","vowelscope/validation/benchmark.mjs","--manifest",str(model_path),
+                "--page","vowelscope/index.html","--split","dev","--mode","classic","--out",str(dev_live)]
+        lr=subprocess.run(live_cmd,capture_output=True,text=True,timeout=330)
+        print("Development replayed LPC:",lr.returncode,lr.stdout.strip(),lr.stderr.strip(),flush=True)
+        if lr.returncode:raise RuntimeError("Development audio LPC replay failed: "+lr.stderr)
         models_path=Path("vowelscope/validation/public-dataset/classifier-dev-ablation.json")
         model_cmd=["python","vowelscope/validation/classification_experiments.py",
-            "--manifest",str(model_path),"--oracle-dev",str(dev_oracle),"--out",str(models_path)]
+            "--manifest",str(model_path),"--oracle-dev",str(dev_oracle),
+            "--live-dev",str(dev_live),"--out",str(models_path)]
         mr=subprocess.run(model_cmd,capture_output=True,text=True,timeout=90)
         print("Classification dev study:",mr.returncode,mr.stdout.strip(),mr.stderr.strip(),flush=True)
         if mr.returncode:raise RuntimeError("Classifier experiment failed: "+mr.stderr)
