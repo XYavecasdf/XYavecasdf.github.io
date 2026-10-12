@@ -181,6 +181,13 @@
           <div class="panel-head" style="margin:0"><h3 class="panel-title">最近参考元音</h3><span class="subtle">ESTIMATED IPA</span></div>
           <div class="reading"><div class="ipa-symbol" id="ipaSymbol">—</div><div class="reading-info"><strong id="ipaName">等待发音</strong><span id="ipaHint">保持一个稳定、响亮的元音约 1 秒</span></div></div>
           <div class="metric-grid"><div class="metric"><span>F1</span><strong id="f1">—</strong></div><div class="metric"><span>F2</span><strong id="f2">—</strong></div><div class="metric"><span>F3</span><strong id="f3">—</strong></div></div>
+          <div id="labPanel" style="display:none;padding:12px;margin-top:14px;border:1px solid #c8dbcf;border-radius:12px;background:#f4faf6">
+            <strong>研究实验室 · 原始与平滑读数对照</strong>
+            <p style="font-size:12px;margin:8px 0 4px">当前未经 EMA 的 LPC 估计: <code id="labRaw">—</code></p>
+            <p style="font-size:12px;margin:4px 0">元音图使用的平滑读数: <code id="labShown">—</code></p>
+            <p style="font-size:12px;margin:4px 0">F2 平滑拖尾差值: <code id="labF2Diff">—</code></p>
+            <p style="font-size:11px;color:#617769;line-height:1.5;margin:8px 0 0">仅增加调试读数；原来的图表、分类和麦克风处理保持不变。Raw LPC 也并非已验证的标准真值。</p>
+          </div>
           <p class="help-text">单位：Hz。IPA 是基于 F1/F2 的近似匹配；选择语言仅改变图上高亮，不改变识别算法或构成口音评分。</p>
         </div>
         <div class="panel setting-panel">
@@ -257,6 +264,7 @@
         extras:'西语 /a/ 的中央位置只是声学示意，并非经实测校准的数据。双元音应由运动轨迹表示；同一个 IPA 符号不保证两种语言的 F1/F2 完全相同。'}
     ];
     const $ = (id) => document.getElementById(id);
+    const labMode=/(?:^\?|&)lab=1(?:&|$)/.test(window.location?.search||'');
     const canvas=$('vowelChart'),ctx=canvas.getContext('2d');
     const state={running:false,frozen:false,ctx:null,stream:null,source:null,analyser:null,mute:null,lastProcess:0,lastSound:0,formants:null,trail:[],target:null,profileA:'en-us',profileB:'zh-cmn',mode:'classic',level:0,sampleCount:0,firstCandidate:null,pendingJump:null,lastAccepted:0};
     const Fs=11025, MinF1=180, MaxF1=1100, MinF2=600, MaxF2=3000;
@@ -374,7 +382,7 @@
       if(state.formants){const p=xy(state.formants.f1,state.formants.f2);ctx.beginPath();ctx.arc(p.x,p.y,23,0,Math.PI*2);ctx.fillStyle='rgba(221,137,96,.15)';ctx.fill();ctx.beginPath();ctx.arc(p.x,p.y,11.5,0,Math.PI*2);ctx.fillStyle='#e48760';ctx.fill();ctx.strokeStyle='#fff';ctx.lineWidth=3;ctx.stroke();}
     }
     function setStatus(mode,description){const el=$('status');el.className='status'+(mode==='live'?' live':mode==='frozen'?' frozen':'');$('statusText').textContent=description;}
-    function resetReading(){state.formants=null;$('ipaSymbol').textContent='—';$('ipaName').textContent='等待发音';$('ipaHint').textContent=state.running?'请持续发一个元音':'保持一个稳定元音约 1 秒';for(const n of ['f1','f2','f3'])$(n).textContent='—';}
+    function resetReading(){state.formants=null;$('ipaSymbol').textContent='—';$('ipaName').textContent='等待发音';$('ipaHint').textContent=state.running?'请持续发一个元音':'保持一个稳定元音约 1 秒';for(const n of ['f1','f2','f3'])$(n).textContent='—';if(labMode){for(const n of ['labRaw','labShown','labF2Diff'])$(n).textContent='—';}}
     function nearestVowel(f1,f2){let best=null,lowest=Infinity;for(const v of VOWELS){const d=Math.hypot((f1-v.f1)/340,(f2-v.f2)/950);if(d<lowest){lowest=d;best=v;}}return {vowel:best,distance:lowest};}
     function preprocess(buffer,fs){const samples=512,raw=new Float64Array(samples),step=fs/Fs,windowLen=Math.ceil(samples*step),offset=buffer.length-windowLen;if(offset<0)return null;
       for(let i=0;i<samples;i++){const loc=offset+i*step,j=Math.floor(loc),frac=loc-j;let a=buffer[j]||0,b=buffer[j+1]||a;raw[i]=a+(b-a)*frac;}
@@ -515,6 +523,7 @@
           return;
         }
       }
+      const labRaw=labMode?{...accepted}:null;
       if(state.formants){
         const amount=.08+(100-Number($('smooth').value))*.006;
         for(const key of ['f1','f2','f3']){
@@ -524,6 +533,14 @@
         }
       }
       state.formants=accepted;
+      if(labMode&&labRaw){
+        const fmt=x=>x==null?'—':String(Math.round(x));
+        const value=x=>"F1 "+fmt(x.f1)+" · F2 "+fmt(x.f2)+" · F3 "+fmt(x.f3)+" Hz";
+        $('labRaw').textContent=value(labRaw);
+        $('labShown').textContent=value(accepted);
+        $('labF2Diff').textContent=(accepted.f2-labRaw.f2>=0?'+':'')+
+          Math.round(accepted.f2-labRaw.f2)+' Hz';
+      }
       state.lastAccepted=now;
       if(state.mode==='stable'){
         state.lastSound=now;$('micDetail').textContent='稳定有声段 · 正在分析元音';
@@ -623,6 +640,7 @@
     const targets=VOWELS.map(v=>v.symbol);
     for(const symbol of targets){const el=document.createElement('button');el.type='button';el.className='target';el.textContent=symbol;el.setAttribute('aria-label','高亮参考元音 '+symbol);el.addEventListener('click',()=>{state.target=state.target===symbol?null:symbol;for(const child of $('targetButtons').children)child.classList.toggle('active',child.textContent===state.target);const v=VOWELS.find(a=>a.symbol===state.target);$('targetDescription').textContent=v?`/ ${v.symbol} / · ${v.name} · 参考 F1 ${v.f1} Hz / F2 ${v.f2} Hz。F1/F2 仅为示意；这里显示最近参考音质，并非可靠的音素识别或准确度评分。`:'点击一个 IPA 音标，在图中高亮其参考位置；这不是个人发音准确度评分。';});$('targetButtons').appendChild(el);}
     window.addEventListener('pagehide',()=>{state.stream?.getTracks().forEach(t=>t.stop());});
+    if(labMode)$('labPanel').style.display='block';
     requestAnimationFrame(frame);
   })();
   </script>
