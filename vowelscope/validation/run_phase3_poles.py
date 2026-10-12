@@ -82,7 +82,9 @@ def main():
           ("pole14_fs9000_bw400","pole14_fs9000_bw400","acoustic"),
           ("pole14_fs12000_bw400","pole14_fs12000_bw400","acoustic"),
           ("pole14_bw400_track05","pole14_bw400_track05","acoustic"),
-          ("pole14_bw400_track12","pole14_bw400_track12","acoustic")
+          ("pole14_bw400_track12","pole14_bw400_track12","acoustic"),
+          ("pole14_fs12000_poly33","pole14_fs12000_poly33","acoustic"),
+          ("pole14_fs12000_poly49","pole14_fs12000_poly49","acoustic")
         ]
         reports={}
         for label,variant,measurement in designs:
@@ -108,7 +110,7 @@ def main():
           "split":"dev","speaker_disjoint_from_training":True,
           "speaker_count":len({r["speaker_id"] for r in samples}),
           "sample_count":len(samples),"shared_detection_count":len(good),
-          "experiment_stage":"Phase 3b: analysis-rate ceiling and temporal pole assignment",
+          "experiment_stage":"Phase 3b/3c: analysis-rate ceilings, pole tracking, optimized FIR resampling",
           "variants":list(reports),
           "all_tokens":{k:metric(v["results"]) for k,v in reports.items()},
           "common_detected":{k:metric([m[x] for x in good]) for k,m in index.items()},
