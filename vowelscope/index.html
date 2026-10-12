@@ -17,6 +17,9 @@
     .logo{height:45px;width:45px;display:grid;place-items:center;border-radius:13px;background:#194b4a;color:white;box-shadow:0 5px 18px #1e4a4530}
     .brand h1{margin:0;font-size:26px;line-height:1.05;font-weight:730;letter-spacing:-1px}
     .brand p{margin:6px 0 0;color:#788381;font-size:12px;letter-spacing:.03em}
+    .header-tools{display:flex;gap:10px;align-items:center;justify-content:flex-end;flex-wrap:wrap}
+    .locale-switch{color:#196b57;border:1px solid #c9dfd4;padding:7px 10px;border-radius:9px;text-decoration:none;font-size:12px;font-weight:750;background:#f4faf6;white-space:nowrap}
+    .locale-switch:hover{background:#e8f6ee}
     .header-info{display:flex;align-items:center;gap:9px;color:#66736f;font-size:12px}
     .privacy-dot{height:7px;width:7px;background:#549b88;border-radius:50%}
     .eyebrow{font-size:12px;letter-spacing:.13em;font-weight:700;text-transform:uppercase;color:#567b76}
@@ -119,6 +122,7 @@
     .phoneme-empty{font-size:12px;color:#a1ada6}
     .profile-extras{white-space:pre-line;font-size:11px!important;color:#819089!important;margin-bottom:0!important}
     .profile-legend{font-size:11px;color:#71887b;margin-top:10px;line-height:1.8}
+    @media(max-width:620px){.site-header{flex-wrap:wrap}.header-tools{gap:8px}.locale-switch{font-size:12px}}
     @media(max-width:620px){.profile-picker{padding:12px}.profile-header span{display:block;margin:3px 0 0}.profile-group{padding:9px}.profile-btn{font-size:11px;padding:7px 1px;min-height:38px}.profile-explainer{padding:12px}.compare-results{gap:5px}.compare-column{padding:7px 5px}.compare-column .compare-caption{font-size:10px;display:block}.phoneme-chip{font-size:15px;min-width:25px;padding:4px}.profile-topline{gap:5px}}
     .notes{margin-top:17px;padding:19px 23px;border-radius:16px;border:1px solid #e5e8e2;background:#fdfdfb;display:flex;gap:16px;align-items:flex-start}
     .notes .icon{height:36px;width:36px;border-radius:10px;display:grid;place-items:center;background:#edf5ef;color:#457569;flex-shrink:0}
@@ -138,7 +142,7 @@
         <div class="logo" aria-hidden="true"><svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M2 12h2l2-6 3 12 3-15 3 18 3-10 2 1h2"/></svg></div>
         <div><h1>VowelScope<span style="color:#74a69b">.</span></h1><p>AN INTERACTIVE PHONETICS LAB</p></div>
       </div>
-      <div class="header-info"><span class="privacy-dot"></span>仅在浏览器本地处理音频</div>
+      <div class="header-tools"><a href="./en/" class="locale-switch" lang="en" aria-label="Switch to English">English</a><div class="header-info"><span class="privacy-dot"></span>仅在浏览器本地处理音频</div></div>
     </header>
     <section class="intro"><div><span class="eyebrow">REAL-TIME FORMANT ANALYSIS</span><h2>听见声音，看见元音。</h2><p>对着麦克风持续发一个元音，观察它在 IPA 元音空间中的位置。</p></div><div class="intro-right">语音信号 → LPC 共振峰估计 → 实时元音图<br/>适合个人发音探索与学习</div></section>
     <main class="app-grid">
