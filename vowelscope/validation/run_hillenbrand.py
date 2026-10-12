@@ -183,6 +183,29 @@ def main():
         lr=subprocess.run(live_cmd,capture_output=True,text=True,timeout=330)
         print("Development replayed LPC:",lr.returncode,lr.stdout.strip(),lr.stderr.strip(),flush=True)
         if lr.returncode:raise RuntimeError("Development audio LPC replay failed: "+lr.stderr)
+        # All DSP parameter probes run on development speakers. The initial
+        # 23-speaker TEST holdout stays untouched for algorithm selection.
+        variants={"original":dev_live}
+        for variant in ("antialias","burg","burg_antialias"):
+            dest=root/("dev-"+variant+".json")
+            command=["node","vowelscope/validation/benchmark.mjs",
+                     "--manifest",str(model_path),"--page","vowelscope/index.html",
+                     "--split","dev","--mode","classic",
+                     "--dsp-variant",variant,"--out",str(dest)]
+            check=subprocess.run(command,capture_output=True,text=True,timeout=330)
+            print("DSP",variant,check.returncode,check.stdout.strip(),check.stderr.strip(),flush=True)
+            if check.returncode:raise RuntimeError("DSP "+variant+" failed: "+check.stderr)
+            variants[variant]=dest
+        dsp_path=Path("vowelscope/validation/public-dataset/dsp-dev-ablation.json")
+        compare=["python","vowelscope/validation/compare_dsp.py",
+                 "--original",str(variants["original"]),
+                 "--antialias",str(variants["antialias"]),
+                 "--burg",str(variants["burg"]),
+                 "--burg-antialias",str(variants["burg_antialias"]),
+                 "--out",str(dsp_path)]
+        cr=subprocess.run(compare,capture_output=True,text=True,timeout=90)
+        print("DSP comparison:",cr.returncode,cr.stdout.strip(),cr.stderr.strip(),flush=True)
+        if cr.returncode:raise RuntimeError("DSP comparison failed: "+cr.stderr)
         models_path=Path("vowelscope/validation/public-dataset/classifier-dev-ablation.json")
         model_cmd=["python","vowelscope/validation/classification_experiments.py",
             "--manifest",str(model_path),"--oracle-dev",str(dev_oracle),
