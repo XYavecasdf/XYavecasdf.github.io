@@ -1,5 +1,13 @@
 # VowelScope acoustic evaluation (v0.1)
 
+## Research Phase 3: executed acoustic/visual separation + LPC pole analysis
+
+**[Read the measured Phase 3 results](PHASE3_RESULTS.md)** and [aggregated corpus metrics](public-dataset/phase3-pole-dev.json). Both Chinese and English webpages now keep raw accepted formants in `state.acousticFormants` and smoothed display positions in `state.visualFormants`. Original user-visible behavior remains backward-compatible.
+
+The research-only complex-root LPC experiments have run on 275 development tokens and are validated by synthetic-pole and bilingual unit tests. **The pole algorithm is not deployed as a default detector.**
+
+Research files: [lpc_poles.mjs](lpc_poles.mjs) · [test_phase3.mjs](test_phase3.mjs) · [run_phase3_poles.py](run_phase3_poles.py) · [GitHub Actions](../../.github/workflows/vowelscope-phase3.yml).
+
 ## Research Phase 2: completed dev experiments
 
 **[Read measured Phase 2 findings](PHASE2_PEAK_STUDY.md)**: candidate peak audit, failed global peak reassignment, conservative peak rescue, and matched smoothing/median experiments. The strongest current finding is that removing or reducing the visual EMA materially lowers acoustic error on development recordings, but may increase on-screen jitter. Therefore visual and acoustic filtering should be separated rather than blindly setting the default smoothing slider to zero.
