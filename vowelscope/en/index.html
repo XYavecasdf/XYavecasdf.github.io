@@ -85,7 +85,7 @@
     input[type=range]{width:100%;accent-color:#2d8071;height:4px;cursor:pointer}
     .help-text{font-size:11px;color:#91a09b;line-height:1.6;margin-top:9px}
     .target-panel{padding:20px 22px}
-    .target-buttons{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+    .target-buttons{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px;max-height:235px;overflow:auto;padding-bottom:3px}
     .target{background:#f7faf8;border:1px solid #e5ece7;border-radius:9px;min-width:38px;padding:7px 10px;color:#53746d;font-family:"Charis SIL","Noto Sans", "Times New Roman",serif;font-size:19px}
     .target.active{background:#dceee6;border-color:#8fc1a8;color:#155849}
     .target-explanation{font-size:11px;color:#879891;margin:12px 0 0;line-height:1.6}
@@ -156,13 +156,13 @@
           </div>
         </div>
                 <div class="chart-wrap"><canvas id="vowelChart" width="1000" height="750" role="img" aria-label="F1 F2 vowel chart; horizontal F2 decreases to the right and vertical F1 increases downward"></canvas><div class="chart-placeholder" id="placeholder"><strong>Ready to analyze your voice</strong><small>Select Start Microphone to begin</small></div></div>
-        <div class="chart-caption"><div class="chart-legend"><span><i class="swatch" style="background:#9bb1a6"></i>All reference vowels</span><span><i class="swatch" style="background:#217d62"></i>Reference A</span><span><i class="swatch" style="background:#3475c5"></i>Reference B</span><span><i class="swatch" style="background:#e18b62"></i>Your pronunciation</span><span><i class="swatch" style="background:#98c6b2"></i>Trajectory</span></div><div>Horizontal F2: front ↔ back | Vertical F1: close ↔ open</div></div>
+        <div class="chart-caption"><div class="chart-legend"><span><i class="swatch" style="background:#9bb1a6"></i>All 28 IPA vowels</span><span><i class="swatch" style="background:#217d62"></i>Reference A</span><span><i class="swatch" style="background:#3475c5"></i>Reference B</span><span><i class="swatch" style="background:#e18b62"></i>Your pronunciation</span><span><i class="swatch" style="background:#98c6b2"></i>Trajectory</span></div><div>Horizontal F2: front ↔ back | Vertical F1: close ↔ open</div></div>
         <div class="profile-explainer" aria-live="polite">
           <div class="profile-topline"><strong id="profileName">Compare vowel inventories</strong><span id="profileCount"></span></div>
           <p id="profileDescription">Green and blue denote references A and B. Shared vowels receive a two-color ring. Matching IPA symbols do not guarantee identical pronunciation.</p>
           <div class="compare-results">
             <div class="compare-column a"><div class="compare-caption">A only <span id="onlyACount"></span></div><div class="profile-inventory" id="onlyAInventory"></div></div>
-            <div class="compare-column shared"><div class="compare-caption">Shared <span id="sharedCount"></span></div><div class="profile-inventory" id="sharedInventory"></div></div>
+            <div class="compare-column shared"><div class="compare-caption">Shared IPA symbols <span id="sharedCount"></span></div><div class="profile-inventory" id="sharedInventory"></div></div>
             <div class="compare-column b"><div class="compare-caption">B only <span id="onlyBCount"></span></div><div class="profile-inventory" id="onlyBInventory"></div></div>
           </div>
           <p class="profile-extras" id="profileExtras"></p>
@@ -178,7 +178,7 @@
           <div role="alert" aria-live="polite" class="error" id="error"></div>
         </div>
         <div class="panel detected-panel">
-          <div class="panel-head" style="margin:0"><h3 class="panel-title">Current vowel</h3><span class="subtle">ESTIMATED IPA</span></div>
+          <div class="panel-head" style="margin:0"><h3 class="panel-title">Nearest vowel reference</h3><span class="subtle">ESTIMATED IPA</span></div>
           <div class="reading"><div class="ipa-symbol" id="ipaSymbol">—</div><div class="reading-info"><strong id="ipaName">Waiting for speech</strong><span id="ipaHint">Sustain a clear vowel for about one second</span></div></div>
           <div class="metric-grid"><div class="metric"><span>F1</span><strong id="f1">—</strong></div><div class="metric"><span>F2</span><strong id="f2">—</strong></div><div class="metric"><span>F3</span><strong id="f3">—</strong></div></div>
           <p class="help-text">Measurements in Hz. IPA symbols are approximate F1/F2 matches. Language selection changes highlighting only, not detection or accent accuracy scoring.</p>
@@ -202,7 +202,7 @@
         </div>
       </aside>
     </main>
-    <div class="notes"><div class="icon">ⓘ</div><div><strong>About this experiment</strong><p>This experimental phonetics tool uses LPC to estimate speech formants. Optional anti-jitter filtering attempts to reject some consonant noise before plotting vowel positions. Language selection highlights common vowel qualities; it does not load language-specific measured F1/F2 references or speech models. All reference positions are approximate and vary by language, individual, vocal tract length and speaking conditions. Actual tongue shape cannot be uniquely inferred from these measures. Start with sustained /i/, /a/ and /u/ instead of full words.</p></div></div>
+    <div class="notes"><div class="icon">ⓘ</div><div><strong>About this experiment</strong><p>This experimental phonetics tool uses LPC to estimate formants and displays the nearest schematic reference quality, not a verified phoneme recognition. Optional anti-jitter filtering attempts to reject some consonant noise before plotting vowel positions. Language selection highlights common vowel qualities; it does not load language-specific measured F1/F2 references or speech models. All reference positions are approximate and vary by language, individual, vocal tract length and speaking conditions. Actual tongue shape cannot be uniquely inferred from these measures. Start with sustained /i/, /a/ and /u/ instead of full words.</p><p class="reference-links">Phonetics references: <a href="https://www.internationalphoneticassociation.org/content/ipa-vowels" target="_blank" rel="noopener noreferrer">International Phonetic Association</a> · <a href="https://corpus.eduhk.hk/mandarin_pronunciation/?page_id=36" target="_blank" rel="noopener noreferrer">EdUHK Cantonese phonology</a> · <a href="https://talcomosuena.spanish.ufl.edu/module2/4" target="_blank" rel="noopener noreferrer">Spanish vowels (University of Florida)</a> · <a href="https://www.englishspeechservices.com/blog/smoothing-then-and-now/" target="_blank" rel="noopener noreferrer">British diphthong change</a>.</p></div></div>
     <footer class="footer"><span>VowelScope · Local-only experimental phonetics dashboard</span><span>Web Audio API · LPC / Autocorrelation · No external libraries</span></footer>
   </div>
   <script>
@@ -219,36 +219,44 @@
       {symbol:'ʌ',f1:640,f2:1170,name:'open-mid back unrounded vowel'},{symbol:'ɔ',f1:600,f2:900,name:'open-mid back rounded vowel'},
       {symbol:'æ',f1:700,f2:1790,name:'near-open front unrounded vowel'},{symbol:'ɐ',f1:700,f2:1430,name:'near-open central vowel'},
       {symbol:'a',f1:810,f2:1680,name:'open front unrounded vowel'},{symbol:'ɑ',f1:810,f2:1150,name:'open back unrounded vowel'},
-      {symbol:'ɒ',f1:810,f2:920,name:'open back rounded vowel'}
+      {symbol:'ɒ',f1:810,f2:920,name:'open back rounded vowel'},
+      {symbol:'ʉ',f1:310,f2:1420,name:'close central rounded vowel'},
+      {symbol:'ʏ',f1:425,f2:1760,name:'near-close near-front rounded vowel'},
+      {symbol:'ɘ',f1:430,f2:1660,name:'close-mid central unrounded vowel'},
+      {symbol:'ɞ',f1:605,f2:1280,name:'open-mid central rounded vowel'},
+      {symbol:'ɶ',f1:800,f2:1590,name:'open front rounded vowel'}
     ];
     // Inventory overlays are phonological teaching approximations, not measured dialect-specific F1/F2 standards.
     // Diphthongs, rhotic vowels and Mandarin apical vowels cannot be represented reliably by one static F1/F2 point.
+    // Phone-quality inventories are teaching conventions, not measured phoneme models.
+    // These overlays do not change the speech processing or formant estimation.
     const PROFILES = [
       {id:'none',label:'None',name:'No highlighting',vowels:[],optional:[],notation:{},
-        description:'All IPA reference vowels remain on the chart. Selecting a language only changes highlights, not microphone analysis.',
-        extras:'Reference F1/F2 coordinates are approximate schematic locations rather than calibrated values.'},
+        description:'All 28 basic IPA vowel reference symbols stay visible. Language selections change highlights only.',
+        extras:'F1/F2 positions are schematic and not calibrated for a particular speaker, language or device.'},
       {id:'en-us',label:'US English',name:'General American English',
         vowels:['i','ɪ','ɛ','æ','ʌ','ə','ɑ','ʊ','u'],optional:['ɔ'],notation:{},
-        description:'Highlights the main monophthong qualities of General American. The status of /ɔ/ depends on the cot-caught merger; dialects vary.',
-        extras:'Not represented as fixed points: diphthongs /eɪ, oʊ, aɪ, aʊ, ɔɪ/ and rhotic vowels /ɝ, ɚ/.'},
-      {id:'en-gb',label:'UK English',name:'Standard Southern British English',
+        description:'Broad transcription of common General American monophthong qualities. /ɔ/ depends on the cot–caught merger; regions and speakers vary.',
+        extras:'Not static points: /eɪ, oʊ, aɪ, aʊ, ɔɪ/ and rhotic vowels /ɝ, ɚ/. US /ɛ/ and British /e/ in DRESS can reflect transcription conventions, not necessarily different phonemes.'},
+      {id:'en-gb',label:'UK English',name:'Conventional British English (traditional RP notation)',
         vowels:['i','ɪ','e','æ','ɑ','ɒ','ɔ','ʊ','u','ʌ','ɜ','ə'],optional:[],
         notation:{i:'iː',ɑ:'ɑː',ɔ:'ɔː',u:'uː',ɜ:'ɜː'},
-        description:'A traditional RP / Standard Southern British teaching inventory. The ː marker denotes vowel length, not visible in F1/F2 space.',
-        extras:'Not plotted as fixed points: diphthongs /eɪ, əʊ, aɪ, aʊ, ɔɪ/. Modern vowel qualities can differ from traditional RP.'},
+        description:'Conventional British RP-style teaching transcription. Modern Standard Southern British vowels can differ from this older inventory; IPA length marks are not displayed as duration.',
+        extras:'Closing diphthongs /eɪ, əʊ, aɪ, aʊ, ɔɪ/; traditional centring diphthongs /ɪə, eə~ɛə, ʊə/ are increasingly monophthongal, merged or variable in contemporary accents.'},
       {id:'zh-cmn',label:'Mandarin',name:'Standard Mandarin',
         vowels:['i','y','u','ɤ','ə','a'],optional:[],notation:{},
-        description:'A teaching-oriented overview of Mandarin vowels, including yi [i], yu [y], wu [u] and e [ɤ]. Phonemic analyses vary.',
-        extras:'Not separately plotted: apical syllabic nuclei in zi/ci/si and zhi/chi/shi/ri, glides and context-dependent variants.'},
-      {id:'yue-hk',label:'Cantonese',name:'Hong Kong Cantonese',
-        vowels:['i','y','u','e','ɛ','ɵ','œ','o','ɔ','ɐ','a'],optional:[],
+        description:'Selected Mandarin vowel qualities, not a definitive phonemic inventory. Examples: yi [i], yu [y], wu [u], e [ɤ]. Analyses and allophones vary.',
+        extras:'Not separately represented: syllabic apical segments in zi/ci/si and zhi/chi/shi/ri, as well as glides and conditional variants.'},
+      {id:'yue-hk',label:'Cantonese',name:'Hong Kong Cantonese · 7 long + 4 short qualities',
+        vowels:['i','y','u','ɛ','œ','ɔ','a','ɪ','ɵ','ʊ','ɐ'],optional:[],
         notation:{i:'iː',y:'yː',u:'uː',ɛ:'ɛː',œ:'œː',ɔ:'ɔː',a:'aː'},
-        description:'Shows 11 main Cantonese vowel qualities. Some, such as /e, o, ɵ/, have restricted distributions in syllable rimes.',
-        extras:'Contrast /aː/ in saa1 /saː/ with /ɐ/ in sat1 /sɐt/. Diphthongs and syllabic nasals /m̩, ŋ̍/ are not fixed points.'},
-      {id:'es-es',label:'Spain Spanish',name:'Peninsular Spanish',
+        description:'11 monophthong qualities in a Zee-based analysis (as summarized by EdUHK): seven longer [i, y, ɛ, œ, a, ɔ, u] and four shorter [ɐ, ɪ, ɵ, ʊ]. This list mixes phonetic variants and does not mean 11 contrastive vowel phonemes.',
+        extras:'[ɪ], [ɵ] and [ʊ] are often analyzed as conditioned allophones of /i/, /œ/ and /u/. Other analyses may use [e] or [o] in relevant contexts. Diphthongs and syllabic nasals are not mapped to single points.'},
+      {id:'es-es',label:'Spain Spanish',name:'Peninsular Spanish · 5 vowel phonemes',
         vowels:['i','e','a','o','u'],optional:[],notation:{},
-        description:'Standard Peninsular Spanish has five vowel phonemes /i e a o u/, all highlighted on the chart.',
-        extras:'Diphthongs such as /ai̯, ei̯, au̯/ need moving trajectories; shared IPA notation does not imply identical acoustic coordinates across languages.'}
+        plotOverrides:{a:{f1:810,f2:1450}},
+        description:'Standard Peninsular Spanish is conventionally described with five phonemes /i e a o u/. Its /a/ is typically central [ä], so the colored Spanish /a/ marker is placed nearer the center rather than on the front IPA [a] point.',
+        extras:'The central Spanish /a/ location is illustrative, not a measured Spanish reference. Diphthongs need moving trajectories; matching IPA symbols do not guarantee the same acoustics.'}
     ];
     const $ = (id) => document.getElementById(id);
     const canvas=$('vowelChart'),ctx=canvas.getContext('2d');
@@ -274,32 +282,53 @@
       ctx.textAlign='right';ctx.fillText('BACK',W-margin.right-13,margin.top+23);
       const A=PROFILES.find(p=>p.id===state.profileA)||PROFILES[0];
       const B=PROFILES.find(p=>p.id===state.profileB)||PROFILES[0];
-      // All reference vowels remain visible. Filled dots/rings encode A-only,
-      // B-only, shared, or optional membership; their locations never move.
+      // All 28 schematic IPA references stay visible. Language-specific phonetic
+      // realizations, such as Spanish central [ä], get their own overlay position.
+      function profilePosition(profile,v){
+        const custom=profile.plotOverrides&&profile.plotOverrides[v.symbol];
+        return custom?xy(custom.f1,custom.f2):xy(v.f1,v.f2);
+      }
+      function ring(x,y,color,rad=14,dashed=false){
+        ctx.beginPath();ctx.arc(x,y,rad,0,2*Math.PI);
+        ctx.lineWidth=dashed?2:2.7;ctx.strokeStyle=color;
+        if(dashed)ctx.setLineDash([4,4]);
+        ctx.stroke();if(dashed)ctx.setLineDash([]);
+      }
       const labelPlan=[];
       for(const v of VOWELS){
         const p=xy(v.f1,v.f2),targeted=state.target===v.symbol;
         const inA=A.vowels.includes(v.symbol),inB=B.vowels.includes(v.symbol);
         const optionalA=A.optional.includes(v.symbol),optionalB=B.optional.includes(v.symbol);
+        const pa=profilePosition(A,v),pb=profilePosition(B,v);
+        const samePoint=inA&&inB&&Math.hypot(pa.x-pb.x,pa.y-pb.y)<5;
         ctx.save();
-        ctx.beginPath();ctx.arc(p.x,p.y,targeted?9:inA||inB?7.5:5,0,Math.PI*2);
-        ctx.fillStyle=targeted?'#e48760':inA&&inB?'#795bac':inA?'#217d62':inB?'#3475c5':'#9bada3';ctx.fill();
-        if(inA&&inB){
-          // Split the shared marker's ring into the two reference colors.
+        ctx.beginPath();ctx.arc(p.x,p.y,targeted?9:5,0,Math.PI*2);
+        ctx.fillStyle=targeted?'#e48760':'#9bada3';ctx.fill();
+        if(samePoint){
+          ctx.beginPath();ctx.arc(pa.x,pa.y,8,0,Math.PI*2);ctx.fillStyle='#795bac';ctx.fill();
           ctx.lineWidth=3.5;
-          ctx.beginPath();ctx.arc(p.x,p.y,14,Math.PI/2,3*Math.PI/2);ctx.strokeStyle='#217d62';ctx.stroke();
-          ctx.beginPath();ctx.arc(p.x,p.y,14,-Math.PI/2,Math.PI/2);ctx.strokeStyle='#3475c5';ctx.stroke();
-        }else if(inA||inB){
-          ctx.beginPath();ctx.arc(p.x,p.y,14,0,Math.PI*2);
-          ctx.strokeStyle=inA?'#217d62':'#3475c5';ctx.lineWidth=2.6;ctx.stroke();
+          ctx.beginPath();ctx.arc(pa.x,pa.y,14,Math.PI/2,3*Math.PI/2);ctx.strokeStyle='#217d62';ctx.stroke();
+          ctx.beginPath();ctx.arc(pa.x,pa.y,14,-Math.PI/2,Math.PI/2);ctx.strokeStyle='#3475c5';ctx.stroke();
+        }else{
+          for(const [included,pos,color] of [[inA,pa,'#217d62'],[inB,pb,'#3475c5']]){
+            if(!included)continue;
+            ctx.beginPath();ctx.arc(pos.x,pos.y,7.5,0,Math.PI*2);ctx.fillStyle=color;ctx.fill();
+            ring(pos.x,pos.y,color);
+          }
         }
-        if(optionalA||optionalB){
-          ctx.beginPath();ctx.arc(p.x,p.y,19,0,Math.PI*2);
-          ctx.strokeStyle=optionalA&&optionalB?'#8265a5':optionalA?'#217d62':'#3475c5';
-          ctx.lineWidth=2;ctx.setLineDash([3,4]);ctx.stroke();ctx.setLineDash([]);
-        }
-        if(targeted){
-          ctx.beginPath();ctx.arc(p.x,p.y,23,0,Math.PI*2);ctx.strokeStyle='#e48760';ctx.lineWidth=2.5;ctx.stroke();
+        if(optionalA)ring(pa.x,pa.y,'#217d62',19,true);
+        if(optionalB)ring(pb.x,pb.y,'#3475c5',19,true);
+        if(targeted)ring(p.x,p.y,'#e48760',23);
+        // The Spanish /a/ marker is deliberately not placed on IPA cardinal [a].
+        // Label it as the more-central phonetic realization [ä].
+        if(v.symbol==='a'){
+          for(const [profile,included,pos,color] of [[A,inA,pa,'#217d62'],[B,inB,pb,'#3475c5']]){
+            if(included&&profile.id==='es-es'){
+              ctx.font='700 18px "Charis SIL","Times New Roman",serif';
+              ctx.fillStyle=color;ctx.textAlign='left';
+              ctx.fillText('ä',pos.x+13,pos.y+24);
+            }
+          }
         }
         ctx.restore();
         labelPlan.push({v,p,targeted,inA,inB,optionalA,optionalB,priority:targeted?4:inA&&inB?3:inA||inB?2:optionalA||optionalB?1:0});
@@ -555,8 +584,8 @@
       $('profileAName').textContent=A.label;
       $('profileBName').textContent=B.label;
       $('profileName').textContent=A.label+' ↔ '+B.label;
-      $('profileCount').textContent='Shared '+shared.length+' qualities';
-      $('profileDescription').textContent='Shared vowels are common IPA quality symbols, not proof of identical F1/F2, duration or phonemic status. Language selection does not change the real-time classifier.';
+      $('profileCount').textContent='Shared '+shared.length+' labels'+' qualities';
+      $('profileDescription').textContent='Only matching broad IPA symbols are counted as shared; US /ɛ/ and UK /e/ may refer to the same DRESS lexical set. Symbols do not show acoustic identity, and language choices do not change microphone recognition.';
       const fill=(id,phones,kind)=>{
         const el=$(id);el.replaceChildren();
         if(!phones.length){const empty=document.createElement('span');empty.className='phoneme-empty';empty.textContent='—';el.appendChild(empty);return;}
@@ -589,8 +618,8 @@
       }
     }
     renderProfile();
-    const targets=['i','y','e','ɛ','æ','a','ɑ','ə','ɔ','o','u','ɯ','ɵ','œ','ɜ','ɐ','ɒ','ʌ'];
-    for(const symbol of targets){const el=document.createElement('button');el.type='button';el.className='target';el.textContent=symbol;el.setAttribute('aria-label','Highlight reference vowel '+symbol);el.addEventListener('click',()=>{state.target=state.target===symbol?null:symbol;for(const child of $('targetButtons').children)child.classList.toggle('active',child.textContent===state.target);const v=VOWELS.find(a=>a.symbol===state.target);$('targetDescription').textContent=v?`/ ${v.symbol} / · ${v.name} · Reference F1 ${v.f1} Hz / F2 ${v.f2} Hz。Values are illustrative, not a personalized standard.`:'Tap an IPA symbol to highlight its reference location. This is not a pronunciation accuracy score.';});$('targetButtons').appendChild(el);}
+    const targets=VOWELS.map(v=>v.symbol);
+    for(const symbol of targets){const el=document.createElement('button');el.type='button';el.className='target';el.textContent=symbol;el.setAttribute('aria-label','Highlight reference vowel '+symbol);el.addEventListener('click',()=>{state.target=state.target===symbol?null:symbol;for(const child of $('targetButtons').children)child.classList.toggle('active',child.textContent===state.target);const v=VOWELS.find(a=>a.symbol===state.target);$('targetDescription').textContent=v?`/ ${v.symbol} / · ${v.name} · Reference F1 ${v.f1} Hz / F2 ${v.f2} Hz。F1/F2 values are schematic; this is not a phoneme identification or pronunciation score.`:'Tap an IPA symbol to highlight its reference location. This is not a pronunciation accuracy score.';});$('targetButtons').appendChild(el);}
     window.addEventListener('pagehide',()=>{state.stream?.getTracks().forEach(t=>t.stop());});
     requestAnimationFrame(frame);
   })();
