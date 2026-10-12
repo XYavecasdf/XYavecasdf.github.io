@@ -16,7 +16,7 @@ def main():
             if basename in ("vowdata.dat","bigdata.dat","timedata.dat"):
                 decoded=outer.read(name).decode("latin1")
                 lines=decoded.splitlines()
-                result["metadata"][basename]={"name":name,"line_count":len(lines),"first_lines":lines[:14]}
+                result["metadata"][basename]={"name":name,"line_count":len(lines),"first_lines":lines[:38],"last_lines":lines[-2:]}
             if basename.endswith(".zip"):
                 with zipfile.ZipFile(io.BytesIO(outer.read(name))) as nested:
                     arr=nested.namelist()
