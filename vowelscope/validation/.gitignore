@@ -1,0 +1,11 @@
+# Raw speech datasets and derived reports must not be published through Pages.
+# Put private or licence-restricted recordings under validation/local/.
+local/
+results/
+*.wav
+*.mp3
+*.flac
+*.tar
+*.tgz
+*.zip
+__pycache__/
