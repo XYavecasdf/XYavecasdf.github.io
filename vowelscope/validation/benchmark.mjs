@@ -11,8 +11,9 @@ function parseArgs(argv) {
   const args = { mode: 'classic', split: 'test', page: path.resolve('vowelscope/index.html') };
   for (let i=0; i<argv.length; i++) {
     const a=argv[i];
-    if(a==='--help') { console.log('Usage: node vowelscope/validation/benchmark.mjs --manifest /path/to/manifest.json [--page vowelscope/index.html] [--mode classic|stable] [--out report.json] [--split test|train|dev|all] [--self-test]'); process.exit(0); }
+    if(a==='--help') { console.log('Usage: node vowelscope/validation/benchmark.mjs --manifest /path/to/manifest.json [--page vowelscope/index.html] [--mode classic|stable] [--out report.json] [--split test|train|dev|all] [--self-test] [--oracle-only]'); process.exit(0); }
     if(a==='--self-test') args.selfTest=true;
+    else if(a==='--oracle-only') args.oracleOnly=true;
     else if(['--manifest','--page','--mode','--out','--split'].includes(a)) args[a.slice(2).replaceAll('-','')]=argv[++i];
     else fail('Unknown argument: '+a);
   }
@@ -124,7 +125,7 @@ function analyzeRow(row,manifestDir,mode,page) {
   const maeF1=pred&&gtF1!==null?Math.abs(pred.f1-gtF1):null;
   const maeF2=pred&&gtF2!==null?Math.abs(pred.f2-gtF2):null;
   return {audio_path:row.audio_path,start_s:t0,end_s:t1,source:row.source||'',language:row.language||'',
-    speaker_id:row.speaker_id||'',split:row.split||'test',vowel_ipa:row.vowel_ipa||'',
+    speaker_id:row.speaker_id||'',split:row.split||'test',vowel_ipa:row.vowel_ipa||'',gt_f0_hz:numeric(row.gt_f0_hz),
     detected:!!pred,frames:frames.length,estimated:pred,reference:{f1:gtF1,f2:gtF2},
     error:{f1_abs_hz:maeF1,f2_abs_hz:maeF2},
     predicted_ipa:pred?.ipa||null,
@@ -176,6 +177,46 @@ function main(){
   if(!Array.isArray(manifest.samples)||!manifest.samples.length)fail('manifest.samples must contain labeled vowel instances.');
   const selected=manifest.samples.filter(r=>args.split==='all'||(r.split||'test')===args.split);
   if(!selected.length)fail('No samples in the '+args.split+' split; use --split all to inspect the full corpus.');
+  if(args.oracleOnly){
+    // Oracle: skip all waveform estimation and pass the original corpus F1/F2
+    // into precisely the page's current nearest-reference classifier.
+    const {api}=createEngine(page);
+    const results=selected.map(row=>{
+      const f1=numeric(row.gt_f1_hz),f2=numeric(row.gt_f2_hz);
+      const valid=Number.isFinite(f1)&&f1>0&&Number.isFinite(f2)&&f2>0;
+      const predicted=valid?api.nearestVowel(f1,f2).vowel.symbol:null;
+      const label=api.symbols.includes(row.vowel_ipa)?row.vowel_ipa:null;
+      return {
+        audio_path:row.audio_path,start_s:row.start_s,end_s:row.end_s,
+        vowel_ipa:row.vowel_ipa||'',
+        speaker_id:row.speaker_id||'',language:row.language||'',
+        gt_f0_hz:numeric(row.gt_f0_hz),
+        reference:{f1:f1,f2:f2},
+        oracle_ipa:predicted, label_match:label?(valid?predicted===label:null):null
+      };
+    });
+    const labeled=results.filter(r=>r.label_match!==null);
+    const confusion={},byVowel={};
+    for(const r of labeled){
+      const truth=r.vowel_ipa,pred=r.oracle_ipa;
+      confusion[truth]??={};confusion[truth][pred]=(confusion[truth][pred]||0)+1;
+      const x=byVowel[truth]??={n:0,correct:0};x.n++;if(r.label_match)x.correct++;
+    }
+    const report={schema_version:1,kind:'oracle_reference_formants',
+      source:manifest.source||'unspecified',dataset_version:manifest.version||'unspecified',
+      split:args.split,source_html:path.relative(process.cwd(),page),
+      description:'Actual page classifier applied to source annotated F1/F2, bypassing LPC; not a phoneme recognizer.',
+      summary:{n:results.length,comparable:labeled.length,
+        correct:labeled.filter(r=>r.label_match).length,
+        exact_symbol_accuracy:labeled.length?labeled.filter(r=>r.label_match).length/labeled.length:null,
+        by_vowel:Object.fromEntries(Object.entries(byVowel).map(([k,v])=>[k,{...v,accuracy:v.correct/v.n}])),
+        confusion},
+      results};
+    const content=JSON.stringify(report,null,2);
+    if(args.out){fs.mkdirSync(path.dirname(path.resolve(args.out)),{recursive:true});fs.writeFileSync(args.out,content+'\n');console.log('Oracle: '+report.summary.correct+'/'+labeled.length+' comparable labels. Saved '+args.out);}
+    else console.log(content);
+    return;
+  }
   const results=[];
   for(const row of selected){
     try{results.push(analyzeRow(row,path.dirname(mf),args.mode,page));}
