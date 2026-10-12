@@ -1,0 +1,30 @@
+name: VowelScope Hillenbrand corpus probe
+
+on:
+  push:
+    paths:
+      - ".github/workflows/vowelscope-hillenbrand-probe.yml"
+      - "vowelscope/validation/probe_hillenbrand.py"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Inspect official research corpus
+        run: python vowelscope/validation/probe_hillenbrand.py
+      - name: Commit small metadata-only schema report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add vowelscope/validation/public-dataset/probe.json
+          git diff --cached --quiet || (git commit -m "Record Hillenbrand data format inspection" && git push)
