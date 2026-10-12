@@ -43,9 +43,9 @@ This folder implements a **local, source-code-based** benchmark for the existing
 
 ## What is and is not automatic
 
-- Automatic after setup: CSV column mapping and IPA mapping → validated local manifest → replay WAV samples into current WebAudio analysis interface → vowel-nucleus measurements → numeric error summaries, label-confusion table, and JSON result.
+- Automatic after setup: CSV column mapping → validated local manifest → waveform replay into the real browser DSP → vowel-nucleus estimates → error tables and JSON. Dedicated Hillenbrand CI workflows also fetch the authorized public research archive ephemerally and publish **aggregated metrics only**.
 - *Not* automatic yet: rights verification, licensed dataset downloads, producing expert-quality ground-truth annotations, Praat manual spot checks, and actual hardware/browser microphone calibration. Do not call the generated estimates “ground truth”.
-- GitHub Actions runs **smoke tests only**. It does *not* download or republish corpora and does *not* claim validated acoustic accuracy.
+- One GitHub Actions job runs smoke tests; separate Hillenbrand and Phase 3 jobs **do download source WAVs temporarily to runners**, evaluate them, and publish anonymous aggregate accuracy estimates. The audio is not committed or mirrored.
 
 ## Sources to start with
 
@@ -117,7 +117,7 @@ If the source CSV already has an explicit train/dev/test split, map the `split` 
 - **Confusion counts** include misses. Report error/coverage for languages, vowels, speaker cohorts, and recording devices when that metadata is available.
 - **Qualitative failures**: note LPC peak swaps, nasalization, high F0, poor signal-to-noise ratio, clipped vowel boundaries and unexpected coarticulation.
 
-For reproducible comparisons, store the Git commit SHA, dataset version/permissions, device/microphone, analysis mode, source reference annotation method, speaker-disjoint split seed/rule, and the JSON report. Always evaluate the **unchanged holdout speakers** when tuning algorithms.
+For reproducible comparisons, store the Git commit SHA, dataset version/permissions, device/microphone, analysis mode, source reference annotation method, speaker-disjoint split seed/rule, and the JSON report. Use development speakers for selection/tuning. A new untouched speaker set is needed for final generalization claims; the previously inspected test split is no longer blind.
 
 ## Automated regression gate
 
