@@ -123,7 +123,7 @@ function analyzeRow(row,manifestDir,mode,page) {
   const validLabel=typeof row.vowel_ipa==='string'&&api.symbols.includes(row.vowel_ipa);
   const maeF1=pred&&gtF1!==null?Math.abs(pred.f1-gtF1):null;
   const maeF2=pred&&gtF2!==null?Math.abs(pred.f2-gtF2):null;
-  return {audio_path:row.audio_path,source:row.source||'',language:row.language||'',
+  return {audio_path:row.audio_path,start_s:t0,end_s:t1,source:row.source||'',language:row.language||'',
     speaker_id:row.speaker_id||'',split:row.split||'test',vowel_ipa:row.vowel_ipa||'',
     detected:!!pred,frames:frames.length,estimated:pred,reference:{f1:gtF1,f2:gtF2},
     error:{f1_abs_hz:maeF1,f2_abs_hz:maeF2},
@@ -135,8 +135,19 @@ function summarize(rows,mode){
   const paired=rows.filter(x=>x.detected&&x.error.f1_abs_hz!==null&&x.error.f2_abs_hz!==null);
   const labeled=rows.filter(x=>x.label_match!==null);
   const a1=paired.map(x=>x.error.f1_abs_hz),a2=paired.map(x=>x.error.f2_abs_hz);
-  const groups={};
-  for(const r of rows){const k=r.language||'unspecified';(groups[k]??=[]).push(r);}
+  const groups={},speakers={},vowels={};
+  for(const r of rows){
+    const lang=r.language||'unspecified',speaker=r.speaker_id||'unspecified',vowel=r.vowel_ipa||'unspecified';
+    (groups[lang]??=[]).push(r);(speakers[speaker]??=[]).push(r);(vowels[vowel]??=[]).push(r);
+  }
+  const groupStats=items=>{
+    const available=items.filter(x=>x.detected);
+    const pairs=items.filter(x=>x.error.f1_abs_hz!==null&&x.error.f2_abs_hz!==null);
+    return {n:items.length,coverage:available.length/items.length,
+      acoustic_pairs:pairs.length,
+      mae_f1_hz:pairs.length?pairs.reduce((a,x)=>a+x.error.f1_abs_hz,0)/pairs.length:null,
+      mae_f2_hz:pairs.length?pairs.reduce((a,x)=>a+x.error.f2_abs_hz,0)/pairs.length:null};
+  };
   const matrix={};
   for(const r of labeled){const actual=r.vowel_ipa;matrix[actual]??={};const predicted=r.predicted_ipa||'(miss)';matrix[actual][predicted]=(matrix[actual][predicted]||0)+1;}
   return {mode,n,detected:detected.length,coverage:n?detected.length/n:null,
@@ -146,7 +157,9 @@ function summarize(rows,mode){
     p90_ae_f1_hz:percentile(a1,.9),p90_ae_f2_hz:percentile(a2,.9),
     label_examples:labeled.length,top1_on_all_labeled:labeled.length?labeled.filter(x=>x.label_match).length/labeled.length:null,
     top1_on_detected:labeled.filter(x=>x.detected).length?labeled.filter(x=>x.label_match).length/labeled.filter(x=>x.detected).length:null,
-    by_language:Object.fromEntries(Object.entries(groups).map(([k,v])=>[k,{n:v.length,coverage:v.filter(x=>x.detected).length/v.length,acoustic_pairs:v.filter(x=>x.error.f1_abs_hz!==null).length}])),
+    by_language:Object.fromEntries(Object.entries(groups).map(([k,v])=>[k,groupStats(v)])),
+    by_speaker:Object.fromEntries(Object.entries(speakers).map(([k,v])=>[k,groupStats(v)])),
+    by_vowel:Object.fromEntries(Object.entries(vowels).map(([k,v])=>[k,groupStats(v)])),
     confusion:matrix};
 }
 function main(){
