@@ -115,10 +115,14 @@ function analyzeRow(row,manifestDir,mode,page,variant='original',smoothing='defa
   const collectEnd=Math.min(t1,middle+Math.min(0.075,span*0.24));
   const scanStart=Math.max(0,t0-0.18);
   const frames=[];
+  let measuredMs=0,processedFrames=0;
   for(let t=scanStart;t<=collectEnd+0.001;t+=0.075){
     currentT=t;
     const previous=api.state.sampleCount;
+    const startNs=process.hrtime.bigint();
     api.processAudio(1000+Math.round(t*1000));
+    measuredMs+=Number(process.hrtime.bigint()-startNs)/1e6;
+    if(api.state.lastProcess===1000+Math.round(t*1000))processedFrames++;
     const f=measurement==='acoustic'?api.state.acousticFormants:api.state.formants;
     if(t>=collectStart-1e-6&&f&&api.state.sampleCount>previous){
       frames.push({f1:f.f1,f2:f.f2,f3:f.f3,ipa:nodes.get('ipaSymbol')?.textContent||''});
@@ -134,7 +138,7 @@ function analyzeRow(row,manifestDir,mode,page,variant='original',smoothing='defa
   const maeF2=pred&&gtF2!==null?Math.abs(pred.f2-gtF2):null;
   return {audio_path:row.audio_path,start_s:t0,end_s:t1,source:row.source||'',language:row.language||'',
     speaker_id:row.speaker_id||'',split:row.split||'test',vowel_ipa:row.vowel_ipa||'',gt_f0_hz:numeric(row.gt_f0_hz),
-    detected:!!pred,frames:frames.length,estimated:pred,reference:{f1:gtF1,f2:gtF2},
+    detected:!!pred,frames:frames.length,benchmark_cpu_ms:measuredMs,benchmark_processed_frames:processedFrames,estimated:pred,reference:{f1:gtF1,f2:gtF2},
     error:{f1_abs_hz:maeF1,f2_abs_hz:maeF2},
     predicted_ipa:pred?.ipa||null,
     label_match:validLabel?(pred?pred.ipa===row.vowel_ipa:false):null};
@@ -159,7 +163,12 @@ function summarize(rows,mode){
   };
   const matrix={};
   for(const r of labeled){const actual=r.vowel_ipa;matrix[actual]??={};const predicted=r.predicted_ipa||'(miss)';matrix[actual][predicted]=(matrix[actual][predicted]||0)+1;}
-  return {mode,n,detected:detected.length,coverage:n?detected.length/n:null,
+  const benchmarkFrames=rows.reduce((sum,r)=>sum+(r.benchmark_processed_frames||0),0);
+  const benchmarkMs=rows.reduce((sum,r)=>sum+(r.benchmark_cpu_ms||0),0);
+  return {mode,n,benchmark_frames:benchmarkFrames,
+    benchmark_cpu_ms:benchmarkMs,
+    benchmark_mean_frame_ms:benchmarkFrames?benchmarkMs/benchmarkFrames:null,
+    detected:detected.length,coverage:n?detected.length/n:null,
     acoustic_pairs:paired.length,mae_f1_hz:a1.length?a1.reduce((a,b)=>a+b,0)/a1.length:null,
     mae_f2_hz:a2.length?a2.reduce((a,b)=>a+b,0)/a2.length:null,
     median_ae_f1_hz:median(a1),median_ae_f2_hz:median(a2),
