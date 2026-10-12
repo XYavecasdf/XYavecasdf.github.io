@@ -1,0 +1,73 @@
+{
+  "kind": "dev_smoothing_ablation",
+  "n": 275,
+  "split": "dev",
+  "source": "Hillenbrand et al. (1995)",
+  "all_tokens": {
+    "default": {
+      "n": 275,
+      "coverage": 0.9564,
+      "paired": 263,
+      "f1_mae_hz": 78.91,
+      "f2_mae_hz": 212.54,
+      "f2_p90_hz": 582.5,
+      "f2_gt300": 46,
+      "f2_gt500": 31
+    },
+    "fast": {
+      "n": 275,
+      "coverage": 0.9564,
+      "paired": 263,
+      "f1_mae_hz": 48.71,
+      "f2_mae_hz": 170.23,
+      "f2_p90_hz": 471,
+      "f2_gt300": 39,
+      "f2_gt500": 25
+    },
+    "none": {
+      "n": 275,
+      "coverage": 0.9564,
+      "paired": 263,
+      "f1_mae_hz": 36.83,
+      "f2_mae_hz": 148.9,
+      "f2_p90_hz": 496.75,
+      "f2_gt300": 30,
+      "f2_gt500": 26
+    }
+  },
+  "common_n": 263,
+  "common_tokens": {
+    "default": {
+      "n": 263,
+      "coverage": 1.0,
+      "paired": 263,
+      "f1_mae_hz": 78.91,
+      "f2_mae_hz": 212.54,
+      "f2_p90_hz": 582.5,
+      "f2_gt300": 46,
+      "f2_gt500": 31
+    },
+    "fast": {
+      "n": 263,
+      "coverage": 1.0,
+      "paired": 263,
+      "f1_mae_hz": 48.71,
+      "f2_mae_hz": 170.23,
+      "f2_p90_hz": 471,
+      "f2_gt300": 39,
+      "f2_gt500": 25
+    },
+    "none": {
+      "n": 263,
+      "coverage": 1.0,
+      "paired": 263,
+      "f1_mae_hz": 36.83,
+      "f2_mae_hz": 148.9,
+      "f2_p90_hz": 496.75,
+      "f2_gt300": 30,
+      "f2_gt500": 26
+    }
+  },
+  "note": "Research-only values for the actual webpage's smoothing coefficient: default slider=60 alpha=.32, fast slider=0 alpha=.68, none alpha~1. These are not newly trained models.",
+  "limitations": "Offline browser replay; this test compares temporal smoothing, not speech recognition; no changes made to production code."
+}

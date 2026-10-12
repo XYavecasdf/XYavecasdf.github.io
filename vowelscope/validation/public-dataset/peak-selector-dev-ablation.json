@@ -7,7 +7,9 @@
     "original",
     "peak_prominence",
     "peak_bandwidth",
-    "peak_tracking"
+    "peak_tracking",
+    "peak_guard",
+    "peak_guard_strict"
   ],
   "all_tokens": {
     "original": {
@@ -57,6 +59,30 @@
       "f2_p90_abs_hz": 1417.16,
       "f2_gt300": 98,
       "f2_gt500": 78
+    },
+    "peak_guard": {
+      "total": 275,
+      "detections": 263,
+      "coverage": 0.9564,
+      "acoustic_pairs": 263,
+      "f1_mean_abs_hz": 78.91,
+      "f2_mean_abs_hz": 216.33,
+      "f2_median_abs_hz": 79.5,
+      "f2_p90_abs_hz": 611.14,
+      "f2_gt300": 46,
+      "f2_gt500": 35
+    },
+    "peak_guard_strict": {
+      "total": 275,
+      "detections": 263,
+      "coverage": 0.9564,
+      "acoustic_pairs": 263,
+      "f1_mean_abs_hz": 78.91,
+      "f2_mean_abs_hz": 214.98,
+      "f2_median_abs_hz": 80.0,
+      "f2_p90_abs_hz": 585.73,
+      "f2_gt300": 46,
+      "f2_gt500": 32
     }
   },
   "common_detected_token_count": 263,
@@ -108,6 +134,30 @@
       "f2_p90_abs_hz": 1417.16,
       "f2_gt300": 98,
       "f2_gt500": 78
+    },
+    "peak_guard": {
+      "total": 263,
+      "detections": 263,
+      "coverage": 1.0,
+      "acoustic_pairs": 263,
+      "f1_mean_abs_hz": 78.91,
+      "f2_mean_abs_hz": 216.33,
+      "f2_median_abs_hz": 79.5,
+      "f2_p90_abs_hz": 611.14,
+      "f2_gt300": 46,
+      "f2_gt500": 35
+    },
+    "peak_guard_strict": {
+      "total": 263,
+      "detections": 263,
+      "coverage": 1.0,
+      "acoustic_pairs": 263,
+      "f1_mean_abs_hz": 78.91,
+      "f2_mean_abs_hz": 214.98,
+      "f2_median_abs_hz": 80.0,
+      "f2_p90_abs_hz": 585.73,
+      "f2_gt300": 46,
+      "f2_gt500": 32
     }
   },
   "by_vowel": {
@@ -149,6 +199,30 @@
         "f2_gt500": 0
       },
       "peak_tracking": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      },
+      "peak_guard": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      },
+      "peak_guard_strict": {
         "total": 0,
         "detections": 0,
         "coverage": null,
@@ -209,6 +283,30 @@
         "f2_p90_abs_hz": null,
         "f2_gt300": 0,
         "f2_gt500": 0
+      },
+      "peak_guard": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      },
+      "peak_guard_strict": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
       }
     },
     "oʊ": {
@@ -249,6 +347,30 @@
         "f2_gt500": 0
       },
       "peak_tracking": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      },
+      "peak_guard": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      },
+      "peak_guard_strict": {
         "total": 0,
         "detections": 0,
         "coverage": null,
@@ -309,6 +431,30 @@
         "f2_p90_abs_hz": null,
         "f2_gt300": 0,
         "f2_gt500": 0
+      },
+      "peak_guard": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      },
+      "peak_guard_strict": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
       }
     },
     "æ": {
@@ -349,6 +495,30 @@
         "f2_gt500": 0
       },
       "peak_tracking": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      },
+      "peak_guard": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      },
+      "peak_guard_strict": {
         "total": 0,
         "detections": 0,
         "coverage": null,
@@ -409,6 +579,30 @@
         "f2_p90_abs_hz": null,
         "f2_gt300": 0,
         "f2_gt500": 0
+      },
+      "peak_guard": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      },
+      "peak_guard_strict": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
       }
     },
     "ɔ": {
@@ -449,6 +643,30 @@
         "f2_gt500": 0
       },
       "peak_tracking": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      },
+      "peak_guard": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      },
+      "peak_guard_strict": {
         "total": 0,
         "detections": 0,
         "coverage": null,
@@ -509,6 +727,30 @@
         "f2_p90_abs_hz": null,
         "f2_gt300": 0,
         "f2_gt500": 0
+      },
+      "peak_guard": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      },
+      "peak_guard_strict": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
       }
     },
     "ɝ": {
@@ -549,6 +791,30 @@
         "f2_gt500": 0
       },
       "peak_tracking": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      },
+      "peak_guard": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      },
+      "peak_guard_strict": {
         "total": 0,
         "detections": 0,
         "coverage": null,
@@ -609,6 +875,30 @@
         "f2_p90_abs_hz": null,
         "f2_gt300": 0,
         "f2_gt500": 0
+      },
+      "peak_guard": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      },
+      "peak_guard_strict": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
       }
     },
     "ʊ": {
@@ -649,6 +939,30 @@
         "f2_gt500": 0
       },
       "peak_tracking": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      },
+      "peak_guard": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      },
+      "peak_guard_strict": {
         "total": 0,
         "detections": 0,
         "coverage": null,
@@ -709,6 +1023,30 @@
         "f2_p90_abs_hz": null,
         "f2_gt300": 0,
         "f2_gt500": 0
+      },
+      "peak_guard": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      },
+      "peak_guard_strict": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
       }
     }
   },
@@ -736,6 +1074,18 @@
       "f2_mean_abs_delta_hz": 202.35,
       "f2_p90_delta_hz": 834.66,
       "f2_gt300_delta": 52
+    },
+    "peak_guard": {
+      "coverage_delta_percentage_points": 0.0,
+      "f2_mean_abs_delta_hz": 3.79,
+      "f2_p90_delta_hz": 28.64,
+      "f2_gt300_delta": 0
+    },
+    "peak_guard_strict": {
+      "coverage_delta_percentage_points": 0.0,
+      "f2_mean_abs_delta_hz": 2.44,
+      "f2_p90_delta_hz": 3.23,
+      "f2_gt300_delta": 0
     }
   },
   "interpretation_guardrails": [
