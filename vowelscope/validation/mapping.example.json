@@ -1,0 +1,29 @@
+{
+  "source": "Example licensed vowel corpus",
+  "source_url": "https://example.org/dataset",
+  "version": "1.0",
+  "licensing_note": "VERIFY data licence and redistribution terms before processing; keep recordings local.",
+  "annotation_provenance": "Manual/curated vowel interval and acoustic measurements; not pseudo ground truth.",
+  "language": "en-us",
+  "columns": {
+    "audio_path": "filename",
+    "speaker_id": "speaker",
+    "vowel_ipa": "vowel",
+    "start_s": "start",
+    "end_s": "end",
+    "gt_time_s": "reference_time",
+    "gt_f1_hz": "f1_hz",
+    "gt_f2_hz": "f2_hz",
+    "gt_f3_hz": "f3_hz",
+    "language": "language",
+    "split": "split"
+  },
+  "vowel_map": {
+    "iy": "i",
+    "ih": "ɪ",
+    "eh": "ɛ",
+    "ae": "æ",
+    "uw": "u",
+    "oo": "ʊ"
+  }
+}
