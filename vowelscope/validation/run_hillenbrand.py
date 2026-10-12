@@ -183,6 +183,13 @@ def main():
         lr=subprocess.run(live_cmd,capture_output=True,text=True,timeout=330)
         print("Development replayed LPC:",lr.returncode,lr.stdout.strip(),lr.stderr.strip(),flush=True)
         if lr.returncode:raise RuntimeError("Development audio LPC replay failed: "+lr.stderr)
+        peak_audit=Path("vowelscope/validation/public-dataset/peak-dev-audit.json")
+        peak_cmd=["node","vowelscope/validation/peak_audit.mjs",
+                  "--manifest",str(model_path),"--page","vowelscope/index.html",
+                  "--out",str(peak_audit)]
+        pa=subprocess.run(peak_cmd,capture_output=True,text=True,timeout=180)
+        print("F2 peak diagnosis:",pa.returncode,pa.stdout.strip(),pa.stderr.strip(),flush=True)
+        if pa.returncode:raise RuntimeError("F2 peak audit failed: "+pa.stderr)
         # All DSP parameter probes run on development speakers. The initial
         # 23-speaker TEST holdout stays untouched for algorithm selection.
         variants={"original":dev_live}
