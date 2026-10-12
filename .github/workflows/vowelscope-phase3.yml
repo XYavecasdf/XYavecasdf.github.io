@@ -6,9 +6,11 @@ on:
       - ".github/workflows/vowelscope-phase3.yml"
       - "vowelscope/validation/run_phase3_poles.py"
       - "vowelscope/validation/lpc_poles.mjs"
+      - "vowelscope/validation/pole_ceiling_tracking.mjs"
       - "vowelscope/validation/dsp_variants.mjs"
       - "vowelscope/validation/benchmark.mjs"
       - "vowelscope/validation/test_phase3.mjs"
+      - "vowelscope/validation/test_phase3b.mjs"
       - "vowelscope/index.html"
       - "vowelscope/en/index.html"
   workflow_dispatch:
@@ -38,8 +40,11 @@ jobs:
         run: |
           node --check vowelscope/validation/lpc_poles.mjs
           node --check vowelscope/validation/test_phase3.mjs
+          node --check vowelscope/validation/pole_ceiling_tracking.mjs
+          node --check vowelscope/validation/test_phase3b.mjs
           python -m py_compile vowelscope/validation/run_phase3_poles.py
           node vowelscope/validation/test_phase3.mjs
+          node vowelscope/validation/test_phase3b.mjs
       - name: Evaluate production LPC and pole-based candidates on real development WAV
         run: python vowelscope/validation/run_phase3_poles.py
       - name: Publish aggregate development metrics (not recordings)
