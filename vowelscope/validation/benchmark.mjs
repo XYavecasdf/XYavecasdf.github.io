@@ -15,7 +15,7 @@ function parseArgs(argv) {
     if(a==='--help') { console.log('Usage: node vowelscope/validation/benchmark.mjs --manifest /path/to/manifest.json [--page vowelscope/index.html] [--mode classic|stable] [--out report.json] [--split test|train|dev|all] [--self-test] [--oracle-only] [--dsp-variant original|antialias|burg|burg_antialias]'); process.exit(0); }
     if(a==='--self-test') args.selfTest=true;
     else if(a==='--oracle-only') args.oracleOnly=true;
-    else if(['--manifest','--page','--mode','--out','--split','--dsp-variant'].includes(a)) args[a.slice(2).replaceAll('-','')]=argv[++i];
+    else if(['--manifest','--page','--mode','--out','--split','--dsp-variant'].includes(a)) args[a==='--dsp-variant'?'dspVariant':a.slice(2)]=argv[++i];
     else fail('Unknown argument: '+a);
   }
   if(!args.selfTest&&!args.manifest)fail('A --manifest file is required.');
