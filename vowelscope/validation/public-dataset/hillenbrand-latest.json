@@ -414,7 +414,7 @@
     "warning": "Within-run comparison on the same detected tokens; excludes mode abstentions."
   },
   "execution_status": "complete",
-  "evaluation_source_commit": "f2ee26ad0fdfeba7a5f05a83edb09b85c7fcc2d9",
+  "evaluation_source_commit": "6fb4f93051dfa3dd0d4ffd8eda5be62c2af51251",
   "changes_from_initial_baseline": {
     "classic": {
       "coverage_delta_pp": 0.0,

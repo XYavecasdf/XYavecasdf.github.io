@@ -33,6 +33,26 @@
       "f2_p90_hz": 496.75,
       "f2_gt300": 30,
       "f2_gt500": 26
+    },
+    "median3": {
+      "n": 275,
+      "coverage": 0.9564,
+      "paired": 263,
+      "f1_mae_hz": 59.33,
+      "f2_mae_hz": 186.17,
+      "f2_p90_hz": 554.5,
+      "f2_gt300": 38,
+      "f2_gt500": 28
+    },
+    "median5": {
+      "n": 275,
+      "coverage": 0.9564,
+      "paired": 263,
+      "f1_mae_hz": 60.4,
+      "f2_mae_hz": 187.03,
+      "f2_p90_hz": 543.25,
+      "f2_gt300": 38,
+      "f2_gt500": 27
     }
   },
   "common_n": 263,
@@ -66,8 +86,28 @@
       "f2_p90_hz": 496.75,
       "f2_gt300": 30,
       "f2_gt500": 26
+    },
+    "median3": {
+      "n": 263,
+      "coverage": 1.0,
+      "paired": 263,
+      "f1_mae_hz": 59.33,
+      "f2_mae_hz": 186.17,
+      "f2_p90_hz": 554.5,
+      "f2_gt300": 38,
+      "f2_gt500": 28
+    },
+    "median5": {
+      "n": 263,
+      "coverage": 1.0,
+      "paired": 263,
+      "f1_mae_hz": 60.4,
+      "f2_mae_hz": 187.03,
+      "f2_p90_hz": 543.25,
+      "f2_gt300": 38,
+      "f2_gt500": 27
     }
   },
-  "note": "Research-only values for the actual webpage's smoothing coefficient: default slider=60 alpha=.32, fast slider=0 alpha=.68, none alpha~1. These are not newly trained models.",
+  "note": "The current webpage EMA (default alpha=.32, fast alpha=.68, none alpha~1) is compared with raw LPC candidate median3 / median5, both without EMA. All variants are research-only and use identical input recordings.",
   "limitations": "Offline browser replay; this test compares temporal smoothing, not speech recognition; no changes made to production code."
 }
