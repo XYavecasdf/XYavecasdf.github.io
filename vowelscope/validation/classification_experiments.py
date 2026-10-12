@@ -68,6 +68,7 @@ def main():
     ap=argparse.ArgumentParser()
     ap.add_argument("--manifest",required=True)
     ap.add_argument("--oracle-dev",required=True)
+    ap.add_argument("--live-dev",required=True)
     ap.add_argument("--out",required=True)
     args=ap.parse_args()
     manifest=json.loads(Path(args.manifest).read_text(encoding="utf8"))
@@ -87,6 +88,11 @@ def main():
     if not expected.issubset(oracle_dev.keys()):raise ValueError("Missing oracle dev data")
     def original(row,_):
         return oracle_dev[row["audio_path"]]["oracle_ipa"]
+    live=json.loads(Path(args.live_dev).read_text(encoding="utf8"))
+    if live.get("split")!="dev":raise ValueError("Development live results required")
+    live_by_audio={x["audio_path"]:x for x in live["results"]}
+    if not set(x["audio_path"] for x in dev).issubset(live_by_audio.keys()):
+        raise ValueError("Live benchmark missing development tokens")
     pooled=fit(train)
     grouped={**pooled,**fit(train,grouping=True)}
     models={
@@ -94,6 +100,29 @@ def main():
       "en_us_train_only_log_centroid":accuracy(dev,lambda r,x:classify(x,pooled)),
       "en_us_train_only_gaussian_diag":accuracy(dev,lambda r,x:classify(x,pooled,kind="gaussian")),
       "en_us_cohort_centroid_exploratory":accuracy(dev,lambda r,x:classify(x,grouped,cohort(r["speaker_id"])))
+    }
+    def live_accuracy(fn):
+        n=0;correct=0;available=0;groups=defaultdict(lambda:[0,0,0])
+        for row in dev:
+            if row["vowel_ipa"] not in ALLOWED or not normalize(row):continue
+            old=live_by_audio[row["audio_path"]]
+            est=old.get("estimated")
+            valid=bool(est and est.get("f1") and est.get("f2") and est["f1"]>0 and est["f2"]>0)
+            prediction=fn(row,(math.log(est["f1"]),math.log(est["f2"]))) if valid else None
+            match=prediction==row["vowel_ipa"]
+            n+=1;correct+=match;available+=valid
+            k=cohort(row["speaker_id"])
+            groups[k][0]+=1;groups[k][1]+=valid;groups[k][2]+=match
+        return {"n":n,"detected":available,"coverage":available/n if n else None,
+                "correct":correct,"accuracy_on_all":correct/n if n else None,
+                "accuracy_when_detected":correct/available if available else None,
+                "by_cohort":{k:{"n":v[0],"detected":v[1],"correct":v[2],
+                  "accuracy_on_all":v[2]/v[0]} for k,v in groups.items()}}
+    live_models={
+      "generic_28_ipa_reference":live_accuracy(lambda r,x:live_by_audio[r["audio_path"]].get("predicted_ipa")),
+      "en_us_train_only_log_centroid":live_accuracy(lambda r,x:classify(x,pooled)),
+      "en_us_train_only_gaussian_diag":live_accuracy(lambda r,x:classify(x,pooled,kind="gaussian")),
+      "en_us_cohort_centroid_exploratory":live_accuracy(lambda r,x:classify(x,grouped,cohort(r["speaker_id"])))
     }
     summary={
       "kind":"development_only_classifier_ablation",
@@ -103,12 +132,15 @@ def main():
       "token_counts":{"train":len(train),"dev":len(dev),"test":len(test)},
       "classes":list(ALLOWED),
       "model_results":models,
-      "warning":"All models use ORIGINAL human-annotated F1/F2, not VowelScope LPC output; these are oracle classification experiments. Do not quote these as live audio recognition accuracy.",
+      "live_lpc_model_results":live_models,
+      "warning":"model_results uses corpus reference F1/F2; live_lpc_model_results uses VowelScope actual LPC estimates replayed offline. Both evaluate dev speakers only, not real mobile microphone performance.",
       "no_test_model_evaluation":True,
       "license":"Only derived aggregate statistics; source audio and per-token measurements stay in the temporary runner."
     }
     dest=Path(args.out);dest.parent.mkdir(parents=True,exist_ok=True)
     dest.write_text(json.dumps(summary,indent=2,ensure_ascii=False)+"\n",encoding="utf8")
     for name,result in models.items():
-        print(f"Dev {name}: {result['correct']}/{result['n']} ({result['accuracy']:.1%})",flush=True)
+        l=live_models[name]
+        print(f"Dev oracle {name}: {result['correct']}/{result['n']} ({result['accuracy']:.1%}); "
+              f"actual LPC {l['correct']}/{l['n']} ({l['accuracy_on_all']:.1%})",flush=True)
 if __name__=="__main__": main()
