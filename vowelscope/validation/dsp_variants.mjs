@@ -1,8 +1,10 @@
+import {peakExperimentPatch} from './peak_variants.mjs';
 // OFFLINE RESEARCH ONLY. Do not include this file in the live webpage.
 // Inject only the variant transforms; the remaining speech pipeline runs the
 // unchanged production VowelScope JavaScript code.
 export function dspExperimentPatch(name) {
   if (name === 'original') return '';
+  if (['peak_prominence','peak_bandwidth','peak_tracking'].includes(name)) return peakExperimentPatch(name);
   if (!['antialias','burg','burg_antialias'].includes(name))
     throw Error('Unknown DSP research variant: '+name);
   const antialias = "\n    // Research: FIR low-pass (33 taps) prior to 11.025kHz downsampling.\n    preprocess=function(buffer,fs){\n      const samples=512,step=fs/Fs,windowLen=Math.ceil(samples*step),offset=buffer.length-windowLen;\n      if(offset<0)return null;\n      const M=16,fc=Math.min(.45*Fs/fs,.46),h=new Float64Array(2*M+1);\n      let norm=0;\n      for(let n=-M;n<=M;n++){\n        const sinc=n===0?2*fc:Math.sin(2*Math.PI*fc*n)/(Math.PI*n);\n        const win=.54+.46*Math.cos(Math.PI*n/M);\n        h[n+M]=sinc*win;norm+=h[n+M];\n      }\n      const filtered=(j)=>{\n        let v=0;\n        for(let k=-M;k<=M;k++){\n          const pos=Math.min(buffer.length-1,Math.max(0,j+k));\n          v+=buffer[pos]*h[k+M];\n        }\n        return v/norm;\n      };\n      const raw=new Float64Array(samples);\n      for(let i=0;i<samples;i++){\n        const loc=offset+i*step,j=Math.floor(loc),frac=loc-j;\n        raw[i]=(1-frac)*filtered(j)+frac*filtered(j+1);\n      }\n      let mean=0,rms=0;\n      for(let i=0;i<samples;i++)mean+=raw[i];mean/=samples;\n      for(let i=0;i<samples;i++){raw[i]-=mean;rms+=raw[i]*raw[i];}\n      rms=Math.sqrt(rms/samples);\n      const y=new Float64Array(samples);let prev=0;\n      for(let i=0;i<samples;i++){\n        const v=raw[i]-0.97*prev;prev=raw[i];\n        y[i]=v*(.54-.46*Math.cos(2*Math.PI*i/(samples-1)));\n      }\n      return {y,raw,rms};\n    };";
