@@ -268,7 +268,7 @@
     const $ = (id) => document.getElementById(id);
     const labMode=/(?:^\?|&)lab=1(?:&|$)/.test(window.location?.search||'');
     const canvas=$('vowelChart'),ctx=canvas.getContext('2d');
-    const state={running:false,frozen:false,ctx:null,stream:null,source:null,analyser:null,mute:null,lastProcess:0,lastSound:0,formants:null,trail:[],target:null,profileA:'en-us',profileB:'zh-cmn',mode:'classic',level:0,sampleCount:0,firstCandidate:null,pendingJump:null,lastAccepted:0};
+    const state={running:false,frozen:false,ctx:null,stream:null,source:null,analyser:null,mute:null,lastProcess:0,lastSound:0,formants:null,acousticFormants:null,visualFormants:null,trail:[],target:null,profileA:'en-us',profileB:'zh-cmn',mode:'classic',level:0,sampleCount:0,firstCandidate:null,pendingJump:null,lastAccepted:0};
     const Fs=11025, MinF1=180, MaxF1=1100, MinF2=600, MaxF2=3000;
     const margin={left:84,right:50,top:52,bottom:67};
     const W=1000,H=750,PW=W-margin.left-margin.right,PH=H-margin.top-margin.bottom;
@@ -384,7 +384,7 @@
       if(state.formants){const p=xy(state.formants.f1,state.formants.f2);ctx.beginPath();ctx.arc(p.x,p.y,23,0,Math.PI*2);ctx.fillStyle='rgba(221,137,96,.15)';ctx.fill();ctx.beginPath();ctx.arc(p.x,p.y,11.5,0,Math.PI*2);ctx.fillStyle='#e48760';ctx.fill();ctx.strokeStyle='#fff';ctx.lineWidth=3;ctx.stroke();}
     }
     function setStatus(mode,description){const el=$('status');el.className='status'+(mode==='live'?' live':mode==='frozen'?' frozen':'');$('statusText').textContent=description;}
-    function resetReading(){state.formants=null;$('ipaSymbol').textContent='—';$('ipaName').textContent='Waiting for speech';$('ipaHint').textContent=state.running?'Please sustain a vowel':'Sustain a steady vowel for one second';for(const n of ['f1','f2','f3'])$(n).textContent='—';if(labMode){for(const n of ['labRaw','labShown','labF2Diff'])$(n).textContent='—';}}
+    function resetReading(){state.formants=null;state.acousticFormants=null;state.visualFormants=null;$('ipaSymbol').textContent='—';$('ipaName').textContent='Waiting for speech';$('ipaHint').textContent=state.running?'Please sustain a vowel':'Sustain a steady vowel for one second';for(const n of ['f1','f2','f3'])$(n).textContent='—';if(labMode){for(const n of ['labRaw','labShown','labF2Diff'])$(n).textContent='—';}}
     function nearestVowel(f1,f2){let best=null,lowest=Infinity;for(const v of VOWELS){const d=Math.hypot((f1-v.f1)/340,(f2-v.f2)/950);if(d<lowest){lowest=d;best=v;}}return {vowel:best,distance:lowest};}
     function preprocess(buffer,fs){const samples=512,raw=new Float64Array(samples),step=fs/Fs,windowLen=Math.ceil(samples*step),offset=buffer.length-windowLen;if(offset<0)return null;
       for(let i=0;i<samples;i++){const loc=offset+i*step,j=Math.floor(loc),frac=loc-j;let a=buffer[j]||0,b=buffer[j+1]||a;raw[i]=a+(b-a)*frac;}
@@ -525,16 +525,23 @@
           return;
         }
       }
-      const labRaw=labMode?{...accepted}:null;
-      if(state.formants){
+      // Phase 3: separate analytical formants from display smoothing.
+      // state.formants stays the legacy visual alias for unchanged behavior.
+      const acoustic={...accepted};
+      const visual={...accepted};
+      const labRaw=labMode?acoustic:null;
+      if(state.visualFormants){
         const amount=.08+(100-Number($('smooth').value))*.006;
         for(const key of ['f1','f2','f3']){
-          if(accepted[key]!=null&&state.formants[key]!=null){
-            accepted[key]=amount*accepted[key]+(1-amount)*state.formants[key];
+          if(visual[key]!=null&&state.visualFormants[key]!=null){
+            visual[key]=amount*visual[key]+(1-amount)*state.visualFormants[key];
           }
         }
       }
-      state.formants=accepted;
+      state.acousticFormants=acoustic;
+      state.visualFormants=visual;
+      state.formants=visual; // keep existing chart and default classification
+      accepted=visual;
       if(labMode&&labRaw){
         const fmt=x=>x==null?'—':String(Math.round(x));
         const value=x=>"F1 "+fmt(x.f1)+" · F2 "+fmt(x.f2)+" · F3 "+fmt(x.f3)+" Hz";
@@ -564,7 +571,7 @@
       $('startBtn').disabled=true;$('startBtn').textContent='Requesting microphone permission…';
       try{const stream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:false,noiseSuppression:false,autoGainControl:false},video:false});
         const AC=window.AudioContext||window.webkitAudioContext;const ac=new AC();await ac.resume();const source=ac.createMediaStreamSource(stream),analyser=ac.createAnalyser(),mute=ac.createGain();analyser.fftSize=8192;analyser.smoothingTimeConstant=0;mute.gain.value=0;source.connect(analyser);analyser.connect(mute);mute.connect(ac.destination);
-        audioBuffer=new Float32Array(analyser.fftSize);Object.assign(state,{stream,ctx:ac,source,analyser,mute,running:true,frozen:false,lastProcess:0,lastSound:0,formants:null,trail:[],level:0,sampleCount:0,firstCandidate:null,pendingJump:null,lastAccepted:0});
+        audioBuffer=new Float32Array(analyser.fftSize);Object.assign(state,{stream,ctx:ac,source,analyser,mute,running:true,frozen:false,lastProcess:0,lastSound:0,formants:null,trail:[],level:0,sampleCount:0,firstCandidate:null,pendingJump:null,lastAccepted:0,acousticFormants:null,visualFormants:null});
         $('startBtn').textContent='Stop Microphone';$('startBtn').classList.add('stop');$('freezeBtn').disabled=false;$('freezeBtn').textContent='Pause Display';$('micLabel').textContent='Microphone connected';$('micDetail').textContent='Listening · Please sustain a vowel';$('placeholder').style.opacity='0';setStatus('live','Listening live');
       }catch(e){$('error').textContent=(e.name==='NotAllowedError'?'Microphone permission denied. Check browser site permissions.':`Cannot start microphone: ${e.message}`)+'\nTip: Open this page with HTTPS or localhost.';setStatus('idle','Connection failed');}
       finally{$('startBtn').disabled=false;if(!state.running)$('startBtn').textContent='Start Microphone';}
@@ -575,7 +582,7 @@
       if(state.mode===mode)return;
       state.mode=mode;
       // Discard old tracking history: the two modes have different filters.
-      state.formants=null;state.trail=[];state.firstCandidate=null;
+      state.formants=null;state.acousticFormants=null;state.visualFormants=null;state.trail=[];state.firstCandidate=null;
       state.pendingJump=null;state.lastAccepted=0;state.lastSound=0;
       resetReading();
       $('modeClassic').classList.toggle('active',mode==='classic');
