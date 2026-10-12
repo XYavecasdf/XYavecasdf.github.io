@@ -236,6 +236,25 @@ def main():
         pc=subprocess.run(peak_compare,capture_output=True,text=True,timeout=90)
         print("Peak selector comparison:",pc.returncode,pc.stdout.strip(),pc.stderr.strip(),flush=True)
         if pc.returncode:raise RuntimeError("Peak selector aggregation failed: "+pc.stderr)
+        smoothing_reports={"default":dev_live}
+        for name in ("fast","none"):
+            destination=root/("dev-smoothing-"+name+".json")
+            command=["node","vowelscope/validation/benchmark.mjs",
+                  "--manifest",str(model_path),"--page","vowelscope/index.html",
+                  "--split","dev","--mode","classic","--smoothing",name,
+                  "--out",str(destination)]
+            ptest=subprocess.run(command,capture_output=True,text=True,timeout=330)
+            print("Smoothing:",name,ptest.returncode,ptest.stdout.strip(),ptest.stderr.strip(),flush=True)
+            if ptest.returncode:raise RuntimeError("Smoothing evaluation failed: "+ptest.stderr)
+            smoothing_reports[name]=destination
+        smoothing_summary=Path("vowelscope/validation/public-dataset/smoothing-dev-ablation.json")
+        smooth_compare=["python","vowelscope/validation/compare_smoothing.py",
+             "--default",str(smoothing_reports["default"]),
+             "--fast",str(smoothing_reports["fast"]),
+             "--none",str(smoothing_reports["none"]),"--out",str(smoothing_summary)]
+        sr=subprocess.run(smooth_compare,capture_output=True,text=True,timeout=90)
+        print("Smoothing comparison:",sr.returncode,sr.stdout.strip(),sr.stderr.strip(),flush=True)
+        if sr.returncode:raise RuntimeError("Smoothing comparison failed: "+sr.stderr)
         models_path=Path("vowelscope/validation/public-dataset/classifier-dev-ablation.json")
         model_cmd=["python","vowelscope/validation/classification_experiments.py",
             "--manifest",str(model_path),"--oracle-dev",str(dev_oracle),
