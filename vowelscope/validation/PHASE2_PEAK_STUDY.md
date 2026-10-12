@@ -41,6 +41,22 @@ Separately, a [smoothing ablation](compare_smoothing.py) isolates the visual EMA
 
 No hypothesis should be promoted to production based on hand-picked successes. Require matched audio, coverage, mean error, F2 p90, and a genuinely new independent test corpus. The prior test partition has already been inspected and must not serve as a blind selection set.
 
+## Second completed benchmark — smoothing is part of the measurement error
+
+The same **275 development recordings** were replayed with the unchanged original LPC estimator and different EMA coefficients. Coverage remained 263/275 (95.64%) in every condition.
+
+| Frame output treatment | F1 MAE | F2 MAE | F2 90th percentile |
+|---|---:|---:|---:|
+| Site default EMA, α=0.32 | 78.91 Hz | 212.54 Hz | 582.50 Hz |
+| Faster EMA, α=0.68 | 48.71 Hz | 170.23 Hz | **471.00 Hz** |
+| No EMA, α≈1 | **36.83 Hz** | **148.90 Hz** | 496.75 Hz |
+
+[Detailed smoothing report](public-dataset/smoothing-dev-ablation.json).
+
+This suggests that a significant part of measured error comes from **smearing past candidate errors into the current vowel nucleus**. Eliminating display smoothing is not automatically a better *user experience*—it may cause visually jittery points. The engineering solution to evaluate next is to **separate the acoustic estimate from the smoothed visual marker**.
+
+The conservative peak-rescue variants were also measured. Neither exceeded the original: F2 p90 was 611.14 Hz (guard) and 585.73 Hz (strict guard), against 582.50 Hz baseline, with identical coverage. They are not candidates for promotion to production.
+
 ## Next sound DSP iteration
 
 Prioritize root-based LPC pole frequencies and bandwidths, inspect low-vowel F1/F2 mergers, and evaluate ceiling/pole-order sensitivity **on development-only speakers**. An adaptive ceiling may matter more than broad global power ranking, especially across adults and children. Keep physical measurement quality and visible chart smoothing as separate model layers.
