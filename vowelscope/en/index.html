@@ -331,7 +331,11 @@
           }
         }
         ctx.restore();
-        labelPlan.push({v,p,targeted,inA,inB,optionalA,optionalB,priority:targeted?4:inA&&inB?3:inA||inB?2:optionalA||optionalB?1:0});
+        // The permanent IPA label belongs to the base reference point.
+        // A language-specific shifted marker (Spanish [ä]) has its own label.
+        const baseA=inA&&Math.hypot(pa.x-p.x,pa.y-p.y)<5;
+        const baseB=inB&&Math.hypot(pb.x-p.x,pb.y-p.y)<5;
+        labelPlan.push({v,p,targeted,inA:baseA,inB:baseB,optionalA,optionalB,priority:targeted?4:baseA&&baseB?3:baseA||baseB?2:optionalA||optionalB?1:0});
       }
       // Place the higher-priority labels first and gently offset neighbours to
       // reduce collisions while preserving every IPA symbol on the reference map.
