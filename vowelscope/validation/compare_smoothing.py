@@ -16,11 +16,14 @@ def metrics(rs):
         "f2_p90_hz":q(err2,.9),"f2_gt300":sum(v>300 for v in err2),"f2_gt500":sum(v>500 for v in err2)}
 def main():
     a=argparse.ArgumentParser()
-    for n in ("default","fast","none"):a.add_argument("--"+n,required=True)
+    for n in ("default","fast","none","median3","median5"):a.add_argument("--"+n,required=True)
     a.add_argument("--out",required=True)
-    args=a.parse_args();names=("default","fast","none")
+    args=a.parse_args();names=("default","fast","none","median3","median5")
     reports={k:read(getattr(args,k)) for k in names}
-    if any(r.get("split")!="dev" or r.get("dsp_variant")!="original" or r.get("smoothing")!=k for k,r in reports.items()):
+    if any(r.get("split")!="dev" or
+        (r.get("dsp_variant")!=("original" if k in ("default","fast","none") else k)) or
+        r.get("smoothing")!=("none" if k in ("median3","median5") else k)
+        for k,r in reports.items()):
         raise ValueError("Need unchanged original LPC with consistent DEV smoothing variants")
     if len({(r["source"],r["dataset_version"]) for r in reports.values()})!=1:
         raise ValueError("Mismatched data")
@@ -33,7 +36,7 @@ def main():
         "source":reports["default"]["source"],
         "all_tokens":{k:metrics(list(v.values())) for k,v in by.items()},
         "common_n":len(both),"common_tokens":{k:metrics([v[key] for key in both]) for k,v in by.items()},
-        "note":"Research-only values for the actual webpage's smoothing coefficient: default slider=60 alpha=.32, fast slider=0 alpha=.68, none alpha~1. These are not newly trained models.",
+        "note":"The current webpage EMA (default alpha=.32, fast alpha=.68, none alpha~1) is compared with raw LPC candidate median3 / median5, both without EMA. All variants are research-only and use identical input recordings.",
         "limitations":"Offline browser replay; this test compares temporal smoothing, not speech recognition; no changes made to production code."}
     out=Path(args.out);out.parent.mkdir(parents=True,exist_ok=True)
     out.write_text(json.dumps(result,indent=2,ensure_ascii=False)+"\n",encoding="utf-8")
