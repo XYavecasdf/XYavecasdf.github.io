@@ -214,7 +214,7 @@ def main():
         print("DSP comparison:",cr.returncode,cr.stdout.strip(),cr.stderr.strip(),flush=True)
         if cr.returncode:raise RuntimeError("DSP comparison failed: "+cr.stderr)
         peak_variants={"original":dev_live}
-        for variant in ("peak_prominence","peak_bandwidth","peak_tracking"):
+        for variant in ("peak_prominence","peak_bandwidth","peak_tracking","peak_guard","peak_guard_strict"):
             dst=root/("dev-"+variant+".json")
             command=["node","vowelscope/validation/benchmark.mjs",
                      "--manifest",str(model_path),"--page","vowelscope/index.html",
@@ -230,6 +230,8 @@ def main():
             "--peak-prominence",str(peak_variants["peak_prominence"]),
             "--peak-bandwidth",str(peak_variants["peak_bandwidth"]),
             "--peak-tracking",str(peak_variants["peak_tracking"]),
+            "--peak-guard",str(peak_variants["peak_guard"]),
+            "--peak-guard-strict",str(peak_variants["peak_guard_strict"]),
             "--out",str(peak_summary)]
         pc=subprocess.run(peak_compare,capture_output=True,text=True,timeout=90)
         print("Peak selector comparison:",pc.returncode,pc.stdout.strip(),pc.stderr.strip(),flush=True)
