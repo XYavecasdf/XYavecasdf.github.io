@@ -1,0 +1,41 @@
+name: VowelScope validation smoke tests
+
+on:
+  push:
+    paths:
+      - "vowelscope/validation/**"
+      - "vowelscope/index.html"
+      - "vowelscope/en/index.html"
+      - ".github/workflows/vowelscope-validation.yml"
+  pull_request:
+    paths:
+      - "vowelscope/validation/**"
+      - "vowelscope/index.html"
+      - "vowelscope/en/index.html"
+      - ".github/workflows/vowelscope-validation.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Check benchmark and importer syntax
+        run: |
+          node --check vowelscope/validation/benchmark.mjs
+          python -m py_compile vowelscope/validation/import_csv.py
+      - name: Test instrumentation of actual Chinese & English pages
+        run: |
+          node vowelscope/validation/benchmark.mjs --self-test --page vowelscope/index.html
+          node vowelscope/validation/benchmark.mjs --self-test --page vowelscope/en/index.html
+      - name: Validate reference mapping configuration
+        run: python -m json.tool vowelscope/validation/mapping.example.json > /dev/null
