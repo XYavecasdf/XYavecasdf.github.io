@@ -247,11 +247,24 @@ def main():
             print("Smoothing:",name,ptest.returncode,ptest.stdout.strip(),ptest.stderr.strip(),flush=True)
             if ptest.returncode:raise RuntimeError("Smoothing evaluation failed: "+ptest.stderr)
             smoothing_reports[name]=destination
+        for name in ("median3","median5"):
+            destination=root/("dev-temporal-"+name+".json")
+            command=["node","vowelscope/validation/benchmark.mjs",
+                     "--manifest",str(model_path),"--page","vowelscope/index.html",
+                     "--split","dev","--mode","classic","--smoothing","none",
+                     "--dsp-variant",name,"--out",str(destination)]
+            c=subprocess.run(command,capture_output=True,text=True,timeout=330)
+            print("Temporal:",name,c.returncode,c.stdout.strip(),c.stderr.strip(),flush=True)
+            if c.returncode:raise RuntimeError("Temporal median failed: "+c.stderr)
+            smoothing_reports[name]=destination
         smoothing_summary=Path("vowelscope/validation/public-dataset/smoothing-dev-ablation.json")
         smooth_compare=["python","vowelscope/validation/compare_smoothing.py",
              "--default",str(smoothing_reports["default"]),
              "--fast",str(smoothing_reports["fast"]),
-             "--none",str(smoothing_reports["none"]),"--out",str(smoothing_summary)]
+             "--none",str(smoothing_reports["none"]),
+             "--median3",str(smoothing_reports["median3"]),
+             "--median5",str(smoothing_reports["median5"]),
+             "--out",str(smoothing_summary)]
         sr=subprocess.run(smooth_compare,capture_output=True,text=True,timeout=90)
         print("Smoothing comparison:",sr.returncode,sr.stdout.strip(),sr.stderr.strip(),flush=True)
         if sr.returncode:raise RuntimeError("Smoothing comparison failed: "+sr.stderr)
