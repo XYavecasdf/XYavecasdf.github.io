@@ -37,7 +37,10 @@ jobs:
           node --check vowelscope/validation/peak_guard.mjs
           node --check vowelscope/validation/temporal_variants.mjs
           node --check vowelscope/validation/lpc_poles.mjs
+          node --check vowelscope/validation/pole_ceiling_tracking.mjs
+          node --check vowelscope/validation/fast_resample.mjs
           node --check vowelscope/validation/test_phase3.mjs
+          node --check vowelscope/validation/test_phase3b.mjs
           python -m py_compile vowelscope/validation/import_csv.py \
             vowelscope/validation/run_hillenbrand.py \
             vowelscope/validation/analyze_phase1.py \
@@ -52,6 +55,8 @@ jobs:
           node vowelscope/validation/benchmark.mjs --self-test --page vowelscope/index.html
           node vowelscope/validation/benchmark.mjs --self-test --page vowelscope/en/index.html
       - name: Validate poles and two-path UI on synthesized speech
-        run: node vowelscope/validation/test_phase3.mjs
+        run: |
+          node vowelscope/validation/test_phase3.mjs
+          node vowelscope/validation/test_phase3b.mjs
       - name: Validate reference mapping configuration
         run: python -m json.tool vowelscope/validation/mapping.example.json > /dev/null
