@@ -12,7 +12,7 @@ function parseArgs(argv) {
   const args = { mode: 'classic', split: 'test', dspVariant: 'original', smoothing: 'default', measurement: 'visual', page: path.resolve('vowelscope/index.html') };
   for (let i=0; i<argv.length; i++) {
     const a=argv[i];
-    if(a==='--help') { console.log('Usage: node vowelscope/validation/benchmark.mjs --manifest /path/to/manifest.json [--page vowelscope/index.html] [--mode classic|stable] [--out report.json] [--split test|train|dev|all] [--self-test] [--oracle-only] [--dsp-variant original|antialias|burg|burg_antialias|peak_prominence|peak_bandwidth|peak_tracking|peak_guard|peak_guard_strict|median3|median5|pole14_bw700|pole14_bw400|pole16_bw700] [--smoothing default|fast|none] [--measurement visual|acoustic]'); process.exit(0); }
+    if(a==='--help') { console.log('Usage: node vowelscope/validation/benchmark.mjs --manifest /path/to/manifest.json [--page vowelscope/index.html] [--mode classic|stable] [--out report.json] [--split test|train|dev|all] [--self-test] [--oracle-only] [--dsp-variant original|antialias|burg|burg_antialias|peak_prominence|peak_bandwidth|peak_tracking|peak_guard|peak_guard_strict|median3|median5|pole14_bw700|pole14_bw400|pole16_bw700|pole14_fs9000_bw400|pole14_fs12000_bw400|pole14_bw400_track05|pole14_bw400_track12] [--smoothing default|fast|none] [--measurement visual|acoustic]'); process.exit(0); }
     if(a==='--self-test') args.selfTest=true;
     else if(a==='--oracle-only') args.oracleOnly=true;
     else if(['--manifest','--page','--mode','--out','--split','--dsp-variant','--smoothing','--measurement'].includes(a)) args[a==='--dsp-variant'?'dspVariant':a.slice(2)]=argv[++i];
@@ -21,7 +21,7 @@ function parseArgs(argv) {
   if(!args.selfTest&&!args.manifest)fail('A --manifest file is required.');
   if(!['classic','stable'].includes(args.mode))fail('Invalid --mode.');
   if(!['test','train','dev','all'].includes(args.split))fail('Invalid --split.');
-  if(!['original','antialias','burg','burg_antialias','peak_prominence','peak_bandwidth','peak_tracking','peak_guard','peak_guard_strict','median3','median5','pole14_bw700','pole14_bw400','pole16_bw700'].includes(args.dspVariant))fail('Invalid DSP experiment.');
+  if(!['original','antialias','burg','burg_antialias','peak_prominence','peak_bandwidth','peak_tracking','peak_guard','peak_guard_strict','median3','median5','pole14_bw700','pole14_bw400','pole16_bw700','pole14_fs9000_bw400','pole14_fs12000_bw400','pole14_bw400_track05','pole14_bw400_track12'].includes(args.dspVariant))fail('Invalid DSP experiment.');
   if(!['default','fast','none'].includes(args.smoothing))fail('Invalid smoothing experiment.');
   if(!['visual','acoustic'].includes(args.measurement))fail('Measurement must be visual or acoustic.');
   return args;
