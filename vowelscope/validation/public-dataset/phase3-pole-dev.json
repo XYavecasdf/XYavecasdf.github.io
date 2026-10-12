@@ -1,0 +1,151 @@
+{
+  "kind": "phase3_lpc_pole_development_ablation",
+  "source": "Hillenbrand et al. (1995) (original researcher-authorized hosting)",
+  "source_archive_sha256": "2560548591e3a726c88549b6dc9d226995616c26874d601c69fee8b9eee9d730",
+  "source_version": "2560548591e3a726",
+  "source_commit": "58c097fad2660c9e46866a4f0e4c41e299fc1bd6",
+  "split": "dev",
+  "speaker_disjoint_from_training": true,
+  "speaker_count": 23,
+  "sample_count": 275,
+  "shared_detection_count": 263,
+  "variants": [
+    "original_visual",
+    "original_acoustic",
+    "pole14_bw700",
+    "pole14_bw400",
+    "pole16_bw700"
+  ],
+  "all_tokens": {
+    "original_visual": {
+      "tokens": 275,
+      "detections": 263,
+      "coverage": 0.9564,
+      "paired_acoustic_count": 263,
+      "mae_f1_hz": 78.914,
+      "mae_f2_hz": 212.54,
+      "median_f2_hz": 80,
+      "p90_f2_hz": 582.5,
+      "f2_errors_gt300_hz": 46,
+      "f2_errors_gt500_hz": 31
+    },
+    "original_acoustic": {
+      "tokens": 275,
+      "detections": 263,
+      "coverage": 0.9564,
+      "paired_acoustic_count": 263,
+      "mae_f1_hz": 36.83,
+      "mae_f2_hz": 148.904,
+      "median_f2_hz": 33.5,
+      "p90_f2_hz": 496.75,
+      "f2_errors_gt300_hz": 30,
+      "f2_errors_gt500_hz": 26
+    },
+    "pole14_bw700": {
+      "tokens": 275,
+      "detections": 270,
+      "coverage": 0.9818,
+      "paired_acoustic_count": 270,
+      "mae_f1_hz": 50.839,
+      "mae_f2_hz": 205.697,
+      "median_f2_hz": 51.488,
+      "p90_f2_hz": 644.784,
+      "f2_errors_gt300_hz": 52,
+      "f2_errors_gt500_hz": 42
+    },
+    "pole14_bw400": {
+      "tokens": 275,
+      "detections": 270,
+      "coverage": 0.9818,
+      "paired_acoustic_count": 270,
+      "mae_f1_hz": 46.877,
+      "mae_f2_hz": 157.116,
+      "median_f2_hz": 45.537,
+      "p90_f2_hz": 410.524,
+      "f2_errors_gt300_hz": 33,
+      "f2_errors_gt500_hz": 25
+    },
+    "pole16_bw700": {
+      "tokens": 275,
+      "detections": 271,
+      "coverage": 0.9855,
+      "paired_acoustic_count": 271,
+      "mae_f1_hz": 76.38,
+      "mae_f2_hz": 287.497,
+      "median_f2_hz": 106.342,
+      "p90_f2_hz": 846.558,
+      "f2_errors_gt300_hz": 81,
+      "f2_errors_gt500_hz": 63
+    }
+  },
+  "common_detected": {
+    "original_visual": {
+      "tokens": 263,
+      "detections": 263,
+      "coverage": 1.0,
+      "paired_acoustic_count": 263,
+      "mae_f1_hz": 78.914,
+      "mae_f2_hz": 212.54,
+      "median_f2_hz": 80,
+      "p90_f2_hz": 582.5,
+      "f2_errors_gt300_hz": 46,
+      "f2_errors_gt500_hz": 31
+    },
+    "original_acoustic": {
+      "tokens": 263,
+      "detections": 263,
+      "coverage": 1.0,
+      "paired_acoustic_count": 263,
+      "mae_f1_hz": 36.83,
+      "mae_f2_hz": 148.904,
+      "median_f2_hz": 33.5,
+      "p90_f2_hz": 496.75,
+      "f2_errors_gt300_hz": 30,
+      "f2_errors_gt500_hz": 26
+    },
+    "pole14_bw700": {
+      "tokens": 263,
+      "detections": 263,
+      "coverage": 1.0,
+      "paired_acoustic_count": 263,
+      "mae_f1_hz": 46.793,
+      "mae_f2_hz": 204.066,
+      "median_f2_hz": 51.012,
+      "p90_f2_hz": 648.71,
+      "f2_errors_gt300_hz": 50,
+      "f2_errors_gt500_hz": 40
+    },
+    "pole14_bw400": {
+      "tokens": 263,
+      "detections": 263,
+      "coverage": 1.0,
+      "paired_acoustic_count": 263,
+      "mae_f1_hz": 42.502,
+      "mae_f2_hz": 148.963,
+      "median_f2_hz": 41.956,
+      "p90_f2_hz": 386.411,
+      "f2_errors_gt300_hz": 30,
+      "f2_errors_gt500_hz": 23
+    },
+    "pole16_bw700": {
+      "tokens": 263,
+      "detections": 263,
+      "coverage": 1.0,
+      "paired_acoustic_count": 263,
+      "mae_f1_hz": 70.712,
+      "mae_f2_hz": 276.437,
+      "median_f2_hz": 91.596,
+      "p90_f2_hz": 835.957,
+      "f2_errors_gt300_hz": 74,
+      "f2_errors_gt500_hz": 58
+    }
+  },
+  "limitations": [
+    "LPC pole iteration is a new experimental Durand-Kerner implementation, not the Praat Burg pipeline.",
+    "A single fixed order 14/16, 11.025kHz analysis rate and generic bandwidth thresholds do not handle all speaker anatomies.",
+    "Original Hillenbrand F1/F2 annotations are estimates, not error-free physical truths.",
+    "Development speakers were used for earlier exploratory studies; these results are not independent validation.",
+    "This is numerical WAV replay, not microphone device tests.",
+    "No original recordings, per-token predictions, speaker identities or exact audio metadata are published."
+  ]
+}
