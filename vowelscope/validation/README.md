@@ -80,6 +80,29 @@ If the source CSV already has an explicit train/dev/test split, map the `split` 
 
 For reproducible comparisons, store the Git commit SHA, dataset version/permissions, device/microphone, analysis mode, source reference annotation method, speaker-disjoint split seed/rule, and the JSON report. Always evaluate the **unchanged holdout speakers** when tuning algorithms.
 
+## Automated regression gate
+
+First generate comparable reports against **the same test speakers and exact
+annotated intervals** for the previous stable version and the candidate version.
+For example, run the benchmark with `--page` pointing to two different checked-out
+HTML versions; you can copy an older `index.html` into a temporary local folder.
+Do not tune your algorithm on the held-out test speakers.
+
+```bash
+python vowelscope/validation/compare_reports.py \
+  --baseline vowelscope/validation/local/results/baseline.json \
+  --candidate vowelscope/validation/local/results/candidate.json \
+  --min-acoustic-pairs 30 \
+  --max-coverage-drop 0.03 \
+  --max-mae-increase 0.10
+```
+
+The command exits nonzero if a candidate loses more than three percentage points
+of coverage or increases mean F1/F2 absolute error by over ten percent. These
+are **initial regression tolerances**, not accepted scientific error limits or
+a guarantee of pronunciation accuracy. It refuses to compare mismatched test
+examples, corpus versions, or runs with insufficient measured reference pairs.
+
 ## Critical scientific cautions
 
 - The existing estimator downsamples linearly without an anti-aliasing filter and uses fixed-order Levinson–Durbin LPC with heuristic spectral-peak selection; the benchmark measures these exact limitations rather than hiding them.
