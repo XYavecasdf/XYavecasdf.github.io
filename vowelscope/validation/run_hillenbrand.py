@@ -1,0 +1,135 @@
+#!/usr/bin/env python3
+"""Execute the research Hillenbrand baseline in a temporary GitHub runner.
+
+No recordings, excerpts, raw annotated rows, speaker IDs, or user data are
+committed. The publicly committed result contains only aggregated metrics.
+"""
+import hashlib
+import io
+import json
+import os
+import re
+import subprocess
+import sys
+import tempfile
+import urllib.request
+import zipfile
+from pathlib import Path
+
+REPO_URL="https://raw.githubusercontent.com/santiagobarreda/hillenbrand_et_al_1995/main/h95-alldata.zip"
+# Only the single segment categories get exact IPA quality labels.
+# /eɪ/, /oʊ/ and rhotic /ɝ/ still contribute acoustic F1/F2 comparisons,
+# but are excluded from monophthong reference-label accuracy.
+IPA={
+ "ae":"æ","ah":"ɑ","aw":"ɔ","eh":"ɛ","er":"ɝ","ei":"eɪ",
+ "ey":"eɪ","ih":"ɪ","iy":"i","oa":"oʊ","oo":"ʊ","uh":"ʌ","uw":"u"
+}
+ROW=re.compile(r"^[mbgw][0-9]{2}[a-z]{2}$")
+def hash_speaker(speaker):
+    return int(hashlib.sha256(speaker.encode()).hexdigest()[:8],16)%100
+def split(speaker):
+    x=hash_speaker(speaker)
+    return "train" if x<70 else "dev" if x<85 else "test"
+def records(data,min_cols):
+    rows={}
+    for raw in data.decode("latin1").splitlines():
+        fields=raw.split()
+        if len(fields)<min_cols or not ROW.fullmatch(fields[0]):continue
+        rows[fields[0]]=fields
+    return rows
+def positive(cell):
+    try:
+        value=float(cell)
+        return value if value>0 else None
+    except (ValueError,TypeError):
+        return None
+def main():
+    req=urllib.request.Request(REPO_URL,headers={"User-Agent":"VowelScope-OpenResearch-Validation/0.1"})
+    with urllib.request.urlopen(req,timeout=100) as response:
+        archive=response.read(40_000_000)
+    digest=hashlib.sha256(archive).hexdigest()
+    with tempfile.TemporaryDirectory(prefix="vs-h95-") as temp:
+        root=Path(temp)
+        with zipfile.ZipFile(io.BytesIO(archive)) as z:
+            source=records(z.read("vowdata.dat"),16)
+            times=records(z.read("timedata.dat"),5)
+            if not (1600<=len(source)<=1700 and 1600<=len(times)<=1700):
+                raise ValueError(f"Unexpected Hillenbrand row counts {len(source)} and {len(times)}")
+            (root/"audio").mkdir()
+            audio_count=0
+            for section in ["men.zip","women.zip","kids.zip"]:
+                with zipfile.ZipFile(io.BytesIO(z.read(section))) as inner:
+                    for member in inner.infolist():
+                        filename=Path(member.filename).name.lower()
+                        if not filename.endswith(".wav"):continue
+                        name=filename.removesuffix(".wav")
+                        if not ROW.fullmatch(name) or name not in source or name not in times:continue
+                        if split(name[:3])!="test":continue
+                        target=root/"audio"/filename
+                        if target.exists():raise ValueError("Duplicate WAV: "+filename)
+                        with target.open("wb") as target_file,target_file:
+                            target_file.write(inner.read(member))
+                        audio_count+=1
+        rows=[];missing=0
+        for name,fields in sorted(source.items()):
+            if name not in times or split(name[:3])!="test":continue
+            audio=root/"audio"/(name+".wav")
+            if not audio.is_file():missing+=1;continue
+            t=times[name]
+            start=positive(t[1]);end=positive(t[2]);center1=positive(t[3]);center2=positive(t[4])
+            if not (start and end and center1 and center2 and start<end):missing+=1;continue
+            middle=(center1+center2)/2000
+            if not (start/1000<=middle<=end/1000):missing+=1;continue
+            vowel=IPA.get(name[-2:])
+            if not vowel:missing+=1;continue
+            row={"audio_path":"audio/"+name+".wav","speaker_id":name[:3],"language":"en-us",
+                 "source":"Hillenbrand 1995","vowel_ipa":vowel,
+                 "start_s":start/1000,"end_s":end/1000,"gt_time_s":middle,"split":"test"}
+            for pos,key in [(3,"gt_f1_hz"),(4,"gt_f2_hz"),(5,"gt_f3_hz")]:
+                value=positive(fields[pos])
+                if value is not None:row[key]=value
+            rows.append(row)
+        if not rows or missing:raise ValueError(f"Incomplete test dataset: {len(rows)} rows, {missing} missing/bad")
+        manifest={"schema_version":1,"source":"Hillenbrand et al. (1995)","source_url":REPO_URL,
+                  "version":digest[:16],
+                  "annotation_provenance":"Source vowdata.dat F1/F2/F3 at steady state; source timedata.dat average of judge1 and judge2 center times",
+                  "samples":rows}
+        mf=root/"manifest.json";mf.write_text(json.dumps(manifest),encoding="utf-8")
+        stats={"source":"Hillenbrand et al. (1995) vowel corpus",
+               "citation":"Hillenbrand, Getty, Clark & Wheeler (1995), JASA 97:3099–3111, DOI:10.1121/1.411872",
+               "archive_sha256":digest,
+               "source_size_bytes":len(archive),
+               "whole_corpus_vowel_rows":len(source),
+               "whole_corpus_timing_rows":len(times),
+               "selected_heldout_tokens":len(rows),
+               "selected_heldout_speakers":len(set(r["speaker_id"] for r in rows)),
+               "audio_files_loaded_in_runner":audio_count,
+               "heldout_rule":"SHA256(speaker_id)[:8] modulo 100 >= 85; stable speaker-disjoint test set",
+               "reference_annotation":"Original Hillenbrand steady-state formants; reference time approximated as mean of Center1/Center2; audio is not redistributed",
+               "measure_window":"~150 ms total around mean judged steady-state center",
+               "noncomparables":"er/ɝ, ei/eɪ, oa/oʊ included for acoustics but excluded from exact single-IPA-label accuracy",
+               "note":"Estimates from the current browser-source LPC, replayed offline into a mock WebAudio buffer; not real-device microphone accuracy",
+               "modes":{}}
+        for mode in ("classic","stable"):
+            dest=root/(mode+".json")
+            cmd=["node","vowelscope/validation/benchmark.mjs","--manifest",str(mf),
+                 "--page","vowelscope/index.html","--mode",mode,"--split","test","--out",str(dest)]
+            p=subprocess.run(cmd,capture_output=True,text=True,timeout=330)
+            print(f"Benchmark {mode}: {p.returncode} {p.stdout.strip()} {p.stderr.strip()}",flush=True)
+            if p.returncode!=0:raise RuntimeError(f"Benchmark {mode} failed: {p.stderr}")
+            report=json.loads(dest.read_text(encoding="utf8"))
+            summ=report["summary"]
+            stats["modes"][mode]={k:v for k,v in summ.items() if k not in ("by_speaker","confusion")}
+            stats["modes"][mode]["confusion"]=summ["confusion"]
+            stats["modes"][mode]["speaker_counts"]={
+                "men":len({r["speaker_id"] for r in rows if r["speaker_id"][0]=="m"}),
+                "women":len({r["speaker_id"] for r in rows if r["speaker_id"][0]=="w"}),
+                "boys":len({r["speaker_id"] for r in rows if r["speaker_id"][0]=="b"}),
+                "girls":len({r["speaker_id"] for r in rows if r["speaker_id"][0]=="g"})}
+        stats["execution_status"]="complete"
+        output=Path("vowelscope/validation/public-dataset/hillenbrand-baseline.json")
+        output.parent.mkdir(exist_ok=True,parents=True)
+        output.write_text(json.dumps(stats,indent=2,ensure_ascii=False)+"\n",encoding="utf-8")
+        print("Completed Hillenbrand baseline. Report: "+str(output),flush=True)
+if __name__=="__main__":
+    main()
