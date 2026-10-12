@@ -1,0 +1,55 @@
+name: VowelScope Phase 3 pole analysis
+
+on:
+  push:
+    paths:
+      - ".github/workflows/vowelscope-phase3.yml"
+      - "vowelscope/validation/run_phase3_poles.py"
+      - "vowelscope/validation/lpc_poles.mjs"
+      - "vowelscope/validation/dsp_variants.mjs"
+      - "vowelscope/validation/benchmark.mjs"
+      - "vowelscope/validation/test_phase3.mjs"
+      - "vowelscope/index.html"
+      - "vowelscope/en/index.html"
+  workflow_dispatch:
+
+concurrency:
+  group: vowelscope-poles-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  study:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Phase 3 synthetic formants and bilingual branch isolation
+        run: |
+          node --check vowelscope/validation/lpc_poles.mjs
+          node --check vowelscope/validation/test_phase3.mjs
+          python -m py_compile vowelscope/validation/run_phase3_poles.py
+          node vowelscope/validation/test_phase3.mjs
+      - name: Evaluate production LPC and pole-based candidates on real development WAV
+        run: python vowelscope/validation/run_phase3_poles.py
+      - name: Publish aggregate development metrics (not recordings)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add vowelscope/validation/public-dataset/phase3-pole-dev.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish Phase 3 experimental LPC pole metrics"
+            git fetch origin "${GITHUB_REF_NAME}"
+            git rebase -X theirs "origin/${GITHUB_REF_NAME}"
+            git push origin "HEAD:${GITHUB_REF_NAME}"
+          fi
