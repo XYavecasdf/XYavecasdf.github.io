@@ -5,6 +5,12 @@ title: Projects
 
 ## Projects
 
+### The Sound Cabinet
+
+A collection of phonetics-based learning tools, including my VowelScope and ConsonantScope experiments, alongside resources for IPA, tones, and speech analysis.
+
+- [Open The Sound Cabinet](/sound-cabinet/)
+
 ### 法语生词本
 
 A data-driven French vocabulary notebook for textbook exercises, plural forms, IPA notes, tags, search, and browser TTS pronunciation practice.
