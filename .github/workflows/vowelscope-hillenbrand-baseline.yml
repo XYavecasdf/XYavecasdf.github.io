@@ -12,6 +12,7 @@ on:
       - "vowelscope/validation/dsp_variants.mjs"
       - "vowelscope/validation/peak_audit.mjs"
       - "vowelscope/validation/peak_variants.mjs"
+      - "vowelscope/validation/peak_guard.mjs"
       - "vowelscope/validation/compare_peak_selection.py"
       - "vowelscope/index.html"
       - "vowelscope/en/index.html"
