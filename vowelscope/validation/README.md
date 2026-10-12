@@ -1,5 +1,16 @@
 # VowelScope acoustic evaluation (v0.1)
 
+## Research Phase 2: completed dev experiments
+
+**[Read measured Phase 2 findings](PHASE2_PEAK_STUDY.md)**: candidate peak audit, failed global peak reassignment, conservative peak rescue, and matched smoothing/median experiments. The strongest current finding is that removing or reducing the visual EMA materially lowers acoustic error on development recordings, but may increase on-screen jitter. Therefore visual and acoustic filtering should be separated rather than blindly setting the default smoothing slider to zero.
+
+- [Peak candidate audit](public-dataset/peak-dev-audit.json)
+- [Peak ranking and conservative guard ablations](public-dataset/peak-selector-dev-ablation.json)
+- [EMA and temporal median ablations](public-dataset/smoothing-dev-ablation.json)
+- Live microphone diagnostics, opt-in only: [Chinese](https://xyavecasdf.github.io/vowelscope/?lab=1) and [English](https://xyavecasdf.github.io/vowelscope/en/?lab=1)
+
+No unsuccessful candidate-peak algorithm has been added to the default live speech detection.
+
 ## Research Phase 1: completed real-corpus experiments
 
 **[Read measured Phase 1 findings](PHASE1_RESULTS.md).** The evaluation workflow
