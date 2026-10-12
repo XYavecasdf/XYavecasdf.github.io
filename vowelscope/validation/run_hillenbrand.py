@@ -97,6 +97,24 @@ def main():
                   "annotation_provenance":"Source vowdata.dat F1/F2/F3 at steady state; source timedata.dat average of judge1 and judge2 center times",
                   "samples":rows}
         mf=root/"manifest.json";mf.write_text(json.dumps(manifest),encoding="utf-8")
+        # For hypothesis development, use the remaining speakers' published
+        # annotated formants only. Do not load dev/test audio for training.
+        model_rows=[]
+        for name,fields in sorted(source.items()):
+            if name not in times or name[-2:] not in IPA:continue
+            f1=positive(fields[3]);f2=positive(fields[4]);pitch=positive(fields[2])
+            if f1 is None or f2 is None:continue
+            t=times[name];start=positive(t[1]);end=positive(t[2])
+            if not start or not end or start>=end:continue
+            rr={"audio_path":"audio/"+name+".wav","speaker_id":name[:3],
+                "vowel_ipa":IPA[name[-2:]],"language":"en-us",
+                "gt_f1_hz":f1,"gt_f2_hz":f2,"start_s":start/1000,
+                "end_s":end/1000,"split":split(name[:3])}
+            if pitch:rr["gt_f0_hz"]=pitch
+            model_rows.append(rr)
+        model_manifest={**{k:v for k,v in manifest.items() if k!="samples"},"samples":model_rows}
+        model_path=root/"model-manifest.json"
+        model_path.write_text(json.dumps(model_manifest),encoding="utf-8")
         stats={"source":"Hillenbrand et al. (1995) vowel corpus",
                "citation":"Hillenbrand, Getty, Clark & Wheeler (1995), JASA 97:3099–3111, DOI:10.1121/1.411872",
                "archive_sha256":digest,
@@ -144,6 +162,20 @@ def main():
         print(f"Diagnostics: {q.returncode} {q.stdout.strip()} {q.stderr.strip()}",flush=True)
         if q.returncode:raise RuntimeError(f"Phase1 diagnostics failed: {q.stderr}")
         summary=json.loads(diagnostics.read_text(encoding="utf-8"))
+        # Model hypotheses are selected on unseen-by-training DEV speakers,
+        # never fitted against the 23 previously inspected test speakers.
+        dev_oracle=root/"oracle-dev.json"
+        dev_cmd=["node","vowelscope/validation/benchmark.mjs","--manifest",str(model_path),
+                 "--page","vowelscope/index.html","--split","dev","--oracle-only","--out",str(dev_oracle)]
+        dp=subprocess.run(dev_cmd,capture_output=True,text=True,timeout=90)
+        print("Development oracle:",dp.returncode,dp.stdout.strip(),dp.stderr.strip(),flush=True)
+        if dp.returncode:raise RuntimeError("Development oracle failed: "+dp.stderr)
+        models_path=Path("vowelscope/validation/public-dataset/classifier-dev-ablation.json")
+        model_cmd=["python","vowelscope/validation/classification_experiments.py",
+            "--manifest",str(model_path),"--oracle-dev",str(dev_oracle),"--out",str(models_path)]
+        mr=subprocess.run(model_cmd,capture_output=True,text=True,timeout=90)
+        print("Classification dev study:",mr.returncode,mr.stdout.strip(),mr.stderr.strip(),flush=True)
+        if mr.returncode:raise RuntimeError("Classifier experiment failed: "+mr.stderr)
         stats["phase1"]={"oracle_accuracy":summary["oracle"]["accuracy"],
             "oracle_correct":summary["oracle"]["matching_symbols"],
             "oracle_comparable":summary["oracle"]["comparable_tokens"],
