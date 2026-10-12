@@ -12,7 +12,7 @@ function parseArgs(argv) {
   const args = { mode: 'classic', split: 'test', dspVariant: 'original', page: path.resolve('vowelscope/index.html') };
   for (let i=0; i<argv.length; i++) {
     const a=argv[i];
-    if(a==='--help') { console.log('Usage: node vowelscope/validation/benchmark.mjs --manifest /path/to/manifest.json [--page vowelscope/index.html] [--mode classic|stable] [--out report.json] [--split test|train|dev|all] [--self-test] [--oracle-only] [--dsp-variant original|antialias|burg|burg_antialias|peak_prominence|peak_bandwidth|peak_tracking]'); process.exit(0); }
+    if(a==='--help') { console.log('Usage: node vowelscope/validation/benchmark.mjs --manifest /path/to/manifest.json [--page vowelscope/index.html] [--mode classic|stable] [--out report.json] [--split test|train|dev|all] [--self-test] [--oracle-only] [--dsp-variant original|antialias|burg|burg_antialias|peak_prominence|peak_bandwidth|peak_tracking|peak_guard|peak_guard_strict]'); process.exit(0); }
     if(a==='--self-test') args.selfTest=true;
     else if(a==='--oracle-only') args.oracleOnly=true;
     else if(['--manifest','--page','--mode','--out','--split','--dsp-variant'].includes(a)) args[a==='--dsp-variant'?'dspVariant':a.slice(2)]=argv[++i];
@@ -21,7 +21,7 @@ function parseArgs(argv) {
   if(!args.selfTest&&!args.manifest)fail('A --manifest file is required.');
   if(!['classic','stable'].includes(args.mode))fail('Invalid --mode.');
   if(!['test','train','dev','all'].includes(args.split))fail('Invalid --split.');
-  if(!['original','antialias','burg','burg_antialias','peak_prominence','peak_bandwidth','peak_tracking'].includes(args.dspVariant))fail('Invalid DSP experiment.');
+  if(!['original','antialias','burg','burg_antialias','peak_prominence','peak_bandwidth','peak_tracking','peak_guard','peak_guard_strict'].includes(args.dspVariant))fail('Invalid DSP experiment.');
   return args;
 }
 function loadWav(filename) {
