@@ -66,6 +66,7 @@ def main():
             samples.append({"audio_path":"audio/"+name+".wav","speaker_id":name[:3],
               "language":"en-us","vowel_ipa":IPA.get(name[-2:],name[-2:]),
               "gt_f1_hz":f1,"gt_f2_hz":f2,"gt_time_s":mid,
+              "gt_f0_hz":positive(values[2]),
               "start_s":begin/1000,"end_s":finish/1000,"split":"dev"})
         if not samples:raise RuntimeError("No DEV recordings loaded")
         manifest={"source":"Hillenbrand et al. (1995)","version":sha[:16],
@@ -77,7 +78,11 @@ def main():
           ("original_acoustic","original","acoustic"),
           ("pole14_bw700","pole14_bw700","acoustic"),
           ("pole14_bw400","pole14_bw400","acoustic"),
-          ("pole16_bw700","pole16_bw700","acoustic")
+          ("pole16_bw700","pole16_bw700","acoustic"),
+          ("pole14_fs9000_bw400","pole14_fs9000_bw400","acoustic"),
+          ("pole14_fs12000_bw400","pole14_fs12000_bw400","acoustic"),
+          ("pole14_bw400_track05","pole14_bw400_track05","acoustic"),
+          ("pole14_bw400_track12","pole14_bw400_track12","acoustic")
         ]
         reports={}
         for label,variant,measurement in designs:
@@ -103,12 +108,26 @@ def main():
           "split":"dev","speaker_disjoint_from_training":True,
           "speaker_count":len({r["speaker_id"] for r in samples}),
           "sample_count":len(samples),"shared_detection_count":len(good),
+          "experiment_stage":"Phase 3b: analysis-rate ceiling and temporal pole assignment",
           "variants":list(reports),
           "all_tokens":{k:metric(v["results"]) for k,v in reports.items()},
           "common_detected":{k:metric([m[x] for x in good]) for k,m in index.items()},
+          "approximate_computation":{k:{
+              "frames":report["summary"].get("benchmark_frames"),
+              "sum_cpu_ms":round(report["summary"].get("benchmark_cpu_ms",0),2),
+              "mean_per_frame_ms":round(report["summary"].get("benchmark_mean_frame_ms") or 0,3)}
+              for k,report in reports.items()},
+          "by_cohort":{cohort:{
+              variant:metric([r for r in reports[variant]["results"]
+                if {"m":"adult_men","w":"adult_women","b":"boys","g":"girls"}.get(r["speaker_id"][:1])==cohort])
+                for variant in reports}
+              for cohort in ("adult_men","adult_women","boys","girls")},
           "limitations":[
             "LPC pole iteration is a new experimental Durand-Kerner implementation, not the Praat Burg pipeline.",
-            "A single fixed order 14/16, 11.025kHz analysis rate and generic bandwidth thresholds do not handle all speaker anatomies.",
+            "Ceiling variants use anti-aliased resampling to 9/12 kHz and retain the app's fixed 512-sample window, creating an additional window-duration confound.",
+            "All pole variants still limit F2 to 3300 Hz; analysis rate is not equivalent to Praat's full formant-ceiling setting.",
+            "The CPU timer measures simulated Node VM processing on a hosted CI runner, not mobile browser real-time latency.",
+            "The two continuity penalties use preceding accepted frame estimates only; no ground-truth labels or future frames.",
             "Original Hillenbrand F1/F2 annotations are estimates, not error-free physical truths.",
             "Development speakers were used for earlier exploratory studies; these results are not independent validation.",
             "This is numerical WAV replay, not microphone device tests.",
