@@ -25,3 +25,9 @@ No build or package installation required. Serve this directory on localhost or 
 Files: index.html, style.css, app.js (UI/lifecycle), data.js (chart/inventories), analysis.js (DSP/WAV), recorder-worklet.js (PCM), vendor/fft.js (MIT).
 
 FFT.js source blob: c13b408614877ffbcf1f9a25b8a525f5445394ce. Source and licenses: THIRD_PARTY_NOTICES.md. No third-party model is executed. This release deliberately prioritizes transparent, editable measurements over unverified correctness judgments.
+
+## Real-speech benchmark
+
+[Validation report](https://xyavecasdf.github.io/consonantscope/validation/). Run `python scripts/run-validation.py` to fetch pinned upstream WAV/TextGrid pairs, verify hashes, test and evaluate the same production analysis.js. No Python packages or Node packages required. See validation/README.md for protocol and limitations. GitHub Actions automatically repeats evaluation on relevant source changes and provides JSON/CSV attachments. A successful CI run only means the validation pipeline worked; it does not mean the detector is accurate.
+
+First untouched tutorial test benchmark: 58 /p b/ recordings, 16 measured (27.6%), approximately 50 ms conditional VOT MAE, 2/58 within 20 ms. Current automatic suggestions are not validated as reliable; use manual inspection. Audio is not redistributed.

@@ -56,3 +56,7 @@ Automated markers are provisional. Signed VOT may be manually annotated; a fully
 STFT: 20 ms Hann window (capped at 1024 samples), next-power-of-two FFT, up to 650 displayed columns, 65 dB range relative to the strongest spectrum in that recording. Frequency shown up to min(8000 Hz, Nyquist). Time analysis: 8 kHz windowed-sinc resampling, 25 ms windows, 5 ms hop; automatic time boundaries have window/threshold uncertainty. Manual marker display resolution is 1 ms, not a claim of 1 ms accuracy.
 
 Audio remains in browser memory. Downloaded WAV/CSV files are only created on user action. No analytics, third-party runtime scripts, server upload, persistent audio storage, or synthesized speech pretending to be reference pronunciation.
+
+## Validation data (not redistributed)
+
+AutoVOT tutorialExample/test, upstream commit 7901092b870cde2d2e8a985deca9d01baffcecfc. 58 publicly provided WAV/TextGrid pairs contain manual positive VOT annotations. Exact source paths and hashes are in validation/corpus-manifest.json. The repository LICENSE is LGPL-3.0; no independent recording license was identified. Validation downloads originals from upstream and publishes derived numerical evaluation only, without copying recordings or complete annotations into this repository. Only /p b/ target words occur in this split. No native-language/speaker-generalization claim is made. The data are used only to evaluate, not to tune this algorithm.
