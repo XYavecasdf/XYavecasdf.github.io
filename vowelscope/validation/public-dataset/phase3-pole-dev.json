@@ -3,13 +3,13 @@
   "source": "Hillenbrand et al. (1995) (original researcher-authorized hosting)",
   "source_archive_sha256": "2560548591e3a726c88549b6dc9d226995616c26874d601c69fee8b9eee9d730",
   "source_version": "2560548591e3a726",
-  "source_commit": "514fc15bddf8c62baab999b7d61a9442c3212fb6",
+  "source_commit": "d872792e156c03f007403e2e2078dc5069eb0d5a",
   "split": "dev",
   "speaker_disjoint_from_training": true,
   "speaker_count": 23,
   "sample_count": 275,
   "shared_detection_count": 258,
-  "experiment_stage": "Phase 3b: analysis-rate ceiling and temporal pole assignment",
+  "experiment_stage": "Phase 3b/3c: analysis-rate ceilings, pole tracking, optimized FIR resampling",
   "variants": [
     "original_visual",
     "original_acoustic",
@@ -19,7 +19,9 @@
     "pole14_fs9000_bw400",
     "pole14_fs12000_bw400",
     "pole14_bw400_track05",
-    "pole14_bw400_track12"
+    "pole14_bw400_track12",
+    "pole14_fs12000_poly33",
+    "pole14_fs12000_poly49"
   ],
   "all_tokens": {
     "original_visual": {
@@ -129,6 +131,30 @@
       "p90_f2_hz": 560.62,
       "f2_errors_gt300_hz": 40,
       "f2_errors_gt500_hz": 30
+    },
+    "pole14_fs12000_poly33": {
+      "tokens": 275,
+      "detections": 264,
+      "coverage": 0.96,
+      "paired_acoustic_count": 264,
+      "mae_f1_hz": 31.426,
+      "mae_f2_hz": 138.495,
+      "median_f2_hz": 37.259,
+      "p90_f2_hz": 251.766,
+      "f2_errors_gt300_hz": 24,
+      "f2_errors_gt500_hz": 20
+    },
+    "pole14_fs12000_poly49": {
+      "tokens": 275,
+      "detections": 265,
+      "coverage": 0.9636,
+      "paired_acoustic_count": 265,
+      "mae_f1_hz": 35.425,
+      "mae_f2_hz": 138.396,
+      "median_f2_hz": 37.771,
+      "p90_f2_hz": 276.531,
+      "f2_errors_gt300_hz": 25,
+      "f2_errors_gt500_hz": 21
     }
   },
   "common_detected": {
@@ -239,53 +265,87 @@
       "p90_f2_hz": 611.358,
       "f2_errors_gt300_hz": 35,
       "f2_errors_gt500_hz": 27
+    },
+    "pole14_fs12000_poly33": {
+      "tokens": 258,
+      "detections": 258,
+      "coverage": 1.0,
+      "paired_acoustic_count": 258,
+      "mae_f1_hz": 31.257,
+      "mae_f2_hz": 130.092,
+      "median_f2_hz": 37.259,
+      "p90_f2_hz": 236.432,
+      "f2_errors_gt300_hz": 22,
+      "f2_errors_gt500_hz": 18
+    },
+    "pole14_fs12000_poly49": {
+      "tokens": 258,
+      "detections": 258,
+      "coverage": 1.0,
+      "paired_acoustic_count": 258,
+      "mae_f1_hz": 32.85,
+      "mae_f2_hz": 128.374,
+      "median_f2_hz": 37.589,
+      "p90_f2_hz": 250.706,
+      "f2_errors_gt300_hz": 22,
+      "f2_errors_gt500_hz": 18
     }
   },
   "approximate_computation": {
     "original_visual": {
       "frames": 1132,
-      "sum_cpu_ms": 2638.37,
-      "mean_per_frame_ms": 2.331
+      "sum_cpu_ms": 3243.07,
+      "mean_per_frame_ms": 2.865
     },
     "original_acoustic": {
       "frames": 1132,
-      "sum_cpu_ms": 2869.87,
-      "mean_per_frame_ms": 2.535
+      "sum_cpu_ms": 3245.5,
+      "mean_per_frame_ms": 2.867
     },
     "pole14_bw700": {
       "frames": 1132,
-      "sum_cpu_ms": 1394.72,
-      "mean_per_frame_ms": 1.232
+      "sum_cpu_ms": 1554.7,
+      "mean_per_frame_ms": 1.373
     },
     "pole14_bw400": {
       "frames": 1132,
-      "sum_cpu_ms": 1387.84,
-      "mean_per_frame_ms": 1.226
+      "sum_cpu_ms": 1589.73,
+      "mean_per_frame_ms": 1.404
     },
     "pole16_bw700": {
       "frames": 1132,
-      "sum_cpu_ms": 1542.19,
-      "mean_per_frame_ms": 1.362
+      "sum_cpu_ms": 1739.07,
+      "mean_per_frame_ms": 1.536
     },
     "pole14_fs9000_bw400": {
       "frames": 1132,
-      "sum_cpu_ms": 16457.55,
-      "mean_per_frame_ms": 14.538
+      "sum_cpu_ms": 23506.64,
+      "mean_per_frame_ms": 20.766
     },
     "pole14_fs12000_bw400": {
       "frames": 1132,
-      "sum_cpu_ms": 16632.78,
-      "mean_per_frame_ms": 14.693
+      "sum_cpu_ms": 23144.62,
+      "mean_per_frame_ms": 20.446
     },
     "pole14_bw400_track05": {
       "frames": 1132,
-      "sum_cpu_ms": 1347.56,
-      "mean_per_frame_ms": 1.19
+      "sum_cpu_ms": 1492.14,
+      "mean_per_frame_ms": 1.318
     },
     "pole14_bw400_track12": {
       "frames": 1132,
-      "sum_cpu_ms": 1360.92,
-      "mean_per_frame_ms": 1.202
+      "sum_cpu_ms": 1505.21,
+      "mean_per_frame_ms": 1.33
+    },
+    "pole14_fs12000_poly33": {
+      "frames": 1132,
+      "sum_cpu_ms": 11297.98,
+      "mean_per_frame_ms": 9.981
+    },
+    "pole14_fs12000_poly49": {
+      "frames": 1132,
+      "sum_cpu_ms": 15633.19,
+      "mean_per_frame_ms": 13.81
     }
   },
   "by_cohort": {
@@ -397,6 +457,30 @@
         "p90_f2_hz": 1368.82,
         "f2_errors_gt300_hz": 12,
         "f2_errors_gt500_hz": 11
+      },
+      "pole14_fs12000_poly33": {
+        "tokens": 96,
+        "detections": 94,
+        "coverage": 0.9792,
+        "paired_acoustic_count": 94,
+        "mae_f1_hz": 17.214,
+        "mae_f2_hz": 86.286,
+        "median_f2_hz": 26.705,
+        "p90_f2_hz": 105.226,
+        "f2_errors_gt300_hz": 5,
+        "f2_errors_gt500_hz": 5
+      },
+      "pole14_fs12000_poly49": {
+        "tokens": 96,
+        "detections": 94,
+        "coverage": 0.9792,
+        "paired_acoustic_count": 94,
+        "mae_f1_hz": 17.085,
+        "mae_f2_hz": 86.096,
+        "median_f2_hz": 27.226,
+        "p90_f2_hz": 108.286,
+        "f2_errors_gt300_hz": 5,
+        "f2_errors_gt500_hz": 5
       }
     },
     "adult_women": {
@@ -507,6 +591,30 @@
         "p90_f2_hz": 560.62,
         "f2_errors_gt300_hz": 14,
         "f2_errors_gt500_hz": 9
+      },
+      "pole14_fs12000_poly33": {
+        "tokens": 84,
+        "detections": 82,
+        "coverage": 0.9762,
+        "paired_acoustic_count": 82,
+        "mae_f1_hz": 41.712,
+        "mae_f2_hz": 190.126,
+        "median_f2_hz": 42.091,
+        "p90_f2_hz": 526.364,
+        "f2_errors_gt300_hz": 11,
+        "f2_errors_gt500_hz": 9
+      },
+      "pole14_fs12000_poly49": {
+        "tokens": 84,
+        "detections": 82,
+        "coverage": 0.9762,
+        "paired_acoustic_count": 82,
+        "mae_f1_hz": 43.52,
+        "mae_f2_hz": 178.916,
+        "median_f2_hz": 43.417,
+        "p90_f2_hz": 437.092,
+        "f2_errors_gt300_hz": 10,
+        "f2_errors_gt500_hz": 8
       }
     },
     "boys": {
@@ -617,6 +725,30 @@
         "p90_f2_hz": 611.358,
         "f2_errors_gt300_hz": 6,
         "f2_errors_gt500_hz": 5
+      },
+      "pole14_fs12000_poly33": {
+        "tokens": 47,
+        "detections": 45,
+        "coverage": 0.9574,
+        "paired_acoustic_count": 45,
+        "mae_f1_hz": 23.896,
+        "mae_f2_hz": 167.845,
+        "median_f2_hz": 41.971,
+        "p90_f2_hz": 187.225,
+        "f2_errors_gt300_hz": 4,
+        "f2_errors_gt500_hz": 3
+      },
+      "pole14_fs12000_poly49": {
+        "tokens": 47,
+        "detections": 45,
+        "coverage": 0.9574,
+        "paired_acoustic_count": 45,
+        "mae_f1_hz": 25.181,
+        "mae_f2_hz": 178.718,
+        "median_f2_hz": 41.5,
+        "p90_f2_hz": 372.951,
+        "f2_errors_gt300_hz": 5,
+        "f2_errors_gt500_hz": 3
       }
     },
     "girls": {
@@ -726,6 +858,30 @@
         "median_f2_hz": 51.571,
         "p90_f2_hz": 500.724,
         "f2_errors_gt300_hz": 8,
+        "f2_errors_gt500_hz": 5
+      },
+      "pole14_fs12000_poly33": {
+        "tokens": 48,
+        "detections": 43,
+        "coverage": 0.8958,
+        "paired_acoustic_count": 43,
+        "mae_f1_hz": 50.759,
+        "mae_f2_hz": 123.45,
+        "median_f2_hz": 48.876,
+        "p90_f2_hz": 274.84,
+        "f2_errors_gt300_hz": 4,
+        "f2_errors_gt500_hz": 3
+      },
+      "pole14_fs12000_poly49": {
+        "tokens": 48,
+        "detections": 44,
+        "coverage": 0.9167,
+        "paired_acoustic_count": 44,
+        "mae_f1_hz": 69.996,
+        "mae_f2_hz": 133.378,
+        "median_f2_hz": 50.346,
+        "p90_f2_hz": 501.149,
+        "f2_errors_gt300_hz": 5,
         "f2_errors_gt500_hz": 5
       }
     }
