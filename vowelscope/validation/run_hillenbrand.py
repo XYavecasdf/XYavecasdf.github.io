@@ -85,6 +85,8 @@ def main():
             row={"audio_path":"audio/"+name+".wav","speaker_id":name[:3],"language":"en-us",
                  "source":"Hillenbrand 1995","vowel_ipa":vowel,
                  "start_s":start/1000,"end_s":end/1000,"gt_time_s":middle,"split":"test"}
+            pitch=positive(fields[2])
+            if pitch is not None:row["gt_f0_hz"]=pitch
             for pos,key in [(3,"gt_f1_hz"),(4,"gt_f2_hz"),(5,"gt_f3_hz")]:
                 value=positive(fields[pos])
                 if value is not None:row[key]=value
@@ -128,6 +130,25 @@ def main():
                 "women":len({r["speaker_id"] for r in rows if r["speaker_id"][0]=="w"}),
                 "boys":len({r["speaker_id"] for r in rows if r["speaker_id"][0]=="b"}),
                 "girls":len({r["speaker_id"] for r in rows if r["speaker_id"][0]=="g"})}
+        oracle=root/"oracle.json"
+        p=subprocess.run(["node","vowelscope/validation/benchmark.mjs","--manifest",str(mf),
+                "--page","vowelscope/index.html","--split","test","--oracle-only","--out",str(oracle)],
+                capture_output=True,text=True,timeout=90)
+        print(f"Oracle: {p.returncode} {p.stdout.strip()} {p.stderr.strip()}",flush=True)
+        if p.returncode:raise RuntimeError(f"Oracle failed: {p.stderr}")
+        diagnostics=Path("vowelscope/validation/public-dataset/phase1-diagnostics.json")
+        q=subprocess.run(["python","vowelscope/validation/analyze_phase1.py",
+                  "--classic",str(root/"classic.json"),"--stable",str(root/"stable.json"),
+                  "--oracle",str(oracle),"--out",str(diagnostics)],
+                  capture_output=True,text=True,timeout=90)
+        print(f"Diagnostics: {q.returncode} {q.stdout.strip()} {q.stderr.strip()}",flush=True)
+        if q.returncode:raise RuntimeError(f"Phase1 diagnostics failed: {q.stderr}")
+        summary=json.loads(diagnostics.read_text(encoding="utf-8"))
+        stats["phase1"]={"oracle_accuracy":summary["oracle"]["accuracy"],
+            "oracle_correct":summary["oracle"]["matching_symbols"],
+            "oracle_comparable":summary["oracle"]["comparable_tokens"],
+            "f2_outliers_gt300_hz":summary["acoustic_error"]["f2_outliers_gt300_hz"],
+            "f2_outliers_gt500_hz":summary["acoustic_error"]["f2_outliers_gt500_hz"]}
         raw_classic={x["audio_path"]:x for x in all_reports["classic"]["results"]}
         raw_stable={x["audio_path"]:x for x in all_reports["stable"]["results"]}
         common=[]
