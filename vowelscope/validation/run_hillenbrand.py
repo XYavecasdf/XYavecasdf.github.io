@@ -110,6 +110,7 @@ def main():
                "noncomparables":"er/ɝ, ei/eɪ, oa/oʊ included for acoustics but excluded from exact single-IPA-label accuracy",
                "note":"Estimates from the current browser-source LPC, replayed offline into a mock WebAudio buffer; not real-device microphone accuracy",
                "modes":{}}
+        all_reports={}
         for mode in ("classic","stable"):
             dest=root/(mode+".json")
             cmd=["node","vowelscope/validation/benchmark.mjs","--manifest",str(mf),
@@ -118,6 +119,7 @@ def main():
             print(f"Benchmark {mode}: {p.returncode} {p.stdout.strip()} {p.stderr.strip()}",flush=True)
             if p.returncode!=0:raise RuntimeError(f"Benchmark {mode} failed: {p.stderr}")
             report=json.loads(dest.read_text(encoding="utf8"))
+            all_reports[mode]=report
             summ=report["summary"]
             stats["modes"][mode]={k:v for k,v in summ.items() if k not in ("by_speaker","confusion")}
             stats["modes"][mode]["confusion"]=summ["confusion"]
@@ -126,6 +128,22 @@ def main():
                 "women":len({r["speaker_id"] for r in rows if r["speaker_id"][0]=="w"}),
                 "boys":len({r["speaker_id"] for r in rows if r["speaker_id"][0]=="b"}),
                 "girls":len({r["speaker_id"] for r in rows if r["speaker_id"][0]=="g"})}
+        raw_classic={x["audio_path"]:x for x in all_reports["classic"]["results"]}
+        raw_stable={x["audio_path"]:x for x in all_reports["stable"]["results"]}
+        common=[]
+        for key,first in raw_classic.items():
+            second=raw_stable.get(key)
+            if second and all(first["error"].get(q) is not None and second["error"].get(q) is not None
+                for q in ("f1_abs_hz","f2_abs_hz")):
+                common.append((first,second))
+        stats["paired_classic_vs_stable"]={
+            "common_acoustic_pairs":len(common),
+            "classic_mean_f1_error_hz":sum(a["error"]["f1_abs_hz"] for a,b in common)/len(common) if common else None,
+            "stable_mean_f1_error_hz":sum(b["error"]["f1_abs_hz"] for a,b in common)/len(common) if common else None,
+            "classic_mean_f2_error_hz":sum(a["error"]["f2_abs_hz"] for a,b in common)/len(common) if common else None,
+            "stable_mean_f2_error_hz":sum(b["error"]["f2_abs_hz"] for a,b in common)/len(common) if common else None,
+            "warning":"Within-run comparison on the same detected tokens; excludes mode abstentions."
+        }
         stats["execution_status"]="complete"
         stats["evaluation_source_commit"]=os.environ.get("GITHUB_SHA","unknown")
         baseline=Path("vowelscope/validation/public-dataset/hillenbrand-baseline.json")
