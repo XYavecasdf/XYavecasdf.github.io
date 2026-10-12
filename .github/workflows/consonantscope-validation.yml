@@ -31,8 +31,8 @@ jobs:
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: '22'
-      - name: Fetch pinned corpus, test and evaluate
-        run: python3 scripts/run-validation.py --output "$RUNNER_TEMP/consonantscope-report"
+      - name: Fetch pinned data/models, test, compile and compare
+        run: python3 scripts/run-autovot-comparison.py --output "$RUNNER_TEMP/consonantscope-report"
       - name: Publish report as run attachment
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
@@ -40,5 +40,7 @@ jobs:
           path: |
             ${{ runner.temp }}/consonantscope-report/results.json
             ${{ runner.temp }}/consonantscope-report/results.csv
+            ${{ runner.temp }}/consonantscope-report/autovot-comparison.json
+            ${{ runner.temp }}/consonantscope-report/autovot-comparison.csv
           if-no-files-found: error
           retention-days: 30

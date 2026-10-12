@@ -15,3 +15,13 @@ Three conditions are the same 58 files: original, amplitude x0.25, deterministic
 Recorded audio and complete TextGrid files are not redistributed. Upstream repo license is LGPL-3.0; no separate recording license identified. Scripts retrieve publicly supplied tutorial files from their pinned upstream location. Public outputs contain computed results and file identifiers.
 
 GitHub Actions reruns tests and evaluation when relevant code changes or on workflow_dispatch. It uploads JSON/CSV as a run artifact. It does not auto-commit a fresh public report; reviewed report snapshots are published explicitly.
+
+## AutoVOT native model comparison
+
+`python3 scripts/run-autovot-comparison.py` performs hash-verified corpus/source/model fetch, all tests, unchanged C++ inference build and two protocols. Python 3, Node.js and g++ are required; no pip/npm dependencies. `--data` and `--source` reuse external caches, `--output` selects the report destination. Original audio and upstream source/model binaries stay outside the site repository.
+
+Primary input is the exact original PCM16 crop used by analysis.js. Diagnostic input is the original whole waveform with the same target window. Neither reads manual VOT during inference. No training, test-set tuning or additional filtering is performed. Frontend input end is floored to an integer millisecond (<1 ms change); frame indices follow upstream wrapper convention without a 2.5 ms center adjustment.
+
+BB uses bb_jasa.classifier.pos. Legacy PGWords weights use nattalia_jasa.classifier, copied byte-identically to .pos; the loader-required all-zero BB negative companion is ignored by positive-only decoding. Constraints are 15–250 ms positive VOT and default maximum onset 150 ms. Structured margin scores are not calibrated probabilities. The native decoder has no tested rejection rule: 58/58 outputs do not imply 100% detection.
+
+Reports include all-case <=20 ms success and matched errors on the same 16 cases measured by the heuristic. Exact upstream training lists are absent; possible tutorial/PGWords source overlap prevents an independent generalization claim. These weights are not used by the live browser analyzer. Hash-pinned source manifest: autovot-source-manifest.json. Site: comparison.html. Derived report: autovot-comparison.json/csv.

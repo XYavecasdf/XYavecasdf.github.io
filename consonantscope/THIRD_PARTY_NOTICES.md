@@ -49,7 +49,7 @@ Inventories are pedagogical conventions, not exhaustive descriptions of every di
 
 ## What the implementation actually measures
 
-ConsonantScope's own browser heuristic uses short-time energy, normalized autocorrelation and spectral noise information to suggest positive-VOT boundaries in controlled stop-vowel recordings. FFT.js supplies spectral computation. No AutoVOT, Dr.VOT or wav2VOT model weights are downloaded or executed. No published error rate from those systems applies to this heuristic.
+ConsonantScope's own browser heuristic uses short-time energy, normalized autocorrelation and spectral noise information to suggest positive-VOT boundaries in controlled stop-vowel recordings. FFT.js supplies spectral computation. No AutoVOT, Dr.VOT or wav2VOT weights are executed by the browser. The separate offline comparison downloads and runs AutoVOT as described below. No published error rate from those systems applies to this heuristic.
 
 Automated markers are provisional. Signed VOT may be manually annotated; a fully voiced intervocalic stop requires defining onset within closure rather than treating continuous voicing as a fresh post-burst event. Closure starts are manually set and only reported for VCV. A release burst must be identifiable to interpret VOT. Values are not articulation estimates, phoneme recognition or pronunciation scores. Synthetic examples are artificial test signals, never native-speaker reference recordings.
 
@@ -60,3 +60,8 @@ Audio remains in browser memory. Downloaded WAV/CSV files are only created on us
 ## Validation data (not redistributed)
 
 AutoVOT tutorialExample/test, upstream commit 7901092b870cde2d2e8a985deca9d01baffcecfc. 58 publicly provided WAV/TextGrid pairs contain manual positive VOT annotations. Exact source paths and hashes are in validation/corpus-manifest.json. The repository LICENSE is LGPL-3.0; no independent recording license was identified. Validation downloads originals from upstream and publishes derived numerical evaluation only, without copying recordings or complete annotations into this repository. Only /p b/ target words occur in this split. No native-language/speaker-generalization claim is made. The data are used only to evaluate, not to tune this algorithm.
+
+
+## Offline AutoVOT inference (not bundled into browser)
+
+Comparison scripts fetch hash-pinned, unchanged AutoVOT native sources and pretrained BB/PGWords weights from mlml/autovot at commit 7901092b870cde2d2e8a985deca9d01baffcecfc into an external temporary/cache directory. Source/model copies and compiled binaries are not redistributed here. Upstream license is LGPL-3.0, including the fetched LICENSE; detailed source hashes appear in validation/autovot-source-manifest.json. The browser remains the original heuristic. No accuracy claims from the AutoVOT paper are transferred to this deployment. Training-item overlap with the tutorial test recordings has not been established.
