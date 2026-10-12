@@ -1,0 +1,89 @@
+{
+  "kind": "research_dev_dsp_ablation",
+  "dataset_version": "2560548591e3a726",
+  "source": "Hillenbrand et al. (1995)",
+  "note": "Same production VowelScope estimator with offline experimental preprocess and/or Burg AR substitution; no changes deployed on the live website.",
+  "development_only": true,
+  "metrics": {
+    "original": {
+      "n": 275,
+      "detected": 263,
+      "coverage": 0.9564,
+      "acoustic_pairs": 263,
+      "mean_f1_abs_hz": 78.91,
+      "mean_f2_abs_hz": 212.54,
+      "median_f2_abs_hz": 80,
+      "p90_f2_abs_hz": 582.5,
+      "f2_gt300": 46,
+      "f2_gt500": 31
+    },
+    "antialias": {
+      "n": 275,
+      "detected": 265,
+      "coverage": 0.9636,
+      "acoustic_pairs": 265,
+      "mean_f1_abs_hz": 74.25,
+      "mean_f2_abs_hz": 214.87,
+      "median_f2_abs_hz": 77.14,
+      "p90_f2_abs_hz": 638.28,
+      "f2_gt300": 43,
+      "f2_gt500": 32
+    },
+    "burg": {
+      "n": 275,
+      "detected": 263,
+      "coverage": 0.9564,
+      "acoustic_pairs": 263,
+      "mean_f1_abs_hz": 78.95,
+      "mean_f2_abs_hz": 212.05,
+      "median_f2_abs_hz": 80.06,
+      "p90_f2_abs_hz": 582.5,
+      "f2_gt300": 45,
+      "f2_gt500": 31
+    },
+    "burg_antialias": {
+      "n": 275,
+      "detected": 266,
+      "coverage": 0.9673,
+      "acoustic_pairs": 266,
+      "mean_f1_abs_hz": 75.89,
+      "mean_f2_abs_hz": 224.83,
+      "median_f2_abs_hz": 81,
+      "p90_f2_abs_hz": 786,
+      "f2_gt300": 43,
+      "f2_gt500": 33
+    }
+  },
+  "common_detection_comparison": {
+    "original": {
+      "n": 261,
+      "mae_f1_hz": 77.54,
+      "mae_f2_hz": 213.95,
+      "p90_f2_hz": 582.5
+    },
+    "antialias": {
+      "n": 261,
+      "mae_f1_hz": 72.82,
+      "mae_f2_hz": 208.95,
+      "p90_f2_hz": 592.86
+    },
+    "burg": {
+      "n": 261,
+      "mae_f1_hz": 77.57,
+      "mae_f2_hz": 213.46,
+      "p90_f2_hz": 582.5
+    },
+    "burg_antialias": {
+      "n": 261,
+      "mae_f1_hz": 73.93,
+      "mae_f2_hz": 219.56,
+      "p90_f2_hz": 747
+    }
+  },
+  "limitations": [
+    "The Burg substitute uses the existing production spectral peak picker; it does not replicate Praat end-to-end.",
+    "Experimental FIR low-pass uses a short 33-tap window; its transition band and real-device latency need independent validation.",
+    "F1/F2 corpus annotations and analysis time window create measurement uncertainty.",
+    "Relative differences on this development set are hypotheses, not evidence of generalization to unseen speakers or mobile devices."
+  ]
+}
