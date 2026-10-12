@@ -408,9 +408,18 @@
       state.pendingJump=null;
       return candidate;
     }
-    function clearOldVowel(now,description){
-      if(now-state.lastAccepted>430){
-        resetReading();state.firstCandidate=null;state.pendingJump=null;
+    function clearOldVowel(now,description,preserveCandidate=false){
+      // A candidate awaiting its second frame is not an expired vowel.
+      // Only expire a reading after at least one frame was accepted.
+      if(state.lastAccepted>0&&now-state.lastAccepted>430){
+        resetReading();
+        state.lastAccepted=0;
+      }
+      // While confirming a new vowel or real transition, retain the
+      // provisional frame; silence and unvoiced sounds do clear it.
+      if(!preserveCandidate){
+        state.firstCandidate=null;
+        state.pendingJump=null;
       }
       if(description)$('micDetail').textContent=description;
     }
@@ -446,7 +455,7 @@
       }
       const accepted=acceptFormants(candidate,now);
       if(!accepted){
-        clearOldVowel(now,'正在确认元音位置 · 已抑制单帧跳点');
+        clearOldVowel(now,'正在确认元音位置 · 已抑制单帧跳点',true);
         return;
       }
       if(state.formants){
