@@ -12,7 +12,8 @@ const script=source.match(/<script>([\s\S]*?)<\/script>/)?.[1];
 assert.ok(script,'Production inline JS missing');
 const variants=[
   'pole14_fs9000_bw400','pole14_fs12000_bw400',
-  'pole14_bw400_track05','pole14_bw400_track12'
+  'pole14_bw400_track05','pole14_bw400_track12',
+  'pole14_fs12000_poly33','pole14_fs12000_poly49'
 ];
 for(const variant of variants){
   assert.equal(dspExperimentPatch(variant),ceilingTrackingPatch(variant),
