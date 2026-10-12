@@ -9,13 +9,13 @@ import {dspExperimentPatch} from './dsp_variants.mjs';
 
 function fail(message) { throw Error(message); }
 function parseArgs(argv) {
-  const args = { mode: 'classic', split: 'test', dspVariant: 'original', smoothing: 'default', page: path.resolve('vowelscope/index.html') };
+  const args = { mode: 'classic', split: 'test', dspVariant: 'original', smoothing: 'default', measurement: 'visual', page: path.resolve('vowelscope/index.html') };
   for (let i=0; i<argv.length; i++) {
     const a=argv[i];
-    if(a==='--help') { console.log('Usage: node vowelscope/validation/benchmark.mjs --manifest /path/to/manifest.json [--page vowelscope/index.html] [--mode classic|stable] [--out report.json] [--split test|train|dev|all] [--self-test] [--oracle-only] [--dsp-variant original|antialias|burg|burg_antialias|peak_prominence|peak_bandwidth|peak_tracking|peak_guard|peak_guard_strict|median3|median5] [--smoothing default|fast|none]'); process.exit(0); }
+    if(a==='--help') { console.log('Usage: node vowelscope/validation/benchmark.mjs --manifest /path/to/manifest.json [--page vowelscope/index.html] [--mode classic|stable] [--out report.json] [--split test|train|dev|all] [--self-test] [--oracle-only] [--dsp-variant original|antialias|burg|burg_antialias|peak_prominence|peak_bandwidth|peak_tracking|peak_guard|peak_guard_strict|median3|median5] [--smoothing default|fast|none] [--measurement visual|acoustic]'); process.exit(0); }
     if(a==='--self-test') args.selfTest=true;
     else if(a==='--oracle-only') args.oracleOnly=true;
-    else if(['--manifest','--page','--mode','--out','--split','--dsp-variant','--smoothing'].includes(a)) args[a==='--dsp-variant'?'dspVariant':a.slice(2)]=argv[++i];
+    else if(['--manifest','--page','--mode','--out','--split','--dsp-variant','--smoothing','--measurement'].includes(a)) args[a==='--dsp-variant'?'dspVariant':a.slice(2)]=argv[++i];
     else fail('Unknown argument: '+a);
   }
   if(!args.selfTest&&!args.manifest)fail('A --manifest file is required.');
@@ -23,6 +23,7 @@ function parseArgs(argv) {
   if(!['test','train','dev','all'].includes(args.split))fail('Invalid --split.');
   if(!['original','antialias','burg','burg_antialias','peak_prominence','peak_bandwidth','peak_tracking','peak_guard','peak_guard_strict','median3','median5'].includes(args.dspVariant))fail('Invalid DSP experiment.');
   if(!['default','fast','none'].includes(args.smoothing))fail('Invalid smoothing experiment.');
+  if(!['visual','acoustic'].includes(args.measurement))fail('Measurement must be visual or acoustic.');
   return args;
 }
 function loadWav(filename) {
@@ -84,7 +85,7 @@ function safeAudioPath(root,relative) {
   if(!full.startsWith(base+path.sep))fail('Audio path escapes dataset root: '+relative);
   return full;
 }
-function analyzeRow(row,manifestDir,mode,page,variant='original',smoothing='default') {
+function analyzeRow(row,manifestDir,mode,page,variant='original',smoothing='default',measurement='visual') {
   const audioFile=safeAudioPath(manifestDir,row.audio_path);
   const wav=loadWav(audioFile);
   const t0=Number(row.start_s),t1=Number(row.end_s);
@@ -118,7 +119,7 @@ function analyzeRow(row,manifestDir,mode,page,variant='original',smoothing='defa
     currentT=t;
     const previous=api.state.sampleCount;
     api.processAudio(1000+Math.round(t*1000));
-    const f=api.state.formants;
+    const f=measurement==='acoustic'?api.state.acousticFormants:api.state.formants;
     if(t>=collectStart-1e-6&&f&&api.state.sampleCount>previous){
       frames.push({f1:f.f1,f2:f.f2,f3:f.f3,ipa:nodes.get('ipaSymbol')?.textContent||''});
     }
@@ -226,11 +227,11 @@ function main(){
   }
   const results=[];
   for(const row of selected){
-    try{results.push(analyzeRow(row,path.dirname(mf),args.mode,page,args.dspVariant,args.smoothing));}
+    try{results.push(analyzeRow(row,path.dirname(mf),args.mode,page,args.dspVariant,args.smoothing,args.measurement));}
     catch(e){fail('Failed on '+(row.audio_path||'?')+': '+e.message);}
   }
   const report={schema_version:1,source:manifest.source||'unspecified',dataset_version:manifest.version||'unspecified',
-    checked_at:new Date().toISOString(),source_html:path.relative(process.cwd(),page),split:args.split,dsp_variant:args.dspVariant,smoothing:args.smoothing,summary:summarize(results,args.mode),results};
+    checked_at:new Date().toISOString(),source_html:path.relative(process.cwd(),page),split:args.split,dsp_variant:args.dspVariant,smoothing:args.smoothing,measurement:args.measurement,summary:summarize(results,args.mode),results};
   const content=JSON.stringify(report,null,2);
   if(args.out){fs.mkdirSync(path.dirname(path.resolve(args.out)),{recursive:true});fs.writeFileSync(args.out,content+'\n');}
   else console.log(content);
