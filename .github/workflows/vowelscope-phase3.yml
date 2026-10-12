@@ -7,6 +7,7 @@ on:
       - "vowelscope/validation/run_phase3_poles.py"
       - "vowelscope/validation/lpc_poles.mjs"
       - "vowelscope/validation/pole_ceiling_tracking.mjs"
+      - "vowelscope/validation/fast_resample.mjs"
       - "vowelscope/validation/dsp_variants.mjs"
       - "vowelscope/validation/benchmark.mjs"
       - "vowelscope/validation/test_phase3.mjs"
@@ -41,6 +42,7 @@ jobs:
           node --check vowelscope/validation/lpc_poles.mjs
           node --check vowelscope/validation/test_phase3.mjs
           node --check vowelscope/validation/pole_ceiling_tracking.mjs
+          node --check vowelscope/validation/fast_resample.mjs
           node --check vowelscope/validation/test_phase3b.mjs
           python -m py_compile vowelscope/validation/run_phase3_poles.py
           node vowelscope/validation/test_phase3.mjs
