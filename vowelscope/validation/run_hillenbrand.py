@@ -67,7 +67,7 @@ def main():
                         if split(name[:3])!="test":continue
                         target=root/"audio"/filename
                         if target.exists():raise ValueError("Duplicate WAV: "+filename)
-                        with target.open("wb") as target_file,target_file:
+                        with target.open("wb") as target_file:
                             target_file.write(inner.read(member))
                         audio_count+=1
         rows=[];missing=0
@@ -127,7 +127,27 @@ def main():
                 "boys":len({r["speaker_id"] for r in rows if r["speaker_id"][0]=="b"}),
                 "girls":len({r["speaker_id"] for r in rows if r["speaker_id"][0]=="g"})}
         stats["execution_status"]="complete"
-        output=Path("vowelscope/validation/public-dataset/hillenbrand-baseline.json")
+        stats["evaluation_source_commit"]=os.environ.get("GITHUB_SHA","unknown")
+        baseline=Path("vowelscope/validation/public-dataset/hillenbrand-baseline.json")
+        if baseline.is_file():
+            old=json.loads(baseline.read_text(encoding="utf-8"))
+            changes={}
+            if (old.get("archive_sha256")==digest and
+                old.get("selected_heldout_tokens")==len(rows)):
+                for mode in ("classic","stable"):
+                    baseline_stats=old["modes"][mode]
+                    latest=stats["modes"][mode]
+                    changes[mode]={
+                        "coverage_delta_pp":round(100*(latest["coverage"]-baseline_stats["coverage"]),2),
+                        "f1_mae_delta_hz":round(latest["mae_f1_hz"]-baseline_stats["mae_f1_hz"],2),
+                        "f2_mae_delta_hz":round(latest["mae_f2_hz"]-baseline_stats["mae_f2_hz"],2),
+                        "top1_delta_pp":round(100*(latest["top1_on_all_labeled"]-baseline_stats["top1_on_all_labeled"]),2),
+                        "pair_count_delta":latest["acoustic_pairs"]-baseline_stats["acoustic_pairs"]
+                    }
+                stats["changes_from_initial_baseline"]=changes
+                stats["comparison_caveat"]="MAE samples can differ across versions; paired report comparison is preferable for strict regression tests."
+            else:stats["comparison_warning"]="Initial baseline dataset digest or split differs; delta comparison omitted."
+        output=Path("vowelscope/validation/public-dataset/hillenbrand-latest.json")
         output.parent.mkdir(exist_ok=True,parents=True)
         output.write_text(json.dumps(stats,indent=2,ensure_ascii=False)+"\n",encoding="utf-8")
         print("Completed Hillenbrand baseline. Report: "+str(output),flush=True)
