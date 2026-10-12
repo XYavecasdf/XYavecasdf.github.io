@@ -85,7 +85,7 @@
     input[type=range]{width:100%;accent-color:#2d8071;height:4px;cursor:pointer}
     .help-text{font-size:11px;color:#91a09b;line-height:1.6;margin-top:9px}
     .target-panel{padding:20px 22px}
-    .target-buttons{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+    .target-buttons{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px;max-height:235px;overflow:auto;padding-bottom:3px}
     .target{background:#f7faf8;border:1px solid #e5ece7;border-radius:9px;min-width:38px;padding:7px 10px;color:#53746d;font-family:"Charis SIL","Noto Sans", "Times New Roman",serif;font-size:19px}
     .target.active{background:#dceee6;border-color:#8fc1a8;color:#155849}
     .target-explanation{font-size:11px;color:#879891;margin:12px 0 0;line-height:1.6}
@@ -156,13 +156,13 @@
           </div>
         </div>
                 <div class="chart-wrap"><canvas id="vowelChart" width="1000" height="750" role="img" aria-label="F1 F2 vowel chart; horizontal F2 decreases to the right and vertical F1 increases downward"></canvas><div class="chart-placeholder" id="placeholder"><strong>准备好听你的声音</strong><small>请点击右侧「开启麦克风」</small></div></div>
-        <div class="chart-caption"><div class="chart-legend"><span><i class="swatch" style="background:#9bb1a6"></i>全部参考元音</span><span><i class="swatch" style="background:#217d62"></i>基准 A</span><span><i class="swatch" style="background:#3475c5"></i>基准 B</span><span><i class="swatch" style="background:#e18b62"></i>你的发音</span><span><i class="swatch" style="background:#98c6b2"></i>运动轨迹</span></div><div>横轴 F2：前 ↔ 后　｜　纵轴 F1：闭 ↔ 开</div></div>
+        <div class="chart-caption"><div class="chart-legend"><span><i class="swatch" style="background:#9bb1a6"></i>全部 28 个 IPA 元音</span><span><i class="swatch" style="background:#217d62"></i>基准 A</span><span><i class="swatch" style="background:#3475c5"></i>基准 B</span><span><i class="swatch" style="background:#e18b62"></i>你的发音</span><span><i class="swatch" style="background:#98c6b2"></i>运动轨迹</span></div><div>横轴 F2：前 ↔ 后　｜　纵轴 F1：闭 ↔ 开</div></div>
         <div class="profile-explainer" aria-live="polite">
           <div class="profile-topline"><strong id="profileName">语言元音对照</strong><span id="profileCount"></span></div>
           <p id="profileDescription">绿色和蓝色分别是 A、B 基准；共同元音显示双色圈。相同 IPA 符号不表示两种语言的精确发音完全一致。</p>
           <div class="compare-results">
             <div class="compare-column a"><div class="compare-caption">仅 A <span id="onlyACount"></span></div><div class="profile-inventory" id="onlyAInventory"></div></div>
-            <div class="compare-column shared"><div class="compare-caption">共同 <span id="sharedCount"></span></div><div class="profile-inventory" id="sharedInventory"></div></div>
+            <div class="compare-column shared"><div class="compare-caption">同 IPA 记号 <span id="sharedCount"></span></div><div class="profile-inventory" id="sharedInventory"></div></div>
             <div class="compare-column b"><div class="compare-caption">仅 B <span id="onlyBCount"></span></div><div class="profile-inventory" id="onlyBInventory"></div></div>
           </div>
           <p class="profile-extras" id="profileExtras"></p>
@@ -178,7 +178,7 @@
           <div role="alert" aria-live="polite" class="error" id="error"></div>
         </div>
         <div class="panel detected-panel">
-          <div class="panel-head" style="margin:0"><h3 class="panel-title">当前元音</h3><span class="subtle">ESTIMATED IPA</span></div>
+          <div class="panel-head" style="margin:0"><h3 class="panel-title">最近参考元音</h3><span class="subtle">ESTIMATED IPA</span></div>
           <div class="reading"><div class="ipa-symbol" id="ipaSymbol">—</div><div class="reading-info"><strong id="ipaName">等待发音</strong><span id="ipaHint">保持一个稳定、响亮的元音约 1 秒</span></div></div>
           <div class="metric-grid"><div class="metric"><span>F1</span><strong id="f1">—</strong></div><div class="metric"><span>F2</span><strong id="f2">—</strong></div><div class="metric"><span>F3</span><strong id="f3">—</strong></div></div>
           <p class="help-text">单位：Hz。IPA 是基于 F1/F2 的近似匹配；选择语言仅改变图上高亮，不改变识别算法或构成口音评分。</p>
@@ -202,7 +202,7 @@
         </div>
       </aside>
     </main>
-    <div class="notes"><div class="icon">ⓘ</div><div><strong>实验说明</strong><p>这是个人学习用声学演示：使用 LPC 估计语音的共振峰；可选的实验防抖模式会先尝试过滤部分辅音噪声，再在 IPA 元音空间中绘图。语言选择只高亮常见元音类别，并非更换语言专属的实测 F1/F2 位置或识别模型。标准元音参考位置是近似值，会随语言、个体、声道长度和发音环境变化。声道或舌头的实际形状不能仅凭这些读数唯一反推。请优先试发 /i/（衣）、/a/（啊）、/u/（乌），并持续发音而不是说完整句子。</p></div></div>
+    <div class="notes"><div class="icon">ⓘ</div><div><strong>实验说明</strong><p>这是个人学习用声学演示：利用 LPC 估计共振峰并显示最近的示意参考元音，不是已验证的音素识别；可选的实验防抖模式会先尝试过滤部分辅音噪声，再在 IPA 元音空间中绘图。语言选择只高亮常见元音类别，并非更换语言专属的实测 F1/F2 位置或识别模型。标准元音参考位置是近似值，会随语言、个体、声道长度和发音环境变化。声道或舌头的实际形状不能仅凭这些读数唯一反推。请优先试发 /i/（衣）、/a/（啊）、/u/（乌），并持续发音而不是说完整句子。</p><p class="reference-links">语音学参考：<a href="https://www.internationalphoneticassociation.org/content/ipa-vowels" target="_blank" rel="noopener noreferrer">国际语音学会 IPA 元音图</a> · <a href="https://corpus.eduhk.hk/mandarin_pronunciation/?page_id=36" target="_blank" rel="noopener noreferrer">香港教育大学粤语音系</a> · <a href="https://talcomosuena.spanish.ufl.edu/module2/4" target="_blank" rel="noopener noreferrer">佛罗里达大学西语元音</a> · <a href="https://www.englishspeechservices.com/blog/smoothing-then-and-now/" target="_blank" rel="noopener noreferrer">英式英语向心双元音变化</a>。</p></div></div>
     <footer class="footer"><span>VowelScope · Local-only experimental phonetics dashboard</span><span>Web Audio API · LPC / Autocorrelation · No external libraries</span></footer>
   </div>
   <script>
@@ -219,36 +219,42 @@
       {symbol:'ʌ',f1:640,f2:1170,name:'半开后不圆唇元音'},{symbol:'ɔ',f1:600,f2:900,name:'半开后圆唇元音'},
       {symbol:'æ',f1:700,f2:1790,name:'次开前不圆唇元音'},{symbol:'ɐ',f1:700,f2:1430,name:'次开央元音'},
       {symbol:'a',f1:810,f2:1680,name:'开前不圆唇元音'},{symbol:'ɑ',f1:810,f2:1150,name:'开后不圆唇元音'},
-      {symbol:'ɒ',f1:810,f2:920,name:'开后圆唇元音'}
+      {symbol:'ɒ',f1:810,f2:920,name:'开后圆唇元音'},
+      {symbol:'ʉ',f1:310,f2:1420,name:'闭央圆唇元音'},
+      {symbol:'ʏ',f1:425,f2:1760,name:'次闭次前圆唇元音'},
+      {symbol:'ɘ',f1:430,f2:1660,name:'半闭央不圆唇元音'},
+      {symbol:'ɞ',f1:605,f2:1280,name:'半开央圆唇元音'},
+      {symbol:'ɶ',f1:800,f2:1590,name:'开前圆唇元音'}
     ];
     // Inventory overlays are phonological teaching approximations, not measured dialect-specific F1/F2 standards.
     // Diphthongs, rhotic vowels and Mandarin apical vowels cannot be represented reliably by one static F1/F2 point.
     const PROFILES = [
-      {id:'none',label:'不高亮',name:'无高亮',vowels:[],optional:[],notation:{},
-        description:'显示所有内置 IPA 参考元音。切换基准只改变元音图的高亮，不会更改麦克风分析与最近音质估计。',
-        extras:'提示：参考点是近似的 F1/F2 示意位置，不是语言、年龄或性别校准后的声学实测值。'},
+      {id:'none',label:'不高亮',name:'不高亮',vowels:[],optional:[],notation:{},
+        description:'始终显示全部 28 个 IPA 基本元音参考符号；语言选择只改变颜色高亮，不改变声音识别。',
+        extras:'参考 F1/F2 坐标仅为示意，不是某一语言或说话人实测的标准。'},
       {id:'en-us',label:'美式英语',name:'General American · 通用美式英语',
         vowels:['i','ɪ','ɛ','æ','ʌ','ə','ɑ','ʊ','u'],optional:['ɔ'],notation:{},
-        description:'显示通用美式英语的主要单元音音质。/ɔ/ 是否独立，取决于 cot–caught merger；各地口音仍有差异。',
-        extras:'未作为固定点绘制：双元音 /eɪ, oʊ, aɪ, aʊ, ɔɪ/；卷舌元音 /ɝ, ɚ/。'},
-      {id:'en-gb',label:'英式英语',name:'Standard Southern British · 标准南部英式英语',
+        description:'常见通用美式英语单元音音质的宽式转写。/ɔ/ 是否单独对立，取决于 cot–caught merger；口音存在差异。',
+        extras:'未绘制为固定点：双元音 /eɪ, oʊ, aɪ, aʊ, ɔɪ/ 与卷舌元音 /ɝ, ɚ/。美式 DRESS /ɛ/ 和英式 /e/ 也可能只是宽式转写惯例不同，并不一定是不同音位。'},
+      {id:'en-gb',label:'英式英语',name:'British English · 传统 RP 转写基准',
         vowels:['i','ɪ','e','æ','ɑ','ɒ','ɔ','ʊ','u','ʌ','ɜ','ə'],optional:[],
         notation:{i:'iː',ɑ:'ɑː',ɔ:'ɔː',u:'uː',ɜ:'ɜː'},
-        description:'采用常见英式英语（传统 RP / 标准南部英式英语）教学式音系。长音的 ː 表示时长对立；此图没有显示长度维度。',
-        extras:'未作为固定点绘制：双元音 /eɪ, əʊ, aɪ, aʊ, ɔɪ/；现代英式音值可能不同于传统 RP。'},
-      {id:'zh-cmn',label:'普通话',name:'Standard Mandarin · 现代标准汉语普通话',
+        description:'采用传统 RP 风格的教学用宽式转写；现代标准南部英式英语的实际元音实现未必相同。IPA 长音符号 ː 不代表此图能测量时长。',
+        extras:'合口双元音 /eɪ, əʊ, aɪ, aʊ, ɔɪ/；传统向心双元音 /ɪə, eə~ɛə, ʊə/ 在现代部分口音中已出现单元音化、合并或其他变体，不能视为人人保留。'},
+      {id:'zh-cmn',label:'普通话',name:'Standard Mandarin · 现代标准普通话',
         vowels:['i','y','u','ɤ','ə','a'],optional:[],notation:{},
-        description:'展示普通话主要元音音质的教学式概括，如「衣」[i]、「鱼」[y]、「乌」[u]、「饿」[ɤ]。元音音位数量有多种学术分析。',
-        extras:'未单独绘制：拼音 zi/ci/si 与 zhi/chi/shi/ri 的舌尖性韵核、复合韵母中的滑音与条件变体。'},
-      {id:'yue-hk',label:'粤语',name:'Hong Kong Cantonese · 香港粤语',
-        vowels:['i','y','u','e','ɛ','ɵ','œ','o','ɔ','ɐ','a'],optional:[],
+        description:'展示普通话部分主要元音音质，并非唯一的音位分析。如「衣」[i]、「鱼」[y]、「乌」[u]、「饿」[ɤ]。条件变体和音位分析存在分歧。',
+        extras:'未单独绘制：拼音 zi/ci/si、zhi/chi/shi/ri 中的舌尖性韵核、复合韵母滑音和条件音变。'},
+      {id:'yue-hk',label:'粤语',name:'Hong Kong Cantonese · 7 长＋4 短音质',
+        vowels:['i','y','u','ɛ','œ','ɔ','a','ɪ','ɵ','ʊ','ɐ'],optional:[],
         notation:{i:'iː',y:'yː',u:'uː',ɛ:'ɛː',œ:'œː',ɔ:'ɔː',a:'aː'},
-        description:'展示香港粤语声韵母分析中主要的 11 类元音音质；其中 /e, o, ɵ/ 等常受韵尾环境限制，并不都是自由出现的独立单元音。',
-        extras:'例如「沙」/saː/ 与「失」/sɐt/ 的 /aː/、/ɐ/ 对立。双元音及 /m̩, ŋ̍/ 等成音节鼻音不以固定点绘制。'},
+        description:'采用以 Zee (1999) 为基础、由香港教育大学整理的 11 类单元音音质：7 类较长 [i, y, ɛ, œ, a, ɔ, u] 与 4 类较短 [ɐ, ɪ, ɵ, ʊ]。不等于有 11 个彼此独立的元音音位。',
+        extras:'[ɪ]、[ɵ]、[ʊ] 常分析为 /i/、/œ/、/u/ 在特定韵尾环境下的音位变体；不同分析亦可能使用 [e]、[o] 等符号。双元音及成音节鼻音不绘制为固定点。'},
       {id:'es-es',label:'西班牙西语',name:'Español peninsular · 西班牙本土西语',
         vowels:['i','e','a','o','u'],optional:[],notation:{},
-        description:'西班牙本土标准西语（castellano）通常分析为五个元音音位 /i e a o u/；图上仅高亮五个基本元音音质。',
-        extras:'双元音如 /ai̯, ei̯, au̯/ 不适合只画成一个静态点；音位符号相同，不表示与英语等语言有完全一致的 F1/F2。'}
+        plotOverrides:{a:{f1:810,f2:1450}},
+        description:'西班牙本土标准西语通常归纳为五个元音音位 /i e a o u/。其中 /a/ 的典型实现偏中央 [ä]，所以西语彩色 /a/ 高亮点绘在较中央的位置，保留原有 IPA [a] 参考点。',
+        extras:'西语 /a/ 的中央位置只是声学示意，并非经实测校准的数据。双元音应由运动轨迹表示；同一个 IPA 符号不保证两种语言的 F1/F2 完全相同。'}
     ];
     const $ = (id) => document.getElementById(id);
     const canvas=$('vowelChart'),ctx=canvas.getContext('2d');
@@ -274,32 +280,53 @@
       ctx.textAlign='right';ctx.fillText('BACK / 后',W-margin.right-13,margin.top+23);
       const A=PROFILES.find(p=>p.id===state.profileA)||PROFILES[0];
       const B=PROFILES.find(p=>p.id===state.profileB)||PROFILES[0];
-      // All reference vowels remain visible. Filled dots/rings encode A-only,
-      // B-only, shared, or optional membership; their locations never move.
+      // All 28 schematic IPA references stay visible. Language-specific phonetic
+      // realizations, such as Spanish central [ä], get their own overlay position.
+      function profilePosition(profile,v){
+        const custom=profile.plotOverrides&&profile.plotOverrides[v.symbol];
+        return custom?xy(custom.f1,custom.f2):xy(v.f1,v.f2);
+      }
+      function ring(x,y,color,rad=14,dashed=false){
+        ctx.beginPath();ctx.arc(x,y,rad,0,2*Math.PI);
+        ctx.lineWidth=dashed?2:2.7;ctx.strokeStyle=color;
+        if(dashed)ctx.setLineDash([4,4]);
+        ctx.stroke();if(dashed)ctx.setLineDash([]);
+      }
       const labelPlan=[];
       for(const v of VOWELS){
         const p=xy(v.f1,v.f2),targeted=state.target===v.symbol;
         const inA=A.vowels.includes(v.symbol),inB=B.vowels.includes(v.symbol);
         const optionalA=A.optional.includes(v.symbol),optionalB=B.optional.includes(v.symbol);
+        const pa=profilePosition(A,v),pb=profilePosition(B,v);
+        const samePoint=inA&&inB&&Math.hypot(pa.x-pb.x,pa.y-pb.y)<5;
         ctx.save();
-        ctx.beginPath();ctx.arc(p.x,p.y,targeted?9:inA||inB?7.5:5,0,Math.PI*2);
-        ctx.fillStyle=targeted?'#e48760':inA&&inB?'#795bac':inA?'#217d62':inB?'#3475c5':'#9bada3';ctx.fill();
-        if(inA&&inB){
-          // Split the shared marker's ring into the two reference colors.
+        ctx.beginPath();ctx.arc(p.x,p.y,targeted?9:5,0,Math.PI*2);
+        ctx.fillStyle=targeted?'#e48760':'#9bada3';ctx.fill();
+        if(samePoint){
+          ctx.beginPath();ctx.arc(pa.x,pa.y,8,0,Math.PI*2);ctx.fillStyle='#795bac';ctx.fill();
           ctx.lineWidth=3.5;
-          ctx.beginPath();ctx.arc(p.x,p.y,14,Math.PI/2,3*Math.PI/2);ctx.strokeStyle='#217d62';ctx.stroke();
-          ctx.beginPath();ctx.arc(p.x,p.y,14,-Math.PI/2,Math.PI/2);ctx.strokeStyle='#3475c5';ctx.stroke();
-        }else if(inA||inB){
-          ctx.beginPath();ctx.arc(p.x,p.y,14,0,Math.PI*2);
-          ctx.strokeStyle=inA?'#217d62':'#3475c5';ctx.lineWidth=2.6;ctx.stroke();
+          ctx.beginPath();ctx.arc(pa.x,pa.y,14,Math.PI/2,3*Math.PI/2);ctx.strokeStyle='#217d62';ctx.stroke();
+          ctx.beginPath();ctx.arc(pa.x,pa.y,14,-Math.PI/2,Math.PI/2);ctx.strokeStyle='#3475c5';ctx.stroke();
+        }else{
+          for(const [included,pos,color] of [[inA,pa,'#217d62'],[inB,pb,'#3475c5']]){
+            if(!included)continue;
+            ctx.beginPath();ctx.arc(pos.x,pos.y,7.5,0,Math.PI*2);ctx.fillStyle=color;ctx.fill();
+            ring(pos.x,pos.y,color);
+          }
         }
-        if(optionalA||optionalB){
-          ctx.beginPath();ctx.arc(p.x,p.y,19,0,Math.PI*2);
-          ctx.strokeStyle=optionalA&&optionalB?'#8265a5':optionalA?'#217d62':'#3475c5';
-          ctx.lineWidth=2;ctx.setLineDash([3,4]);ctx.stroke();ctx.setLineDash([]);
-        }
-        if(targeted){
-          ctx.beginPath();ctx.arc(p.x,p.y,23,0,Math.PI*2);ctx.strokeStyle='#e48760';ctx.lineWidth=2.5;ctx.stroke();
+        if(optionalA)ring(pa.x,pa.y,'#217d62',19,true);
+        if(optionalB)ring(pb.x,pb.y,'#3475c5',19,true);
+        if(targeted)ring(p.x,p.y,'#e48760',23);
+        // The Spanish /a/ marker is deliberately not placed on IPA cardinal [a].
+        // Label it as the more-central phonetic realization [ä].
+        if(v.symbol==='a'){
+          for(const [profile,included,pos,color] of [[A,inA,pa,'#217d62'],[B,inB,pb,'#3475c5']]){
+            if(included&&profile.id==='es-es'){
+              ctx.font='700 18px "Charis SIL","Times New Roman",serif';
+              ctx.fillStyle=color;ctx.textAlign='left';
+              ctx.fillText('ä',pos.x+13,pos.y+24);
+            }
+          }
         }
         ctx.restore();
         labelPlan.push({v,p,targeted,inA,inB,optionalA,optionalB,priority:targeted?4:inA&&inB?3:inA||inB?2:optionalA||optionalB?1:0});
@@ -555,8 +582,8 @@
       $('profileAName').textContent=A.label;
       $('profileBName').textContent=B.label;
       $('profileName').textContent=A.label+' ↔ '+B.label;
-      $('profileCount').textContent='共同 '+shared.length+' 类';
-      $('profileDescription').textContent='共同元音代表 IPA 音质符号重合，并不保证两种语言的实际 F1/F2、时长或音位地位完全一致。选定语言不会改变实时识别算法。';
+      $('profileCount').textContent='同符号 '+shared.length+' 类';
+      $('profileDescription').textContent='这里只统计宽式 IPA 符号的交集，而非两个口音真正共有多少音位或声学坐标。美式 /ɛ/ 与英式 /e/ 可能都指 DRESS 元音；语言选择不改变实时识别算法。';
       const fill=(id,phones,kind)=>{
         const el=$(id);el.replaceChildren();
         if(!phones.length){const empty=document.createElement('span');empty.className='phoneme-empty';empty.textContent='—';el.appendChild(empty);return;}
@@ -589,8 +616,8 @@
       }
     }
     renderProfile();
-    const targets=['i','y','e','ɛ','æ','a','ɑ','ə','ɔ','o','u','ɯ','ɵ','œ','ɜ','ɐ','ɒ','ʌ'];
-    for(const symbol of targets){const el=document.createElement('button');el.type='button';el.className='target';el.textContent=symbol;el.setAttribute('aria-label','高亮参考元音 '+symbol);el.addEventListener('click',()=>{state.target=state.target===symbol?null:symbol;for(const child of $('targetButtons').children)child.classList.toggle('active',child.textContent===state.target);const v=VOWELS.find(a=>a.symbol===state.target);$('targetDescription').textContent=v?`/ ${v.symbol} / · ${v.name} · 参考 F1 ${v.f1} Hz / F2 ${v.f2} Hz。数值仅为示意，不等于个人标准。`:'点击一个 IPA 音标，在图中高亮其参考位置；这不是个人发音准确度评分。';});$('targetButtons').appendChild(el);}
+    const targets=VOWELS.map(v=>v.symbol);
+    for(const symbol of targets){const el=document.createElement('button');el.type='button';el.className='target';el.textContent=symbol;el.setAttribute('aria-label','高亮参考元音 '+symbol);el.addEventListener('click',()=>{state.target=state.target===symbol?null:symbol;for(const child of $('targetButtons').children)child.classList.toggle('active',child.textContent===state.target);const v=VOWELS.find(a=>a.symbol===state.target);$('targetDescription').textContent=v?`/ ${v.symbol} / · ${v.name} · 参考 F1 ${v.f1} Hz / F2 ${v.f2} Hz。F1/F2 仅为示意；这里显示最近参考音质，并非可靠的音素识别或准确度评分。`:'点击一个 IPA 音标，在图中高亮其参考位置；这不是个人发音准确度评分。';});$('targetButtons').appendChild(el);}
     window.addEventListener('pagehide',()=>{state.stream?.getTracks().forEach(t=>t.stop());});
     requestAnimationFrame(frame);
   })();
