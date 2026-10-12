@@ -1,0 +1,419 @@
+{
+  "source": "Hillenbrand et al. (1995) vowel corpus",
+  "citation": "Hillenbrand, Getty, Clark & Wheeler (1995), JASA 97:3099–3111, DOI:10.1121/1.411872",
+  "archive_sha256": "2560548591e3a726c88549b6dc9d226995616c26874d601c69fee8b9eee9d730",
+  "source_size_bytes": 21748822,
+  "whole_corpus_vowel_rows": 1668,
+  "whole_corpus_timing_rows": 1668,
+  "selected_heldout_tokens": 276,
+  "selected_heldout_speakers": 23,
+  "audio_files_loaded_in_runner": 276,
+  "heldout_rule": "SHA256(speaker_id)[:8] modulo 100 >= 85; stable speaker-disjoint test set",
+  "reference_annotation": "Original Hillenbrand steady-state formants; reference time approximated as mean of Center1/Center2; audio is not redistributed",
+  "measure_window": "~150 ms total around mean judged steady-state center",
+  "noncomparables": "er/ɝ, ei/eɪ, oa/oʊ included for acoustics but excluded from exact single-IPA-label accuracy",
+  "note": "Estimates from the current browser-source LPC, replayed offline into a mock WebAudio buffer; not real-device microphone accuracy",
+  "modes": {
+    "classic": {
+      "mode": "classic",
+      "n": 276,
+      "detected": 266,
+      "coverage": 0.9637681159420289,
+      "acoustic_pairs": 264,
+      "mae_f1_hz": 75.72566618181818,
+      "mae_f2_hz": 193.45656642424245,
+      "median_ae_f1_hz": 61.99999999999997,
+      "median_ae_f2_hz": 74,
+      "p90_ae_f1_hz": 157,
+      "p90_ae_f2_hz": 593.5,
+      "label_examples": 207,
+      "top1_on_all_labeled": 0.15942028985507245,
+      "top1_on_detected": 0.16751269035532995,
+      "by_language": {
+        "en-us": {
+          "n": 276,
+          "coverage": 0.9637681159420289,
+          "acoustic_pairs": 264,
+          "mae_f1_hz": 75.72566618181818,
+          "mae_f2_hz": 193.45656642424245
+        }
+      },
+      "by_vowel": {
+        "æ": {
+          "n": 23,
+          "coverage": 0.9565217391304348,
+          "acoustic_pairs": 22,
+          "mae_f1_hz": 51.20563636363635,
+          "mae_f2_hz": 99.69363636363637
+        },
+        "ɑ": {
+          "n": 23,
+          "coverage": 0.782608695652174,
+          "acoustic_pairs": 18,
+          "mae_f1_hz": 83.59462222222221,
+          "mae_f2_hz": 128.27666666666664
+        },
+        "ɔ": {
+          "n": 23,
+          "coverage": 0.9565217391304348,
+          "acoustic_pairs": 21,
+          "mae_f1_hz": 51.10596419047618,
+          "mae_f2_hz": 471.44188342857143
+        },
+        "ɛ": {
+          "n": 23,
+          "coverage": 0.9565217391304348,
+          "acoustic_pairs": 22,
+          "mae_f1_hz": 68.68117527272726,
+          "mae_f2_hz": 68.17111854545445
+        },
+        "eɪ": {
+          "n": 23,
+          "coverage": 1,
+          "acoustic_pairs": 23,
+          "mae_f1_hz": 105.34772452173911,
+          "mae_f2_hz": 62.30521739130442
+        },
+        "ɝ": {
+          "n": 23,
+          "coverage": 1,
+          "acoustic_pairs": 23,
+          "mae_f1_hz": 81.02877356521735,
+          "mae_f2_hz": 96.64954573913039
+        },
+        "ɪ": {
+          "n": 23,
+          "coverage": 1,
+          "acoustic_pairs": 23,
+          "mae_f1_hz": 48.34521739130435,
+          "mae_f2_hz": 87.24869565217391
+        },
+        "i": {
+          "n": 23,
+          "coverage": 1,
+          "acoustic_pairs": 23,
+          "mae_f1_hz": 90.73831234782604,
+          "mae_f2_hz": 216.70331965217392
+        },
+        "oʊ": {
+          "n": 23,
+          "coverage": 1,
+          "acoustic_pairs": 23,
+          "mae_f1_hz": 107.07903165217387,
+          "mae_f2_hz": 474.5444118260868
+        },
+        "ʊ": {
+          "n": 23,
+          "coverage": 0.9565217391304348,
+          "acoustic_pairs": 22,
+          "mae_f1_hz": 73.58363636363637,
+          "mae_f2_hz": 186.77545454545452
+        },
+        "ʌ": {
+          "n": 23,
+          "coverage": 0.9565217391304348,
+          "acoustic_pairs": 22,
+          "mae_f1_hz": 84.36705454545451,
+          "mae_f2_hz": 240.48145454545454
+        },
+        "u": {
+          "n": 23,
+          "coverage": 1,
+          "acoustic_pairs": 22,
+          "mae_f1_hz": 61.49199999999998,
+          "mae_f2_hz": 191.32818181818178
+        }
+      },
+      "confusion": {
+        "æ": {
+          "a": 2,
+          "ɛ": 9,
+          "(miss)": 1,
+          "æ": 10,
+          "e": 1
+        },
+        "ɑ": {
+          "ɶ": 5,
+          "a": 5,
+          "(miss)": 5,
+          "ɐ": 4,
+          "ʌ": 2,
+          "æ": 1,
+          "ɑ": 1
+        },
+        "ɔ": {
+          "ɑ": 4,
+          "æ": 4,
+          "ɐ": 1,
+          "(miss)": 1,
+          "ɶ": 2,
+          "ʌ": 4,
+          "ɔ": 2,
+          "a": 4,
+          "ɛ": 1
+        },
+        "ɛ": {
+          "æ": 14,
+          "(miss)": 1,
+          "a": 3,
+          "ɛ": 4,
+          "œ": 1
+        },
+        "ɪ": {
+          "e": 12,
+          "ɛ": 6,
+          "ɪ": 3,
+          "ʏ": 1,
+          "i": 1
+        },
+        "i": {
+          "e": 11,
+          "i": 10,
+          "ɛ": 2
+        },
+        "ʊ": {
+          "ɞ": 2,
+          "ɛ": 2,
+          "œ": 3,
+          "æ": 1,
+          "ɐ": 2,
+          "ɤ": 5,
+          "o": 1,
+          "ʌ": 4,
+          "(miss)": 1,
+          "ɵ": 1,
+          "i": 1
+        },
+        "ʌ": {
+          "ɶ": 6,
+          "a": 4,
+          "æ": 3,
+          "ʌ": 2,
+          "ɐ": 5,
+          "ɑ": 2,
+          "(miss)": 1
+        },
+        "u": {
+          "ɜ": 1,
+          "e": 2,
+          "œ": 3,
+          "ɵ": 1,
+          "ə": 2,
+          "ɤ": 4,
+          "ɛ": 1,
+          "u": 1,
+          "ʊ": 5,
+          "ɞ": 2,
+          "o": 1
+        }
+      },
+      "speaker_counts": {
+        "men": 7,
+        "women": 9,
+        "boys": 5,
+        "girls": 2
+      }
+    },
+    "stable": {
+      "mode": "stable",
+      "n": 276,
+      "detected": 112,
+      "coverage": 0.4057971014492754,
+      "acoustic_pairs": 111,
+      "mae_f1_hz": 41.62081081081081,
+      "mae_f2_hz": 96.55405405405405,
+      "median_ae_f1_hz": 24.75,
+      "median_ae_f2_hz": 36,
+      "p90_ae_f1_hz": 78.25,
+      "p90_ae_f2_hz": 146,
+      "label_examples": 207,
+      "top1_on_all_labeled": 0.10628019323671498,
+      "top1_on_detected": 0.29333333333333333,
+      "by_language": {
+        "en-us": {
+          "n": 276,
+          "coverage": 0.4057971014492754,
+          "acoustic_pairs": 111,
+          "mae_f1_hz": 41.62081081081081,
+          "mae_f2_hz": 96.55405405405405
+        }
+      },
+      "by_vowel": {
+        "æ": {
+          "n": 23,
+          "coverage": 0.30434782608695654,
+          "acoustic_pairs": 7,
+          "mae_f1_hz": 39.67857142857143,
+          "mae_f2_hz": 25.071428571428573
+        },
+        "ɑ": {
+          "n": 23,
+          "coverage": 0.391304347826087,
+          "acoustic_pairs": 9,
+          "mae_f1_hz": 145.72222222222223,
+          "mae_f2_hz": 249.02777777777777
+        },
+        "ɔ": {
+          "n": 23,
+          "coverage": 0.30434782608695654,
+          "acoustic_pairs": 7,
+          "mae_f1_hz": 42.285714285714285,
+          "mae_f2_hz": 214.67857142857142
+        },
+        "ɛ": {
+          "n": 23,
+          "coverage": 0.391304347826087,
+          "acoustic_pairs": 9,
+          "mae_f1_hz": 35.166666666666664,
+          "mae_f2_hz": 42.361111111111114
+        },
+        "eɪ": {
+          "n": 23,
+          "coverage": 0.391304347826087,
+          "acoustic_pairs": 9,
+          "mae_f1_hz": 34.745555555555555,
+          "mae_f2_hz": 54.9511111111111
+        },
+        "ɝ": {
+          "n": 23,
+          "coverage": 0.6521739130434783,
+          "acoustic_pairs": 15,
+          "mae_f1_hz": 20.84666666666667,
+          "mae_f2_hz": 38.67933333333334
+        },
+        "ɪ": {
+          "n": 23,
+          "coverage": 0.17391304347826086,
+          "acoustic_pairs": 4,
+          "mae_f1_hz": 13.25,
+          "mae_f2_hz": 22.75
+        },
+        "i": {
+          "n": 23,
+          "coverage": 0.5652173913043478,
+          "acoustic_pairs": 13,
+          "mae_f1_hz": 38.07692307692308,
+          "mae_f2_hz": 38.88461538461539
+        },
+        "oʊ": {
+          "n": 23,
+          "coverage": 0.5652173913043478,
+          "acoustic_pairs": 13,
+          "mae_f1_hz": 43,
+          "mae_f2_hz": 197.34615384615384
+        },
+        "ʊ": {
+          "n": 23,
+          "coverage": 0.2608695652173913,
+          "acoustic_pairs": 6,
+          "mae_f1_hz": 29.416666666666668,
+          "mae_f2_hz": 79
+        },
+        "ʌ": {
+          "n": 23,
+          "coverage": 0.13043478260869565,
+          "acoustic_pairs": 3,
+          "mae_f1_hz": 56.166666666666664,
+          "mae_f2_hz": 46.416666666666664
+        },
+        "u": {
+          "n": 23,
+          "coverage": 0.7391304347826086,
+          "acoustic_pairs": 16,
+          "mae_f1_hz": 21.296875000000004,
+          "mae_f2_hz": 97.921875
+        }
+      },
+      "confusion": {
+        "æ": {
+          "(miss)": 16,
+          "e": 1,
+          "æ": 3,
+          "ɛ": 3
+        },
+        "ɑ": {
+          "ʌ": 3,
+          "(miss)": 14,
+          "ɔ": 1,
+          "ɑ": 2,
+          "ɐ": 2,
+          "a": 1
+        },
+        "ɔ": {
+          "ɐ": 3,
+          "æ": 1,
+          "(miss)": 16,
+          "ɔ": 1,
+          "ɑ": 1,
+          "ʌ": 1
+        },
+        "ɛ": {
+          "(miss)": 14,
+          "ɛ": 3,
+          "æ": 5,
+          "a": 1
+        },
+        "ɪ": {
+          "(miss)": 19,
+          "e": 4
+        },
+        "i": {
+          "i": 12,
+          "(miss)": 10,
+          "e": 1
+        },
+        "ʊ": {
+          "ɜ": 1,
+          "ɛ": 1,
+          "œ": 1,
+          "(miss)": 17,
+          "ɐ": 1,
+          "ɵ": 1,
+          "ɞ": 1
+        },
+        "ʌ": {
+          "(miss)": 20,
+          "ɐ": 2,
+          "ɶ": 1
+        },
+        "u": {
+          "ɜ": 1,
+          "e": 1,
+          "(miss)": 6,
+          "i": 1,
+          "ɵ": 3,
+          "œ": 1,
+          "ʊ": 6,
+          "u": 1,
+          "o": 2,
+          "ɤ": 1
+        }
+      },
+      "speaker_counts": {
+        "men": 7,
+        "women": 9,
+        "boys": 5,
+        "girls": 2
+      }
+    }
+  },
+  "execution_status": "complete",
+  "evaluation_source_commit": "052e6046057dcde9c262e7882bbb636514c639cf",
+  "changes_from_initial_baseline": {
+    "classic": {
+      "coverage_delta_pp": 0.0,
+      "f1_mae_delta_hz": 0.0,
+      "f2_mae_delta_hz": 0.0,
+      "top1_delta_pp": 0.0,
+      "pair_count_delta": 0
+    },
+    "stable": {
+      "coverage_delta_pp": 0.0,
+      "f1_mae_delta_hz": 0.0,
+      "f2_mae_delta_hz": 0.0,
+      "top1_delta_pp": 0.0,
+      "pair_count_delta": 0
+    }
+  },
+  "comparison_caveat": "MAE samples can differ across versions; paired report comparison is preferable for strict regression tests."
+}
