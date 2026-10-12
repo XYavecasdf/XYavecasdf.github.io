@@ -1,0 +1,748 @@
+{
+  "kind": "vowelscope_dev_peak_selection_research",
+  "corpus": "Hillenbrand et al. (1995)",
+  "corpus_version": "2560548591e3a726",
+  "split": "dev",
+  "variants": [
+    "original",
+    "peak_prominence",
+    "peak_bandwidth",
+    "peak_tracking"
+  ],
+  "all_tokens": {
+    "original": {
+      "total": 275,
+      "detections": 263,
+      "coverage": 0.9564,
+      "acoustic_pairs": 263,
+      "f1_mean_abs_hz": 78.91,
+      "f2_mean_abs_hz": 212.54,
+      "f2_median_abs_hz": 80,
+      "f2_p90_abs_hz": 582.5,
+      "f2_gt300": 46,
+      "f2_gt500": 31
+    },
+    "peak_prominence": {
+      "total": 275,
+      "detections": 263,
+      "coverage": 0.9564,
+      "acoustic_pairs": 263,
+      "f1_mean_abs_hz": 77.61,
+      "f2_mean_abs_hz": 367.27,
+      "f2_median_abs_hz": 124,
+      "f2_p90_abs_hz": 1181.36,
+      "f2_gt300": 97,
+      "f2_gt500": 75
+    },
+    "peak_bandwidth": {
+      "total": 275,
+      "detections": 263,
+      "coverage": 0.9564,
+      "acoustic_pairs": 263,
+      "f1_mean_abs_hz": 77.61,
+      "f2_mean_abs_hz": 418.2,
+      "f2_median_abs_hz": 149.98,
+      "f2_p90_abs_hz": 1253,
+      "f2_gt300": 109,
+      "f2_gt500": 85
+    },
+    "peak_tracking": {
+      "total": 275,
+      "detections": 263,
+      "coverage": 0.9564,
+      "acoustic_pairs": 263,
+      "f1_mean_abs_hz": 78.73,
+      "f2_mean_abs_hz": 414.89,
+      "f2_median_abs_hz": 138.5,
+      "f2_p90_abs_hz": 1417.16,
+      "f2_gt300": 98,
+      "f2_gt500": 78
+    }
+  },
+  "common_detected_token_count": 263,
+  "common_detected": {
+    "original": {
+      "total": 263,
+      "detections": 263,
+      "coverage": 1.0,
+      "acoustic_pairs": 263,
+      "f1_mean_abs_hz": 78.91,
+      "f2_mean_abs_hz": 212.54,
+      "f2_median_abs_hz": 80,
+      "f2_p90_abs_hz": 582.5,
+      "f2_gt300": 46,
+      "f2_gt500": 31
+    },
+    "peak_prominence": {
+      "total": 263,
+      "detections": 263,
+      "coverage": 1.0,
+      "acoustic_pairs": 263,
+      "f1_mean_abs_hz": 77.61,
+      "f2_mean_abs_hz": 367.27,
+      "f2_median_abs_hz": 124,
+      "f2_p90_abs_hz": 1181.36,
+      "f2_gt300": 97,
+      "f2_gt500": 75
+    },
+    "peak_bandwidth": {
+      "total": 263,
+      "detections": 263,
+      "coverage": 1.0,
+      "acoustic_pairs": 263,
+      "f1_mean_abs_hz": 77.61,
+      "f2_mean_abs_hz": 418.2,
+      "f2_median_abs_hz": 149.98,
+      "f2_p90_abs_hz": 1253,
+      "f2_gt300": 109,
+      "f2_gt500": 85
+    },
+    "peak_tracking": {
+      "total": 263,
+      "detections": 263,
+      "coverage": 1.0,
+      "acoustic_pairs": 263,
+      "f1_mean_abs_hz": 78.73,
+      "f2_mean_abs_hz": 414.89,
+      "f2_median_abs_hz": 138.5,
+      "f2_p90_abs_hz": 1417.16,
+      "f2_gt300": 98,
+      "f2_gt500": 78
+    }
+  },
+  "by_vowel": {
+    "eɪ": {
+      "original": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      },
+      "peak_prominence": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      },
+      "peak_bandwidth": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      },
+      "peak_tracking": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      }
+    },
+    "i": {
+      "original": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      },
+      "peak_prominence": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      },
+      "peak_bandwidth": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      },
+      "peak_tracking": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      }
+    },
+    "oʊ": {
+      "original": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      },
+      "peak_prominence": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      },
+      "peak_bandwidth": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      },
+      "peak_tracking": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      }
+    },
+    "u": {
+      "original": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      },
+      "peak_prominence": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      },
+      "peak_bandwidth": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      },
+      "peak_tracking": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      }
+    },
+    "æ": {
+      "original": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      },
+      "peak_prominence": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      },
+      "peak_bandwidth": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      },
+      "peak_tracking": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      }
+    },
+    "ɑ": {
+      "original": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      },
+      "peak_prominence": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      },
+      "peak_bandwidth": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      },
+      "peak_tracking": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      }
+    },
+    "ɔ": {
+      "original": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      },
+      "peak_prominence": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      },
+      "peak_bandwidth": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      },
+      "peak_tracking": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      }
+    },
+    "ɛ": {
+      "original": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      },
+      "peak_prominence": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      },
+      "peak_bandwidth": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      },
+      "peak_tracking": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      }
+    },
+    "ɝ": {
+      "original": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      },
+      "peak_prominence": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      },
+      "peak_bandwidth": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      },
+      "peak_tracking": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      }
+    },
+    "ɪ": {
+      "original": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      },
+      "peak_prominence": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      },
+      "peak_bandwidth": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      },
+      "peak_tracking": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      }
+    },
+    "ʊ": {
+      "original": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      },
+      "peak_prominence": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      },
+      "peak_bandwidth": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      },
+      "peak_tracking": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      }
+    },
+    "ʌ": {
+      "original": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      },
+      "peak_prominence": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      },
+      "peak_bandwidth": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      },
+      "peak_tracking": {
+        "total": 0,
+        "detections": 0,
+        "coverage": null,
+        "acoustic_pairs": 0,
+        "f1_mean_abs_hz": null,
+        "f2_mean_abs_hz": null,
+        "f2_median_abs_hz": null,
+        "f2_p90_abs_hz": null,
+        "f2_gt300": 0,
+        "f2_gt500": 0
+      }
+    }
+  },
+  "relative_to_original": {
+    "original": {
+      "coverage_delta_percentage_points": 0.0,
+      "f2_mean_abs_delta_hz": 0.0,
+      "f2_p90_delta_hz": 0.0,
+      "f2_gt300_delta": 0
+    },
+    "peak_prominence": {
+      "coverage_delta_percentage_points": 0.0,
+      "f2_mean_abs_delta_hz": 154.73,
+      "f2_p90_delta_hz": 598.86,
+      "f2_gt300_delta": 51
+    },
+    "peak_bandwidth": {
+      "coverage_delta_percentage_points": 0.0,
+      "f2_mean_abs_delta_hz": 205.66,
+      "f2_p90_delta_hz": 670.5,
+      "f2_gt300_delta": 63
+    },
+    "peak_tracking": {
+      "coverage_delta_percentage_points": 0.0,
+      "f2_mean_abs_delta_hz": 202.35,
+      "f2_p90_delta_hz": 834.66,
+      "f2_gt300_delta": 52
+    }
+  },
+  "interpretation_guardrails": [
+    "Half-power width is inferred from an LPC spectrum grid and is not the bandwidth derived from a fitted AR pole.",
+    "Frequency estimates here have been processed through the actual VowelScope frame tracker; isolated-peak audit results are not directly comparable.",
+    "Conditional formant errors and detection coverage must be interpreted together.",
+    "This is a development-set hypothesis evaluation. Never choose coefficients on the earlier inspected test data.",
+    "Original site source is unchanged; peak variants are research-only patches."
+  ]
+}
