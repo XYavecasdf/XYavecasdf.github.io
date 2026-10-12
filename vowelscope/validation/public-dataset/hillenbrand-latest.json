@@ -18,6 +18,9 @@
     "classic": {
       "mode": "classic",
       "n": 276,
+      "benchmark_frames": 1111,
+      "benchmark_cpu_ms": 3102.910391,
+      "benchmark_mean_frame_ms": 2.792898641764176,
       "detected": 266,
       "coverage": 0.9637681159420289,
       "acoustic_pairs": 264,
@@ -218,6 +221,9 @@
     "stable": {
       "mode": "stable",
       "n": 276,
+      "benchmark_frames": 1111,
+      "benchmark_cpu_ms": 3080.0182100000034,
+      "benchmark_mean_frame_ms": 2.7722936183618394,
       "detected": 112,
       "coverage": 0.4057971014492754,
       "acoustic_pairs": 111,
@@ -414,7 +420,7 @@
     "warning": "Within-run comparison on the same detected tokens; excludes mode abstentions."
   },
   "execution_status": "complete",
-  "evaluation_source_commit": "91adc63a92e13e10b596d561e06348bd0edb381c",
+  "evaluation_source_commit": "37a04e5867784d0e4afcb17b8ca7dcf9373a936d",
   "changes_from_initial_baseline": {
     "classic": {
       "coverage_delta_pp": 0.0,
