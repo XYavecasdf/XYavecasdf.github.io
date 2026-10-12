@@ -41,6 +41,7 @@ jobs:
             vowelscope/validation/classification_experiments.py \
             vowelscope/validation/compare_dsp.py \
             vowelscope/validation/compare_peak_selection.py \
+            vowelscope/validation/compare_smoothing.py \
             vowelscope/validation/compare_reports.py
       - name: Test instrumentation of actual Chinese & English pages
         run: |
