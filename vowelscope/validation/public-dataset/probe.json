@@ -1,0 +1,127 @@
+{
+  "status": "archive-inspected",
+  "source_url": "https://raw.githubusercontent.com/santiagobarreda/hillenbrand_et_al_1995/main/h95-alldata.zip",
+  "archive_bytes": 21748822,
+  "file_count": 10,
+  "files": [
+    "bigdata.dat",
+    "iddata.dat",
+    "kids.zip",
+    "men.zip",
+    "misid.dat",
+    "readme.txt",
+    "timedata.dat",
+    "vowdata.dat",
+    "vowdata.ds",
+    "women.zip"
+  ],
+  "metadata": {
+    "bigdata.dat": {
+      "name": "bigdata.dat",
+      "line_count": 1711,
+      "first_lines": [
+        "(c) 1995 James Hillenbrand",
+        "",
+        "Filenames:",
+        "",
+        "character 1:     m=man, w=woman, b=boy, g=girl",
+        "characters 2-3:  talker number",
+        "characters 4-5:  vowel (ae=\"had\", ah=\"hod\", aw=\"hawed\", eh=\"head\", er=\"heard\",",
+        "                        ey=\"haid\", ih=\"hid\", iy=\"heed\", oa=/o/ as in \"boat\",",
+        "\t\t\too=\"hood\", uh=\"hud\", uw=\"who'd\")",
+        "",
+        "col1:  filename ",
+        "col2:  duration in msec ",
+        "col3:  f0 at \"steady state\" ",
+        "col4:  F1 at \"steady state\" "
+      ]
+    },
+    "timedata.dat": {
+      "name": "timedata.dat",
+      "line_count": 1674,
+      "first_lines": [
+        "  Start = Start of vowel nucleus",
+        "    End = End of vowel nucleus",
+        "Center1 = Steady-state time from judge 1",
+        "Center2 = Steady-state time from judge 2",
+        "",
+        "File   Start    End   Center1  Center2",
+        "m01ae  177.3   500.4   304.0    297.0",
+        "m02ae  132.0   382.0   198.0    240.0",
+        "m03ae  118.0   462.0   162.0    181.0",
+        "m04ae   96.0   408.0   130.0    169.0",
+        "m06ae   71.0   325.0   113.0    134.0",
+        "m07ae   70.0   324.0   140.0    138.0",
+        "m08ae   95.0   384.0   128.0    141.0",
+        "m09ae  107.0   446.0   166.0    206.0"
+      ]
+    },
+    "vowdata.dat": {
+      "name": "vowdata.dat",
+      "line_count": 1698,
+      "first_lines": [
+        "(c) 1995 James Hillenbrand",
+        "",
+        "Filenames:",
+        "",
+        "character 1:     m=man, w=woman, b=boy, g=girl",
+        "characters 2-3:  talker number",
+        "characters 4-5:  vowel (ae=\"had\", ah=\"hod\", aw=\"hawed\", eh=\"head\", er=\"heard\",",
+        "                        ei=\"haid\", ih=\"hid\", iy=\"heed\", oa=/o/ as in \"boat\",",
+        "                        oo=\"hood\", uh=\"hud\", uw=\"who'd\")",
+        "",
+        "col1:  filename",
+        "col2:  duration in msec",
+        "col3:  f0 at \"steady state\"",
+        "col4:  F1 at \"steady state\""
+      ]
+    }
+  },
+  "nested_wavs": {
+    "kids.zip": {
+      "count": 552,
+      "examples": [
+        "b29aw.wav",
+        "b29eh.wav",
+        "b29ei.wav",
+        "b29er.wav",
+        "b29ih.wav",
+        "b29iy.wav",
+        "b29oa.wav",
+        "b29oo.wav",
+        "b29uh.wav",
+        "b29uw.wav"
+      ]
+    },
+    "men.zip": {
+      "count": 540,
+      "examples": [
+        "m50uw.wav",
+        "m01ae.wav",
+        "m01ah.wav",
+        "m01aw.wav",
+        "m01eh.wav",
+        "m01ei.wav",
+        "m01er.wav",
+        "m01ih.wav",
+        "m01iy.wav",
+        "m01oa.wav"
+      ]
+    },
+    "women.zip": {
+      "count": 576,
+      "examples": [
+        "w50ih.wav",
+        "w50iy.wav",
+        "w50oa.wav",
+        "w50oo.wav",
+        "w50uh.wav",
+        "w50uw.wav",
+        "w01ae.wav",
+        "w01ah.wav",
+        "w01aw.wav",
+        "w01eh.wav"
+      ]
+    }
+  }
+}
