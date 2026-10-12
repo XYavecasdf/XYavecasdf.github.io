@@ -1,0 +1,27 @@
+# ConsonantScope v0.1
+
+Controlled consonant timing experiments and A/B inventory comparison. Companion to [VowelScope](https://xyavecasdf.github.io/vowelscope/).
+
+Live: https://xyavecasdf.github.io/consonantscope/
+
+## Use
+
+1. Compare A/B profiles; all pulmonic reference symbols remain visible.
+2. Choose the independent Mandarin/English experiment, stop group and CV/VCV prompt.
+3. Record one target at a time, or import a short browser-decodable audio file.
+4. Inspect waveform/spectrogram, replay, and correct suggested boundary markers.
+5. Confirm a trial; collect three repetitions per condition. Export WAV/CSV before refreshing.
+
+The artificial-signal demo is a technical demonstration, not a pronunciation example. No automatic pronunciation score or phoneme recognition is implemented. Heuristic suggestions have not been validated against human speech. Signed VOT is manual; closure duration is manual and VCV-only. External reference audio resources are linked, not bundled.
+
+## Run and test
+
+No build or package installation required. Serve this directory on localhost or HTTPS (AudioWorklet and microphone require secure contexts).
+
+`python -m http.server 8000`
+
+`node --test tests/*.test.cjs`
+
+Files: index.html, style.css, app.js (UI/lifecycle), data.js (chart/inventories), analysis.js (DSP/WAV), recorder-worklet.js (PCM), vendor/fft.js (MIT).
+
+FFT.js source blob: c13b408614877ffbcf1f9a25b8a525f5445394ce. Source and licenses: THIRD_PARTY_NOTICES.md. No third-party model is executed. This release deliberately prioritizes transparent, editable measurements over unverified correctness judgments.
