@@ -8,16 +8,17 @@ import vm from 'node:vm';
 
 function fail(message) { throw Error(message); }
 function parseArgs(argv) {
-  const args = { mode: 'classic', page: path.resolve('vowelscope/index.html') };
+  const args = { mode: 'classic', split: 'test', page: path.resolve('vowelscope/index.html') };
   for (let i=0; i<argv.length; i++) {
     const a=argv[i];
-    if(a==='--help') { console.log('Usage: node vowelscope/validation/benchmark.mjs --manifest /path/to/manifest.json [--page vowelscope/index.html] [--mode classic|stable] [--out report.json] [--self-test]'); process.exit(0); }
+    if(a==='--help') { console.log('Usage: node vowelscope/validation/benchmark.mjs --manifest /path/to/manifest.json [--page vowelscope/index.html] [--mode classic|stable] [--out report.json] [--split test|train|dev|all] [--self-test]'); process.exit(0); }
     if(a==='--self-test') args.selfTest=true;
-    else if(['--manifest','--page','--mode','--out'].includes(a)) args[a.slice(2).replaceAll('-','')]=argv[++i];
+    else if(['--manifest','--page','--mode','--out','--split'].includes(a)) args[a.slice(2).replaceAll('-','')]=argv[++i];
     else fail('Unknown argument: '+a);
   }
   if(!args.selfTest&&!args.manifest)fail('A --manifest file is required.');
   if(!['classic','stable'].includes(args.mode))fail('Invalid --mode.');
+  if(!['test','train','dev','all'].includes(args.split))fail('Invalid --split.');
   return args;
 }
 function loadWav(filename) {
@@ -52,7 +53,7 @@ function createEngine(htmlPath) {
   const marker='    requestAnimationFrame(frame);';
   if(!match[1].includes(marker))fail('VowelScope script changed; update benchmark instrumentation.');
   const js=match[1].replace(marker,
-    "    window.__vsBench = {state,processAudio,nearestVowel,setBuffer(buf){audioBuffer=buf}};");
+    "    window.__vsBench = {state,processAudio,nearestVowel,symbols:VOWELS.map(v=>v.symbol),setBuffer(buf){audioBuffer=buf}};");
   const ctx=new Proxy({measureText:s=>({width:String(s).length*13})},
     {get(t,k){return k in t?t[k]:(()=>{})},set(t,k,v){t[k]=v;return true}});
   const nodes=new Map();
@@ -107,9 +108,10 @@ function analyzeRow(row,manifestDir,mode,page) {
   const frames=[];
   for(let t=scanStart;t<=collectEnd+0.001;t+=0.075){
     currentT=t;
+    const previous=api.state.sampleCount;
     api.processAudio(1000+Math.round(t*1000));
     const f=api.state.formants;
-    if(t>=collectStart-1e-6&&f&&api.state.lastProcess>0){
+    if(t>=collectStart-1e-6&&f&&api.state.sampleCount>previous){
       frames.push({f1:f.f1,f2:f.f2,f3:f.f3,ipa:nodes.get('ipaSymbol')?.textContent||''});
     }
   }
@@ -118,7 +120,7 @@ function analyzeRow(row,manifestDir,mode,page) {
     f3:median(frames.map(x=>x.f3).filter(x=>Number.isFinite(x))),
     ipa:frames[frames.length-1].ipa}:null;
   const gtF1=numeric(row.gt_f1_hz),gtF2=numeric(row.gt_f2_hz);
-  const validLabel=typeof row.vowel_ipa==='string'&&row.vowel_ipa.length>0;
+  const validLabel=typeof row.vowel_ipa==='string'&&api.symbols.includes(row.vowel_ipa);
   const maeF1=pred&&gtF1!==null?Math.abs(pred.f1-gtF1):null;
   const maeF2=pred&&gtF2!==null?Math.abs(pred.f2-gtF2):null;
   return {audio_path:row.audio_path,source:row.source||'',language:row.language||'',
@@ -159,13 +161,15 @@ function main(){
   const mf=path.resolve(args.manifest),page=path.resolve(args.page);
   const manifest=JSON.parse(fs.readFileSync(mf,'utf8'));
   if(!Array.isArray(manifest.samples)||!manifest.samples.length)fail('manifest.samples must contain labeled vowel instances.');
+  const selected=manifest.samples.filter(r=>args.split==='all'||(r.split||'test')===args.split);
+  if(!selected.length)fail('No samples in the '+args.split+' split; use --split all to inspect the full corpus.');
   const results=[];
-  for(const row of manifest.samples){
+  for(const row of selected){
     try{results.push(analyzeRow(row,path.dirname(mf),args.mode,page));}
     catch(e){fail('Failed on '+(row.audio_path||'?')+': '+e.message);}
   }
   const report={schema_version:1,source:manifest.source||'unspecified',dataset_version:manifest.version||'unspecified',
-    checked_at:new Date().toISOString(),source_html:path.relative(process.cwd(),page),summary:summarize(results,args.mode),results};
+    checked_at:new Date().toISOString(),source_html:path.relative(process.cwd(),page),split:args.split,summary:summarize(results,args.mode),results};
   const content=JSON.stringify(report,null,2);
   if(args.out){fs.mkdirSync(path.dirname(path.resolve(args.out)),{recursive:true});fs.writeFileSync(args.out,content+'\n');}
   else console.log(content);
