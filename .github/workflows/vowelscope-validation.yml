@@ -32,7 +32,13 @@ jobs:
       - name: Check benchmark and importer syntax
         run: |
           node --check vowelscope/validation/benchmark.mjs
-          python -m py_compile vowelscope/validation/import_csv.py
+          node --check vowelscope/validation/dsp_variants.mjs
+          python -m py_compile vowelscope/validation/import_csv.py \
+            vowelscope/validation/run_hillenbrand.py \
+            vowelscope/validation/analyze_phase1.py \
+            vowelscope/validation/classification_experiments.py \
+            vowelscope/validation/compare_dsp.py \
+            vowelscope/validation/compare_reports.py
       - name: Test instrumentation of actual Chinese & English pages
         run: |
           node vowelscope/validation/benchmark.mjs --self-test --page vowelscope/index.html
