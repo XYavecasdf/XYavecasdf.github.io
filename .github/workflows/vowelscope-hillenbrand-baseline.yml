@@ -18,13 +18,18 @@ on:
       - "vowelscope/en/index.html"
   workflow_dispatch:
 
+# Avoid overlapping runs publishing conflicting results after rapid code updates.
+concurrency:
+  group: vowelscope-hillenbrand-${{ github.ref }}
+  cancel-in-progress: true
+
 permissions:
   contents: write
 
 jobs:
   evaluate:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
         with:
