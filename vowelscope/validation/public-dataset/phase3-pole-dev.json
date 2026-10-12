@@ -3,7 +3,7 @@
   "source": "Hillenbrand et al. (1995) (original researcher-authorized hosting)",
   "source_archive_sha256": "2560548591e3a726c88549b6dc9d226995616c26874d601c69fee8b9eee9d730",
   "source_version": "2560548591e3a726",
-  "source_commit": "b6992afe35c516394e2cd20f8a8f2d373f8dcf38",
+  "source_commit": "9fbfc84efb12f348d187f7a0ffec368d371fe846",
   "split": "dev",
   "speaker_disjoint_from_training": true,
   "speaker_count": 23,
