@@ -5,6 +5,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
 import {ceilingTrackingPatch} from './pole_ceiling_tracking.mjs';
+import {optimizedCeilingPatch} from './fast_resample.mjs';
 import {dspExperimentPatch} from './dsp_variants.mjs';
 
 const source=fs.readFileSync('vowelscope/index.html','utf8');
@@ -16,7 +17,8 @@ const variants=[
   'pole14_fs12000_poly33','pole14_fs12000_poly49'
 ];
 for(const variant of variants){
-  assert.equal(dspExperimentPatch(variant),ceilingTrackingPatch(variant),
+  const expected=variant.includes('poly')?optimizedCeilingPatch(variant):ceilingTrackingPatch(variant);
+  assert.equal(dspExperimentPatch(variant),expected,
     'Runner should invoke exactly the new phase3b variant');
   const canvas=new Proxy({measureText:s=>({width:String(s).length*10})},{
     get(obj,key){return key in obj?obj[key]:()=>{}},
