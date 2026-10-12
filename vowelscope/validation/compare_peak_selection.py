@@ -8,7 +8,7 @@ import math
 from collections import defaultdict
 from pathlib import Path
 
-VARIANTS=("original","peak_prominence","peak_bandwidth","peak_tracking")
+VARIANTS=("original","peak_prominence","peak_bandwidth","peak_tracking","peak_guard","peak_guard_strict")
 
 def read(path):
     return json.loads(Path(path).read_text(encoding="utf-8"))
