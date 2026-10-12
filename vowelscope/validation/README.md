@@ -1,5 +1,14 @@
 # VowelScope acoustic evaluation (v0.1)
 
+## Research Phase 3b–3c: measured ceiling, tracking and polyphase experiments
+
+**[Read completed Phase 3b–3c results](PHASE3B_RESULTS.md).** The optimized 12 kHz/33-tap polyphase FIR reduces development-set F2 outliers versus original LPC and runs about twice as fast as the earlier 12 kHz convolution implementation on GitHub Actions, but differences remain across speaker cohorts. Continuity penalties and the 9 kHz analysis variant performed worse. All algorithms remain **offline research-only** and the project still needs an independent unseen corpus and device profiling.
+
+- [Aggregate experiment JSON](public-dataset/phase3-pole-dev.json)
+- [Methodological protocol](PHASE3B_PROTOCOL.md)
+- [Cached polyphase implementation](fast_resample.mjs)
+- [CI-run experimental workflow](../../.github/workflows/vowelscope-phase3.yml)
+
 ## Research Phase 3: executed acoustic/visual separation + LPC pole analysis
 
 **[Read the measured Phase 3 results](PHASE3_RESULTS.md)** and [aggregated corpus metrics](public-dataset/phase3-pole-dev.json). Both Chinese and English webpages now keep raw accepted formants in `state.acousticFormants` and smoothed display positions in `state.visualFormants`. Original user-visible behavior remains backward-compatible.
