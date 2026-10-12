@@ -55,6 +55,26 @@ The same **275 development recordings** were replayed with the unchanged origina
 
 This suggests that a significant part of measured error comes from **smearing past candidate errors into the current vowel nucleus**. Eliminating display smoothing is not automatically a better *user experience*—it may cause visually jittery points. The engineering solution to evaluate next is to **separate the acoustic estimate from the smoothed visual marker**.
 
+### Median filters tested after the original LPC estimator
+
+The experiment also tested median filters on 3 and 5 consecutive *raw* F1/F2 estimates, without an additional EMA. Both retained the same 95.64% measured coverage:
+
+| Candidate treatment | F1 MAE | F2 MAE | F2 90th percentile |
+|---|---:|---:|---:|
+| Raw 3-frame median | 59.33 Hz | 186.17 Hz | 554.50 Hz |
+| Raw 5-frame median | 60.40 Hz | 187.03 Hz | 543.25 Hz |
+
+Neither median filter beats the faster α=0.68 EMA in F2 90th percentile, or the alpha≈1 raw output in F1/F2 mean absolute error. They are **not candidates for immediate deployment**.
+
+### Optional live diagnostics without behavioral changes
+
+The Chinese and English production pages now contain an opt-in research view activated by adding `?lab=1` to the URL. It shows the current raw accepted LPC formant measurement **alongside** the originally smoothed marker/metric values, plus the current F2 smoothing offset.
+
+- [Chinese lab diagnostics](https://xyavecasdf.github.io/vowelscope/?lab=1)
+- [English lab diagnostics](https://xyavecasdf.github.io/vowelscope/en/?lab=1)
+
+The normal pages remain unchanged without the query parameter; this lab mode does not alter DSP, microphone configuration or the IPA classifier. Tests with synthetically generated audio verify that the panel appears in both locales and the default panel remains hidden. Mobile field verification remains outstanding.
+
 The conservative peak-rescue variants were also measured. Neither exceeded the original: F2 p90 was 611.14 Hz (guard) and 585.73 Hz (strict guard), against 582.50 Hz baseline, with identical coverage. They are not candidates for promotion to production.
 
 ## Next sound DSP iteration
