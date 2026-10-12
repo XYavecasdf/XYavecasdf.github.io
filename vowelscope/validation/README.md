@@ -1,5 +1,25 @@
 # VowelScope acoustic evaluation (v0.1)
 
+## Research Phase 1: completed real-corpus experiments
+
+**[Read measured Phase 1 findings](PHASE1_RESULTS.md).** The evaluation workflow
+has executed Hillenbrand WAV replay, source-formant Oracle testing, acoustic
+error attribution, independent-speaker American English model ablations, and
+development-only DSP comparisons (original / FIR / experimental Burg / combined).
+
+- [Oracle and F2 outlier diagnostics](public-dataset/phase1-diagnostics.json)
+- [Language-trained classifier experiments — corpus F1/F2 and actual LPC output](public-dataset/classifier-dev-ablation.json)
+- [FIR/Burg research DSP ablations](public-dataset/dsp-dev-ablation.json)
+- [Original untouched production baseline](public-dataset/hillenbrand-baseline.json)
+
+**No live-site algorithm has been changed by this experiment.** Experimental
+Burg here is not a complete implementation of Praat. All reported speech
+recognition figures are narrowly defined IPA **symbol agreement**, not clinical
+pronunciation assessment or a general speech recognizer. Training model
+selection happens on train/dev speakers; previously explored test participants
+must not be presented as an untouched blind final set.
+
+
 This folder implements a **local, source-code-based** benchmark for the existing VowelScope website. The runner instruments the **actual inline browser DSP code** from `vowelscope/index.html` or `vowelscope/en/index.html`; it does **not** reimplement LPC in Python or compare against the site's hard-coded IPA reference coordinates.
 
 ## What is and is not automatic
