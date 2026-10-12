@@ -346,7 +346,145 @@
       }
     }
   },
-  "warning": "All models use ORIGINAL human-annotated F1/F2, not VowelScope LPC output; these are oracle classification experiments. Do not quote these as live audio recognition accuracy.",
+  "live_lpc_model_results": {
+    "generic_28_ipa_reference": {
+      "n": 206,
+      "detected": 196,
+      "coverage": 0.9514563106796117,
+      "correct": 38,
+      "accuracy_on_all": 0.18446601941747573,
+      "accuracy_when_detected": 0.19387755102040816,
+      "by_cohort": {
+        "boys": {
+          "n": 35,
+          "detected": 32,
+          "correct": 6,
+          "accuracy_on_all": 0.17142857142857143
+        },
+        "girls": {
+          "n": 36,
+          "detected": 34,
+          "correct": 5,
+          "accuracy_on_all": 0.1388888888888889
+        },
+        "men": {
+          "n": 72,
+          "detected": 70,
+          "correct": 17,
+          "accuracy_on_all": 0.2361111111111111
+        },
+        "women": {
+          "n": 63,
+          "detected": 60,
+          "correct": 10,
+          "accuracy_on_all": 0.15873015873015872
+        }
+      }
+    },
+    "en_us_train_only_log_centroid": {
+      "n": 206,
+      "detected": 196,
+      "coverage": 0.9514563106796117,
+      "correct": 93,
+      "accuracy_on_all": 0.45145631067961167,
+      "accuracy_when_detected": 0.4744897959183674,
+      "by_cohort": {
+        "boys": {
+          "n": 35,
+          "detected": 32,
+          "correct": 10,
+          "accuracy_on_all": 0.2857142857142857
+        },
+        "girls": {
+          "n": 36,
+          "detected": 34,
+          "correct": 12,
+          "accuracy_on_all": 0.3333333333333333
+        },
+        "men": {
+          "n": 72,
+          "detected": 70,
+          "correct": 41,
+          "accuracy_on_all": 0.5694444444444444
+        },
+        "women": {
+          "n": 63,
+          "detected": 60,
+          "correct": 30,
+          "accuracy_on_all": 0.47619047619047616
+        }
+      }
+    },
+    "en_us_train_only_gaussian_diag": {
+      "n": 206,
+      "detected": 196,
+      "coverage": 0.9514563106796117,
+      "correct": 93,
+      "accuracy_on_all": 0.45145631067961167,
+      "accuracy_when_detected": 0.4744897959183674,
+      "by_cohort": {
+        "boys": {
+          "n": 35,
+          "detected": 32,
+          "correct": 12,
+          "accuracy_on_all": 0.34285714285714286
+        },
+        "girls": {
+          "n": 36,
+          "detected": 34,
+          "correct": 12,
+          "accuracy_on_all": 0.3333333333333333
+        },
+        "men": {
+          "n": 72,
+          "detected": 70,
+          "correct": 38,
+          "accuracy_on_all": 0.5277777777777778
+        },
+        "women": {
+          "n": 63,
+          "detected": 60,
+          "correct": 31,
+          "accuracy_on_all": 0.49206349206349204
+        }
+      }
+    },
+    "en_us_cohort_centroid_exploratory": {
+      "n": 206,
+      "detected": 196,
+      "coverage": 0.9514563106796117,
+      "correct": 104,
+      "accuracy_on_all": 0.5048543689320388,
+      "accuracy_when_detected": 0.5306122448979592,
+      "by_cohort": {
+        "boys": {
+          "n": 35,
+          "detected": 32,
+          "correct": 15,
+          "accuracy_on_all": 0.42857142857142855
+        },
+        "girls": {
+          "n": 36,
+          "detected": 34,
+          "correct": 16,
+          "accuracy_on_all": 0.4444444444444444
+        },
+        "men": {
+          "n": 72,
+          "detected": 70,
+          "correct": 40,
+          "accuracy_on_all": 0.5555555555555556
+        },
+        "women": {
+          "n": 63,
+          "detected": 60,
+          "correct": 33,
+          "accuracy_on_all": 0.5238095238095238
+        }
+      }
+    }
+  },
+  "warning": "model_results uses corpus reference F1/F2; live_lpc_model_results uses VowelScope actual LPC estimates replayed offline. Both evaluate dev speakers only, not real mobile microphone performance.",
   "no_test_model_evaluation": true,
   "license": "Only derived aggregate statistics; source audio and per-token measurements stay in the temporary runner."
 }
