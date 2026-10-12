@@ -72,6 +72,10 @@
     .metric>strong{font-size:18px;font-weight:750;letter-spacing:-.7px;white-space:nowrap;display:block}
     .metric small{font-size:10px;font-weight:500;color:#97a09d}
     .setting-panel{padding:22px}
+    .tracking-mode{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:9px}
+    .tracking-option{background:#f8faf8;border:1px solid #dfe8e1;border-radius:9px;color:#60796b;font-size:12px;font-weight:700;min-height:43px;padding:8px 6px}
+    .tracking-option.active{background:#205f55;border-color:#205f55;color:white}
+    .tracking-option:focus-visible{outline:3px solid #9ad6bf;outline-offset:2px}
     .setting-row{display:flex;justify-content:space-between;align-items:center;margin:19px 0 9px}
     .setting-row label{font-size:12px;font-weight:680}
     .setting-row output{color:#7e918b;font-size:11px}
@@ -177,9 +181,15 @@
         </div>
         <div class="panel setting-panel">
           <div class="panel-head" style="margin:0"><h3 class="panel-title">检测设置</h3><span class="subtle">TUNE</span></div>
+          <div class="setting-row"><label>元音追踪模式</label><output id="trackingModeLabel">默认 · 流畅</output></div>
+          <div class="tracking-mode" role="group" aria-label="元音追踪模式">
+            <button id="modeClassic" class="tracking-option active" type="button" aria-pressed="true">流畅 · 原版</button>
+            <button id="modeStable" class="tracking-option" type="button" aria-pressed="false">防乱跳 · 实验</button>
+          </div>
+          <p class="help-text" id="modeHelp">原版检测：响应更快、连续轨迹更自然；辅音附近可能出现跳点。</p>
           <div class="setting-row"><label for="smooth">轨迹平滑</label><output id="smoothOut">适中</output></div><input aria-label="轨迹平滑" type="range" min="0" max="100" value="58" id="smooth"/>
           <div class="setting-row"><label for="sensitivity">声音灵敏度</label><output id="sensitivityOut">60%</output></div><input aria-label="声音灵敏度" type="range" min="5" max="100" value="60" id="sensitivity"/>
-          <p class="help-text">读数抖动时增大平滑；辅音及不稳定的共振峰现在会暂停更新。检测较严格，正常元音若被漏掉，可提高灵敏度并持续发音。</p>
+          <p class="help-text">增大平滑可减少视觉抖动；「防乱跳」会过滤部分辅音和异常峰值，也可能漏掉短元音。</p>
         </div>
         <div class="panel target-panel">
           <div class="panel-head" style="margin:0"><h3 class="panel-title">参考音位置</h3><span class="subtle">REFERENCE</span></div>
@@ -188,7 +198,7 @@
         </div>
       </aside>
     </main>
-    <div class="notes"><div class="icon">ⓘ</div><div><strong>实验说明</strong><p>这是个人学习用声学演示：先用周期性检测过滤一部分辅音噪声，再用 LPC 估计语音的共振峰，再在 IPA 元音空间中绘图。语言选择只高亮常见元音类别，并非更换语言专属的实测 F1/F2 位置或识别模型。标准元音参考位置是近似值，会随语言、个体、声道长度和发音环境变化。声道或舌头的实际形状不能仅凭这些读数唯一反推。请优先试发 /i/（衣）、/a/（啊）、/u/（乌），并持续发音而不是说完整句子。</p></div></div>
+    <div class="notes"><div class="icon">ⓘ</div><div><strong>实验说明</strong><p>这是个人学习用声学演示：使用 LPC 估计语音的共振峰；可选的实验防抖模式会先尝试过滤部分辅音噪声，再在 IPA 元音空间中绘图。语言选择只高亮常见元音类别，并非更换语言专属的实测 F1/F2 位置或识别模型。标准元音参考位置是近似值，会随语言、个体、声道长度和发音环境变化。声道或舌头的实际形状不能仅凭这些读数唯一反推。请优先试发 /i/（衣）、/a/（啊）、/u/（乌），并持续发音而不是说完整句子。</p></div></div>
     <footer class="footer"><span>VowelScope · Local-only experimental phonetics dashboard</span><span>Web Audio API · LPC / Autocorrelation · No external libraries</span></footer>
   </div>
   <script>
@@ -238,7 +248,7 @@
     ];
     const $ = (id) => document.getElementById(id);
     const canvas=$('vowelChart'),ctx=canvas.getContext('2d');
-    const state={running:false,frozen:false,ctx:null,stream:null,source:null,analyser:null,mute:null,lastProcess:0,lastSound:0,formants:null,trail:[],target:null,profileA:'en-us',profileB:'zh-cmn',level:0,sampleCount:0,firstCandidate:null,pendingJump:null,lastAccepted:0};
+    const state={running:false,frozen:false,ctx:null,stream:null,source:null,analyser:null,mute:null,lastProcess:0,lastSound:0,formants:null,trail:[],target:null,profileA:'en-us',profileB:'zh-cmn',mode:'classic',level:0,sampleCount:0,firstCandidate:null,pendingJump:null,lastAccepted:0};
     const Fs=11025, MinF1=180, MaxF1=1100, MinF2=600, MaxF2=3000;
     const margin={left:84,right:50,top:52,bottom:67};
     const W=1000,H=750,PW=W-margin.left-margin.right,PH=H-margin.top-margin.bottom;
@@ -435,28 +445,40 @@
       $('levelFill').style.width=`${Math.min(100,Math.max(0,state.level*440))}%`;
       const threshold=0.003+(100-Number($('sensitivity').value))*.00017;
       if(rms<threshold){
-        clearOldVowel(now,'正在监听 · 暂无稳定声音');
+        if(state.mode==='classic'){
+          if(now-state.lastSound>450){resetReading();$('micDetail').textContent='正在监听 · 暂无稳定声音';}
+        }else{
+          clearOldVowel(now,'正在监听 · 暂无稳定声音');
+        }
         return;
       }
-      const voice=voicedEvidence(parsed.raw,Fs);
-      if(!voice.voiced){
-        clearOldVowel(now,'检测到非周期性声音 · 已过滤可能的辅音噪声');
-        return;
+      // Classic reproduces the original live LPC path, without periodicity
+      // gates or two-frame jump confirmation. Users can switch modes at will.
+      if(state.mode==='stable'){
+        const voice=voicedEvidence(parsed.raw,Fs);
+        if(!voice.voiced){
+          clearOldVowel(now,'检测到非周期性声音 · 已过滤可能的辅音噪声');
+          return;
+        }
+      }else{
+        state.lastSound=now;
+        $('micDetail').textContent='已检测到声音 · 实时分析中';
       }
       const candidate=estimateFormants(parsed.y,Fs);
       if(!candidate){
-        clearOldVowel(now,'正在监听 · 共振峰暂不稳定');
+        if(state.mode==='stable')clearOldVowel(now,'正在监听 · 共振峰暂不稳定');
         return;
       }
-      // If a new syllable follows a pause, do not interpolate from the old one.
-      if(now-state.lastAccepted>430&&state.formants){
-        resetReading();
-        state.pendingJump=null;state.firstCandidate=null;
-      }
-      const accepted=acceptFormants(candidate,now);
-      if(!accepted){
-        clearOldVowel(now,'正在确认元音位置 · 已抑制单帧跳点',true);
-        return;
+      let accepted=candidate;
+      if(state.mode==='stable'){
+        if(now-state.lastAccepted>430&&state.formants){
+          resetReading();state.pendingJump=null;state.firstCandidate=null;
+        }
+        accepted=acceptFormants(candidate,now);
+        if(!accepted){
+          clearOldVowel(now,'正在确认元音位置 · 已抑制单帧跳点',true);
+          return;
+        }
       }
       if(state.formants){
         const amount=.08+(100-Number($('smooth').value))*.006;
@@ -466,10 +488,13 @@
           }
         }
       }
-      state.formants=accepted;state.lastAccepted=now;state.lastSound=now;
+      state.formants=accepted;
+      state.lastAccepted=now;
+      if(state.mode==='stable'){
+        state.lastSound=now;$('micDetail').textContent='稳定有声段 · 正在分析元音';
+      }
       state.trail.push({f1:accepted.f1,f2:accepted.f2,t:now});
       if(state.trail.length>160)state.trail.shift();
-      $('micDetail').textContent='稳定有声段 · 正在分析元音';
       const {vowel,distance}=nearestVowel(accepted.f1,accepted.f2);
       $('ipaSymbol').textContent=vowel.symbol;
       $('ipaName').textContent=vowel.name;
@@ -491,6 +516,26 @@
       finally{$('startBtn').disabled=false;if(!state.running)$('startBtn').textContent='开启麦克风';}
     }
     async function stopMic(){state.running=false;state.frozen=false;state.stream?.getTracks().forEach(t=>t.stop());try{state.source?.disconnect();state.analyser?.disconnect();state.mute?.disconnect();await state.ctx?.close();}catch(_){}state.ctx=state.stream=state.source=state.analyser=state.mute=null;state.trail=[];state.firstCandidate=null;state.pendingJump=null;state.lastAccepted=0;$('startBtn').textContent='开启麦克风';$('startBtn').classList.remove('stop');$('freezeBtn').disabled=true;$('freezeBtn').textContent='暂停画面';$('micLabel').textContent='未连接麦克风';$('micDetail').textContent='等待授权';$('levelFill').style.width='0%';$('placeholder').style.opacity='1';setStatus('idle','尚未开启');resetReading();}
+    function setTrackingMode(mode){
+      if(mode!=='classic'&&mode!=='stable')return;
+      if(state.mode===mode)return;
+      state.mode=mode;
+      // Discard old tracking history: the two modes have different filters.
+      state.formants=null;state.trail=[];state.firstCandidate=null;
+      state.pendingJump=null;state.lastAccepted=0;state.lastSound=0;
+      resetReading();
+      $('modeClassic').classList.toggle('active',mode==='classic');
+      $('modeStable').classList.toggle('active',mode==='stable');
+      $('modeClassic').setAttribute('aria-pressed',String(mode==='classic'));
+      $('modeStable').setAttribute('aria-pressed',String(mode==='stable'));
+      $('trackingModeLabel').textContent=mode==='classic'?'默认 · 流畅':'实验 · 防抖';
+      $('modeHelp').textContent=mode==='classic'
+        ?'原版检测：响应更快、连续轨迹更自然；辅音附近可能出现跳点。'
+        :'实验过滤：抑制部分辅音噪声和突然跳点；响应可能变慢，也可能漏掉短元音。';
+      if(state.running)$('micDetail').textContent='模式已切换 · 请重新发元音';
+    }
+    $('modeClassic').addEventListener('click',()=>setTrackingMode('classic'));
+    $('modeStable').addEventListener('click',()=>setTrackingMode('stable'));
     $('startBtn').addEventListener('click',()=>state.running?stopMic():startMic());
     $('freezeBtn').addEventListener('click',()=>{if(!state.running)return;state.frozen=!state.frozen; $('freezeBtn').textContent=state.frozen?'继续画面':'暂停画面';setStatus(state.frozen?'frozen':'live',state.frozen?'已暂停画面':'实时监听');$('micDetail').textContent=state.frozen?'画面暂停 · 麦克风仍已连接':'正在监听 · 请发一个元音';});
     $('clearBtn').addEventListener('click',()=>{state.trail=[];});
