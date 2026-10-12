@@ -213,6 +213,27 @@ def main():
         cr=subprocess.run(compare,capture_output=True,text=True,timeout=90)
         print("DSP comparison:",cr.returncode,cr.stdout.strip(),cr.stderr.strip(),flush=True)
         if cr.returncode:raise RuntimeError("DSP comparison failed: "+cr.stderr)
+        peak_variants={"original":dev_live}
+        for variant in ("peak_prominence","peak_bandwidth","peak_tracking"):
+            dst=root/("dev-"+variant+".json")
+            command=["node","vowelscope/validation/benchmark.mjs",
+                     "--manifest",str(model_path),"--page","vowelscope/index.html",
+                     "--split","dev","--mode","classic",
+                     "--dsp-variant",variant,"--out",str(dst)]
+            check=subprocess.run(command,capture_output=True,text=True,timeout=330)
+            print("Peak selector:",variant,check.returncode,check.stdout.strip(),check.stderr.strip(),flush=True)
+            if check.returncode:raise RuntimeError("Peak selector "+variant+" failed: "+check.stderr)
+            peak_variants[variant]=dst
+        peak_summary=Path("vowelscope/validation/public-dataset/peak-selector-dev-ablation.json")
+        peak_compare=["python","vowelscope/validation/compare_peak_selection.py",
+            "--original",str(peak_variants["original"]),
+            "--peak-prominence",str(peak_variants["peak_prominence"]),
+            "--peak-bandwidth",str(peak_variants["peak_bandwidth"]),
+            "--peak-tracking",str(peak_variants["peak_tracking"]),
+            "--out",str(peak_summary)]
+        pc=subprocess.run(peak_compare,capture_output=True,text=True,timeout=90)
+        print("Peak selector comparison:",pc.returncode,pc.stdout.strip(),pc.stderr.strip(),flush=True)
+        if pc.returncode:raise RuntimeError("Peak selector aggregation failed: "+pc.stderr)
         models_path=Path("vowelscope/validation/public-dataset/classifier-dev-ablation.json")
         model_cmd=["python","vowelscope/validation/classification_experiments.py",
             "--manifest",str(model_path),"--oracle-dev",str(dev_oracle),
