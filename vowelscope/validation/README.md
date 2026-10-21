@@ -1,5 +1,73 @@
 # VowelScope acoustic evaluation (v0.1)
 
+## Open-data preparation (2026-10-13)
+
+`prepare_l2arctic.py` prepares a private unscored L2-ARCTIC queue outside the
+checkout. The pinned CC BY-NC 4.0 selection has 24 speakers, 72 recordings and
+449 candidate vowel windows; reviewed F1/F2 references are still missing.
+See [source, acquisition and blinded review instructions](../docs/OPEN_CORPUS_PREPARATION.md).
+The benchmark refuses preparation queues and explicitly pending selected rows.
+Keep pending artifacts immutable and create a separate reviewed manifest before
+the frozen independent evaluation. Phone labels and unchecked automatic formants
+do not establish reference accuracy.
+
+## Current reproducible replay protocol
+
+2026-10-14 research: [rate-scaled FIR results](PHASE4_ADAPTIVE_FIR_RESULTS.md),
+[multirate coefficient audit](PHASE4_FIR_RESULTS.md) and
+[negative exact-zero control](PHASE4_ZERO_RESULTS.md). The adaptive filter stays
+offline, preserves the 16-kHz DEV summaries, and passes sampled coefficient
+budgets at 16/44.1/48/96 kHz with increased high-rate computation cost. No
+independent accuracy or real-microphone gate has passed. Use explicit external
+outputs for `--variants ... pole14_fs12000_poly_adaptive`; the historical default
+variant set is preserved. Full reproduction commands and limitations are in
+the linked reports. Production classic remains unchanged.
+
+The shared engine is loaded from the actual static page assets. Protocol-v2
+reports read HTML slider defaults (currently smooth=58); use `--smoothing legacy`
+to explicitly reproduce the old smooth=60 mock configuration. Reports record
+Git revision/dirty state, page/asset and injected-patch digests, protocol version
+and the actual slider value. Classic raw estimates remain independent of EMA.
+
+The corpus helper verifies the preserved SHA-256 before ZIP parsing. For a fresh
+development comparison, keep cache/output outside the public checkout:
+
+```bash
+python vowelscope/validation/run_phase3_poles.py \
+  --archive-cache /workspace/research-cache/h95-alldata.zip \
+  --out /workspace/research-results/new-phase4-dev-report.json \
+  --variants original_acoustic pole14_bw400 pole14_fs12000_poly33 pole14_fs12000_poly33_fixed_window
+```
+
+An explicit output must be a new external file; the runner refuses to overwrite
+it. This is previously inspected DEV data, never independent validation. The
+fixed-window research variant uses 557 samples at 12 kHz; the historical candidate
+uses 512. CI now retains aggregates as run artifacts rather than rebasing/pushing
+computed reports onto newer source. Existing archived reports remain unchanged.
+
+Run `node --test vowelscope/validation/*.test.mjs` and
+`python -m unittest discover -s vowelscope/validation -p 'test_*.py'` in addition
+to the existing smoke/numerical scripts. Optional `?profile=1` exposes bounded
+processing diagnostics through `window.VowelScopeDiagnostics.snapshot()`; it
+does not record audio or establish microphone accuracy.
+
+## Phase 4 engineering baseline
+
+[Architecture and audit](../ARCHITECTURE.md) records production data flow,
+historical replay configuration differences, metric denominators and CI risks.
+[First milestone design](../PHASE4_DESIGN.md) preserves classic behavior while
+isolating stable acceptance from visual lag and cleaning up failed microphone
+startup. From repository root, run:
+
+```bash
+node --test vowelscope/validation/production.test.mjs
+```
+
+The tests execute both real page scripts with simulated browser resources.
+They cover locale equivalence, classic baseline/EMA, pause/reset, stable jump
+acceptance, startup failures, permission errors and cleanup. They are not a
+hardware, microphone accuracy or mobile-performance validation.
+
 ## Research Phase 3b–3c: measured ceiling, tracking and polyphase experiments
 
 **[Read completed Phase 3b–3c results](PHASE3B_RESULTS.md).** The optimized 12 kHz/33-tap polyphase FIR reduces development-set F2 outliers versus original LPC and runs about twice as fast as the earlier 12 kHz convolution implementation on GitHub Actions, but differences remain across speaker cohorts. Continuity penalties and the 9 kHz analysis variant performed worse. All algorithms remain **offline research-only** and the project still needs an independent unseen corpus and device profiling.

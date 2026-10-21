@@ -8,7 +8,7 @@ const PREPROCESS=String.raw`
     // of two convolutions + interpolation for each output sample.
     let polyphaseCache=null;
     preprocess=function(buffer,inputRate){
-      const outputRate=12000,samples=512,M=__HALF__;
+      const outputRate=12000,samples=__SAMPLES__,M=__HALF__;
       const step=inputRate/outputRate;
       const windowLen=Math.ceil(samples*step),offset=buffer.length-windowLen;
       if(offset<0)return null;
@@ -62,13 +62,16 @@ const PREPROCESS=String.raw`
 
 export function optimizedCeilingPatch(name){
   const config={
-    pole14_fs12000_poly33:{M:16},
-    pole14_fs12000_poly49:{M:24}
+    pole14_fs12000_poly33:{M:16,samples:512},
+    // Match the original 512/11025-second nominal window to the nearest output sample.
+    pole14_fs12000_poly33_fixed_window:{M:16,samples:557},
+    pole14_fs12000_poly49:{M:24,samples:512},
+    pole14_fs12000_poly_adaptive:{M:'Math.max(16,Math.ceil(inputRate/2000))',samples:512}
   }[name];
   if(!config)throw Error('Unknown optimized ceiling experiment: '+name);
   let patch=poleResearchPatch('pole14_bw400');
   const marker='    estimateFormants=function(y,fs){';
   if(!patch.includes(marker))throw Error('Pole estimator structure changed');
   patch=patch.replace(marker,marker+'\n      fs=12000;');
-  return patch+'\n'+PREPROCESS.replaceAll('__HALF__',String(config.M));
+  return patch+'\n'+PREPROCESS.replaceAll('__HALF__',String(config.M)).replaceAll('__SAMPLES__',String(config.samples));
 }

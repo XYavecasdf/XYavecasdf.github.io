@@ -3,9 +3,12 @@
 Downloads the authorized research host into runner temp only. Publishes
 anonymous aggregate development-set diagnostics, never WAVs or individual rows.
 """
-import hashlib,io,json,subprocess,tempfile,urllib.request,zipfile,re,math,os
+import argparse,hashlib,io,json,subprocess,tempfile,zipfile,re,math,sys
 from pathlib import Path
-URL="https://raw.githubusercontent.com/santiagobarreda/hillenbrand_et_al_1995/main/h95-alldata.zip"
+from uncertainty import speaker_bootstrap
+from corpus_source import ARCHIVE_SHA256, acquire_archive, git_provenance, outside_checkout
+
+CHECKOUT_ROOT=Path(__file__).resolve().parents[2]
 VALID=re.compile(r"^[mbgw][0-9]{2}[a-z]{2}$")
 IPA={"ae":"æ","ah":"ɑ","aw":"ɔ","eh":"ɛ","er":"ɝ","ei":"eɪ",
      "ey":"eɪ","ih":"ɪ","iy":"i","oa":"oʊ","oo":"ʊ","uh":"ʌ","uw":"u"}
@@ -39,10 +42,85 @@ def metric(rows):
       "f2_errors_gt300_hz":sum(x>300 for x in e2),
       "f2_errors_gt500_hz":sum(x>500 for x in e2)}
 def row_key(r):return r["audio_path"],r["start_s"],r["end_s"],r["speaker_id"]
-def main():
-    request=urllib.request.Request(URL,headers={"User-Agent":"VowelScope-Research-Phase3/1.0"})
-    with urllib.request.urlopen(request,timeout=120) as stream:archive=stream.read(40_000_000)
-    sha=hashlib.sha256(archive).hexdigest()
+
+# Preserve the historical all-variant run when no subset is selected.
+DESIGNS=[
+    ("original_visual","original","visual"),
+    ("original_acoustic","original","acoustic"),
+    ("pole14_bw700","pole14_bw700","acoustic"),
+    ("pole14_bw400","pole14_bw400","acoustic"),
+    ("pole16_bw700","pole16_bw700","acoustic"),
+    ("pole14_fs9000_bw400","pole14_fs9000_bw400","acoustic"),
+    ("pole14_fs12000_bw400","pole14_fs12000_bw400","acoustic"),
+    ("pole14_bw400_track05","pole14_bw400_track05","acoustic"),
+    ("pole14_bw400_track12","pole14_bw400_track12","acoustic"),
+    ("pole14_fs12000_poly33","pole14_fs12000_poly33","acoustic"),
+    ("pole14_fs12000_poly49","pole14_fs12000_poly49","acoustic"),
+    ("pole14_fs12000_poly33_fixed_window","pole14_fs12000_poly33_fixed_window","acoustic"),
+    ("original_acoustic_zero_safe","linear_zero_safe","acoustic"),
+    ("pole14_fs12000_poly_adaptive","pole14_fs12000_poly_adaptive","acoustic")
+]
+
+def parse_options(argv=None, checkout_root=None):
+    checkout_root=Path(checkout_root or CHECKOUT_ROOT).resolve()
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--archive-cache", type=Path,
+                        help="Existing verified archive outside the checkout; never modified")
+    parser.add_argument("--out", type=Path,
+                        help="New aggregate JSON outside the checkout; existing files are preserved")
+    parser.add_argument("--variants", nargs="+", choices=[item[0] for item in DESIGNS],
+                        default=[item[0] for item in DESIGNS if item[0] not in
+                                 ("original_acoustic_zero_safe","pole14_fs12000_poly_adaptive")])
+    parser.add_argument("--smoothing", choices=("default","legacy","fast","none"), default="default")
+    options=parser.parse_args(argv)
+    options.explicit_out=options.out is not None
+    if {"original_acoustic_zero_safe","pole14_fs12000_poly_adaptive"}.intersection(options.variants) and not options.explicit_out:
+        raise ValueError("The new DSP experiment requires an explicit external --out")
+    if options.explicit_out:
+        options.out=outside_checkout(options.out, checkout_root, "Explicit report output")
+        if options.out.exists():raise FileExistsError("Report already exists: "+str(options.out))
+    else:
+        options.out=checkout_root/"vowelscope/validation/public-dataset/phase3-pole-dev.json"
+    if options.archive_cache is not None:
+        options.archive_cache=outside_checkout(options.archive_cache, checkout_root, "Archive cache")
+    if len(set(options.variants))!=len(options.variants):
+        parser.error("Duplicate variant labels are not allowed")
+    return options
+
+def write_summary(summary, options):
+    # Exclusive creation also protects a file created after argument validation.
+    if options.explicit_out:
+        outside_checkout(options.out, CHECKOUT_ROOT, "Explicit report output")
+    options.out.parent.mkdir(parents=True,exist_ok=True)
+    with options.out.open("x" if options.explicit_out else "w",encoding="utf-8") as stream:
+        stream.write(json.dumps(summary,indent=2,ensure_ascii=False)+"\n")
+
+def run_configuration(options, reports):
+    keys=("schema_version","replay_protocol","smoothing","smoothing_value","measurement",
+          "dsp_variant","source_html","source_assets","source_commit","source_dirty","code_digest",
+          "page_digest","dsp_patch_digest")
+    return {"mode":"classic","split":"dev","smoothing":options.smoothing,
+            "analysis_windows":{label:{
+                "samples":557 if label.endswith("fixed_window") else 512,
+                "sample_rate_hz":12000 if "fs12000" in label else 9000 if "fs9000" in label else 11025,
+                "nominal_duration_ms":1000*(557 if label.endswith("fixed_window") else 512)/
+                    (12000 if "fs12000" in label else 9000 if "fs9000" in label else 11025)
+                } for label in reports},
+            "page":"vowelscope/index.html","variants":list(reports),
+            "speaker_partition":"SHA256(speaker_id)[:8] modulo 100; dev=70..84",
+            "source_archive_expected_sha256":ARCHIVE_SHA256,
+            "python_version":sys.version.split()[0],
+            "node_version":subprocess.check_output(["node","--version"],text=True).strip(),
+            "runner_sources_sha256":{
+                "validation/"+name:hashlib.sha256(Path(__file__).with_name(name).read_bytes()).hexdigest()
+                for name in ("run_phase3_poles.py","corpus_source.py","uncertainty.py")},
+            "benchmark_configuration":{label:{key:report[key] for key in keys if key in report}
+                                       for label,report in reports.items()}}
+
+def main(argv=None):
+    options=parse_options(argv)
+    provenance=git_provenance(CHECKOUT_ROOT)
+    archive,sha=acquire_archive(options.archive_cache)
     with tempfile.TemporaryDirectory(prefix="vowelscope-poles-") as folder:
         root=Path(folder);(root/"audio").mkdir()
         with zipfile.ZipFile(io.BytesIO(archive)) as z:
@@ -73,46 +151,40 @@ def main():
           "description":"Original published annotated formants, DEV speakers only",
           "samples":samples}
         mf=root/"manifest.json";mf.write_text(json.dumps(manifest),encoding="utf-8")
-        designs=[
-          ("original_visual","original","visual"),
-          ("original_acoustic","original","acoustic"),
-          ("pole14_bw700","pole14_bw700","acoustic"),
-          ("pole14_bw400","pole14_bw400","acoustic"),
-          ("pole16_bw700","pole16_bw700","acoustic"),
-          ("pole14_fs9000_bw400","pole14_fs9000_bw400","acoustic"),
-          ("pole14_fs12000_bw400","pole14_fs12000_bw400","acoustic"),
-          ("pole14_bw400_track05","pole14_bw400_track05","acoustic"),
-          ("pole14_bw400_track12","pole14_bw400_track12","acoustic"),
-          ("pole14_fs12000_poly33","pole14_fs12000_poly33","acoustic"),
-          ("pole14_fs12000_poly49","pole14_fs12000_poly49","acoustic")
-        ]
+        designs=[item for item in DESIGNS if item[0] in options.variants]
         reports={}
         for label,variant,measurement in designs:
             filename=root/(label+".json")
             args=["node","vowelscope/validation/benchmark.mjs","--manifest",str(mf),
                   "--page","vowelscope/index.html","--mode","classic","--split","dev",
-                  "--measurement",measurement,"--dsp-variant",variant,"--out",str(filename)]
-            p=subprocess.run(args,capture_output=True,text=True,timeout=360)
+                  "--measurement",measurement,"--dsp-variant",variant,
+                  "--smoothing",options.smoothing,"--out",str(filename)]
+            p=subprocess.run(args,capture_output=True,text=True,timeout=360,cwd=CHECKOUT_ROOT)
             print(label,"status",p.returncode,p.stdout.strip(),p.stderr.strip(),flush=True)
             if p.returncode:raise RuntimeError("Benchmark "+label+" failed: "+p.stderr)
             reports[label]=json.loads(filename.read_text(encoding="utf-8"))
         index={k:{row_key(x):x for x in report["results"]} for k,report in reports.items()}
-        keys=set(index["original_visual"])
+        keys=set(next(iter(index.values())))
         if any(set(m)!=keys for m in index.values()):raise RuntimeError("Mismatched development examples")
-        good=[key for key in keys if all(
+        good=[key for key in sorted(keys) if all(
             index[k][key]["error"]["f1_abs_hz"] is not None and
             index[k][key]["error"]["f2_abs_hz"] is not None for k in index)]
+        zero_ablation="original_acoustic_zero_safe" in reports and set(reports)<={"original_acoustic","original_acoustic_zero_safe"}
         summary={
-          "kind":"phase3_lpc_pole_development_ablation",
+          "kind":"classic_zero_interpolation_development_ablation" if zero_ablation else "phase3_lpc_pole_development_ablation",
           "source":"Hillenbrand et al. (1995) (original researcher-authorized hosting)",
           "source_archive_sha256":sha,"source_version":sha[:16],
-          "source_commit":os.environ.get("GITHUB_SHA","local"),
+          **provenance,"run_configuration":run_configuration(options,reports),
           "split":"dev","speaker_disjoint_from_training":True,
           "speaker_count":len({r["speaker_id"] for r in samples}),
           "sample_count":len(samples),"shared_detection_count":len(good),
-          "experiment_stage":"Phase 3b/3c: analysis-rate ceilings, pole tracking, optimized FIR resampling",
+          "experiment_stage":"Phase 4: exact-zero linear interpolation control" if zero_ablation else "Phase 3b/3c: analysis-rate ceilings, pole tracking, optimized FIR resampling",
           "variants":list(reports),
           "all_tokens":{k:metric(v["results"]) for k,v in reports.items()},
+          "speaker_cluster_uncertainty":{k:speaker_bootstrap(v["results"]) for k,v in reports.items()},
+          "by_vowel":{vowel:{k:{"metrics":metric([r for r in v["results"] if r["vowel_ipa"]==vowel]),
+              "uncertainty":speaker_bootstrap([r for r in v["results"] if r["vowel_ipa"]==vowel])}
+              for k,v in reports.items()} for vowel in sorted({r["vowel_ipa"] for r in samples})},
           "common_detected":{k:metric([m[x] for x in good]) for k,m in index.items()},
           "approximate_computation":{k:{
               "frames":report["summary"].get("benchmark_frames"),
@@ -124,21 +196,27 @@ def main():
                 if {"m":"adult_men","w":"adult_women","b":"boys","g":"girls"}.get(r["speaker_id"][:1])==cohort])
                 for variant in reports}
               for cohort in ("adult_men","adult_women","boys","girls")},
-          "limitations":[
+          "by_cohort_uncertainty":{cohort:{k:speaker_bootstrap([r for r in v["results"]
+              if {"m":"adult_men","w":"adult_women","b":"boys","g":"girls"}.get(r["speaker_id"][:1])==cohort])
+              for k,v in reports.items()} for cohort in ("adult_men","adult_women","boys","girls")},
+          "limitations":([
+            "The correction is an offline finite-PCM interpolation control; classic live preprocessing remains unchanged.",
+            "Both compared linear resamplers still lack antialias filtering. This experiment does not validate a new advanced detector.",
+            "CPU timing measures simulated Node VM processing on the current host, not mobile-browser latency."
+          ] if zero_ablation else [
             "LPC pole iteration is a new experimental Durand-Kerner implementation, not the Praat Burg pipeline.",
-            "Ceiling variants use anti-aliased resampling to 9/12 kHz and retain the app's fixed 512-sample window, creating an additional window-duration confound.",
+            "Historical ceiling variants use 512 samples at 9/12 kHz and change duration; the fixed-window 12-kHz variant uses 557 samples to approximate the original 512/11025-second nominal duration. Exact selected windows are recorded in run_configuration.",
             "All pole variants still limit F2 to 3300 Hz; analysis rate is not equivalent to Praat's full formant-ceiling setting.",
-            "The CPU timer measures simulated Node VM processing on a hosted CI runner, not mobile browser real-time latency.",
-            "The two continuity penalties use preceding accepted frame estimates only; no ground-truth labels or future frames.",
+            "The CPU timer measures simulated Node VM processing on the current host, not mobile browser real-time latency.",
+            "The two continuity penalties use preceding accepted frame estimates only; no ground-truth labels or future frames."
+          ])+[
             "Original Hillenbrand F1/F2 annotations are estimates, not error-free physical truths.",
             "Development speakers were used for earlier exploratory studies; these results are not independent validation.",
             "This is numerical WAV replay, not microphone device tests.",
             "No original recordings, per-token predictions, speaker identities or exact audio metadata are published."
           ]
         }
-        out=Path("vowelscope/validation/public-dataset/phase3-pole-dev.json")
-        out.parent.mkdir(parents=True,exist_ok=True)
-        out.write_text(json.dumps(summary,indent=2,ensure_ascii=False)+"\n",encoding="utf-8")
+        write_summary(summary,options)
         for name,x in summary["all_tokens"].items():
             print(f"{name}: coverage={x['coverage']:.1%}; F2_MAE={x['mae_f2_hz']}; F2_p90={x['p90_f2_hz']}; n={x['paired_acoustic_count']}",flush=True)
 if __name__=="__main__":main()

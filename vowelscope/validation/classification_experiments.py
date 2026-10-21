@@ -9,6 +9,7 @@ import json
 import math
 from collections import defaultdict
 from pathlib import Path
+from report_context import report_context
 
 ALLOWED=("æ","ɑ","ɔ","ɛ","ɪ","i","ʊ","ʌ","u")
 def cohort(s):return {"m":"men","w":"women","b":"boys","g":"girls"}.get(s[:1],"other")
@@ -125,6 +126,7 @@ def main():
       "en_us_cohort_centroid_exploratory":live_accuracy(lambda r,x:classify(x,grouped,cohort(r["speaker_id"])))
     }
     summary={
+      "replay_configurations":{"oracle":report_context(oracle),"live":report_context(live)},
       "kind":"development_only_classifier_ablation",
       "dataset_version":manifest["version"],
       "speaker_disjoint":True,

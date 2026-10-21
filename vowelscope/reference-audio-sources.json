@@ -1,0 +1,194 @@
+{
+  "source_repository": "NewDanishPhonetics/IPA-sound-files",
+  "revision": "81c8086257d84f5e434790603bb39b901df8143c",
+  "author": "Ruben Schachtenhaufen",
+  "license": "CC0-1.0",
+  "verification": "Pinned HTTPS revision; creator authorship and explicit repository CC0 license; checked PCM WAV decoding metadata. No independent phonetic audit.",
+  "assets": [
+    {
+      "file": "README.md",
+      "url": "https://raw.githubusercontent.com/NewDanishPhonetics/IPA-sound-files/81c8086257d84f5e434790603bb39b901df8143c/README.md",
+      "sha256": "8319e5fd816aa52272010c65e916f5e13a2990252fa373d32a03925085725656",
+      "bytes": 72
+    },
+    {
+      "file": "LICENSE",
+      "url": "https://raw.githubusercontent.com/NewDanishPhonetics/IPA-sound-files/81c8086257d84f5e434790603bb39b901df8143c/LICENSE",
+      "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+      "bytes": 7048
+    },
+    {
+      "file": "a.wav",
+      "url": "https://raw.githubusercontent.com/NewDanishPhonetics/IPA-sound-files/81c8086257d84f5e434790603bb39b901df8143c/a.wav",
+      "sha256": "50d4b63bcf9b19f7f78529f1b88f66148d594330ac84bac0e38c5550e4f574ac",
+      "bytes": 58116,
+      "duration_s": 0.6584126984126984,
+      "sample_rate_hz": 44100,
+      "channels": 1,
+      "sample_width": 2
+    },
+    {
+      "file": "e.wav",
+      "url": "https://raw.githubusercontent.com/NewDanishPhonetics/IPA-sound-files/81c8086257d84f5e434790603bb39b901df8143c/e.wav",
+      "sha256": "efe996d7cf995374ac146d2f2153708a527e2b940373618f43a92ac8ef4f85e2",
+      "bytes": 61556,
+      "duration_s": 0.6974149659863945,
+      "sample_rate_hz": 44100,
+      "channels": 1,
+      "sample_width": 2
+    },
+    {
+      "file": "i.wav",
+      "url": "https://raw.githubusercontent.com/NewDanishPhonetics/IPA-sound-files/81c8086257d84f5e434790603bb39b901df8143c/i.wav",
+      "sha256": "31d0987aa6b277fc7e7328f771a19e0eed261be5cd8a88afec81a76abc7575d9",
+      "bytes": 75690,
+      "duration_s": 0.8576643990929705,
+      "sample_rate_hz": 44100,
+      "channels": 1,
+      "sample_width": 2
+    },
+    {
+      "file": "o.wav",
+      "url": "https://raw.githubusercontent.com/NewDanishPhonetics/IPA-sound-files/81c8086257d84f5e434790603bb39b901df8143c/o.wav",
+      "sha256": "26be10e9c4dc4d6f99566634ae668ea865b4fb806db320029b01b03557d898dd",
+      "bytes": 61556,
+      "duration_s": 0.6974149659863945,
+      "sample_rate_hz": 44100,
+      "channels": 1,
+      "sample_width": 2
+    },
+    {
+      "file": "u.wav",
+      "url": "https://raw.githubusercontent.com/NewDanishPhonetics/IPA-sound-files/81c8086257d84f5e434790603bb39b901df8143c/u.wav",
+      "sha256": "97d7424ffaf614c756aca27157e2f6bccae7b20dcf0db8651a77aed70674a6e6",
+      "bytes": 56590,
+      "duration_s": 0.6411111111111111,
+      "sample_rate_hz": 44100,
+      "channels": 1,
+      "sample_width": 2
+    },
+    {
+      "file": "y.wav",
+      "url": "https://raw.githubusercontent.com/NewDanishPhonetics/IPA-sound-files/81c8086257d84f5e434790603bb39b901df8143c/y.wav",
+      "sha256": "a9778bc0316a7ea45cea3ce75080dc099f27b70d9b7124340afc0eb720bf154e",
+      "bytes": 60410,
+      "duration_s": 0.684421768707483,
+      "sample_rate_hz": 44100,
+      "channels": 1,
+      "sample_width": 2
+    },
+    {
+      "file": "æ.wav",
+      "url": "https://raw.githubusercontent.com/NewDanishPhonetics/IPA-sound-files/81c8086257d84f5e434790603bb39b901df8143c/%C3%A6.wav",
+      "sha256": "7261ce78dc69a2e8cf315cadb44e63774aca9079b71419c4ba93930c997794c7",
+      "bytes": 56208,
+      "duration_s": 0.6367800453514739,
+      "sample_rate_hz": 44100,
+      "channels": 1,
+      "sample_width": 2
+    },
+    {
+      "file": "ø.wav",
+      "url": "https://raw.githubusercontent.com/NewDanishPhonetics/IPA-sound-files/81c8086257d84f5e434790603bb39b901df8143c/%C3%B8.wav",
+      "sha256": "cc40445c777dcaa91f0c8f1f4198bfae5f81fb9d82ec5e599a9456565491f0a3",
+      "bytes": 60792,
+      "duration_s": 0.6887528344671202,
+      "sample_rate_hz": 44100,
+      "channels": 1,
+      "sample_width": 2
+    },
+    {
+      "file": "œ.wav",
+      "url": "https://raw.githubusercontent.com/NewDanishPhonetics/IPA-sound-files/81c8086257d84f5e434790603bb39b901df8143c/%C5%93.wav",
+      "sha256": "0c729c55b15c64ced4a6eea2788f22d61a39138be89b04a1d92b12c0d784d091",
+      "bytes": 68052,
+      "duration_s": 0.7710657596371883,
+      "sample_rate_hz": 44100,
+      "channels": 1,
+      "sample_width": 2
+    },
+    {
+      "file": "ɑ.wav",
+      "url": "https://raw.githubusercontent.com/NewDanishPhonetics/IPA-sound-files/81c8086257d84f5e434790603bb39b901df8143c/%C9%91.wav",
+      "sha256": "44895f4b28686d2843e9323ab3f35c883027f9cdcbbc031683b5834c356c85ed",
+      "bytes": 60410,
+      "duration_s": 0.684421768707483,
+      "sample_rate_hz": 44100,
+      "channels": 1,
+      "sample_width": 2
+    },
+    {
+      "file": "ɒ.wav",
+      "url": "https://raw.githubusercontent.com/NewDanishPhonetics/IPA-sound-files/81c8086257d84f5e434790603bb39b901df8143c/%C9%92.wav",
+      "sha256": "1f79283ac5614c0ff7107f34fec2197dd43055f1ad6236d49f0d87a82ead590a",
+      "bytes": 58118,
+      "duration_s": 0.6584353741496599,
+      "sample_rate_hz": 44100,
+      "channels": 1,
+      "sample_width": 2
+    },
+    {
+      "file": "ɔ.wav",
+      "url": "https://raw.githubusercontent.com/NewDanishPhonetics/IPA-sound-files/81c8086257d84f5e434790603bb39b901df8143c/%C9%94.wav",
+      "sha256": "f2aa6b0628485e67e8e5b600144e467f8fea0f2dab0b6d91ac8f7c570fe242cc",
+      "bytes": 59646,
+      "duration_s": 0.6757596371882086,
+      "sample_rate_hz": 44100,
+      "channels": 1,
+      "sample_width": 2
+    },
+    {
+      "file": "ɛ.wav",
+      "url": "https://raw.githubusercontent.com/NewDanishPhonetics/IPA-sound-files/81c8086257d84f5e434790603bb39b901df8143c/%C9%9B.wav",
+      "sha256": "a2118ee780bc8483d73f571b21c31b7f240ce159bf09feda6401ec091b345968",
+      "bytes": 58498,
+      "duration_s": 0.6627437641723356,
+      "sample_rate_hz": 44100,
+      "channels": 1,
+      "sample_width": 2
+    },
+    {
+      "file": "ɤ.wav",
+      "url": "https://raw.githubusercontent.com/NewDanishPhonetics/IPA-sound-files/81c8086257d84f5e434790603bb39b901df8143c/%C9%A4.wav",
+      "sha256": "7323057142eadeb5b3f347d9569390f5b685f8aec72ae897a9957d00ed0cdfb6",
+      "bytes": 56588,
+      "duration_s": 0.6410884353741496,
+      "sample_rate_hz": 44100,
+      "channels": 1,
+      "sample_width": 2
+    },
+    {
+      "file": "ɯ.wav",
+      "url": "https://raw.githubusercontent.com/NewDanishPhonetics/IPA-sound-files/81c8086257d84f5e434790603bb39b901df8143c/%C9%AF.wav",
+      "sha256": "31cbd043eac3660d5af910d689c02549958dd8a68f879801188ef60d610b7e61",
+      "bytes": 64230,
+      "duration_s": 0.7277324263038549,
+      "sample_rate_hz": 44100,
+      "channels": 1,
+      "sample_width": 2
+    },
+    {
+      "file": "ɶ.wav",
+      "url": "https://raw.githubusercontent.com/NewDanishPhonetics/IPA-sound-files/81c8086257d84f5e434790603bb39b901df8143c/%C9%B6.wav",
+      "sha256": "a3d18f11f2ecc9f1e05229330f18a328daf26e72d45f751100591bb6139594a3",
+      "bytes": 68434,
+      "duration_s": 0.7753968253968254,
+      "sample_rate_hz": 44100,
+      "channels": 1,
+      "sample_width": 2
+    },
+    {
+      "file": "ʌ.wav",
+      "url": "https://raw.githubusercontent.com/NewDanishPhonetics/IPA-sound-files/81c8086257d84f5e434790603bb39b901df8143c/%CA%8C.wav",
+      "sha256": "b2fd256180235d4b6786f7e6bc913ab73e2e61682b3f34cd70ab71b6e037d5b3",
+      "bytes": 64994,
+      "duration_s": 0.7363945578231292,
+      "sample_rate_hz": 44100,
+      "channels": 1,
+      "sample_width": 2
+    }
+  ],
+  "verified_on": "2026-10-21",
+  "purpose": "Public CC0 teaching recordings only; never independent accuracy ground truth or private corpus data.",
+  "delivery": "Remote on-demand playback at the pinned source commit; no source recordings bundled."
+}

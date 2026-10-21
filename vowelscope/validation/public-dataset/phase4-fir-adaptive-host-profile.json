@@ -1,0 +1,241 @@
+{
+  "schema_version": 1,
+  "kind": "node_vm_resampler_profile",
+  "protocol": "cold1-warmup20-timed200-v1",
+  "source_commit": "adeb7b0aee37c35abdd5065a4c9bd386d9530214",
+  "source_dirty": false,
+  "page_digest": "e4aa3c296c0decc1c786c5f73384a1c2cdb7a658cd6e3c1310040fb517d3ce9a",
+  "source_assets": [
+    "dsp/core.js",
+    "dsp/profiler.js"
+  ],
+  "node_version": "v24.19.0",
+  "host": {
+    "platform": "linux",
+    "architecture": "x64",
+    "cpu_model": "AMD EPYC 9V74 80-Core Processor"
+  },
+  "profile_sources_sha256": {
+    "resampler_profile.mjs": "a7db2b55ce70dcc2ecdf792f51081d3217f6ed13c22ad60de660ad7766dbb6b1",
+    "page_harness.mjs": "bb2d32b07d1af07f89cf2083945b97fe80c8001ff7854793d327a5d3d36f00c9",
+    "page_source.mjs": "68fb60549e02cae7074f9c572cb6451edf71fb6a9e344a2a7186959c0e2ec72c"
+  },
+  "stimulus": {
+    "kind": "stationary synthetic multitone",
+    "buffer_samples": 8192,
+    "components_hz_amplitude": [
+      [
+        145,
+        0.17
+      ],
+      [
+        540,
+        0.07
+      ],
+      [
+        1450,
+        0.045
+      ],
+      [
+        2790,
+        0.025
+      ]
+    ],
+    "no_acoustic_references": true
+  },
+  "timer": "performance.now() wall-clock elapsed milliseconds; includes scheduling and GC",
+  "percentile_method": "Nearest rank; every timed call retained",
+  "limitations": [
+    "One host run; cold/warm JIT behavior and host load prevent a general performance claim.",
+    "Measures actual processAudio on a mocked page, excluding page setup, capture and actual rendering/scheduling.",
+    "Input is stationary synthetic audio, not speech accuracy or independent detection coverage.",
+    "75-ms timestamps are simulated; this is not an input-to-display latency or delayed/dropped-hop test.",
+    "Mobile/desktop physical devices and browser audio processing remain untested."
+  ],
+  "cases": [
+    {
+      "variant": "pole14_fs12000_poly33",
+      "input_rate_hz": 16000,
+      "processing_hop_ms": 75,
+      "warmup_frames": 20,
+      "dsp_patch_digest": "b507d61da3425766d322551ccea4c73d7e93405c04df2204ddf696e01b601654",
+      "timer": "performance.now() wall-clock elapsed milliseconds; includes scheduling and GC",
+      "cold_elapsed_ms": 14.385278999999997,
+      "cold_processed": true,
+      "cold_accepted": true,
+      "warm": {
+        "samples": 200,
+        "processed_frames": 200,
+        "accepted_frames": 200,
+        "mean_ms": 5.8665058199999995,
+        "median_ms": 5.63074800000004,
+        "p95_ms": 7.460022999999978,
+        "p99_ms": 8.970956999999999,
+        "max_ms": 14.842417000000012,
+        "overruns_gt_hop": 0,
+        "p95_within_hop_budget": true
+      }
+    },
+    {
+      "variant": "pole14_fs12000_poly33",
+      "input_rate_hz": 44100,
+      "processing_hop_ms": 75,
+      "warmup_frames": 20,
+      "dsp_patch_digest": "b507d61da3425766d322551ccea4c73d7e93405c04df2204ddf696e01b601654",
+      "timer": "performance.now() wall-clock elapsed milliseconds; includes scheduling and GC",
+      "cold_elapsed_ms": 11.556500000000142,
+      "cold_processed": true,
+      "cold_accepted": true,
+      "warm": {
+        "samples": 200,
+        "processed_frames": 200,
+        "accepted_frames": 200,
+        "mean_ms": 5.907417049999977,
+        "median_ms": 5.794214000000011,
+        "p95_ms": 6.556250999999975,
+        "p99_ms": 8.490444000000025,
+        "max_ms": 9.366702999999688,
+        "overruns_gt_hop": 0,
+        "p95_within_hop_budget": true
+      }
+    },
+    {
+      "variant": "pole14_fs12000_poly33",
+      "input_rate_hz": 48000,
+      "processing_hop_ms": 75,
+      "warmup_frames": 20,
+      "dsp_patch_digest": "b507d61da3425766d322551ccea4c73d7e93405c04df2204ddf696e01b601654",
+      "timer": "performance.now() wall-clock elapsed milliseconds; includes scheduling and GC",
+      "cold_elapsed_ms": 10.561361999999917,
+      "cold_processed": true,
+      "cold_accepted": true,
+      "warm": {
+        "samples": 200,
+        "processed_frames": 200,
+        "accepted_frames": 200,
+        "mean_ms": 5.738094714999997,
+        "median_ms": 5.6400220000000445,
+        "p95_ms": 6.430961999999909,
+        "p99_ms": 7.315254000000095,
+        "max_ms": 9.139160000000174,
+        "overruns_gt_hop": 0,
+        "p95_within_hop_budget": true
+      }
+    },
+    {
+      "variant": "pole14_fs12000_poly33",
+      "input_rate_hz": 96000,
+      "processing_hop_ms": 75,
+      "warmup_frames": 20,
+      "dsp_patch_digest": "b507d61da3425766d322551ccea4c73d7e93405c04df2204ddf696e01b601654",
+      "timer": "performance.now() wall-clock elapsed milliseconds; includes scheduling and GC",
+      "cold_elapsed_ms": 10.702404000000115,
+      "cold_processed": true,
+      "cold_accepted": true,
+      "warm": {
+        "samples": 200,
+        "processed_frames": 200,
+        "accepted_frames": 200,
+        "mean_ms": 5.587301479999992,
+        "median_ms": 5.517507000000478,
+        "p95_ms": 5.979734000000462,
+        "p99_ms": 6.114856999999574,
+        "max_ms": 7.585290999999415,
+        "overruns_gt_hop": 0,
+        "p95_within_hop_budget": true
+      }
+    },
+    {
+      "variant": "pole14_fs12000_poly_adaptive",
+      "input_rate_hz": 16000,
+      "processing_hop_ms": 75,
+      "warmup_frames": 20,
+      "dsp_patch_digest": "30b509ee5bcda066e2beccea8a942c765493fdfd284d70f0b277e865348cc816",
+      "timer": "performance.now() wall-clock elapsed milliseconds; includes scheduling and GC",
+      "cold_elapsed_ms": 11.243428999999196,
+      "cold_processed": true,
+      "cold_accepted": true,
+      "warm": {
+        "samples": 200,
+        "processed_frames": 200,
+        "accepted_frames": 200,
+        "mean_ms": 5.916494105000011,
+        "median_ms": 5.683356999999887,
+        "p95_ms": 7.506591999999728,
+        "p99_ms": 9.24341800000002,
+        "max_ms": 13.257510999999795,
+        "overruns_gt_hop": 0,
+        "p95_within_hop_budget": true
+      }
+    },
+    {
+      "variant": "pole14_fs12000_poly_adaptive",
+      "input_rate_hz": 44100,
+      "processing_hop_ms": 75,
+      "warmup_frames": 20,
+      "dsp_patch_digest": "30b509ee5bcda066e2beccea8a942c765493fdfd284d70f0b277e865348cc816",
+      "timer": "performance.now() wall-clock elapsed milliseconds; includes scheduling and GC",
+      "cold_elapsed_ms": 13.55652900000041,
+      "cold_processed": true,
+      "cold_accepted": true,
+      "warm": {
+        "samples": 200,
+        "processed_frames": 200,
+        "accepted_frames": 200,
+        "mean_ms": 7.7911383549999895,
+        "median_ms": 7.690628999998808,
+        "p95_ms": 8.38725599999998,
+        "p99_ms": 10.632730000000265,
+        "max_ms": 11.408575000000383,
+        "overruns_gt_hop": 0,
+        "p95_within_hop_budget": true
+      }
+    },
+    {
+      "variant": "pole14_fs12000_poly_adaptive",
+      "input_rate_hz": 48000,
+      "processing_hop_ms": 75,
+      "warmup_frames": 20,
+      "dsp_patch_digest": "30b509ee5bcda066e2beccea8a942c765493fdfd284d70f0b277e865348cc816",
+      "timer": "performance.now() wall-clock elapsed milliseconds; includes scheduling and GC",
+      "cold_elapsed_ms": 13.315107999998872,
+      "cold_processed": true,
+      "cold_accepted": true,
+      "warm": {
+        "samples": 200,
+        "processed_frames": 200,
+        "accepted_frames": 200,
+        "mean_ms": 7.965799104999969,
+        "median_ms": 7.80409999999938,
+        "p95_ms": 9.21907099999953,
+        "p99_ms": 10.205815999999686,
+        "max_ms": 14.672671000000264,
+        "overruns_gt_hop": 0,
+        "p95_within_hop_budget": true
+      }
+    },
+    {
+      "variant": "pole14_fs12000_poly_adaptive",
+      "input_rate_hz": 96000,
+      "processing_hop_ms": 75,
+      "warmup_frames": 20,
+      "dsp_patch_digest": "30b509ee5bcda066e2beccea8a942c765493fdfd284d70f0b277e865348cc816",
+      "timer": "performance.now() wall-clock elapsed milliseconds; includes scheduling and GC",
+      "cold_elapsed_ms": 23.57987300000059,
+      "cold_processed": true,
+      "cold_accepted": true,
+      "warm": {
+        "samples": 200,
+        "processed_frames": 200,
+        "accepted_frames": 200,
+        "mean_ms": 15.698030820000094,
+        "median_ms": 15.087886999999682,
+        "p95_ms": 17.92994700000054,
+        "p99_ms": 23.119009000000005,
+        "max_ms": 28.682404999999562,
+        "overruns_gt_hop": 0,
+        "p95_within_hop_budget": true
+      }
+    }
+  ]
+}

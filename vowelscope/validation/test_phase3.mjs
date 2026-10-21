@@ -3,6 +3,7 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
+import {readPageSource} from './page_source.mjs';
 import { polesToFormants, poleResearchPatch } from './lpc_poles.mjs';
 
 const fsHz=11025;
@@ -31,8 +32,7 @@ for(const kind of ['pole14_bw700','pole14_bw400','pole16_bw700']){
   assert.match(poleResearchPatch(kind),/levinsonDurbin/);
 }
 function evaluatePage(path,smooth){
-  const page=fs.readFileSync(path,'utf8');
-  const script=page.match(/<script>([\s\S]*?)<\/script>/)?.[1];
+  const {inline:script,prefix}=readPageSource(path);
   assert.ok(script,'HTML should contain a JS script');
   const canvas=new Proxy({measureText:s=>({width:String(s).length*10})},{
     get(target,key){return key in target?target[key]:()=>{}},
@@ -50,7 +50,7 @@ function evaluatePage(path,smooth){
   const window={location:{search:'?lab=1'},addEventListener(){}};
   const instrumented=script.replace('    requestAnimationFrame(frame);',
     '    window.__test={state,processAudio,setBuffer(buf){audioBuffer=buf}};');
-  vm.runInNewContext(instrumented,{document,window,requestAnimationFrame(){}},{timeout:3000,filename:path});
+  vm.runInNewContext(prefix+instrumented,{document,window,requestAnimationFrame(){}},{timeout:3000,filename:path});
   assert.ok(window.__test);
   nodes.get('smooth').value=String(smooth);
   const {state,processAudio}=window.__test,buf=new Float32Array(8192);

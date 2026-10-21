@@ -5,14 +5,17 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
+import {execFileSync} from 'node:child_process';
+import crypto from 'node:crypto';
 import {dspExperimentPatch} from './dsp_variants.mjs';
+import {readPageSource} from './page_source.mjs';
 
 function fail(message) { throw Error(message); }
 function parseArgs(argv) {
   const args = { mode: 'classic', split: 'test', dspVariant: 'original', smoothing: 'default', measurement: 'visual', page: path.resolve('vowelscope/index.html') };
   for (let i=0; i<argv.length; i++) {
     const a=argv[i];
-    if(a==='--help') { console.log('Usage: node vowelscope/validation/benchmark.mjs --manifest /path/to/manifest.json [--page vowelscope/index.html] [--mode classic|stable] [--out report.json] [--split test|train|dev|all] [--self-test] [--oracle-only] [--dsp-variant original|antialias|burg|burg_antialias|peak_prominence|peak_bandwidth|peak_tracking|peak_guard|peak_guard_strict|median3|median5|pole14_bw700|pole14_bw400|pole16_bw700|pole14_fs9000_bw400|pole14_fs12000_bw400|pole14_bw400_track05|pole14_bw400_track12|pole14_fs12000_poly33|pole14_fs12000_poly49] [--smoothing default|fast|none] [--measurement visual|acoustic]'); process.exit(0); }
+    if(a==='--help') { console.log('Usage: node vowelscope/validation/benchmark.mjs --manifest /path/to/manifest.json [--page vowelscope/index.html] [--mode classic|stable] [--out report.json] [--split test|train|dev|all] [--self-test] [--oracle-only] [--dsp-variant original|linear_zero_safe|antialias|burg|burg_antialias|peak_prominence|peak_bandwidth|peak_tracking|peak_guard|peak_guard_strict|median3|median5|pole14_bw700|pole14_bw400|pole16_bw700|pole14_fs9000_bw400|pole14_fs12000_bw400|pole14_bw400_track05|pole14_bw400_track12|pole14_fs12000_poly33|pole14_fs12000_poly49|pole14_fs12000_poly33_fixed_window|pole14_fs12000_poly_adaptive] [--smoothing default|legacy|fast|none] [--measurement visual|acoustic]'); process.exit(0); }
     if(a==='--self-test') args.selfTest=true;
     else if(a==='--oracle-only') args.oracleOnly=true;
     else if(['--manifest','--page','--mode','--out','--split','--dsp-variant','--smoothing','--measurement'].includes(a)) args[a==='--dsp-variant'?'dspVariant':a.slice(2)]=argv[++i];
@@ -21,8 +24,8 @@ function parseArgs(argv) {
   if(!args.selfTest&&!args.manifest)fail('A --manifest file is required.');
   if(!['classic','stable'].includes(args.mode))fail('Invalid --mode.');
   if(!['test','train','dev','all'].includes(args.split))fail('Invalid --split.');
-  if(!['original','antialias','burg','burg_antialias','peak_prominence','peak_bandwidth','peak_tracking','peak_guard','peak_guard_strict','median3','median5','pole14_bw700','pole14_bw400','pole16_bw700','pole14_fs9000_bw400','pole14_fs12000_bw400','pole14_bw400_track05','pole14_bw400_track12','pole14_fs12000_poly33','pole14_fs12000_poly49'].includes(args.dspVariant))fail('Invalid DSP experiment.');
-  if(!['default','fast','none'].includes(args.smoothing))fail('Invalid smoothing experiment.');
+  if(!['original','linear_zero_safe','antialias','burg','burg_antialias','peak_prominence','peak_bandwidth','peak_tracking','peak_guard','peak_guard_strict','median3','median5','pole14_bw700','pole14_bw400','pole16_bw700','pole14_fs9000_bw400','pole14_fs12000_bw400','pole14_bw400_track05','pole14_bw400_track12','pole14_fs12000_poly33','pole14_fs12000_poly49','pole14_fs12000_poly33_fixed_window','pole14_fs12000_poly_adaptive'].includes(args.dspVariant))fail('Invalid DSP experiment.');
+  if(!['default','legacy','fast','none'].includes(args.smoothing))fail('Invalid smoothing experiment.');
   if(!['visual','acoustic'].includes(args.measurement))fail('Measurement must be visual or acoustic.');
   return args;
 }
@@ -52,8 +55,8 @@ function loadWav(filename) {
   return {rate:fmt.rate,samples,duration:frames/fmt.rate};
 }
 function createEngine(htmlPath,variant='original') {
-  const html=fs.readFileSync(htmlPath,'utf8');
-  const match=html.match(/<script>([\s\S]*?)<\/script>/);
+  const {html,inline,prefix}=readPageSource(htmlPath);
+  const match=[null,inline];
   if(!match)fail('Inline VowelScope script not found: '+htmlPath);
   const marker='    requestAnimationFrame(frame);';
   if(!match[1].includes(marker))fail('VowelScope script changed; update benchmark instrumentation.');
@@ -68,8 +71,13 @@ function createEngine(htmlPath,variant='original') {
     appendChild(x){this.children.push(x)},replaceChildren(){this.children=[]}});
   const document={getElementById(id){if(!nodes.has(id))nodes.set(id,make(id));return nodes.get(id);},createElement:make};
   const window={addEventListener(){}};
-  vm.runInNewContext(js,{document,window,requestAnimationFrame(){}},{timeout:3000,filename:htmlPath});
+  vm.runInNewContext(prefix+js,{document,window,requestAnimationFrame(){}},{timeout:3000,filename:htmlPath});
   if(!window.__vsBench)fail('Unable to instrument source.');
+  for(const tag of html.matchAll(/<input\b[^>]*>/g)){
+    const id=tag[0].match(/\bid="([^"]+)"/)?.[1];
+    const value=tag[0].match(/\bvalue="([^"]+)"/)?.[1];
+    if(id&&value!==undefined&&nodes.has(id))nodes.get(id).value=value;
+  }
   return {api:window.__vsBench,nodes};
 }
 function median(xs) {
@@ -95,7 +103,7 @@ function analyzeRow(row,manifestDir,mode,page,variant='original',smoothing='defa
   // Research-only override of the existing interface smoothing parameter.
   // 'fast' means UI smooth=0 (alpha=.68); 'none' makes alpha~1.
   if(smoothing!=='default')nodes.get('smooth').value=
-    smoothing==='fast'?'0':'-53.3333333333333';
+    smoothing==='legacy'?'60':smoothing==='fast'?'0':'-53.3333333333333';
   const buffer=new Float32Array(8192);
   let currentT=0;
   api.state.mode=mode;api.state.running=true;
@@ -180,6 +188,18 @@ function summarize(rows,mode){
     by_vowel:Object.fromEntries(Object.entries(vowels).map(([k,v])=>[k,groupStats(v)])),
     confusion:matrix};
 }
+function pageProvenance(page,variant){
+  const source=readPageSource(page);
+  let commit=null,dirty=null;
+  try{
+    commit=execFileSync('git',['rev-parse','HEAD'],{cwd:path.dirname(page),encoding:'utf8'}).trim();
+    dirty=execFileSync('git',['status','--porcelain'],{cwd:path.dirname(page),encoding:'utf8'}).trim().length>0;
+  }catch(_){}
+  const patchDigest=crypto.createHash('sha256').update(dspExperimentPatch(variant)).digest('hex');
+  const codeDigest=crypto.createHash('sha256').update(source.codeDigest+'\0'+patchDigest).digest('hex');
+  return {source_commit:commit,source_dirty:dirty,code_digest:codeDigest,
+    page_digest:source.codeDigest,dsp_patch_digest:patchDigest,source_assets:source.files};
+}
 function main(){
   const args=parseArgs(process.argv.slice(2));
   if(args.selfTest){
@@ -190,10 +210,19 @@ function main(){
     return;
   }
   const mf=path.resolve(args.manifest),page=path.resolve(args.page);
+  const provenance=pageProvenance(page,args.oracleOnly?'original':args.dspVariant);
+  const defaults=createEngine(page).nodes;
+  const smoothingValue=args.smoothing==='legacy'?60:args.smoothing==='fast'?0:
+    args.smoothing==='none'?-53.3333333333333:Number(defaults.get('smooth').value);
   const manifest=JSON.parse(fs.readFileSync(mf,'utf8'));
+  if(manifest.kind==='reference_review_queue'||
+      (Object.hasOwn(manifest,'reference_review_status')&&manifest.reference_review_status!=='reviewed'))
+    fail('Reference measurements are not reviewed; this preparation queue is not an accuracy benchmark.');
   if(!Array.isArray(manifest.samples)||!manifest.samples.length)fail('manifest.samples must contain labeled vowel instances.');
   const selected=manifest.samples.filter(r=>args.split==='all'||(r.split||'test')===args.split);
   if(!selected.length)fail('No samples in the '+args.split+' split; use --split all to inspect the full corpus.');
+  if(selected.some(row=>Object.hasOwn(row,'reference_review_status')&&row.reference_review_status!=='reviewed'))
+    fail('Reference measurements are not reviewed for every selected sample.');
   if(args.oracleOnly){
     // Oracle: skip all waveform estimation and pass the original corpus F1/F2
     // into precisely the page's current nearest-reference classifier.
@@ -219,7 +248,7 @@ function main(){
       confusion[truth]??={};confusion[truth][pred]=(confusion[truth][pred]||0)+1;
       const x=byVowel[truth]??={n:0,correct:0};x.n++;if(r.label_match)x.correct++;
     }
-    const report={schema_version:1,kind:'oracle_reference_formants',
+    const report={schema_version:2,...provenance,replay_protocol:'html-defaults-v2',kind:'oracle_reference_formants',
       source:manifest.source||'unspecified',dataset_version:manifest.version||'unspecified',
       split:args.split,source_html:path.relative(process.cwd(),page),
       description:'Actual page classifier applied to source annotated F1/F2, bypassing LPC; not a phoneme recognizer.',
@@ -239,7 +268,7 @@ function main(){
     try{results.push(analyzeRow(row,path.dirname(mf),args.mode,page,args.dspVariant,args.smoothing,args.measurement));}
     catch(e){fail('Failed on '+(row.audio_path||'?')+': '+e.message);}
   }
-  const report={schema_version:1,source:manifest.source||'unspecified',dataset_version:manifest.version||'unspecified',
+  const report={schema_version:2,...provenance,replay_protocol:'html-defaults-v2',smoothing_value:smoothingValue,source:manifest.source||'unspecified',dataset_version:manifest.version||'unspecified',
     checked_at:new Date().toISOString(),source_html:path.relative(process.cwd(),page),split:args.split,dsp_variant:args.dspVariant,smoothing:args.smoothing,measurement:args.measurement,summary:summarize(results,args.mode),results};
   const content=JSON.stringify(report,null,2);
   if(args.out){fs.mkdirSync(path.dirname(path.resolve(args.out)),{recursive:true});fs.writeFileSync(args.out,content+'\n');}

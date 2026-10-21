@@ -4,6 +4,7 @@
 No recordings, excerpts, raw annotated rows, speaker IDs, or user data are
 committed. The publicly committed result contains only aggregated metrics.
 """
+import argparse
 import hashlib
 import io
 import json
@@ -12,11 +13,12 @@ import re
 import subprocess
 import sys
 import tempfile
-import urllib.request
 import zipfile
 from pathlib import Path
 
-REPO_URL="https://raw.githubusercontent.com/santiagobarreda/hillenbrand_et_al_1995/main/h95-alldata.zip"
+from corpus_source import git_provenance
+from report_context import report_context,replay_compatible
+from corpus_source import ARCHIVE_URL as REPO_URL, acquire_archive, outside_checkout
 # Only the single segment categories get exact IPA quality labels.
 # /eɪ/, /oʊ/ and rhotic /ɝ/ still contribute acoustic F1/F2 comparisons,
 # but are excluded from monophthong reference-label accuracy.
@@ -43,11 +45,19 @@ def positive(cell):
         return value if value>0 else None
     except (ValueError,TypeError):
         return None
-def main():
-    req=urllib.request.Request(REPO_URL,headers={"User-Agent":"VowelScope-OpenResearch-Validation/0.1"})
-    with urllib.request.urlopen(req,timeout=100) as response:
-        archive=response.read(40_000_000)
-    digest=hashlib.sha256(archive).hexdigest()
+def attach_run_context(stats,reports):
+    stats.update(git_provenance(Path(__file__).resolve().parents[2]))
+    stats["evaluation_source_commit"]=stats["source_commit"]
+    stats["replay_configurations"]={name:report_context(report) for name,report in reports.items()}
+
+def main(argv=None):
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--archive-cache",type=Path,
+                        help="Existing verified archive outside the checkout; never modified")
+    options=parser.parse_args(argv)
+    if options.archive_cache is not None:
+        options.archive_cache=outside_checkout(options.archive_cache,Path(__file__).resolve().parents[2],"Archive cache")
+    archive,digest=acquire_archive(options.archive_cache)
     with tempfile.TemporaryDirectory(prefix="vs-h95-") as temp:
         root=Path(temp)
         with zipfile.ZipFile(io.BytesIO(archive)) as z:
@@ -138,6 +148,7 @@ def main():
                "note":"Estimates from the current browser-source LPC, replayed offline into a mock WebAudio buffer; not real-device microphone accuracy",
                "modes":{}}
         all_reports={}
+        attach_run_context(stats,all_reports)
         for mode in ("classic","stable"):
             dest=root/(mode+".json")
             cmd=["node","vowelscope/validation/benchmark.mjs","--manifest",str(mf),
@@ -147,6 +158,7 @@ def main():
             if p.returncode!=0:raise RuntimeError(f"Benchmark {mode} failed: {p.stderr}")
             report=json.loads(dest.read_text(encoding="utf8"))
             all_reports[mode]=report
+            stats["replay_configurations"][mode]=report_context(report)
             summ=report["summary"]
             stats["modes"][mode]={k:v for k,v in summ.items() if k not in ("by_speaker","confusion")}
             stats["modes"][mode]["confusion"]=summ["confusion"]
@@ -297,13 +309,15 @@ def main():
             "warning":"Within-run comparison on the same detected tokens; excludes mode abstentions."
         }
         stats["execution_status"]="complete"
-        stats["evaluation_source_commit"]=os.environ.get("GITHUB_SHA","unknown")
+        stats["evaluation_source_commit"]=stats["source_commit"]
         baseline=Path("vowelscope/validation/public-dataset/hillenbrand-baseline.json")
         if baseline.is_file():
             old=json.loads(baseline.read_text(encoding="utf-8"))
             changes={}
             if (old.get("archive_sha256")==digest and
-                old.get("selected_heldout_tokens")==len(rows)):
+                old.get("selected_heldout_tokens")==len(rows) and all(
+                    replay_compatible(old.get("replay_configurations",{}).get(mode,{}),
+                                      stats["replay_configurations"][mode]) for mode in ("classic","stable"))):
                 for mode in ("classic","stable"):
                     baseline_stats=old["modes"][mode]
                     latest=stats["modes"][mode]
@@ -316,7 +330,7 @@ def main():
                     }
                 stats["changes_from_initial_baseline"]=changes
                 stats["comparison_caveat"]="MAE samples can differ across versions; paired report comparison is preferable for strict regression tests."
-            else:stats["comparison_warning"]="Initial baseline dataset digest or split differs; delta comparison omitted."
+            else:stats["comparison_warning"]="Initial baseline dataset, split or replay protocol/settings differ or are unrecorded; delta comparison omitted."
         output=Path("vowelscope/validation/public-dataset/hillenbrand-latest.json")
         output.parent.mkdir(exist_ok=True,parents=True)
         output.write_text(json.dumps(stats,indent=2,ensure_ascii=False)+"\n",encoding="utf-8")

@@ -6,12 +6,16 @@ on:
       - "vowelscope/validation/**"
       - "vowelscope/index.html"
       - "vowelscope/en/index.html"
+      - "vowelscope/dsp/**"
+      - "vowelscope/reference-*"
       - ".github/workflows/vowelscope-validation.yml"
   pull_request:
     paths:
       - "vowelscope/validation/**"
       - "vowelscope/index.html"
       - "vowelscope/en/index.html"
+      - "vowelscope/dsp/**"
+      - "vowelscope/reference-*"
       - ".github/workflows/vowelscope-validation.yml"
   workflow_dispatch:
 
@@ -41,6 +45,8 @@ jobs:
           node --check vowelscope/validation/fast_resample.mjs
           node --check vowelscope/validation/test_phase3.mjs
           node --check vowelscope/validation/test_phase3b.mjs
+          node --check vowelscope/dsp/core.js
+          node --check vowelscope/reference-player.js
           python -m py_compile vowelscope/validation/import_csv.py \
             vowelscope/validation/run_hillenbrand.py \
             vowelscope/validation/analyze_phase1.py \
@@ -58,5 +64,9 @@ jobs:
         run: |
           node vowelscope/validation/test_phase3.mjs
           node vowelscope/validation/test_phase3b.mjs
+      - name: Test production state isolation and microphone lifecycle
+        run: |
+          node --test vowelscope/validation/*.test.mjs
+          python -m unittest discover -s vowelscope/validation -p 'test_*.py'
       - name: Validate reference mapping configuration
         run: python -m json.tool vowelscope/validation/mapping.example.json > /dev/null

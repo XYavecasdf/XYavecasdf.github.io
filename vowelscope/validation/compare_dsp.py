@@ -2,6 +2,7 @@
 """Aggregate dev-only DSP ablations; publish statistics, never per-token traces."""
 import argparse,json,math
 from pathlib import Path
+from report_context import report_context
 def read(p):return json.loads(Path(p).read_text(encoding='utf-8'))
 def percentile(values,p):
     xs=sorted(values)
@@ -56,7 +57,7 @@ def main():
         f2=[error(rs[k],'f2_abs_hz') for k in common]
         matched[name]={'n':len(common),'mae_f1_hz':avg(f1),'mae_f2_hz':avg(f2),
                        'p90_f2_hz':percentile(f2,.9)}
-    result={'kind':'research_dev_dsp_ablation','dataset_version':raw['original'].get('dataset_version'),
+    result={'replay_configurations':{k:report_context(r) for k,r in raw.items()},'kind':'research_dev_dsp_ablation','dataset_version':raw['original'].get('dataset_version'),
       'source':raw['original'].get('source'),
       'note':'Same production VowelScope estimator with offline experimental preprocess and/or Burg AR substitution; no changes deployed on the live website.',
       'development_only':True,'metrics':metrics,'common_detection_comparison':matched,

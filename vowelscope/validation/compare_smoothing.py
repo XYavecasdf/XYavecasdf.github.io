@@ -2,6 +2,7 @@
 """Dev-only VowelScope EMA smoothing ablation on same recordings."""
 import argparse,json,math
 from pathlib import Path
+from report_context import report_context,smoothing_alpha
 def read(x):return json.loads(Path(x).read_text(encoding="utf-8"))
 def ident(x):return x["audio_path"],x["start_s"],x["end_s"],x["speaker_id"]
 def ave(a):return round(sum(a)/len(a),2) if a else None
@@ -32,11 +33,11 @@ def main():
     if any(set(x)!=keys for x in by.values()):raise ValueError("Different examples")
     both=[key for key in keys if all(by[k][key]["error"]["f2_abs_hz"] is not None and
         by[k][key]["error"]["f1_abs_hz"] is not None for k in names)]
-    result={"kind":"dev_smoothing_ablation","n":len(keys),"split":"dev",
+    result={"replay_configurations":{k:report_context(r) for k,r in reports.items()},"kind":"dev_smoothing_ablation","n":len(keys),"split":"dev",
         "source":reports["default"]["source"],
         "all_tokens":{k:metrics(list(v.values())) for k,v in by.items()},
         "common_n":len(both),"common_tokens":{k:metrics([v[key] for key in both]) for k,v in by.items()},
-        "note":"The current webpage EMA (default alpha=.32, fast alpha=.68, none alpha~1) is compared with raw LPC candidate median3 / median5, both without EMA. All variants are research-only and use identical input recordings.",
+        "note":f"The current webpage EMA (default alpha={smoothing_alpha(reports['default']):.3f}, fast alpha={smoothing_alpha(reports['fast']):.3f}, none alpha={smoothing_alpha(reports['none']):.3f}) is compared with raw LPC candidate median3 / median5, both without EMA. All variants are research-only and use identical input recordings.",
         "limitations":"Offline browser replay; this test compares temporal smoothing, not speech recognition; no changes made to production code."}
     out=Path(args.out);out.parent.mkdir(parents=True,exist_ok=True)
     out.write_text(json.dumps(result,indent=2,ensure_ascii=False)+"\n",encoding="utf-8")

@@ -4,17 +4,18 @@
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import vm from 'node:vm';
+import {readPageSource} from './page_source.mjs';
 import {ceilingTrackingPatch} from './pole_ceiling_tracking.mjs';
 import {optimizedCeilingPatch} from './fast_resample.mjs';
 import {dspExperimentPatch} from './dsp_variants.mjs';
 
-const source=fs.readFileSync('vowelscope/index.html','utf8');
-const script=source.match(/<script>([\s\S]*?)<\/script>/)?.[1];
+const {inline:script,prefix}=readPageSource('vowelscope/index.html');
 assert.ok(script,'Production inline JS missing');
 const variants=[
   'pole14_fs9000_bw400','pole14_fs12000_bw400',
   'pole14_bw400_track05','pole14_bw400_track12',
-  'pole14_fs12000_poly33','pole14_fs12000_poly49'
+  'pole14_fs12000_poly33','pole14_fs12000_poly49','pole14_fs12000_poly33_fixed_window',
+  'pole14_fs12000_poly_adaptive'
 ];
 for(const variant of variants){
   const expected=variant.includes('poly')?optimizedCeilingPatch(variant):ceilingTrackingPatch(variant);
@@ -36,7 +37,7 @@ for(const variant of variants){
   const window={location:{search:''},addEventListener(){}};
   const injected=script.replace('    requestAnimationFrame(frame);',
     dspExperimentPatch(variant) + '\nwindow.__research={preprocess,estimateFormants,state};');
-  vm.runInNewContext(injected,{document,window,requestAnimationFrame(){}},
+  vm.runInNewContext(prefix+injected,{document,window,requestAnimationFrame(){}},
     {timeout:5000,filename:'vowelscope/index.html'});
   const {preprocess,estimateFormants,state}=window.__research;
   const input=new Float32Array(8192),fsInput=16000;
@@ -48,7 +49,7 @@ for(const variant of variants){
       +.025*Math.sin(2*Math.PI*2790*t);
   }
   const pre=preprocess(input,fsInput);
-  assert.ok(pre&&pre.y?.length===512&&pre.rms>0,'Preprocessing failed');
+  assert.ok(pre&&pre.y?.length===(variant.endsWith('fixed_window')?557:512)&&pre.rms>0,'Preprocessing failed');
   const out=estimateFormants(pre.y,11025);
   assert.ok(out&&Number.isFinite(out.f1)&&Number.isFinite(out.f2),
     variant+': expected measurable vowel');

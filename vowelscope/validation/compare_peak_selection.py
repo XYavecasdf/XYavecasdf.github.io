@@ -7,6 +7,7 @@ import json
 import math
 from collections import defaultdict
 from pathlib import Path
+from report_context import report_context
 
 VARIANTS=("original","peak_prominence","peak_bandwidth","peak_tracking","peak_guard","peak_guard_strict")
 
@@ -67,6 +68,7 @@ def main():
             "f2_p90_delta_hz":round(summary["f2_p90_abs_hz"]-base["f2_p90_abs_hz"],2),
             "f2_gt300_delta":summary["f2_gt300"]-base["f2_gt300"]}
     out={
+        "replay_configurations":{k:report_context(r) for k,r in reports.items()},
         "kind":"vowelscope_dev_peak_selection_research",
         "corpus":reports["original"]["source"],
         "corpus_version":reports["original"]["dataset_version"],

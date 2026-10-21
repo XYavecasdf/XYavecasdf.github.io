@@ -18,6 +18,10 @@ on:
       - "vowelscope/validation/compare_smoothing.py"
       - "vowelscope/index.html"
       - "vowelscope/en/index.html"
+      - "vowelscope/dsp/**"
+      - "vowelscope/validation/page_source.mjs"
+      - "vowelscope/validation/corpus_source.py"
+      - "vowelscope/validation/report_context.py"
   workflow_dispatch:
 
 # Avoid overlapping runs publishing conflicting results after rapid code updates.
@@ -26,7 +30,7 @@ concurrency:
   cancel-in-progress: true
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   evaluate:
@@ -35,7 +39,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          persist-credentials: true
+          persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -44,14 +48,16 @@ jobs:
           python-version: '3.12'
       - name: Download original corpus and evaluate actual VowelScope DSP
         run: python vowelscope/validation/run_hillenbrand.py
-      - name: Publish aggregated performance and diagnostics only
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add vowelscope/validation/public-dataset/hillenbrand-latest.json vowelscope/validation/public-dataset/phase1-diagnostics.json vowelscope/validation/public-dataset/classifier-dev-ablation.json vowelscope/validation/public-dataset/dsp-dev-ablation.json vowelscope/validation/public-dataset/peak-dev-audit.json vowelscope/validation/public-dataset/peak-selector-dev-ablation.json vowelscope/validation/public-dataset/smoothing-dev-ablation.json
-          if ! git diff --cached --quiet; then
-            git commit -m "Publish Hillenbrand VowelScope acoustic benchmark summary"
-            git fetch origin "${GITHUB_REF_NAME}"
-            git rebase -X theirs "origin/${GITHUB_REF_NAME}"
-            git push origin "HEAD:${GITHUB_REF_NAME}"
-          fi
+      - name: Retain aggregate diagnostics for reviewed publication
+        uses: actions/upload-artifact@v4
+        with:
+          name: vowelscope-hillenbrand-aggregate-diagnostics
+          path: |
+            vowelscope/validation/public-dataset/hillenbrand-latest.json
+            vowelscope/validation/public-dataset/phase1-diagnostics.json
+            vowelscope/validation/public-dataset/classifier-dev-ablation.json
+            vowelscope/validation/public-dataset/dsp-dev-ablation.json
+            vowelscope/validation/public-dataset/peak-dev-audit.json
+            vowelscope/validation/public-dataset/peak-selector-dev-ablation.json
+            vowelscope/validation/public-dataset/smoothing-dev-ablation.json
+          if-no-files-found: error

@@ -1,0 +1,2995 @@
+{
+  "kind": "phase3_lpc_pole_development_ablation",
+  "source": "Hillenbrand et al. (1995) (original researcher-authorized hosting)",
+  "source_archive_sha256": "2560548591e3a726c88549b6dc9d226995616c26874d601c69fee8b9eee9d730",
+  "source_version": "2560548591e3a726",
+  "source_commit": "6d5af26c1e28e6888f64a52ea2aaec1d7204b63f",
+  "source_dirty": false,
+  "source_diff_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "run_configuration": {
+    "mode": "classic",
+    "split": "dev",
+    "smoothing": "default",
+    "analysis_windows": {
+      "original_acoustic": {
+        "samples": 512,
+        "sample_rate_hz": 11025,
+        "nominal_duration_ms": 46.439909297052154
+      },
+      "pole14_bw400": {
+        "samples": 512,
+        "sample_rate_hz": 11025,
+        "nominal_duration_ms": 46.439909297052154
+      },
+      "pole14_fs12000_poly33": {
+        "samples": 512,
+        "sample_rate_hz": 12000,
+        "nominal_duration_ms": 42.666666666666664
+      },
+      "pole14_fs12000_poly33_fixed_window": {
+        "samples": 557,
+        "sample_rate_hz": 12000,
+        "nominal_duration_ms": 46.416666666666664
+      }
+    },
+    "page": "vowelscope/index.html",
+    "variants": [
+      "original_acoustic",
+      "pole14_bw400",
+      "pole14_fs12000_poly33",
+      "pole14_fs12000_poly33_fixed_window"
+    ],
+    "speaker_partition": "SHA256(speaker_id)[:8] modulo 100; dev=70..84",
+    "source_archive_expected_sha256": "2560548591e3a726c88549b6dc9d226995616c26874d601c69fee8b9eee9d730",
+    "python_version": "3.12.14",
+    "node_version": "v24.19.0",
+    "runner_sources_sha256": {
+      "validation/run_phase3_poles.py": "4482a5d0a5498f7a8389e4ffbd198a252a879f38b48559aad7e3faf1d61e7d2e",
+      "validation/corpus_source.py": "50c9d25f10fa0921e3125cef5478fa37840551dc1114cb89fcb54d62d98ef3c3",
+      "validation/uncertainty.py": "7b93e63828e065468d50e11cfcdf90f795a4ed434e03a64f1fc61d696ef70eee"
+    },
+    "benchmark_configuration": {
+      "original_acoustic": {
+        "schema_version": 2,
+        "replay_protocol": "html-defaults-v2",
+        "smoothing": "default",
+        "smoothing_value": 58,
+        "measurement": "acoustic",
+        "dsp_variant": "original",
+        "source_html": "vowelscope/index.html",
+        "source_commit": "6d5af26c1e28e6888f64a52ea2aaec1d7204b63f",
+        "source_dirty": false,
+        "code_digest": "e85c9bfb97809e98d13e9e577bc00efdd055c7bd722d60ba6b8ad84b97fbafc8"
+      },
+      "pole14_bw400": {
+        "schema_version": 2,
+        "replay_protocol": "html-defaults-v2",
+        "smoothing": "default",
+        "smoothing_value": 58,
+        "measurement": "acoustic",
+        "dsp_variant": "pole14_bw400",
+        "source_html": "vowelscope/index.html",
+        "source_commit": "6d5af26c1e28e6888f64a52ea2aaec1d7204b63f",
+        "source_dirty": false,
+        "code_digest": "062461000bbaac3addc218216472dbfce7279a1d157d24b4b854109a8405bab6"
+      },
+      "pole14_fs12000_poly33": {
+        "schema_version": 2,
+        "replay_protocol": "html-defaults-v2",
+        "smoothing": "default",
+        "smoothing_value": 58,
+        "measurement": "acoustic",
+        "dsp_variant": "pole14_fs12000_poly33",
+        "source_html": "vowelscope/index.html",
+        "source_commit": "6d5af26c1e28e6888f64a52ea2aaec1d7204b63f",
+        "source_dirty": false,
+        "code_digest": "f1e1f3867deb7d1c43a83733a4d18a73fa939c03078d3d7900b98057b22072db"
+      },
+      "pole14_fs12000_poly33_fixed_window": {
+        "schema_version": 2,
+        "replay_protocol": "html-defaults-v2",
+        "smoothing": "default",
+        "smoothing_value": 58,
+        "measurement": "acoustic",
+        "dsp_variant": "pole14_fs12000_poly33_fixed_window",
+        "source_html": "vowelscope/index.html",
+        "source_commit": "6d5af26c1e28e6888f64a52ea2aaec1d7204b63f",
+        "source_dirty": false,
+        "code_digest": "66ea83f0baaa537860284b107343bb8e021cf40e2c664facb4c4181117af0037"
+      }
+    }
+  },
+  "split": "dev",
+  "speaker_disjoint_from_training": true,
+  "speaker_count": 23,
+  "sample_count": 275,
+  "shared_detection_count": 259,
+  "experiment_stage": "Phase 3b/3c: analysis-rate ceilings, pole tracking, optimized FIR resampling",
+  "variants": [
+    "original_acoustic",
+    "pole14_bw400",
+    "pole14_fs12000_poly33",
+    "pole14_fs12000_poly33_fixed_window"
+  ],
+  "all_tokens": {
+    "original_acoustic": {
+      "tokens": 275,
+      "detections": 263,
+      "coverage": 0.9564,
+      "paired_acoustic_count": 263,
+      "mae_f1_hz": 36.83,
+      "mae_f2_hz": 148.904,
+      "median_f2_hz": 33.5,
+      "p90_f2_hz": 496.75,
+      "f2_errors_gt300_hz": 30,
+      "f2_errors_gt500_hz": 26
+    },
+    "pole14_bw400": {
+      "tokens": 275,
+      "detections": 270,
+      "coverage": 0.9818,
+      "paired_acoustic_count": 270,
+      "mae_f1_hz": 46.877,
+      "mae_f2_hz": 157.116,
+      "median_f2_hz": 45.537,
+      "p90_f2_hz": 410.524,
+      "f2_errors_gt300_hz": 33,
+      "f2_errors_gt500_hz": 25
+    },
+    "pole14_fs12000_poly33": {
+      "tokens": 275,
+      "detections": 264,
+      "coverage": 0.96,
+      "paired_acoustic_count": 264,
+      "mae_f1_hz": 31.426,
+      "mae_f2_hz": 138.495,
+      "median_f2_hz": 37.259,
+      "p90_f2_hz": 251.766,
+      "f2_errors_gt300_hz": 24,
+      "f2_errors_gt500_hz": 20
+    },
+    "pole14_fs12000_poly33_fixed_window": {
+      "tokens": 275,
+      "detections": 263,
+      "coverage": 0.9564,
+      "paired_acoustic_count": 263,
+      "mae_f1_hz": 32.948,
+      "mae_f2_hz": 144.387,
+      "median_f2_hz": 35.992,
+      "p90_f2_hz": 251.785,
+      "f2_errors_gt300_hz": 24,
+      "f2_errors_gt500_hz": 22
+    }
+  },
+  "speaker_cluster_uncertainty": {
+    "original_acoustic": {
+      "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+      "speaker_count": 23,
+      "token_count": 275,
+      "replicates": 2000,
+      "seed": 20261013,
+      "undefined_error_replicates": 0,
+      "intervals": {
+        "coverage": [
+          0.9275,
+          0.9818
+        ],
+        "mae_f1_hz": [
+          26.0048,
+          50.1858
+        ],
+        "mae_f2_hz": [
+          107.2182,
+          193.7111
+        ],
+        "p90_f2_hz": [
+          187.5,
+          703.5
+        ]
+      },
+      "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+    },
+    "pole14_bw400": {
+      "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+      "speaker_count": 23,
+      "token_count": 275,
+      "replicates": 2000,
+      "seed": 20261013,
+      "undefined_error_replicates": 0,
+      "intervals": {
+        "coverage": [
+          0.9636,
+          0.9964
+        ],
+        "mae_f1_hz": [
+          34.9001,
+          60.6939
+        ],
+        "mae_f2_hz": [
+          116.1704,
+          202.629
+        ],
+        "p90_f2_hz": [
+          256.1902,
+          648.7103
+        ]
+      },
+      "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+    },
+    "pole14_fs12000_poly33": {
+      "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+      "speaker_count": 23,
+      "token_count": 275,
+      "replicates": 2000,
+      "seed": 20261013,
+      "undefined_error_replicates": 0,
+      "intervals": {
+        "coverage": [
+          0.9304,
+          0.9855
+        ],
+        "mae_f1_hz": [
+          23.3139,
+          41.0147
+        ],
+        "mae_f2_hz": [
+          100.8689,
+          181.5282
+        ],
+        "p90_f2_hz": [
+          159.7065,
+          600.8771
+        ]
+      },
+      "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+    },
+    "pole14_fs12000_poly33_fixed_window": {
+      "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+      "speaker_count": 23,
+      "token_count": 275,
+      "replicates": 2000,
+      "seed": 20261013,
+      "undefined_error_replicates": 0,
+      "intervals": {
+        "coverage": [
+          0.9236,
+          0.9819
+        ],
+        "mae_f1_hz": [
+          24.6164,
+          42.9649
+        ],
+        "mae_f2_hz": [
+          99.7707,
+          193.2795
+        ],
+        "p90_f2_hz": [
+          160.8452,
+          680.8257
+        ]
+      },
+      "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+    }
+  },
+  "by_vowel": {
+    "eɪ": {
+      "original_acoustic": {
+        "metrics": {
+          "tokens": 23,
+          "detections": 21,
+          "coverage": 0.913,
+          "paired_acoustic_count": 21,
+          "mae_f1_hz": 23.012,
+          "mae_f2_hz": 42.679,
+          "median_f2_hz": 39.75,
+          "p90_f2_hz": 69.5,
+          "f2_errors_gt300_hz": 0,
+          "f2_errors_gt500_hz": 0
+        },
+        "uncertainty": {
+          "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+          "speaker_count": 23,
+          "token_count": 23,
+          "replicates": 2000,
+          "seed": 20261013,
+          "undefined_error_replicates": 0,
+          "intervals": {
+            "coverage": [
+              0.7826,
+              1.0
+            ],
+            "mae_f1_hz": [
+              15.2143,
+              31.5978
+            ],
+            "mae_f2_hz": [
+              25.8452,
+              64.7143
+            ],
+            "p90_f2_hz": [
+              46,
+              219.5
+            ]
+          },
+          "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+        }
+      },
+      "pole14_bw400": {
+        "metrics": {
+          "tokens": 23,
+          "detections": 22,
+          "coverage": 0.9565,
+          "paired_acoustic_count": 22,
+          "mae_f1_hz": 21.26,
+          "mae_f2_hz": 113.747,
+          "median_f2_hz": 46.143,
+          "p90_f2_hz": 237.041,
+          "f2_errors_gt300_hz": 2,
+          "f2_errors_gt500_hz": 1
+        },
+        "uncertainty": {
+          "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+          "speaker_count": 23,
+          "token_count": 23,
+          "replicates": 2000,
+          "seed": 20261013,
+          "undefined_error_replicates": 0,
+          "intervals": {
+            "coverage": [
+              0.8696,
+              1.0
+            ],
+            "mae_f1_hz": [
+              13.5859,
+              30.0356
+            ],
+            "mae_f2_hz": [
+              46.6916,
+              212.7725
+            ],
+            "p90_f2_hz": [
+              64.5248,
+              967.1789
+            ]
+          },
+          "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+        }
+      },
+      "pole14_fs12000_poly33": {
+        "metrics": {
+          "tokens": 23,
+          "detections": 21,
+          "coverage": 0.913,
+          "paired_acoustic_count": 21,
+          "mae_f1_hz": 18.235,
+          "mae_f2_hz": 91.096,
+          "median_f2_hz": 45.912,
+          "p90_f2_hz": 157.662,
+          "f2_errors_gt300_hz": 1,
+          "f2_errors_gt500_hz": 1
+        },
+        "uncertainty": {
+          "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+          "speaker_count": 23,
+          "token_count": 23,
+          "replicates": 2000,
+          "seed": 20261013,
+          "undefined_error_replicates": 0,
+          "intervals": {
+            "coverage": [
+              0.7826,
+              1.0
+            ],
+            "mae_f1_hz": [
+              11.1138,
+              26.3605
+            ],
+            "mae_f2_hz": [
+              36.0437,
+              183.05
+            ],
+            "p90_f2_hz": [
+              65.8538,
+              882.0482
+            ]
+          },
+          "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+        }
+      },
+      "pole14_fs12000_poly33_fixed_window": {
+        "metrics": {
+          "tokens": 23,
+          "detections": 21,
+          "coverage": 0.913,
+          "paired_acoustic_count": 21,
+          "mae_f1_hz": 17.974,
+          "mae_f2_hz": 91.392,
+          "median_f2_hz": 42.589,
+          "p90_f2_hz": 160.845,
+          "f2_errors_gt300_hz": 1,
+          "f2_errors_gt500_hz": 1
+        },
+        "uncertainty": {
+          "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+          "speaker_count": 23,
+          "token_count": 23,
+          "replicates": 2000,
+          "seed": 20261013,
+          "undefined_error_replicates": 0,
+          "intervals": {
+            "coverage": [
+              0.7826,
+              1.0
+            ],
+            "mae_f1_hz": [
+              10.6856,
+              26.3137
+            ],
+            "mae_f2_hz": [
+              36.0206,
+              183.8703
+            ],
+            "p90_f2_hz": [
+              64.8825,
+              883.1631
+            ]
+          },
+          "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+        }
+      }
+    },
+    "i": {
+      "original_acoustic": {
+        "metrics": {
+          "tokens": 23,
+          "detections": 22,
+          "coverage": 0.9565,
+          "paired_acoustic_count": 22,
+          "mae_f1_hz": 18.341,
+          "mae_f2_hz": 26.614,
+          "median_f2_hz": 10.25,
+          "p90_f2_hz": 32.5,
+          "f2_errors_gt300_hz": 0,
+          "f2_errors_gt500_hz": 0
+        },
+        "uncertainty": {
+          "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+          "speaker_count": 23,
+          "token_count": 23,
+          "replicates": 2000,
+          "seed": 20261013,
+          "undefined_error_replicates": 0,
+          "intervals": {
+            "coverage": [
+              0.8696,
+              1.0
+            ],
+            "mae_f1_hz": [
+              12.2857,
+              24.6848
+            ],
+            "mae_f2_hz": [
+              12.6548,
+              45.6087
+            ],
+            "p90_f2_hz": [
+              24.5,
+              186
+            ]
+          },
+          "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+        }
+      },
+      "pole14_bw400": {
+        "metrics": {
+          "tokens": 23,
+          "detections": 22,
+          "coverage": 0.9565,
+          "paired_acoustic_count": 22,
+          "mae_f1_hz": 19.757,
+          "mae_f2_hz": 50.141,
+          "median_f2_hz": 16.791,
+          "p90_f2_hz": 122.878,
+          "f2_errors_gt300_hz": 1,
+          "f2_errors_gt500_hz": 0
+        },
+        "uncertainty": {
+          "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+          "speaker_count": 23,
+          "token_count": 23,
+          "replicates": 2000,
+          "seed": 20261013,
+          "undefined_error_replicates": 0,
+          "intervals": {
+            "coverage": [
+              0.8696,
+              1.0
+            ],
+            "mae_f1_hz": [
+              12.8527,
+              27.4216
+            ],
+            "mae_f2_hz": [
+              18.9727,
+              91.6949
+            ],
+            "p90_f2_hz": [
+              35.308,
+              387.6776
+            ]
+          },
+          "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+        }
+      },
+      "pole14_fs12000_poly33": {
+        "metrics": {
+          "tokens": 23,
+          "detections": 22,
+          "coverage": 0.9565,
+          "paired_acoustic_count": 22,
+          "mae_f1_hz": 17.99,
+          "mae_f2_hz": 62.705,
+          "median_f2_hz": 29.024,
+          "p90_f2_hz": 152.117,
+          "f2_errors_gt300_hz": 1,
+          "f2_errors_gt500_hz": 0
+        },
+        "uncertainty": {
+          "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+          "speaker_count": 23,
+          "token_count": 23,
+          "replicates": 2000,
+          "seed": 20261013,
+          "undefined_error_replicates": 0,
+          "intervals": {
+            "coverage": [
+              0.8696,
+              1.0
+            ],
+            "mae_f1_hz": [
+              11.7475,
+              24.9974
+            ],
+            "mae_f2_hz": [
+              27.5644,
+              113.1226
+            ],
+            "p90_f2_hz": [
+              42.8963,
+              482.5996
+            ]
+          },
+          "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+        }
+      },
+      "pole14_fs12000_poly33_fixed_window": {
+        "metrics": {
+          "tokens": 23,
+          "detections": 22,
+          "coverage": 0.9565,
+          "paired_acoustic_count": 22,
+          "mae_f1_hz": 18.217,
+          "mae_f2_hz": 62.393,
+          "median_f2_hz": 31.847,
+          "p90_f2_hz": 148.27,
+          "f2_errors_gt300_hz": 1,
+          "f2_errors_gt500_hz": 0
+        },
+        "uncertainty": {
+          "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+          "speaker_count": 23,
+          "token_count": 23,
+          "replicates": 2000,
+          "seed": 20261013,
+          "undefined_error_replicates": 0,
+          "intervals": {
+            "coverage": [
+              0.8696,
+              1.0
+            ],
+            "mae_f1_hz": [
+              11.9091,
+              25.3479
+            ],
+            "mae_f2_hz": [
+              27.3464,
+              113.2938
+            ],
+            "p90_f2_hz": [
+              39.9833,
+              488.9033
+            ]
+          },
+          "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+        }
+      }
+    },
+    "oʊ": {
+      "original_acoustic": {
+        "metrics": {
+          "tokens": 23,
+          "detections": 23,
+          "coverage": 1.0,
+          "paired_acoustic_count": 23,
+          "mae_f1_hz": 18.033,
+          "mae_f2_hz": 215.054,
+          "median_f2_hz": 36.75,
+          "p90_f2_hz": 1012.75,
+          "f2_errors_gt300_hz": 4,
+          "f2_errors_gt500_hz": 4
+        },
+        "uncertainty": {
+          "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+          "speaker_count": 23,
+          "token_count": 23,
+          "replicates": 2000,
+          "seed": 20261013,
+          "undefined_error_replicates": 0,
+          "intervals": {
+            "coverage": [
+              1.0,
+              1.0
+            ],
+            "mae_f1_hz": [
+              12.837,
+              23.7174
+            ],
+            "mae_f2_hz": [
+              79.5761,
+              370.8152
+            ],
+            "p90_f2_hz": [
+              87.5,
+              1172
+            ]
+          },
+          "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+        }
+      },
+      "pole14_bw400": {
+        "metrics": {
+          "tokens": 23,
+          "detections": 23,
+          "coverage": 1.0,
+          "paired_acoustic_count": 23,
+          "mae_f1_hz": 21.149,
+          "mae_f2_hz": 104.527,
+          "median_f2_hz": 36.591,
+          "p90_f2_hz": 139.783,
+          "f2_errors_gt300_hz": 1,
+          "f2_errors_gt500_hz": 1
+        },
+        "uncertainty": {
+          "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+          "speaker_count": 23,
+          "token_count": 23,
+          "replicates": 2000,
+          "seed": 20261013,
+          "undefined_error_replicates": 0,
+          "intervals": {
+            "coverage": [
+              1.0,
+              1.0
+            ],
+            "mae_f1_hz": [
+              14.7024,
+              28.647
+            ],
+            "mae_f2_hz": [
+              42.0752,
+              212.465
+            ],
+            "p90_f2_hz": [
+              80.7159,
+              1200.3186
+            ]
+          },
+          "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+        }
+      },
+      "pole14_fs12000_poly33": {
+        "metrics": {
+          "tokens": 23,
+          "detections": 23,
+          "coverage": 1.0,
+          "paired_acoustic_count": 23,
+          "mae_f1_hz": 16.861,
+          "mae_f2_hz": 130.119,
+          "median_f2_hz": 34.865,
+          "p90_f2_hz": 133.423,
+          "f2_errors_gt300_hz": 1,
+          "f2_errors_gt500_hz": 1
+        },
+        "uncertainty": {
+          "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+          "speaker_count": 23,
+          "token_count": 23,
+          "replicates": 2000,
+          "seed": 20261013,
+          "undefined_error_replicates": 0,
+          "intervals": {
+            "coverage": [
+              1.0,
+              1.0
+            ],
+            "mae_f1_hz": [
+              11.108,
+              23.5407
+            ],
+            "mae_f2_hz": [
+              34.0684,
+              306.4252
+            ],
+            "p90_f2_hz": [
+              68.4646,
+              1985.772
+            ]
+          },
+          "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+        }
+      },
+      "pole14_fs12000_poly33_fixed_window": {
+        "metrics": {
+          "tokens": 23,
+          "detections": 23,
+          "coverage": 1.0,
+          "paired_acoustic_count": 23,
+          "mae_f1_hz": 17.839,
+          "mae_f2_hz": 131.92,
+          "median_f2_hz": 35.931,
+          "p90_f2_hz": 133.161,
+          "f2_errors_gt300_hz": 1,
+          "f2_errors_gt500_hz": 1
+        },
+        "uncertainty": {
+          "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+          "speaker_count": 23,
+          "token_count": 23,
+          "replicates": 2000,
+          "seed": 20261013,
+          "undefined_error_replicates": 0,
+          "intervals": {
+            "coverage": [
+              1.0,
+              1.0
+            ],
+            "mae_f1_hz": [
+              12.1978,
+              24.6077
+            ],
+            "mae_f2_hz": [
+              35.405,
+              308.5269
+            ],
+            "p90_f2_hz": [
+              74.6677,
+              1987.3286
+            ]
+          },
+          "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+        }
+      }
+    },
+    "u": {
+      "original_acoustic": {
+        "metrics": {
+          "tokens": 23,
+          "detections": 23,
+          "coverage": 1.0,
+          "paired_acoustic_count": 23,
+          "mae_f1_hz": 10.283,
+          "mae_f2_hz": 45.402,
+          "median_f2_hz": 22.5,
+          "p90_f2_hz": 78,
+          "f2_errors_gt300_hz": 1,
+          "f2_errors_gt500_hz": 0
+        },
+        "uncertainty": {
+          "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+          "speaker_count": 23,
+          "token_count": 23,
+          "replicates": 2000,
+          "seed": 20261013,
+          "undefined_error_replicates": 0,
+          "intervals": {
+            "coverage": [
+              1.0,
+              1.0
+            ],
+            "mae_f1_hz": [
+              7.0978,
+              13.5326
+            ],
+            "mae_f2_hz": [
+              24.8804,
+              74.75
+            ],
+            "p90_f2_hz": [
+              53.5,
+              314.25
+            ]
+          },
+          "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+        }
+      },
+      "pole14_bw400": {
+        "metrics": {
+          "tokens": 23,
+          "detections": 23,
+          "coverage": 1.0,
+          "paired_acoustic_count": 23,
+          "mae_f1_hz": 10.296,
+          "mae_f2_hz": 51.701,
+          "median_f2_hz": 27.36,
+          "p90_f2_hz": 97.309,
+          "f2_errors_gt300_hz": 1,
+          "f2_errors_gt500_hz": 0
+        },
+        "uncertainty": {
+          "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+          "speaker_count": 23,
+          "token_count": 23,
+          "replicates": 2000,
+          "seed": 20261013,
+          "undefined_error_replicates": 0,
+          "intervals": {
+            "coverage": [
+              1.0,
+              1.0
+            ],
+            "mae_f1_hz": [
+              6.628,
+              14.0116
+            ],
+            "mae_f2_hz": [
+              29.2893,
+              81.275
+            ],
+            "p90_f2_hz": [
+              63.5655,
+              309.3729
+            ]
+          },
+          "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+        }
+      },
+      "pole14_fs12000_poly33": {
+        "metrics": {
+          "tokens": 23,
+          "detections": 23,
+          "coverage": 1.0,
+          "paired_acoustic_count": 23,
+          "mae_f1_hz": 10.121,
+          "mae_f2_hz": 80.91,
+          "median_f2_hz": 24.167,
+          "p90_f2_hz": 128.421,
+          "f2_errors_gt300_hz": 1,
+          "f2_errors_gt500_hz": 1
+        },
+        "uncertainty": {
+          "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+          "speaker_count": 23,
+          "token_count": 23,
+          "replicates": 2000,
+          "seed": 20261013,
+          "undefined_error_replicates": 0,
+          "intervals": {
+            "coverage": [
+              1.0,
+              1.0
+            ],
+            "mae_f1_hz": [
+              6.5606,
+              14.0984
+            ],
+            "mae_f2_hz": [
+              30.5157,
+              154.2243
+            ],
+            "p90_f2_hz": [
+              72.2802,
+              789.3126
+            ]
+          },
+          "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+        }
+      },
+      "pole14_fs12000_poly33_fixed_window": {
+        "metrics": {
+          "tokens": 23,
+          "detections": 23,
+          "coverage": 1.0,
+          "paired_acoustic_count": 23,
+          "mae_f1_hz": 10.208,
+          "mae_f2_hz": 51.476,
+          "median_f2_hz": 26.837,
+          "p90_f2_hz": 106.132,
+          "f2_errors_gt300_hz": 0,
+          "f2_errors_gt500_hz": 0
+        },
+        "uncertainty": {
+          "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+          "speaker_count": 23,
+          "token_count": 23,
+          "replicates": 2000,
+          "seed": 20261013,
+          "undefined_error_replicates": 0,
+          "intervals": {
+            "coverage": [
+              1.0,
+              1.0
+            ],
+            "mae_f1_hz": [
+              6.6611,
+              13.9897
+            ],
+            "mae_f2_hz": [
+              28.7817,
+              78.1179
+            ],
+            "p90_f2_hz": [
+              77.537,
+              270.3165
+            ]
+          },
+          "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+        }
+      }
+    },
+    "æ": {
+      "original_acoustic": {
+        "metrics": {
+          "tokens": 23,
+          "detections": 23,
+          "coverage": 1.0,
+          "paired_acoustic_count": 23,
+          "mae_f1_hz": 26.772,
+          "mae_f2_hz": 114.522,
+          "median_f2_hz": 41.75,
+          "p90_f2_hz": 176.75,
+          "f2_errors_gt300_hz": 2,
+          "f2_errors_gt500_hz": 2
+        },
+        "uncertainty": {
+          "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+          "speaker_count": 23,
+          "token_count": 23,
+          "replicates": 2000,
+          "seed": 20261013,
+          "undefined_error_replicates": 0,
+          "intervals": {
+            "coverage": [
+              1.0,
+              1.0
+            ],
+            "mae_f1_hz": [
+              15.5217,
+              39.1087
+            ],
+            "mae_f2_hz": [
+              44.2174,
+              215.8804
+            ],
+            "p90_f2_hz": [
+              88.75,
+              922
+            ]
+          },
+          "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+        }
+      },
+      "pole14_bw400": {
+        "metrics": {
+          "tokens": 23,
+          "detections": 23,
+          "coverage": 1.0,
+          "paired_acoustic_count": 23,
+          "mae_f1_hz": 28.705,
+          "mae_f2_hz": 147.474,
+          "median_f2_hz": 57.612,
+          "p90_f2_hz": 386.411,
+          "f2_errors_gt300_hz": 3,
+          "f2_errors_gt500_hz": 2
+        },
+        "uncertainty": {
+          "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+          "speaker_count": 23,
+          "token_count": 23,
+          "replicates": 2000,
+          "seed": 20261013,
+          "undefined_error_replicates": 0,
+          "intervals": {
+            "coverage": [
+              1.0,
+              1.0
+            ],
+            "mae_f1_hz": [
+              18.6555,
+              39.5607
+            ],
+            "mae_f2_hz": [
+              66.7779,
+              248.2147
+            ],
+            "p90_f2_hz": [
+              114.1036,
+              1021.2085
+            ]
+          },
+          "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+        }
+      },
+      "pole14_fs12000_poly33": {
+        "metrics": {
+          "tokens": 23,
+          "detections": 22,
+          "coverage": 0.9565,
+          "paired_acoustic_count": 22,
+          "mae_f1_hz": 19.268,
+          "mae_f2_hz": 75.86,
+          "median_f2_hz": 39.227,
+          "p90_f2_hz": 162.783,
+          "f2_errors_gt300_hz": 1,
+          "f2_errors_gt500_hz": 0
+        },
+        "uncertainty": {
+          "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+          "speaker_count": 23,
+          "token_count": 23,
+          "replicates": 2000,
+          "seed": 20261013,
+          "undefined_error_replicates": 0,
+          "intervals": {
+            "coverage": [
+              0.8696,
+              1.0
+            ],
+            "mae_f1_hz": [
+              11.2734,
+              27.8867
+            ],
+            "mae_f2_hz": [
+              41.0616,
+              123.0836
+            ],
+            "p90_f2_hz": [
+              57.5777,
+              499.9151
+            ]
+          },
+          "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+        }
+      },
+      "pole14_fs12000_poly33_fixed_window": {
+        "metrics": {
+          "tokens": 23,
+          "detections": 22,
+          "coverage": 0.9565,
+          "paired_acoustic_count": 22,
+          "mae_f1_hz": 20.401,
+          "mae_f2_hz": 78.572,
+          "median_f2_hz": 39.786,
+          "p90_f2_hz": 159.994,
+          "f2_errors_gt300_hz": 1,
+          "f2_errors_gt500_hz": 1
+        },
+        "uncertainty": {
+          "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+          "speaker_count": 23,
+          "token_count": 23,
+          "replicates": 2000,
+          "seed": 20261013,
+          "undefined_error_replicates": 0,
+          "intervals": {
+            "coverage": [
+              0.8696,
+              1.0
+            ],
+            "mae_f1_hz": [
+              12.0005,
+              29.3079
+            ],
+            "mae_f2_hz": [
+              42.9789,
+              125.3965
+            ],
+            "p90_f2_hz": [
+              78.522,
+              504.7441
+            ]
+          },
+          "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+        }
+      }
+    },
+    "ɑ": {
+      "original_acoustic": {
+        "metrics": {
+          "tokens": 23,
+          "detections": 19,
+          "coverage": 0.8261,
+          "paired_acoustic_count": 19,
+          "mae_f1_hz": 119.5,
+          "mae_f2_hz": 222.237,
+          "median_f2_hz": 62.25,
+          "p90_f2_hz": 653.75,
+          "f2_errors_gt300_hz": 6,
+          "f2_errors_gt500_hz": 4
+        },
+        "uncertainty": {
+          "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+          "speaker_count": 23,
+          "token_count": 23,
+          "replicates": 2000,
+          "seed": 20261013,
+          "undefined_error_replicates": 0,
+          "intervals": {
+            "coverage": [
+              0.6522,
+              0.9565
+            ],
+            "mae_f1_hz": [
+              48.5294,
+              204.3421
+            ],
+            "mae_f2_hz": [
+              103.4306,
+              351.869
+            ],
+            "p90_f2_hz": [
+              300.75,
+              923.5
+            ]
+          },
+          "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+        }
+      },
+      "pole14_bw400": {
+        "metrics": {
+          "tokens": 23,
+          "detections": 23,
+          "coverage": 1.0,
+          "paired_acoustic_count": 23,
+          "mae_f1_hz": 160.164,
+          "mae_f2_hz": 194.808,
+          "median_f2_hz": 93.875,
+          "p90_f2_hz": 556.534,
+          "f2_errors_gt300_hz": 5,
+          "f2_errors_gt500_hz": 3
+        },
+        "uncertainty": {
+          "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+          "speaker_count": 23,
+          "token_count": 23,
+          "replicates": 2000,
+          "seed": 20261013,
+          "undefined_error_replicates": 0,
+          "intervals": {
+            "coverage": [
+              1.0,
+              1.0
+            ],
+            "mae_f1_hz": [
+              91.7383,
+              237.3314
+            ],
+            "mae_f2_hz": [
+              106.4766,
+              301.1126
+            ],
+            "p90_f2_hz": [
+              257.5304,
+              876.7826
+            ]
+          },
+          "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+        }
+      },
+      "pole14_fs12000_poly33": {
+        "metrics": {
+          "tokens": 23,
+          "detections": 20,
+          "coverage": 0.8696,
+          "paired_acoustic_count": 20,
+          "mae_f1_hz": 80.814,
+          "mae_f2_hz": 198.054,
+          "median_f2_hz": 40.878,
+          "p90_f2_hz": 680.774,
+          "f2_errors_gt300_hz": 3,
+          "f2_errors_gt500_hz": 3
+        },
+        "uncertainty": {
+          "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+          "speaker_count": 23,
+          "token_count": 23,
+          "replicates": 2000,
+          "seed": 20261013,
+          "undefined_error_replicates": 0,
+          "intervals": {
+            "coverage": [
+              0.6957,
+              1.0
+            ],
+            "mae_f1_hz": [
+              35.8399,
+              134.0056
+            ],
+            "mae_f2_hz": [
+              73.4804,
+              349.682
+            ],
+            "p90_f2_hz": [
+              166.3554,
+              1151.9809
+            ]
+          },
+          "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+        }
+      },
+      "pole14_fs12000_poly33_fixed_window": {
+        "metrics": {
+          "tokens": 23,
+          "detections": 19,
+          "coverage": 0.8261,
+          "paired_acoustic_count": 19,
+          "mae_f1_hz": 87.533,
+          "mae_f2_hz": 206.352,
+          "median_f2_hz": 42.39,
+          "p90_f2_hz": 866.548,
+          "f2_errors_gt300_hz": 3,
+          "f2_errors_gt500_hz": 3
+        },
+        "uncertainty": {
+          "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+          "speaker_count": 23,
+          "token_count": 23,
+          "replicates": 2000,
+          "seed": 20261013,
+          "undefined_error_replicates": 0,
+          "intervals": {
+            "coverage": [
+              0.6522,
+              0.9565
+            ],
+            "mae_f1_hz": [
+              39.7486,
+              143.2382
+            ],
+            "mae_f2_hz": [
+              76.9464,
+              365.149
+            ],
+            "p90_f2_hz": [
+              166.3764,
+              1151.2004
+            ]
+          },
+          "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+        }
+      }
+    },
+    "ɔ": {
+      "original_acoustic": {
+        "metrics": {
+          "tokens": 23,
+          "detections": 22,
+          "coverage": 0.9565,
+          "paired_acoustic_count": 22,
+          "mae_f1_hz": 52.534,
+          "mae_f2_hz": 578.989,
+          "median_f2_hz": 75,
+          "p90_f2_hz": 1762.75,
+          "f2_errors_gt300_hz": 9,
+          "f2_errors_gt500_hz": 9
+        },
+        "uncertainty": {
+          "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+          "speaker_count": 23,
+          "token_count": 23,
+          "replicates": 2000,
+          "seed": 20261013,
+          "undefined_error_replicates": 0,
+          "intervals": {
+            "coverage": [
+              0.8696,
+              1.0
+            ],
+            "mae_f1_hz": [
+              35.7174,
+              71.2955
+            ],
+            "mae_f2_hz": [
+              286.7283,
+              904.25
+            ],
+            "p90_f2_hz": [
+              818.75,
+              2151.25
+            ]
+          },
+          "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+        }
+      },
+      "pole14_bw400": {
+        "metrics": {
+          "tokens": 23,
+          "detections": 23,
+          "coverage": 1.0,
+          "paired_acoustic_count": 23,
+          "mae_f1_hz": 78.048,
+          "mae_f2_hz": 479.026,
+          "median_f2_hz": 98.657,
+          "p90_f2_hz": 1756.946,
+          "f2_errors_gt300_hz": 8,
+          "f2_errors_gt500_hz": 8
+        },
+        "uncertainty": {
+          "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+          "speaker_count": 23,
+          "token_count": 23,
+          "replicates": 2000,
+          "seed": 20261013,
+          "undefined_error_replicates": 0,
+          "intervals": {
+            "coverage": [
+              1.0,
+              1.0
+            ],
+            "mae_f1_hz": [
+              50.8296,
+              107.9649
+            ],
+            "mae_f2_hz": [
+              227.9942,
+              752.2737
+            ],
+            "p90_f2_hz": [
+              771.7849,
+              1763.3053
+            ]
+          },
+          "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+        }
+      },
+      "pole14_fs12000_poly33": {
+        "metrics": {
+          "tokens": 23,
+          "detections": 23,
+          "coverage": 1.0,
+          "paired_acoustic_count": 23,
+          "mae_f1_hz": 44.731,
+          "mae_f2_hz": 545.592,
+          "median_f2_hz": 84.491,
+          "p90_f2_hz": 1781.767,
+          "f2_errors_gt300_hz": 8,
+          "f2_errors_gt500_hz": 8
+        },
+        "uncertainty": {
+          "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+          "speaker_count": 23,
+          "token_count": 23,
+          "replicates": 2000,
+          "seed": 20261013,
+          "undefined_error_replicates": 0,
+          "intervals": {
+            "coverage": [
+              1.0,
+              1.0
+            ],
+            "mae_f1_hz": [
+              27.9038,
+              63.618
+            ],
+            "mae_f2_hz": [
+              258.9783,
+              860.4572
+            ],
+            "p90_f2_hz": [
+              800.8141,
+              2097.0191
+            ]
+          },
+          "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+        }
+      },
+      "pole14_fs12000_poly33_fixed_window": {
+        "metrics": {
+          "tokens": 23,
+          "detections": 23,
+          "coverage": 1.0,
+          "paired_acoustic_count": 23,
+          "mae_f1_hz": 50.745,
+          "mae_f2_hz": 544.253,
+          "median_f2_hz": 75.481,
+          "p90_f2_hz": 1781.539,
+          "f2_errors_gt300_hz": 8,
+          "f2_errors_gt500_hz": 8
+        },
+        "uncertainty": {
+          "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+          "speaker_count": 23,
+          "token_count": 23,
+          "replicates": 2000,
+          "seed": 20261013,
+          "undefined_error_replicates": 0,
+          "intervals": {
+            "coverage": [
+              1.0,
+              1.0
+            ],
+            "mae_f1_hz": [
+              33.1872,
+              71.118
+            ],
+            "mae_f2_hz": [
+              256.5799,
+              859.3274
+            ],
+            "p90_f2_hz": [
+              839.3999,
+              2108.3632
+            ]
+          },
+          "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+        }
+      }
+    },
+    "ɛ": {
+      "original_acoustic": {
+        "metrics": {
+          "tokens": 23,
+          "detections": 22,
+          "coverage": 0.9565,
+          "paired_acoustic_count": 22,
+          "mae_f1_hz": 69.511,
+          "mae_f2_hz": 143.136,
+          "median_f2_hz": 29.5,
+          "p90_f2_hz": 575,
+          "f2_errors_gt300_hz": 3,
+          "f2_errors_gt500_hz": 3
+        },
+        "uncertainty": {
+          "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+          "speaker_count": 23,
+          "token_count": 23,
+          "replicates": 2000,
+          "seed": 20261013,
+          "undefined_error_replicates": 0,
+          "intervals": {
+            "coverage": [
+              0.8696,
+              1.0
+            ],
+            "mae_f1_hz": [
+              32.6848,
+              113.4674
+            ],
+            "mae_f2_hz": [
+              38.4773,
+              272.1848
+            ],
+            "p90_f2_hz": [
+              54,
+              1191.5
+            ]
+          },
+          "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+        }
+      },
+      "pole14_bw400": {
+        "metrics": {
+          "tokens": 23,
+          "detections": 22,
+          "coverage": 0.9565,
+          "paired_acoustic_count": 22,
+          "mae_f1_hz": 83.454,
+          "mae_f2_hz": 223.61,
+          "median_f2_hz": 36.686,
+          "p90_f2_hz": 1053.562,
+          "f2_errors_gt300_hz": 4,
+          "f2_errors_gt500_hz": 4
+        },
+        "uncertainty": {
+          "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+          "speaker_count": 23,
+          "token_count": 23,
+          "replicates": 2000,
+          "seed": 20261013,
+          "undefined_error_replicates": 0,
+          "intervals": {
+            "coverage": [
+              0.8696,
+              1.0
+            ],
+            "mae_f1_hz": [
+              47.0162,
+              126.6627
+            ],
+            "mae_f2_hz": [
+              73.5555,
+              401.0551
+            ],
+            "p90_f2_hz": [
+              68.5168,
+              1295.593
+            ]
+          },
+          "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+        }
+      },
+      "pole14_fs12000_poly33": {
+        "metrics": {
+          "tokens": 23,
+          "detections": 22,
+          "coverage": 0.9565,
+          "paired_acoustic_count": 22,
+          "mae_f1_hz": 62.526,
+          "mae_f2_hz": 134.041,
+          "median_f2_hz": 23.583,
+          "p90_f2_hz": 526.364,
+          "f2_errors_gt300_hz": 3,
+          "f2_errors_gt500_hz": 3
+        },
+        "uncertainty": {
+          "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+          "speaker_count": 23,
+          "token_count": 23,
+          "replicates": 2000,
+          "seed": 20261013,
+          "undefined_error_replicates": 0,
+          "intervals": {
+            "coverage": [
+              0.8696,
+              1.0
+            ],
+            "mae_f1_hz": [
+              27.5862,
+              105.7284
+            ],
+            "mae_f2_hz": [
+              35.0828,
+              258.8742
+            ],
+            "p90_f2_hz": [
+              48.7139,
+              1164.1214
+            ]
+          },
+          "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+        }
+      },
+      "pole14_fs12000_poly33_fixed_window": {
+        "metrics": {
+          "tokens": 23,
+          "detections": 22,
+          "coverage": 0.9565,
+          "paired_acoustic_count": 22,
+          "mae_f1_hz": 63.378,
+          "mae_f2_hz": 134.036,
+          "median_f2_hz": 24.152,
+          "p90_f2_hz": 529.885,
+          "f2_errors_gt300_hz": 3,
+          "f2_errors_gt500_hz": 3
+        },
+        "uncertainty": {
+          "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+          "speaker_count": 23,
+          "token_count": 23,
+          "replicates": 2000,
+          "seed": 20261013,
+          "undefined_error_replicates": 0,
+          "intervals": {
+            "coverage": [
+              0.8696,
+              1.0
+            ],
+            "mae_f1_hz": [
+              28.6359,
+              106.525
+            ],
+            "mae_f2_hz": [
+              34.7213,
+              258.2268
+            ],
+            "p90_f2_hz": [
+              45.4247,
+              1160.97
+            ]
+          },
+          "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+        }
+      }
+    },
+    "ɝ": {
+      "original_acoustic": {
+        "metrics": {
+          "tokens": 23,
+          "detections": 23,
+          "coverage": 1.0,
+          "paired_acoustic_count": 23,
+          "mae_f1_hz": 30.239,
+          "mae_f2_hz": 79.837,
+          "median_f2_hz": 30.5,
+          "p90_f2_hz": 246.5,
+          "f2_errors_gt300_hz": 1,
+          "f2_errors_gt500_hz": 0
+        },
+        "uncertainty": {
+          "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+          "speaker_count": 23,
+          "token_count": 23,
+          "replicates": 2000,
+          "seed": 20261013,
+          "undefined_error_replicates": 0,
+          "intervals": {
+            "coverage": [
+              1.0,
+              1.0
+            ],
+            "mae_f1_hz": [
+              19.4674,
+              44.1304
+            ],
+            "mae_f2_hz": [
+              43.0543,
+              120.7174
+            ],
+            "p90_f2_hz": [
+              99.25,
+              313
+            ]
+          },
+          "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+        }
+      },
+      "pole14_bw400": {
+        "metrics": {
+          "tokens": 23,
+          "detections": 23,
+          "coverage": 1.0,
+          "paired_acoustic_count": 23,
+          "mae_f1_hz": 34.254,
+          "mae_f2_hz": 89.558,
+          "median_f2_hz": 42.661,
+          "p90_f2_hz": 256.19,
+          "f2_errors_gt300_hz": 1,
+          "f2_errors_gt500_hz": 0
+        },
+        "uncertainty": {
+          "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+          "speaker_count": 23,
+          "token_count": 23,
+          "replicates": 2000,
+          "seed": 20261013,
+          "undefined_error_replicates": 0,
+          "intervals": {
+            "coverage": [
+              1.0,
+              1.0
+            ],
+            "mae_f1_hz": [
+              21.1634,
+              50.0741
+            ],
+            "mae_f2_hz": [
+              50.797,
+              131.7583
+            ],
+            "p90_f2_hz": [
+              93.7351,
+              352.5736
+            ]
+          },
+          "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+        }
+      },
+      "pole14_fs12000_poly33": {
+        "metrics": {
+          "tokens": 23,
+          "detections": 23,
+          "coverage": 1.0,
+          "paired_acoustic_count": 23,
+          "mae_f1_hz": 30.67,
+          "mae_f2_hz": 90.237,
+          "median_f2_hz": 45.729,
+          "p90_f2_hz": 236.432,
+          "f2_errors_gt300_hz": 1,
+          "f2_errors_gt500_hz": 0
+        },
+        "uncertainty": {
+          "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+          "speaker_count": 23,
+          "token_count": 23,
+          "replicates": 2000,
+          "seed": 20261013,
+          "undefined_error_replicates": 0,
+          "intervals": {
+            "coverage": [
+              1.0,
+              1.0
+            ],
+            "mae_f1_hz": [
+              19.8874,
+              45.2008
+            ],
+            "mae_f2_hz": [
+              52.9857,
+              135.3146
+            ],
+            "p90_f2_hz": [
+              114.9641,
+              434.3783
+            ]
+          },
+          "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+        }
+      },
+      "pole14_fs12000_poly33_fixed_window": {
+        "metrics": {
+          "tokens": 23,
+          "detections": 23,
+          "coverage": 1.0,
+          "paired_acoustic_count": 23,
+          "mae_f1_hz": 32.041,
+          "mae_f2_hz": 89.191,
+          "median_f2_hz": 45.036,
+          "p90_f2_hz": 247.032,
+          "f2_errors_gt300_hz": 1,
+          "f2_errors_gt500_hz": 0
+        },
+        "uncertainty": {
+          "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+          "speaker_count": 23,
+          "token_count": 23,
+          "replicates": 2000,
+          "seed": 20261013,
+          "undefined_error_replicates": 0,
+          "intervals": {
+            "coverage": [
+              1.0,
+              1.0
+            ],
+            "mae_f1_hz": [
+              20.6282,
+              46.9199
+            ],
+            "mae_f2_hz": [
+              53.1028,
+              129.8258
+            ],
+            "p90_f2_hz": [
+              111.4679,
+              325.712
+            ]
+          },
+          "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+        }
+      }
+    },
+    "ɪ": {
+      "original_acoustic": {
+        "metrics": {
+          "tokens": 23,
+          "detections": 20,
+          "coverage": 0.8696,
+          "paired_acoustic_count": 20,
+          "mae_f1_hz": 15.4,
+          "mae_f2_hz": 39.638,
+          "median_f2_hz": 40,
+          "p90_f2_hz": 65.75,
+          "f2_errors_gt300_hz": 0,
+          "f2_errors_gt500_hz": 0
+        },
+        "uncertainty": {
+          "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+          "speaker_count": 23,
+          "token_count": 23,
+          "replicates": 2000,
+          "seed": 20261013,
+          "undefined_error_replicates": 0,
+          "intervals": {
+            "coverage": [
+              0.7391,
+              1.0
+            ],
+            "mae_f1_hz": [
+              10.9306,
+              20.7188
+            ],
+            "mae_f2_hz": [
+              27.3068,
+              52.8333
+            ],
+            "p90_f2_hz": [
+              55.5,
+              118.25
+            ]
+          },
+          "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+        }
+      },
+      "pole14_bw400": {
+        "metrics": {
+          "tokens": 23,
+          "detections": 21,
+          "coverage": 0.913,
+          "paired_acoustic_count": 21,
+          "mae_f1_hz": 16.264,
+          "mae_f2_hz": 84.383,
+          "median_f2_hz": 41.956,
+          "p90_f2_hz": 94.082,
+          "f2_errors_gt300_hz": 1,
+          "f2_errors_gt500_hz": 1
+        },
+        "uncertainty": {
+          "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+          "speaker_count": 23,
+          "token_count": 23,
+          "replicates": 2000,
+          "seed": 20261013,
+          "undefined_error_replicates": 0,
+          "intervals": {
+            "coverage": [
+              0.7826,
+              1.0
+            ],
+            "mae_f1_hz": [
+              12.0472,
+              20.9915
+            ],
+            "mae_f2_hz": [
+              31.3116,
+              181.4309
+            ],
+            "p90_f2_hz": [
+              53.162,
+              909.3297
+            ]
+          },
+          "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+        }
+      },
+      "pole14_fs12000_poly33": {
+        "metrics": {
+          "tokens": 23,
+          "detections": 20,
+          "coverage": 0.8696,
+          "paired_acoustic_count": 20,
+          "mae_f1_hz": 15.816,
+          "mae_f2_hz": 26.784,
+          "median_f2_hz": 23.289,
+          "p90_f2_hz": 55.437,
+          "f2_errors_gt300_hz": 0,
+          "f2_errors_gt500_hz": 0
+        },
+        "uncertainty": {
+          "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+          "speaker_count": 23,
+          "token_count": 23,
+          "replicates": 2000,
+          "seed": 20261013,
+          "undefined_error_replicates": 0,
+          "intervals": {
+            "coverage": [
+              0.7391,
+              1.0
+            ],
+            "mae_f1_hz": [
+              10.8412,
+              21.5644
+            ],
+            "mae_f2_hz": [
+              18.4136,
+              35.8271
+            ],
+            "p90_f2_hz": [
+              42.0561,
+              62.1071
+            ]
+          },
+          "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+        }
+      },
+      "pole14_fs12000_poly33_fixed_window": {
+        "metrics": {
+          "tokens": 23,
+          "detections": 20,
+          "coverage": 0.8696,
+          "paired_acoustic_count": 20,
+          "mae_f1_hz": 17.357,
+          "mae_f2_hz": 26.089,
+          "median_f2_hz": 17.842,
+          "p90_f2_hz": 58.089,
+          "f2_errors_gt300_hz": 0,
+          "f2_errors_gt500_hz": 0
+        },
+        "uncertainty": {
+          "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+          "speaker_count": 23,
+          "token_count": 23,
+          "replicates": 2000,
+          "seed": 20261013,
+          "undefined_error_replicates": 0,
+          "intervals": {
+            "coverage": [
+              0.7391,
+              1.0
+            ],
+            "mae_f1_hz": [
+              11.568,
+              24.1855
+            ],
+            "mae_f2_hz": [
+              17.5542,
+              34.9918
+            ],
+            "p90_f2_hz": [
+              35.7855,
+              59.8645
+            ]
+          },
+          "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+        }
+      }
+    },
+    "ʊ": {
+      "original_acoustic": {
+        "metrics": {
+          "tokens": 23,
+          "detections": 23,
+          "coverage": 1.0,
+          "paired_acoustic_count": 23,
+          "mae_f1_hz": 25.228,
+          "mae_f2_hz": 101.196,
+          "median_f2_hz": 37.25,
+          "p90_f2_hz": 102.25,
+          "f2_errors_gt300_hz": 1,
+          "f2_errors_gt500_hz": 1
+        },
+        "uncertainty": {
+          "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+          "speaker_count": 23,
+          "token_count": 23,
+          "replicates": 2000,
+          "seed": 20261013,
+          "undefined_error_replicates": 0,
+          "intervals": {
+            "coverage": [
+              1.0,
+              1.0
+            ],
+            "mae_f1_hz": [
+              12.2391,
+              42.8913
+            ],
+            "mae_f2_hz": [
+              28.1848,
+              236.587
+            ],
+            "p90_f2_hz": [
+              58,
+              1517
+            ]
+          },
+          "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+        }
+      },
+      "pole14_bw400": {
+        "metrics": {
+          "tokens": 23,
+          "detections": 23,
+          "coverage": 1.0,
+          "paired_acoustic_count": 23,
+          "mae_f1_hz": 24.149,
+          "mae_f2_hz": 121.415,
+          "median_f2_hz": 29.51,
+          "p90_f2_hz": 134.782,
+          "f2_errors_gt300_hz": 2,
+          "f2_errors_gt500_hz": 1
+        },
+        "uncertainty": {
+          "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+          "speaker_count": 23,
+          "token_count": 23,
+          "replicates": 2000,
+          "seed": 20261013,
+          "undefined_error_replicates": 0,
+          "intervals": {
+            "coverage": [
+              1.0,
+              1.0
+            ],
+            "mae_f1_hz": [
+              12.7895,
+              38.9665
+            ],
+            "mae_f2_hz": [
+              36.7089,
+              263.2228
+            ],
+            "p90_f2_hz": [
+              77.7094,
+              1519.07
+            ]
+          },
+          "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+        }
+      },
+      "pole14_fs12000_poly33": {
+        "metrics": {
+          "tokens": 23,
+          "detections": 23,
+          "coverage": 1.0,
+          "paired_acoustic_count": 23,
+          "mae_f1_hz": 24.956,
+          "mae_f2_hz": 77.152,
+          "median_f2_hz": 39.969,
+          "p90_f2_hz": 138.846,
+          "f2_errors_gt300_hz": 2,
+          "f2_errors_gt500_hz": 1
+        },
+        "uncertainty": {
+          "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+          "speaker_count": 23,
+          "token_count": 23,
+          "replicates": 2000,
+          "seed": 20261013,
+          "undefined_error_replicates": 0,
+          "intervals": {
+            "coverage": [
+              1.0,
+              1.0
+            ],
+            "mae_f1_hz": [
+              9.5813,
+              45.8094
+            ],
+            "mae_f2_hz": [
+              33.6255,
+              139.9483
+            ],
+            "p90_f2_hz": [
+              56.0031,
+              638.1414
+            ]
+          },
+          "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+        }
+      },
+      "pole14_fs12000_poly33_fixed_window": {
+        "metrics": {
+          "tokens": 23,
+          "detections": 23,
+          "coverage": 1.0,
+          "paired_acoustic_count": 23,
+          "mae_f1_hz": 25.421,
+          "mae_f2_hz": 101.082,
+          "median_f2_hz": 30.388,
+          "p90_f2_hz": 140.077,
+          "f2_errors_gt300_hz": 2,
+          "f2_errors_gt500_hz": 2
+        },
+        "uncertainty": {
+          "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+          "speaker_count": 23,
+          "token_count": 23,
+          "replicates": 2000,
+          "seed": 20261013,
+          "undefined_error_replicates": 0,
+          "intervals": {
+            "coverage": [
+              1.0,
+              1.0
+            ],
+            "mae_f1_hz": [
+              10.366,
+              45.7136
+            ],
+            "mae_f2_hz": [
+              31.7198,
+              198.2479
+            ],
+            "p90_f2_hz": [
+              57.8622,
+              895.7176
+            ]
+          },
+          "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+        }
+      }
+    },
+    "ʌ": {
+      "original_acoustic": {
+        "metrics": {
+          "tokens": 22,
+          "detections": 22,
+          "coverage": 1.0,
+          "paired_acoustic_count": 22,
+          "mae_f1_hz": 45.148,
+          "mae_f2_hz": 181.352,
+          "median_f2_hz": 53,
+          "p90_f2_hz": 610.5,
+          "f2_errors_gt300_hz": 3,
+          "f2_errors_gt500_hz": 3
+        },
+        "uncertainty": {
+          "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+          "speaker_count": 22,
+          "token_count": 22,
+          "replicates": 2000,
+          "seed": 20261013,
+          "undefined_error_replicates": 0,
+          "intervals": {
+            "coverage": [
+              1.0,
+              1.0
+            ],
+            "mae_f1_hz": [
+              24.2045,
+              71.6136
+            ],
+            "mae_f2_hz": [
+              56.7159,
+              355.0909
+            ],
+            "p90_f2_hz": [
+              90.5,
+              1650
+            ]
+          },
+          "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+        }
+      },
+      "pole14_bw400": {
+        "metrics": {
+          "tokens": 22,
+          "detections": 22,
+          "coverage": 1.0,
+          "paired_acoustic_count": 22,
+          "mae_f1_hz": 62.332,
+          "mae_f2_hz": 217.662,
+          "median_f2_hz": 59.606,
+          "p90_f2_hz": 598.582,
+          "f2_errors_gt300_hz": 4,
+          "f2_errors_gt500_hz": 4
+        },
+        "uncertainty": {
+          "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+          "speaker_count": 22,
+          "token_count": 22,
+          "replicates": 2000,
+          "seed": 20261013,
+          "undefined_error_replicates": 0,
+          "intervals": {
+            "coverage": [
+              1.0,
+              1.0
+            ],
+            "mae_f1_hz": [
+              28.9475,
+              103.2954
+            ],
+            "mae_f2_hz": [
+              86.8253,
+              388.5966
+            ],
+            "p90_f2_hz": [
+              156.6452,
+              1652.8942
+            ]
+          },
+          "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+        }
+      },
+      "pole14_fs12000_poly33": {
+        "metrics": {
+          "tokens": 22,
+          "detections": 22,
+          "coverage": 1.0,
+          "paired_acoustic_count": 22,
+          "mae_f1_hz": 38.949,
+          "mae_f2_hz": 131.966,
+          "median_f2_hz": 66.208,
+          "p90_f2_hz": 227.248,
+          "f2_errors_gt300_hz": 2,
+          "f2_errors_gt500_hz": 2
+        },
+        "uncertainty": {
+          "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+          "speaker_count": 22,
+          "token_count": 22,
+          "replicates": 2000,
+          "seed": 20261013,
+          "undefined_error_replicates": 0,
+          "intervals": {
+            "coverage": [
+              1.0,
+              1.0
+            ],
+            "mae_f1_hz": [
+              19.6502,
+              63.8821
+            ],
+            "mae_f2_hz": [
+              55.2388,
+              238.9945
+            ],
+            "p90_f2_hz": [
+              97.1814,
+              976.9939
+            ]
+          },
+          "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+        }
+      },
+      "pole14_fs12000_poly33_fixed_window": {
+        "metrics": {
+          "tokens": 22,
+          "detections": 22,
+          "coverage": 1.0,
+          "paired_acoustic_count": 22,
+          "mae_f1_hz": 40.9,
+          "mae_f2_hz": 202.271,
+          "median_f2_hz": 71.54,
+          "p90_f2_hz": 584.394,
+          "f2_errors_gt300_hz": 3,
+          "f2_errors_gt500_hz": 3
+        },
+        "uncertainty": {
+          "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+          "speaker_count": 22,
+          "token_count": 22,
+          "replicates": 2000,
+          "seed": 20261013,
+          "undefined_error_replicates": 0,
+          "intervals": {
+            "coverage": [
+              1.0,
+              1.0
+            ],
+            "mae_f1_hz": [
+              21.36,
+              66.2173
+            ],
+            "mae_f2_hz": [
+              70.1864,
+              381.2842
+            ],
+            "p90_f2_hz": [
+              118.0461,
+              1637.0491
+            ]
+          },
+          "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+        }
+      }
+    }
+  },
+  "common_detected": {
+    "original_acoustic": {
+      "tokens": 259,
+      "detections": 259,
+      "coverage": 1.0,
+      "paired_acoustic_count": 259,
+      "mae_f1_hz": 34.525,
+      "mae_f2_hz": 144.951,
+      "median_f2_hz": 32.5,
+      "p90_f2_hz": 314.25,
+      "f2_errors_gt300_hz": 28,
+      "f2_errors_gt500_hz": 24
+    },
+    "pole14_bw400": {
+      "tokens": 259,
+      "detections": 259,
+      "coverage": 1.0,
+      "paired_acoustic_count": 259,
+      "mae_f1_hz": 40.271,
+      "mae_f2_hz": 146.714,
+      "median_f2_hz": 39.354,
+      "p90_f2_hz": 384.857,
+      "f2_errors_gt300_hz": 28,
+      "f2_errors_gt500_hz": 22
+    },
+    "pole14_fs12000_poly33": {
+      "tokens": 259,
+      "detections": 259,
+      "coverage": 1.0,
+      "paired_acoustic_count": 259,
+      "mae_f1_hz": 31.179,
+      "mae_f2_hz": 129.597,
+      "median_f2_hz": 37.259,
+      "p90_f2_hz": 236.432,
+      "f2_errors_gt300_hz": 22,
+      "f2_errors_gt500_hz": 18
+    },
+    "pole14_fs12000_poly33_fixed_window": {
+      "tokens": 259,
+      "detections": 259,
+      "coverage": 1.0,
+      "paired_acoustic_count": 259,
+      "mae_f1_hz": 32.596,
+      "mae_f2_hz": 135.202,
+      "median_f2_hz": 35.992,
+      "p90_f2_hz": 247.032,
+      "f2_errors_gt300_hz": 22,
+      "f2_errors_gt500_hz": 20
+    }
+  },
+  "approximate_computation": {
+    "original_acoustic": {
+      "frames": 1132,
+      "sum_cpu_ms": 2295.16,
+      "mean_per_frame_ms": 2.028
+    },
+    "pole14_bw400": {
+      "frames": 1132,
+      "sum_cpu_ms": 1111.63,
+      "mean_per_frame_ms": 0.982
+    },
+    "pole14_fs12000_poly33": {
+      "frames": 1132,
+      "sum_cpu_ms": 8055.95,
+      "mean_per_frame_ms": 7.117
+    },
+    "pole14_fs12000_poly33_fixed_window": {
+      "frames": 1132,
+      "sum_cpu_ms": 8529.4,
+      "mean_per_frame_ms": 7.535
+    }
+  },
+  "by_cohort": {
+    "adult_men": {
+      "original_acoustic": {
+        "tokens": 96,
+        "detections": 94,
+        "coverage": 0.9792,
+        "paired_acoustic_count": 94,
+        "mae_f1_hz": 19.25,
+        "mae_f2_hz": 73.301,
+        "median_f2_hz": 23,
+        "p90_f2_hz": 89,
+        "f2_errors_gt300_hz": 4,
+        "f2_errors_gt500_hz": 4
+      },
+      "pole14_bw400": {
+        "tokens": 96,
+        "detections": 94,
+        "coverage": 0.9792,
+        "paired_acoustic_count": 94,
+        "mae_f1_hz": 19.131,
+        "mae_f2_hz": 74.464,
+        "median_f2_hz": 27.614,
+        "p90_f2_hz": 97.309,
+        "f2_errors_gt300_hz": 3,
+        "f2_errors_gt500_hz": 3
+      },
+      "pole14_fs12000_poly33": {
+        "tokens": 96,
+        "detections": 94,
+        "coverage": 0.9792,
+        "paired_acoustic_count": 94,
+        "mae_f1_hz": 17.214,
+        "mae_f2_hz": 86.286,
+        "median_f2_hz": 26.705,
+        "p90_f2_hz": 105.226,
+        "f2_errors_gt300_hz": 5,
+        "f2_errors_gt500_hz": 5
+      },
+      "pole14_fs12000_poly33_fixed_window": {
+        "tokens": 96,
+        "detections": 94,
+        "coverage": 0.9792,
+        "paired_acoustic_count": 94,
+        "mae_f1_hz": 17.792,
+        "mae_f2_hz": 86.033,
+        "median_f2_hz": 27.326,
+        "p90_f2_hz": 111.337,
+        "f2_errors_gt300_hz": 5,
+        "f2_errors_gt500_hz": 5
+      }
+    },
+    "adult_women": {
+      "original_acoustic": {
+        "tokens": 84,
+        "detections": 79,
+        "coverage": 0.9405,
+        "paired_acoustic_count": 79,
+        "mae_f1_hz": 41.301,
+        "mae_f2_hz": 192.506,
+        "median_f2_hz": 47.25,
+        "p90_f2_hz": 703.5,
+        "f2_errors_gt300_hz": 12,
+        "f2_errors_gt500_hz": 9
+      },
+      "pole14_bw400": {
+        "tokens": 84,
+        "detections": 83,
+        "coverage": 0.9881,
+        "paired_acoustic_count": 83,
+        "mae_f1_hz": 53.531,
+        "mae_f2_hz": 154.045,
+        "median_f2_hz": 55.818,
+        "p90_f2_hz": 296.693,
+        "f2_errors_gt300_hz": 8,
+        "f2_errors_gt500_hz": 6
+      },
+      "pole14_fs12000_poly33": {
+        "tokens": 84,
+        "detections": 82,
+        "coverage": 0.9762,
+        "paired_acoustic_count": 82,
+        "mae_f1_hz": 41.712,
+        "mae_f2_hz": 190.126,
+        "median_f2_hz": 42.091,
+        "p90_f2_hz": 526.364,
+        "f2_errors_gt300_hz": 11,
+        "f2_errors_gt500_hz": 9
+      },
+      "pole14_fs12000_poly33_fixed_window": {
+        "tokens": 84,
+        "detections": 81,
+        "coverage": 0.9643,
+        "paired_acoustic_count": 81,
+        "mae_f1_hz": 43.327,
+        "mae_f2_hz": 191.628,
+        "median_f2_hz": 46.408,
+        "p90_f2_hz": 529.885,
+        "f2_errors_gt300_hz": 10,
+        "f2_errors_gt500_hz": 9
+      }
+    },
+    "boys": {
+      "original_acoustic": {
+        "tokens": 47,
+        "detections": 44,
+        "coverage": 0.9362,
+        "paired_acoustic_count": 44,
+        "mae_f1_hz": 29.886,
+        "mae_f2_hz": 209.136,
+        "median_f2_hz": 49.25,
+        "p90_f2_hz": 834.25,
+        "f2_errors_gt300_hz": 6,
+        "f2_errors_gt500_hz": 6
+      },
+      "pole14_bw400": {
+        "tokens": 47,
+        "detections": 46,
+        "coverage": 0.9787,
+        "paired_acoustic_count": 46,
+        "mae_f1_hz": 39.775,
+        "mae_f2_hz": 239.736,
+        "median_f2_hz": 52.889,
+        "p90_f2_hz": 967.179,
+        "f2_errors_gt300_hz": 9,
+        "f2_errors_gt500_hz": 7
+      },
+      "pole14_fs12000_poly33": {
+        "tokens": 47,
+        "detections": 45,
+        "coverage": 0.9574,
+        "paired_acoustic_count": 45,
+        "mae_f1_hz": 23.896,
+        "mae_f2_hz": 167.845,
+        "median_f2_hz": 41.971,
+        "p90_f2_hz": 187.225,
+        "f2_errors_gt300_hz": 4,
+        "f2_errors_gt500_hz": 3
+      },
+      "pole14_fs12000_poly33_fixed_window": {
+        "tokens": 47,
+        "detections": 45,
+        "coverage": 0.9574,
+        "paired_acoustic_count": 45,
+        "mae_f1_hz": 24.69,
+        "mae_f2_hz": 202.191,
+        "median_f2_hz": 41.409,
+        "p90_f2_hz": 488.903,
+        "f2_errors_gt300_hz": 5,
+        "f2_errors_gt500_hz": 4
+      }
+    },
+    "girls": {
+      "original_acoustic": {
+        "tokens": 48,
+        "detections": 46,
+        "coverage": 0.9583,
+        "paired_acoustic_count": 46,
+        "mae_f1_hz": 71.717,
+        "mae_f2_hz": 170.902,
+        "median_f2_hz": 41.75,
+        "p90_f2_hz": 678,
+        "f2_errors_gt300_hz": 8,
+        "f2_errors_gt500_hz": 7
+      },
+      "pole14_bw400": {
+        "tokens": 48,
+        "detections": 47,
+        "coverage": 0.9792,
+        "paired_acoustic_count": 47,
+        "mae_f1_hz": 97.57,
+        "mae_f2_hz": 246.981,
+        "median_f2_hz": 70.954,
+        "p90_f2_hz": 648.71,
+        "f2_errors_gt300_hz": 13,
+        "f2_errors_gt500_hz": 9
+      },
+      "pole14_fs12000_poly33": {
+        "tokens": 48,
+        "detections": 43,
+        "coverage": 0.8958,
+        "paired_acoustic_count": 43,
+        "mae_f1_hz": 50.759,
+        "mae_f2_hz": 123.45,
+        "median_f2_hz": 48.876,
+        "p90_f2_hz": 274.84,
+        "f2_errors_gt300_hz": 4,
+        "f2_errors_gt500_hz": 3
+      },
+      "pole14_fs12000_poly33_fixed_window": {
+        "tokens": 48,
+        "detections": 43,
+        "coverage": 0.8958,
+        "paired_acoustic_count": 43,
+        "mae_f1_hz": 55.17,
+        "mae_f2_hz": 122.472,
+        "median_f2_hz": 50.57,
+        "p90_f2_hz": 270.316,
+        "f2_errors_gt300_hz": 4,
+        "f2_errors_gt500_hz": 4
+      }
+    }
+  },
+  "by_cohort_uncertainty": {
+    "adult_men": {
+      "original_acoustic": {
+        "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+        "speaker_count": 8,
+        "token_count": 96,
+        "replicates": 2000,
+        "seed": 20261013,
+        "undefined_error_replicates": 0,
+        "intervals": {
+          "coverage": [
+            0.9375,
+            1.0
+          ],
+          "mae_f1_hz": [
+            13.8464,
+            25.8806
+          ],
+          "mae_f2_hz": [
+            39.1782,
+            113.4115
+          ],
+          "p90_f2_hz": [
+            64,
+            212.25
+          ]
+        },
+        "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+      },
+      "pole14_bw400": {
+        "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+        "speaker_count": 8,
+        "token_count": 96,
+        "replicates": 2000,
+        "seed": 20261013,
+        "undefined_error_replicates": 0,
+        "intervals": {
+          "coverage": [
+            0.9375,
+            1.0
+          ],
+          "mae_f1_hz": [
+            14.3777,
+            24.7502
+          ],
+          "mae_f2_hz": [
+            33.7657,
+            135.3607
+          ],
+          "p90_f2_hz": [
+            71.1149,
+            245.0024
+          ]
+        },
+        "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+      },
+      "pole14_fs12000_poly33": {
+        "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+        "speaker_count": 8,
+        "token_count": 96,
+        "replicates": 2000,
+        "seed": 20261013,
+        "undefined_error_replicates": 0,
+        "intervals": {
+          "coverage": [
+            0.9375,
+            1.0
+          ],
+          "mae_f1_hz": [
+            13.1634,
+            21.7419
+          ],
+          "mae_f2_hz": [
+            41.2014,
+            144.6791
+          ],
+          "p90_f2_hz": [
+            76.7109,
+            251.7663
+          ]
+        },
+        "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+      },
+      "pole14_fs12000_poly33_fixed_window": {
+        "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+        "speaker_count": 8,
+        "token_count": 96,
+        "replicates": 2000,
+        "seed": 20261013,
+        "undefined_error_replicates": 0,
+        "intervals": {
+          "coverage": [
+            0.9375,
+            1.0
+          ],
+          "mae_f1_hz": [
+            13.683,
+            22.2542
+          ],
+          "mae_f2_hz": [
+            41.1846,
+            144.6609
+          ],
+          "p90_f2_hz": [
+            71.5396,
+            251.7854
+          ]
+        },
+        "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+      }
+    },
+    "adult_women": {
+      "original_acoustic": {
+        "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+        "speaker_count": 7,
+        "token_count": 84,
+        "replicates": 2000,
+        "seed": 20261013,
+        "undefined_error_replicates": 0,
+        "intervals": {
+          "coverage": [
+            0.881,
+            0.9881
+          ],
+          "mae_f1_hz": [
+            28.4123,
+            56.9241
+          ],
+          "mae_f2_hz": [
+            128.0034,
+            256.2156
+          ],
+          "p90_f2_hz": [
+            300.75,
+            923.5
+          ]
+        },
+        "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+      },
+      "pole14_bw400": {
+        "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+        "speaker_count": 7,
+        "token_count": 84,
+        "replicates": 2000,
+        "seed": 20261013,
+        "undefined_error_replicates": 0,
+        "intervals": {
+          "coverage": [
+            0.9643,
+            1.0
+          ],
+          "mae_f1_hz": [
+            45.1336,
+            63.5072
+          ],
+          "mae_f2_hz": [
+            111.9668,
+            193.7396
+          ],
+          "p90_f2_hz": [
+            257.5304,
+            695.0791
+          ]
+        },
+        "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+      },
+      "pole14_fs12000_poly33": {
+        "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+        "speaker_count": 7,
+        "token_count": 84,
+        "replicates": 2000,
+        "seed": 20261013,
+        "undefined_error_replicates": 0,
+        "intervals": {
+          "coverage": [
+            0.9405,
+            1.0
+          ],
+          "mae_f1_hz": [
+            29.025,
+            56.4019
+          ],
+          "mae_f2_hz": [
+            123.6047,
+            270.0793
+          ],
+          "p90_f2_hz": [
+            159.7065,
+            976.9939
+          ]
+        },
+        "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+      },
+      "pole14_fs12000_poly33_fixed_window": {
+        "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+        "speaker_count": 7,
+        "token_count": 84,
+        "replicates": 2000,
+        "seed": 20261013,
+        "undefined_error_replicates": 0,
+        "intervals": {
+          "coverage": [
+            0.9167,
+            1.0
+          ],
+          "mae_f1_hz": [
+            30.0312,
+            58.793
+          ],
+          "mae_f2_hz": [
+            119.1097,
+            288.9085
+          ],
+          "p90_f2_hz": [
+            228.1363,
+            980.2615
+          ]
+        },
+        "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+      }
+    },
+    "boys": {
+      "original_acoustic": {
+        "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+        "speaker_count": 4,
+        "token_count": 47,
+        "replicates": 2000,
+        "seed": 20261013,
+        "undefined_error_replicates": 0,
+        "intervals": {
+          "coverage": [
+            0.8723,
+            1.0
+          ],
+          "mae_f1_hz": [
+            25.0476,
+            34.3511
+          ],
+          "mae_f2_hz": [
+            98.0966,
+            366.5179
+          ],
+          "p90_f2_hz": [
+            196,
+            1650
+          ]
+        },
+        "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+      },
+      "pole14_bw400": {
+        "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+        "speaker_count": 4,
+        "token_count": 47,
+        "replicates": 2000,
+        "seed": 20261013,
+        "undefined_error_replicates": 0,
+        "intervals": {
+          "coverage": [
+            0.9375,
+            1.0
+          ],
+          "mae_f1_hz": [
+            30.6051,
+            48.9441
+          ],
+          "mae_f2_hz": [
+            192.9453,
+            310.5285
+          ],
+          "p90_f2_hz": [
+            611.3585,
+            1652.8942
+          ]
+        },
+        "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+      },
+      "pole14_fs12000_poly33": {
+        "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+        "speaker_count": 4,
+        "token_count": 47,
+        "replicates": 2000,
+        "seed": 20261013,
+        "undefined_error_replicates": 0,
+        "intervals": {
+          "coverage": [
+            0.875,
+            1.0
+          ],
+          "mae_f1_hz": [
+            21.4582,
+            26.2279
+          ],
+          "mae_f2_hz": [
+            79.811,
+            259.8806
+          ],
+          "p90_f2_hz": [
+            152.117,
+            991.4793
+          ]
+        },
+        "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+      },
+      "pole14_fs12000_poly33_fixed_window": {
+        "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+        "speaker_count": 4,
+        "token_count": 47,
+        "replicates": 2000,
+        "seed": 20261013,
+        "undefined_error_replicates": 0,
+        "intervals": {
+          "coverage": [
+            0.875,
+            1.0
+          ],
+          "mae_f1_hz": [
+            22.6921,
+            26.5516
+          ],
+          "mae_f2_hz": [
+            79.6715,
+            330.2796
+          ],
+          "p90_f2_hz": [
+            185.4725,
+            1637.0491
+          ]
+        },
+        "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+      }
+    },
+    "girls": {
+      "original_acoustic": {
+        "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+        "speaker_count": 4,
+        "token_count": 48,
+        "replicates": 2000,
+        "seed": 20261013,
+        "undefined_error_replicates": 0,
+        "intervals": {
+          "coverage": [
+            0.9167,
+            1.0
+          ],
+          "mae_f1_hz": [
+            29.2391,
+            123.5167
+          ],
+          "mae_f2_hz": [
+            68.2944,
+            280.7389
+          ],
+          "p90_f2_hz": [
+            119.75,
+            1105.75
+          ]
+        },
+        "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+      },
+      "pole14_bw400": {
+        "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+        "speaker_count": 4,
+        "token_count": 48,
+        "replicates": 2000,
+        "seed": 20261013,
+        "undefined_error_replicates": 0,
+        "intervals": {
+          "coverage": [
+            0.9375,
+            1.0
+          ],
+          "mae_f1_hz": [
+            72.2668,
+            138.6014
+          ],
+          "mae_f2_hz": [
+            144.8133,
+            353.591
+          ],
+          "p90_f2_hz": [
+            481.1171,
+            1295.593
+          ]
+        },
+        "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+      },
+      "pole14_fs12000_poly33": {
+        "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+        "speaker_count": 4,
+        "token_count": 48,
+        "replicates": 2000,
+        "seed": 20261013,
+        "undefined_error_replicates": 0,
+        "intervals": {
+          "coverage": [
+            0.7917,
+            0.9792
+          ],
+          "mae_f1_hz": [
+            21.0319,
+            84.9446
+          ],
+          "mae_f2_hz": [
+            62.4048,
+            219.4221
+          ],
+          "p90_f2_hz": [
+            180.5845,
+            600.8771
+          ]
+        },
+        "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+      },
+      "pole14_fs12000_poly33_fixed_window": {
+        "method": "95% percentile speaker-cluster bootstrap; all tokens per resampled speaker",
+        "speaker_count": 4,
+        "token_count": 48,
+        "replicates": 2000,
+        "seed": 20261013,
+        "undefined_error_replicates": 0,
+        "intervals": {
+          "coverage": [
+            0.7917,
+            0.9792
+          ],
+          "mae_f1_hz": [
+            26.8463,
+            87.7413
+          ],
+          "mae_f2_hz": [
+            62.3168,
+            216.9012
+          ],
+          "p90_f2_hz": [
+            177.2681,
+            584.3936
+          ]
+        },
+        "caveat": "Exploratory uncertainty; few-speaker subgroups and repeatedly inspected DEV data do not establish independent validity."
+      }
+    }
+  },
+  "limitations": [
+    "LPC pole iteration is a new experimental Durand-Kerner implementation, not the Praat Burg pipeline.",
+    "Historical ceiling variants use 512 samples at 9/12 kHz and change duration; the fixed-window 12-kHz variant uses 557 samples to approximate the original 512/11025-second nominal duration. Exact selected windows are recorded in run_configuration.",
+    "All pole variants still limit F2 to 3300 Hz; analysis rate is not equivalent to Praat's full formant-ceiling setting.",
+    "The CPU timer measures simulated Node VM processing on a hosted CI runner, not mobile browser real-time latency.",
+    "The two continuity penalties use preceding accepted frame estimates only; no ground-truth labels or future frames.",
+    "Original Hillenbrand F1/F2 annotations are estimates, not error-free physical truths.",
+    "Development speakers were used for earlier exploratory studies; these results are not independent validation.",
+    "This is numerical WAV replay, not microphone device tests.",
+    "No original recordings, per-token predictions, speaker identities or exact audio metadata are published."
+  ]
+}

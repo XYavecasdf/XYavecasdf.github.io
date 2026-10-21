@@ -14,6 +14,11 @@ on:
       - "vowelscope/validation/test_phase3b.mjs"
       - "vowelscope/index.html"
       - "vowelscope/en/index.html"
+      - "vowelscope/dsp/**"
+      - "vowelscope/validation/page_source.mjs"
+      - "vowelscope/validation/corpus_source.py"
+      - "vowelscope/validation/report_context.py"
+      - "vowelscope/validation/uncertainty.py"
   workflow_dispatch:
 
 concurrency:
@@ -21,7 +26,7 @@ concurrency:
   cancel-in-progress: true
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   study:
@@ -30,7 +35,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          persist-credentials: true
+          persist-credentials: false
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
@@ -48,15 +53,10 @@ jobs:
           node vowelscope/validation/test_phase3.mjs
           node vowelscope/validation/test_phase3b.mjs
       - name: Evaluate production LPC and pole-based candidates on real development WAV
-        run: python vowelscope/validation/run_phase3_poles.py
-      - name: Publish aggregate development metrics (not recordings)
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add vowelscope/validation/public-dataset/phase3-pole-dev.json
-          if ! git diff --cached --quiet; then
-            git commit -m "Publish Phase 3 experimental LPC pole metrics"
-            git fetch origin "${GITHUB_REF_NAME}"
-            git rebase -X theirs "origin/${GITHUB_REF_NAME}"
-            git push origin "HEAD:${GITHUB_REF_NAME}"
-          fi
+        run: python vowelscope/validation/run_phase3_poles.py --out "$RUNNER_TEMP/phase3-pole-dev.json"
+      - name: Retain aggregate metrics for reviewed publication
+        uses: actions/upload-artifact@v4
+        with:
+          name: vowelscope-phase3-development-aggregate
+          path: ${{ runner.temp }}/phase3-pole-dev.json
+          if-no-files-found: error

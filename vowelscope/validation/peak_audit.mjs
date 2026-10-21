@@ -5,6 +5,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
+import {execFileSync} from 'node:child_process';
+import {readPageSource} from './page_source.mjs';
 
 function arg(name, fallback=null) {
   const idx=process.argv.indexOf(name);
@@ -37,7 +39,7 @@ function wavRead(file){
   return {signal,sampleRate:spec.rate};
 }
 function engine(file){
-  const html=fs.readFileSync(file,'utf8'),found=html.match(/<script>([\s\S]*?)<\/script>/);
+  const {inline,prefix}=readPageSource(file),found=[null,inline];
   if(!found)throw Error('No inline page script');
   const marker='    requestAnimationFrame(frame);';
   if(!found[1].includes(marker))throw Error('Source page instrumentation marker missing');
@@ -48,7 +50,7 @@ function engine(file){
     getContext(){return fakeCtx},addEventListener(){},appendChild(x){this.children.push(x)},replaceChildren(){this.children=[]},setAttribute(){}};}
   const doc={getElementById(id){if(!nodes.has(id))nodes.set(id,el());return nodes.get(id)},createElement:el};
   const win={addEventListener(){}};
-  vm.runInNewContext(script,{document:doc,window:win,requestAnimationFrame(){}},{timeout:3000,filename:file});
+  vm.runInNewContext(prefix+script,{document:doc,window:win,requestAnimationFrame(){}},{timeout:3000,filename:file});
   return win.__audit;
 }
 function tally(xs){
@@ -99,6 +101,9 @@ function main(){
     (byCohort[{m:'adult_men',w:'adult_women',b:'boys',g:'girls'}[r.cohort]||'unknown']??=[]).push(r);
   }
   const output={
+    code_digest:readPageSource(page).codeDigest,
+    source_commit:execFileSync('git',['rev-parse','HEAD'],{cwd:path.dirname(page),encoding:'utf8'}).trim(),
+    source_dirty:execFileSync('git',['status','--porcelain'],{cwd:path.dirname(page),encoding:'utf8'}).trim().length>0,
     kind:'dev_lpc_candidate_peak_audit',
     source:man.source,dataset_version:man.version,split:'dev',
     method:'At mean manually selected steady-state center, execute current site preprocessing, AR spectrum and peak picking on the raw 16kHz WAV. A near-reference candidate is a locally maximal LPC spectral peak within ±150 Hz of annotated F2. Large selected-F2 errors exceed 300 Hz. The single-window diagnostic is different from the multi-frame tracking benchmark.',

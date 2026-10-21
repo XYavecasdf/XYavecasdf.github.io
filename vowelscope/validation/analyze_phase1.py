@@ -8,6 +8,7 @@ import json
 import math
 from collections import defaultdict
 from pathlib import Path
+from report_context import report_context
 
 def load(p):
     return json.loads(Path(p).read_text(encoding="utf-8"))
@@ -98,6 +99,7 @@ def analyze(classic,stable,oracle):
        "classic_f2_mae_hz":stat([a["error"]["f2_abs_hz"] for a,b in paired])["mean"] if paired else None,
        "stable_f2_mae_hz":stat([b["error"]["f2_abs_hz"] for a,b in paired])["mean"] if paired else None}
     return {
+        "replay_configurations":{"classic":report_context(c),"stable":report_context(s),"oracle":report_context(o)},
         "schema_version":1,
         "description":"Research decomposition on previously viewed speaker-disjoint Hillenbrand holdout. Exploratory only; do not tune on this holdout.",
         "source":c["source"],"dataset_version":c["dataset_version"],

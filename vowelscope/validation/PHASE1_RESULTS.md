@@ -1,6 +1,6 @@
 # VowelScope — Research Phase 1: experimental findings
 
-**Executed:** 12 October 2026. **Dataset:** Hillenbrand et al. (1995), *Acoustic characteristics of American English vowels*, JASA 97, DOI [10.1121/1.411872](https://doi.org/10.1121/1.411872). [Authorized GitHub host](https://github.com/santiagobarreda/hillenbrand_et_al_1995). Corpus archive SHA-256: `2560548591e3a726c88549b6dc9d226995616c69fee8b9eee9d730`.
+**Executed:** 12 October 2026. **Dataset:** Hillenbrand et al. (1995), *Acoustic characteristics of American English vowels*, JASA 97, DOI [10.1121/1.411872](https://doi.org/10.1121/1.411872). [Authorized GitHub host](https://github.com/santiagobarreda/hillenbrand_et_al_1995). Corpus archive SHA-256: `2560548591e3a726c88549b6dc9d226995616c26874d601c69fee8b9eee9d730`.
 
 **Scope:** offline WAV playback into the *actual* VowelScope JavaScript processing functions; the alternative Burg and FIR algorithms are separately instrumented **only in the validation runner**, not deployed on the live site. Original 16 kHz WAVs and per-token annotation files are never committed; public outputs contain aggregated measurements only.
 

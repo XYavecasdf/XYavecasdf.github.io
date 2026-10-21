@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#f5f5f0" />
   <title>VowelScope — Real-Time IPA Vowel Chart</title>
+  <link rel="stylesheet" href="../reference-player.css" />
   <style>
     :root{font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans SC",sans-serif;color:#202c30;background:#f5f5f0;font-synthesis:none}
     *{box-sizing:border-box}
@@ -149,14 +150,14 @@
       <section class="panel chart-panel" aria-labelledby="chartHeading">
         <div class="panel-head"><div><h3 class="panel-title" id="chartHeading">IPA Vowel Chart <span class="subtle">/ Acoustic vowel space</span></h3></div><div class="status" id="status"><span class="status-dot"></span><span id="statusText">Not started</span></div></div>
         <div class="profile-picker" aria-label="Language vowel inventory comparison">
-          <div class="profile-header">COMPARE VOWEL INVENTORIES <span>Choose two references A and B · All IPA vowels stay visible</span></div>
+          <div class="profile-header">COMPARE VOWEL INVENTORIES <span>Choose two references A and B · All 28 basic reference symbols stay visible</span></div>
           <div class="compare-selectors">
             <div class="profile-group"><div class="profile-group-title"><span class="profile-letter a">A</span><strong>Reference A</strong><span class="chosen" id="profileAName"></span></div><div class="profile-buttons" id="profileAButtons" role="group" aria-label="Choose reference A"></div></div>
             <div class="profile-group"><div class="profile-group-title"><span class="profile-letter b">B</span><strong>Reference B</strong><span class="chosen" id="profileBName"></span></div><div class="profile-buttons" id="profileBButtons" role="group" aria-label="Choose reference B"></div></div>
           </div>
         </div>
                 <div class="chart-wrap"><canvas id="vowelChart" width="1000" height="750" role="img" aria-label="F1 F2 vowel chart; horizontal F2 decreases to the right and vertical F1 increases downward"></canvas><div class="chart-placeholder" id="placeholder"><strong>Ready to analyze your voice</strong><small>Select Start Microphone to begin</small></div></div>
-        <div class="chart-caption"><div class="chart-legend"><span><i class="swatch" style="background:#9bb1a6"></i>All 28 IPA vowels</span><span><i class="swatch" style="background:#217d62"></i>Reference A</span><span><i class="swatch" style="background:#3475c5"></i>Reference B</span><span><i class="swatch" style="background:#e18b62"></i>Your pronunciation</span><span><i class="swatch" style="background:#98c6b2"></i>Trajectory</span></div><div>Horizontal F2: front ↔ back | Vertical F1: close ↔ open</div></div>
+        <div class="chart-caption"><div class="chart-legend"><span><i class="swatch" style="background:#9bb1a6"></i>28 basic IPA vowel symbols</span><span><i class="swatch" style="background:#217d62"></i>Reference A</span><span><i class="swatch" style="background:#3475c5"></i>Reference B</span><span><i class="swatch" style="background:#e18b62"></i>Estimated formants</span><span><i class="swatch" style="background:#98c6b2"></i>Trajectory</span></div><div>F2 decreases to the right · F1 increases downward; tongue position is not measured.</div></div>
         <div class="profile-explainer" aria-live="polite">
           <div class="profile-topline"><strong id="profileName">Compare vowel inventories</strong><span id="profileCount"></span></div>
           <p id="profileDescription">Green and blue denote references A and B. Shared vowels receive a two-color ring. Matching IPA symbols do not guarantee identical pronunciation.</p>
@@ -205,13 +206,44 @@
         <div class="panel target-panel">
           <div class="panel-head" style="margin:0"><h3 class="panel-title">Reference vowel positions</h3><span class="subtle">REFERENCE</span></div>
           <div class="target-buttons" id="targetButtons"></div>
-          <p class="target-explanation" id="targetDescription">Tap an IPA symbol to highlight its reference location. This is not a pronunciation accuracy score.</p>
+          <p class="target-explanation" id="targetDescription">28 schematic tongue positions · 17 human recordings. Select a vowel to explore.</p>
+          <section class="reference-demo" id="referenceDemo" hidden aria-label="Articulation and reference sound">
+            <div class="reference-heading"><strong class="reference-symbol" id="referenceSymbol"></strong><span class="reference-articulation" id="referenceArticulation"></span></div>
+            <figure class="reference-figure">
+              <svg id="referenceDiagram" viewBox="0 0 360 260" role="img" aria-label="Schematic tongue side view">
+                <path d="M 118 240 L 118 195 C 91 155 93 102 123 61 C 146 26 210 22 247 49 C 265 64 267 85 280 103 L 300 119 Q 304 125 291 129 L 285 140 Q 302 146 286 154 Q 301 162 286 172 C 277 203 248 219 212 219 L 212 240" fill="#efe4d5" stroke="#b8aa96" stroke-width="2.5" stroke-linejoin="round"/>
+                <path d="M 128 182 Q 117 124 148 103 Q 194 67 247 93 L 263 126 L 280 144 L 278 164 Q 246 198 187 201 L 153 222 Z" fill="#fffdfa" stroke="#cbbfab" stroke-width="1.8"/>
+                <path d="M 148 103 Q 200 69 247 93" fill="none" stroke="#a79782" stroke-width="5" stroke-linecap="round"/>
+                <path d="M 256 127 L 269 132 L 265 145 L 254 140 Z" fill="white" stroke="#b9b5a7" stroke-width="1.5"/>
+                <path d="M 265 169 L 273 172 L 267 184 L 259 181 Z" fill="white" stroke="#b9b5a7" stroke-width="1.5"/>
+                <path id="referenceTongue" d="M 126 205 C 111 170 135 117 164 120 C 199 116 219 147 264 165 C 252 186 213 191 179 210 Z" fill="#d59086" stroke="#ad655e" stroke-width="2.5" stroke-linejoin="round"/>
+                <circle id="referenceTonguePoint" cx="192" cy="129" r="4.5" fill="#fff5df" stroke="#ad655e" stroke-width="1.5"/>
+                <ellipse id="referenceLips" cx="286" cy="155" rx="3" ry="13" fill="none" stroke="#ad655e" stroke-width="3"/>
+                <circle cx="322" cy="47" r="25" fill="#fffdfa" stroke="#d9dfd5"/>
+                <ellipse id="referenceLipShape" cx="322" cy="47" rx="16" ry="4" fill="#fcf5ee" stroke="#ad655e" stroke-width="3"/>
+                <text id="referenceLipUnknown" x="322" y="53" text-anchor="middle" font-size="20" fill="#76857a" visibility="hidden">?</text>
+                <text x="322" y="87" text-anchor="middle" fill="#76857a" font-size="11">Lip shape</text>
+                <text x="44" y="159" fill="#76857a" font-size="11">Tongue</text>
+                <path d="M 74 164 L 125 174" fill="none" stroke="#a0aa9c" stroke-width="1.5"/>
+                <text x="183" y="253" text-anchor="middle" fill="#718577" font-size="10" id="referenceDirection">Tongue root ← → Tongue tip</text>
+              </svg>
+              <figcaption>Illustrative position and transition · not recorded tongue motion</figcaption>
+            </figure>
+            <div class="reference-controls"><button id="referenceReplay" type="button">▶ Replay</button><button id="referenceStop" type="button" disabled>■ Stop</button></div>
+            <p class="reference-audio-status" id="referenceAudioStatus" role="status" aria-live="polite"></p>
+            <a class="reference-source" id="referenceSource" href="https://github.com/NewDanishPhonetics/IPA-sound-files" target="_blank" rel="noopener noreferrer">Recording source and license</a>
+            <p class="reference-note">A human IPA example, not a unique standard for a language or accent. Recording source and license are documented; its phonetic quality has not been independently reviewed.</p>
+            <p class="reference-note">Playback stops microphone capture to keep the reference out of your measurements. Recordings load from GitHub on demand; microphone audio stays on your device.</p>
+          </section>
         </div>
       </aside>
     </main>
-    <div class="notes"><div class="icon">ⓘ</div><div><strong>About this experiment</strong><p>This experimental phonetics tool uses LPC to estimate formants and displays the nearest schematic reference quality, not a verified phoneme recognition. Optional anti-jitter filtering attempts to reject some consonant noise before plotting vowel positions. Language selection highlights common vowel qualities; it does not load language-specific measured F1/F2 references or speech models. All reference positions are approximate and vary by language, individual, vocal tract length and speaking conditions. Actual tongue shape cannot be uniquely inferred from these measures. Start with sustained /i/, /a/ and /u/ instead of full words.</p><p class="reference-links">Phonetics references: <a href="https://www.internationalphoneticassociation.org/content/ipa-vowels" target="_blank" rel="noopener noreferrer">International Phonetic Association</a> · <a href="https://corpus.eduhk.hk/mandarin_pronunciation/?page_id=36" target="_blank" rel="noopener noreferrer">EdUHK Cantonese phonology</a> · <a href="https://talcomosuena.spanish.ufl.edu/module2/4" target="_blank" rel="noopener noreferrer">Spanish vowels (University of Florida)</a> · <a href="https://www.englishspeechservices.com/blog/smoothing-then-and-now/" target="_blank" rel="noopener noreferrer">British diphthong change</a>.</p></div></div>
-    <footer class="footer"><span>VowelScope · Local-only experimental phonetics dashboard</span><span>Web Audio API · LPC / Autocorrelation · No external libraries</span></footer>
+    <div class="notes"><div class="icon">ⓘ</div><div><strong>About this experiment</strong><p>This experimental phonetics tool uses LPC to estimate formants and displays the nearest schematic reference quality, not a verified phoneme recognition. Optional anti-jitter filtering attempts to reject some consonant noise before plotting vowel positions. Language selection highlights common vowel qualities; it does not load language-specific measured F1/F2 references or speech models. The chart uses illustrative F1/F2 positions, not frequencies specified by the IPA or measured from these recordings. Actual formants vary by language, individual, vocal tract length and speaking conditions. Actual tongue shape cannot be uniquely inferred from these measures. Start with sustained [i], [a] and [u] instead of full words.</p><p class="reference-links">Phonetics references: <a href="https://www.internationalphoneticassociation.org/content/ipa-vowels" target="_blank" rel="noopener noreferrer">International Phonetic Association</a> · <a href="https://corpus.eduhk.hk/mandarin_pronunciation/?page_id=36" target="_blank" rel="noopener noreferrer">EdUHK Cantonese phonology</a> · <a href="https://talcomosuena.spanish.ufl.edu/module2/4" target="_blank" rel="noopener noreferrer">Spanish vowels (University of Florida)</a> · <a href="https://www.englishspeechservices.com/blog/smoothing-then-and-now/" target="_blank" rel="noopener noreferrer">British diphthong change</a>.</p></div></div>
+    <footer class="footer"><span>VowelScope · Experimental phonetics · microphone processing stays on device</span><span>Web Audio API · LPC / Autocorrelation · No external libraries</span></footer>
   </div>
+  <script src="../dsp/core.js"></script>
+  <script src="../dsp/profiler.js"></script>
+  <script src="../reference-player.js"></script>
   <script>
   (() => {
     'use strict';
@@ -267,12 +299,20 @@
     ];
     const $ = (id) => document.getElementById(id);
     const labMode=/(?:^\?|&)lab=1(?:&|$)/.test(window.location?.search||'');
+    const profiling=/(?:^\?|&)profile=1(?:&|$)/.test(window.location?.search||'')
+      ?VowelScopeProfiler.create(75):null;
     const canvas=$('vowelChart'),ctx=canvas.getContext('2d');
     const state={running:false,frozen:false,ctx:null,stream:null,source:null,analyser:null,mute:null,lastProcess:0,lastSound:0,formants:null,acousticFormants:null,visualFormants:null,trail:[],target:null,profileA:'en-us',profileB:'zh-cmn',mode:'classic',level:0,sampleCount:0,firstCandidate:null,pendingJump:null,lastAccepted:0};
     const Fs=11025, MinF1=180, MaxF1=1100, MinF2=600, MaxF2=3000;
+    if(profiling)window.VowelScopeDiagnostics=Object.freeze({snapshot(){
+      const settings=state.stream?.getTracks()[0]?.getSettings?.()||{};
+      return {...profiling.snapshot(),sample_rate_hz:state.ctx?.sampleRate||null,
+        capture_settings:{echoCancellation:settings.echoCancellation??null,
+          noiseSuppression:settings.noiseSuppression??null,autoGainControl:settings.autoGainControl??null}};
+    }});
     const margin={left:84,right:50,top:52,bottom:67};
     const W=1000,H=750,PW=W-margin.left-margin.right,PH=H-margin.top-margin.bottom;
-    let audioBuffer=null;
+    let audioBuffer=null,captureGeneration=0,capturePending=false,pendingCapture=null;
     function xy(f1,f2){return {x:margin.left+(MaxF2-f2)/(MaxF2-MinF2)*PW,y:margin.top+(f1-MinF1)/(MaxF1-MinF1)*PH};}
     function roundedRect(x,y,w,h,r){ctx.beginPath();ctx.roundRect(x,y,w,h,r);}
     function baseChart(){
@@ -284,8 +324,8 @@
       ctx.restore();ctx.font='15px system-ui, sans-serif';ctx.fillStyle='#728880';ctx.textAlign='center';
       for(let f2=1000;f2<=3000;f2+=500)ctx.fillText(String(f2),xy(300,f2).x,H-margin.bottom+30);
       ctx.textAlign='right';for(let f1=200;f1<=1000;f1+=200)ctx.fillText(String(f1),margin.left-17,xy(f1,1000).y+5);
-      ctx.font='bold 15px system-ui, sans-serif';ctx.textAlign='center';ctx.fillStyle='#566e65';ctx.fillText('F2 (Hz)  ·  Tongue front to back →',margin.left+PW/2,H-14);
-      ctx.save();ctx.translate(22,margin.top+PH/2);ctx.rotate(-Math.PI/2);ctx.fillText('F1 (Hz) · Increasing openness ←',0,0);ctx.restore();
+      ctx.font='bold 15px system-ui, sans-serif';ctx.textAlign='center';ctx.fillStyle='#566e65';ctx.fillText('F2 (Hz)  ·  Higher ← → Lower',margin.left+PW/2,H-14);
+      ctx.save();ctx.translate(22,margin.top+PH/2);ctx.rotate(-Math.PI/2);ctx.fillText('F1 (Hz) · Increasing frequency ←',0,0);ctx.restore();
       ctx.font='600 13px system-ui, sans-serif';ctx.fillStyle='#90a29a';ctx.textAlign='left';ctx.fillText('FRONT',margin.left+13,margin.top+23);
       ctx.textAlign='right';ctx.fillText('BACK',W-margin.right-13,margin.top+23);
       const A=PROFILES.find(p=>p.id===state.profileA)||PROFILES[0];
@@ -386,63 +426,20 @@
     function setStatus(mode,description){const el=$('status');el.className='status'+(mode==='live'?' live':mode==='frozen'?' frozen':'');$('statusText').textContent=description;}
     function resetReading(){state.formants=null;state.acousticFormants=null;state.visualFormants=null;$('ipaSymbol').textContent='—';$('ipaName').textContent='Waiting for speech';$('ipaHint').textContent=state.running?'Please sustain a vowel':'Sustain a steady vowel for one second';for(const n of ['f1','f2','f3'])$(n).textContent='—';if(labMode){for(const n of ['labRaw','labShown','labF2Diff'])$(n).textContent='—';}}
     function nearestVowel(f1,f2){let best=null,lowest=Infinity;for(const v of VOWELS){const d=Math.hypot((f1-v.f1)/340,(f2-v.f2)/950);if(d<lowest){lowest=d;best=v;}}return {vowel:best,distance:lowest};}
-    function preprocess(buffer,fs){const samples=512,raw=new Float64Array(samples),step=fs/Fs,windowLen=Math.ceil(samples*step),offset=buffer.length-windowLen;if(offset<0)return null;
-      for(let i=0;i<samples;i++){const loc=offset+i*step,j=Math.floor(loc),frac=loc-j;let a=buffer[j]||0,b=buffer[j+1]||a;raw[i]=a+(b-a)*frac;}
-      let mean=0,rms=0;for(let i=0;i<samples;i++)mean+=raw[i];mean/=samples;for(let i=0;i<samples;i++){raw[i]-=mean;rms+=raw[i]*raw[i];}rms=Math.sqrt(rms/samples);
-      const y=new Float64Array(samples);let prev=0;for(let i=0;i<samples;i++){const c=raw[i]-0.97*prev;prev=raw[i];y[i]=c*(.54-.46*Math.cos(2*Math.PI*i/(samples-1)));}
-      return {y,raw,rms};
-    }
-    function levinsonDurbin(r,order){const a=new Float64Array(order+1);a[0]=1;let error=r[0];if(error<1e-13)return null;
-      for(let p=1;p<=order;p++){let acc=r[p];for(let k=1;k<p;k++)acc+=a[k]*r[p-k];const reflection=-acc/error;if(!Number.isFinite(reflection)||Math.abs(reflection)>=0.999)return null;
-        const next=a.slice();for(let k=1;k<p;k++)next[k]=a[k]+reflection*a[p-k];next[p]=reflection;for(let k=1;k<=p;k++)a[k]=next[k];error*=1-reflection*reflection;if(error<=1e-14)return null;}
-      return a;
-    }
-    function lpcSpectrum(y,fs){const order=14,r=new Float64Array(order+1);
-      for(let lag=0;lag<=order;lag++){let sum=0;for(let i=lag;i<y.length;i++)sum+=y[i]*y[i-lag];r[lag]=sum;}r[0]*=1.0001;
-      const a=levinsonDurbin(r,order);if(!a)return null;
-      const step=12.5,min=100,max=4500,amplitudes=[];
-      for(let f=min;f<=max;f+=step){let real=1,imag=0;const w=2*Math.PI*f/fs;for(let k=1;k<a.length;k++){real+=a[k]*Math.cos(w*k);imag-=a[k]*Math.sin(w*k);}amplitudes.push({f,power:1/Math.max(real*real+imag*imag,1e-12)});}
-      return amplitudes;
-    }
-    function estimateFormants(y,fs){const spectrum=lpcSpectrum(y,fs);if(!spectrum)return null;const peaks=[];
-      for(let i=2;i<spectrum.length-2;i++){if(spectrum[i].power>spectrum[i-1].power&&spectrum[i].power>=spectrum[i+1].power){
-        const p=spectrum[i];const base=Math.max(spectrum[i-2].power,spectrum[i+2].power);if(p.power>base*1.008)peaks.push(p);
-      }}
-      const first=peaks.find(p=>p.f>=180&&p.f<=1100);if(!first)return null;
-      const second=peaks.find(p=>p.f>=Math.max(650,first.f+320)&&p.f<=3300);if(!second)return null;
-      const third=peaks.find(p=>p.f>=second.f+370&&p.f<=4450);
-      if(second.f<720||first.f>1020)return null;
-      return {f1:first.f,f2:second.f,f3:third?third.f:null};
-    }
-    // Voiced-vowel guard: normalized short-lag autocorrelation distinguishes
-    // quasi-periodic voiced segments from unvoiced consonant noise.
-    // 512 samples at 11.025 kHz = ~46 ms; not a phoneme recognizer.
-    function voicedEvidence(raw,fs){
-      let crossings=0,total=0;
-      for(let i=0;i<raw.length;i++){
-        total+=raw[i]*raw[i];
-        if(i>0&&((raw[i]>=0)!==(raw[i-1]>=0)))crossings++;
-      }
-      if(total<1e-8)return {voiced:false,periodicity:0,zcr:0};
-      const zcr=crossings/(raw.length-1);
-      // High zero-crossing density is characteristic of /s, ʃ, f/ etc.
-      if(zcr>0.22)return {voiced:false,periodicity:0,zcr};
-      let best=0;
-      const minLag=Math.ceil(fs/480),maxLag=Math.min(Math.floor(fs/75),Math.floor(raw.length/2.4));
-      for(let lag=minLag;lag<=maxLag;lag++){
-        let corr=0,e1=0,e2=0;
-        for(let i=0;i<raw.length-lag;i++){const a=raw[i],b=raw[i+lag];corr+=a*b;e1+=a*a;e2+=b*b;}
-        if(e1>1e-10&&e2>1e-10)best=Math.max(best,corr/Math.sqrt(e1*e2));
-      }
-      return {voiced:best>=0.56,periodicity:best,zcr};
-    }
+    // Compatibility wrappers keep offline research replacements isolated.
+    function preprocess(buffer,fs){return VowelScopeDSP.preprocess(buffer,fs);}
+    function levinsonDurbin(r,order){return VowelScopeDSP.levinsonDurbin(r,order);}
+    function lpcSpectrum(y,fs){return VowelScopeDSP.lpcSpectrum(y,fs);}
+    function estimateFormants(y,fs){return VowelScopeDSP.estimateFormants(y,fs,lpcSpectrum);}
+    function voicedEvidence(raw,fs){return VowelScopeDSP.voicedEvidence(raw,fs);}
     function formantDistance(a,b){
       return Math.hypot((a.f1-b.f1)/340,(a.f2-b.f2)/900);
     }
     // Require two coherent frames to start a vowel or to accept a large
     // discontinuity. A single LPC peak-swap must not teleport the marker.
     function acceptFormants(candidate,now){
-      if(!state.formants){
+      // Acoustic decisions must not depend on the display smoothing slider.
+      if(!state.acousticFormants){
         const prior=state.firstCandidate;
         if(!prior||now-prior.t>230||formantDistance(prior.f,candidate)>0.52){
           state.firstCandidate={f:candidate,t:now};return null;
@@ -451,7 +448,7 @@
         state.pendingJump=null;
         return {f1:(prior.f.f1+candidate.f1)/2,f2:(prior.f.f2+candidate.f2)/2,f3:candidate.f3};
       }
-      const distance=formantDistance(state.formants,candidate);
+      const distance=formantDistance(state.acousticFormants,candidate);
       if(distance>0.90){
         const pending=state.pendingJump;
         if(!pending||now-pending.t>230||formantDistance(pending.f,candidate)>0.52){
@@ -528,16 +525,8 @@
       // Phase 3: separate analytical formants from display smoothing.
       // state.formants stays the legacy visual alias for unchanged behavior.
       const acoustic={...accepted};
-      const visual={...accepted};
+      const visual=VowelScopeDSP.smoothFormants(accepted,state.visualFormants,$('smooth').value);
       const labRaw=labMode?acoustic:null;
-      if(state.visualFormants){
-        const amount=.08+(100-Number($('smooth').value))*.006;
-        for(const key of ['f1','f2','f3']){
-          if(visual[key]!=null&&state.visualFormants[key]!=null){
-            visual[key]=amount*visual[key]+(1-amount)*state.visualFormants[key];
-          }
-        }
-      }
       state.acousticFormants=acoustic;
       state.visualFormants=visual;
       state.formants=visual; // keep existing chart and default classification
@@ -565,18 +554,45 @@
       $('f3').textContent=accepted.f3?String(Math.round(accepted.f3)):'—';
       state.sampleCount++;
     }
-    function frame(now){if(state.running)processAudio(now);drawChart(now);requestAnimationFrame(frame);}
-    async function startMic(){if(state.running)return;
+    function frame(now){
+      if(state.running){
+        if(profiling&&!state.frozen&&now-state.lastProcess>=75){
+          const previous=state.sampleCount,start=performance.now();
+          processAudio(now);
+          profiling.record(now,performance.now()-start,state.sampleCount>previous);
+        }else processAudio(now);
+      }
+      drawChart(now);requestAnimationFrame(frame);
+    }
+    async function releaseAudio(stream,ac,nodes){
+      // Attempt every release even if one browser resource throws.
+      for(const track of stream?.getTracks()||[]){try{track.stop();}catch(_){}}
+      for(const node of nodes){try{node?.disconnect();}catch(_){}}
+      try{await ac?.close();}catch(_){}
+    }
+    async function startMic(){referencePlayer.stop();if(state.running||capturePending)return;
       $('error').textContent='';if(!navigator.mediaDevices?.getUserMedia){$('error').textContent='Microphone unavailable, or page is not secure. Open with HTTPS or localhost.';return;}
       $('startBtn').disabled=true;$('startBtn').textContent='Requesting microphone permission…';
-      try{const stream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:false,noiseSuppression:false,autoGainControl:false},video:false});
-        const AC=window.AudioContext||window.webkitAudioContext;const ac=new AC();await ac.resume();const source=ac.createMediaStreamSource(stream),analyser=ac.createAnalyser(),mute=ac.createGain();analyser.fftSize=8192;analyser.smoothingTimeConstant=0;mute.gain.value=0;source.connect(analyser);analyser.connect(mute);mute.connect(ac.destination);
+      const generation=++captureGeneration;capturePending=true;
+      let stream=null,ac=null,source=null,analyser=null,mute=null;
+      try{stream=await navigator.mediaDevices.getUserMedia({audio:{echoCancellation:false,noiseSuppression:false,autoGainControl:false},video:false});
+        if(generation!==captureGeneration){await releaseAudio(stream,null,[]);return;}
+        pendingCapture={stream,ac:null};
+        const AC=window.AudioContext||window.webkitAudioContext;ac=new AC();pendingCapture.ac=ac;await ac.resume();if(generation!==captureGeneration){await releaseAudio(stream,ac,[]);return;}source=ac.createMediaStreamSource(stream);analyser=ac.createAnalyser();mute=ac.createGain();analyser.fftSize=8192;analyser.smoothingTimeConstant=0;mute.gain.value=0;source.connect(analyser);analyser.connect(mute);mute.connect(ac.destination);
+        if(profiling)profiling.reset();
         audioBuffer=new Float32Array(analyser.fftSize);Object.assign(state,{stream,ctx:ac,source,analyser,mute,running:true,frozen:false,lastProcess:0,lastSound:0,formants:null,trail:[],level:0,sampleCount:0,firstCandidate:null,pendingJump:null,lastAccepted:0,acousticFormants:null,visualFormants:null});
         $('startBtn').textContent='Stop Microphone';$('startBtn').classList.add('stop');$('freezeBtn').disabled=false;$('freezeBtn').textContent='Pause Display';$('micLabel').textContent='Microphone connected';$('micDetail').textContent='Listening · Please sustain a vowel';$('placeholder').style.opacity='0';setStatus('live','Listening live');
-      }catch(e){$('error').textContent=(e.name==='NotAllowedError'?'Microphone permission denied. Check browser site permissions.':`Cannot start microphone: ${e.message}`)+'\nTip: Open this page with HTTPS or localhost.';setStatus('idle','Connection failed');}
-      finally{$('startBtn').disabled=false;if(!state.running)$('startBtn').textContent='Start Microphone';}
+      }catch(e){await releaseAudio(stream,ac,[source,analyser,mute]);if(generation!==captureGeneration)return;$('error').textContent=(e.name==='NotAllowedError'?'Microphone permission denied. Check browser site permissions.':`Cannot start microphone: ${e.message}`)+'\nTip: Open this page with HTTPS or localhost.';setStatus('idle','Connection failed');}
+      finally{if(generation===captureGeneration){capturePending=false;pendingCapture=null;$('startBtn').disabled=false;if(!state.running)$('startBtn').textContent='Start Microphone';}}
     }
-    async function stopMic(){state.running=false;state.frozen=false;state.stream?.getTracks().forEach(t=>t.stop());try{state.source?.disconnect();state.analyser?.disconnect();state.mute?.disconnect();await state.ctx?.close();}catch(_){}state.ctx=state.stream=state.source=state.analyser=state.mute=null;state.trail=[];state.firstCandidate=null;state.pendingJump=null;state.lastAccepted=0;$('startBtn').textContent='Start Microphone';$('startBtn').classList.remove('stop');$('freezeBtn').disabled=true;$('freezeBtn').textContent='Pause Display';$('micLabel').textContent='Microphone disconnected';$('micDetail').textContent='Awaiting permission';$('levelFill').style.width='0%';$('placeholder').style.opacity='1';setStatus('idle','Not started');resetReading();}
+    async function stopMic(){
+      const stream=state.stream||pendingCapture?.stream,ac=state.ctx||pendingCapture?.ac,nodes=[state.source,state.analyser,state.mute];
+      pendingCapture=null;
+      captureGeneration++;capturePending=false;state.running=false;state.frozen=false;
+      $('startBtn').disabled=false;
+      state.ctx=state.stream=state.source=state.analyser=state.mute=null;state.trail=[];state.firstCandidate=null;state.pendingJump=null;state.lastAccepted=0;$('startBtn').textContent='Start Microphone';$('startBtn').classList.remove('stop');$('freezeBtn').disabled=true;$('freezeBtn').textContent='Pause Display';$('micLabel').textContent='Microphone disconnected';$('micDetail').textContent='Awaiting permission';$('levelFill').style.width='0%';$('placeholder').style.opacity='1';setStatus('idle','Not started');resetReading();
+      await releaseAudio(stream,ac,nodes);
+    }
     function setTrackingMode(mode){
       if(mode!=='classic'&&mode!=='stable')return;
       if(state.mode===mode)return;
@@ -598,7 +614,7 @@
     $('modeClassic').addEventListener('click',()=>setTrackingMode('classic'));
     $('modeStable').addEventListener('click',()=>setTrackingMode('stable'));
     $('startBtn').addEventListener('click',()=>state.running?stopMic():startMic());
-    $('freezeBtn').addEventListener('click',()=>{if(!state.running)return;state.frozen=!state.frozen; $('freezeBtn').textContent=state.frozen?'Resume Display':'Pause Display';setStatus(state.frozen?'frozen':'live',state.frozen?'Display paused':'Listening live');$('micDetail').textContent=state.frozen?'Display paused · Microphone remains connected':'Listening · Please sustain a vowel';});
+    $('freezeBtn').addEventListener('click',()=>{if(!state.running)return;state.frozen=!state.frozen;if(profiling&&state.frozen)profiling.pause(); $('freezeBtn').textContent=state.frozen?'Resume Display':'Pause Display';setStatus(state.frozen?'frozen':'live',state.frozen?'Display paused':'Listening live');$('micDetail').textContent=state.frozen?'Display paused · Microphone remains connected':'Listening · Please sustain a vowel';});
     $('clearBtn').addEventListener('click',()=>{state.trail=[];});
     $('smooth').addEventListener('input',e=>{$('smoothOut').textContent=Number(e.target.value)<30?'Fast':Number(e.target.value)>75?'Very smooth':'Medium';});
     $('sensitivity').addEventListener('input',e=>{$('sensitivityOut').textContent=e.target.value+'%';});
@@ -646,9 +662,21 @@
       }
     }
     renderProfile();
+    const referencePlayer=window.VowelScopeReference.create({document,locale:'en',beforePlay(){if(state.running||capturePending)void stopMic();}});
     const targets=VOWELS.map(v=>v.symbol);
-    for(const symbol of targets){const el=document.createElement('button');el.type='button';el.className='target';el.textContent=symbol;el.setAttribute('aria-label','Highlight reference vowel '+symbol);el.addEventListener('click',()=>{state.target=state.target===symbol?null:symbol;for(const child of $('targetButtons').children)child.classList.toggle('active',child.textContent===state.target);const v=VOWELS.find(a=>a.symbol===state.target);$('targetDescription').textContent=v?`/ ${v.symbol} / · ${v.name} · Reference F1 ${v.f1} Hz / F2 ${v.f2} Hz。F1/F2 values are schematic; this is not a phoneme identification or pronunciation score.`:'Tap an IPA symbol to highlight its reference location. This is not a pronunciation accuracy score.';});$('targetButtons').appendChild(el);}
-    window.addEventListener('pagehide',()=>{state.stream?.getTracks().forEach(t=>t.stop());});
+    for(const symbol of targets){
+      const el=document.createElement('button');el.type='button';el.className='target';el.textContent=symbol;
+      el.setAttribute('aria-label','Show tongue position and reference sound for '+symbol);el.setAttribute('aria-pressed','false');el.setAttribute('aria-controls','referenceDemo');
+      el.addEventListener('click',()=>{
+        state.target=symbol;
+        for(const child of $('targetButtons').children){const active=child.textContent===symbol;child.classList.toggle('active',active);child.setAttribute('aria-pressed',String(active));}
+        const v=VOWELS.find(item=>item.symbol===symbol);
+        $('targetDescription').textContent=`[ ${v.symbol} ] · ${v.name} · Schematic F1 ${v.f1} Hz / F2 ${v.f2} Hz. These are not measurements of the recording or pronunciation scores.`;
+        referencePlayer.select(symbol);
+      });
+      $('targetButtons').appendChild(el);
+    }
+    window.addEventListener('pagehide',()=>{referencePlayer.dispose();void stopMic();});
     if(labMode)$('labPanel').style.display='block';
     requestAnimationFrame(frame);
   })();
