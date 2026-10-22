@@ -206,7 +206,7 @@
         <div class="panel target-panel">
           <div class="panel-head" style="margin:0"><h3 class="panel-title">Reference vowel positions</h3><span class="subtle">REFERENCE</span></div>
           <div class="target-buttons" id="targetButtons"></div>
-          <p class="target-explanation" id="targetDescription">28 schematic tongue positions · 17 human recordings. Select a vowel to explore.</p>
+          <p class="target-explanation" id="targetDescription">28 schematic tongue positions · 28 human recordings. Select a vowel to explore.</p>
           <section class="reference-demo" id="referenceDemo" hidden aria-label="Articulation and reference sound">
             <div class="reference-heading"><strong class="reference-symbol" id="referenceSymbol"></strong><span class="reference-articulation" id="referenceArticulation"></span></div>
             <figure class="reference-figure">
@@ -231,9 +231,10 @@
             </figure>
             <div class="reference-controls"><button id="referenceReplay" type="button">▶ Replay</button><button id="referenceStop" type="button" disabled>■ Stop</button></div>
             <p class="reference-audio-status" id="referenceAudioStatus" role="status" aria-live="polite"></p>
-            <a class="reference-source" id="referenceSource" href="https://github.com/NewDanishPhonetics/IPA-sound-files" target="_blank" rel="noopener noreferrer">Recording source and license</a>
-            <p class="reference-note">A human IPA example, not a unique standard for a language or accent. Recording source and license are documented; its phonetic quality has not been independently reviewed.</p>
-            <p class="reference-note">Playback stops microphone capture to keep the reference out of your measurements. Recordings load from GitHub on demand; microphone audio stays on your device.</p>
+            <a class="reference-source" id="referenceSource" href="https://github.com/serverhiccups/ipa-chart" target="_blank" rel="noopener noreferrer">Recording source and license</a>
+            <p class="reference-note"><a class="reference-source" id="referenceLicense" href="/vowelscope/reference-audio/ATTRIBUTION.html" target="_blank" rel="noopener noreferrer">Audio collection credits: Peter Isotalo, Erutoon, TFighterPilot, Adamsa123. MP3 format conversion only. Attribution &amp; license</a></p>
+            <p class="reference-note">Community IPA examples, not a unique language or accent standard. Each symbol is linked explicitly to its source recording; this is not independent expert phonetic certification.</p>
+            <p class="reference-note">Playback stops microphone capture to keep the reference out of your measurements. Audio loads from this site; microphone audio stays on your device.</p>
           </section>
         </div>
       </aside>
@@ -243,7 +244,7 @@
   </div>
   <script src="../dsp/core.js"></script>
   <script src="../dsp/profiler.js"></script>
-  <script src="../reference-player.js"></script>
+  <script src="../reference-player.js?v=20261022"></script>
   <script>
   (() => {
     'use strict';

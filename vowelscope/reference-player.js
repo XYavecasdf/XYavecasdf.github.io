@@ -1,9 +1,41 @@
 /* Articulatory teaching references; independent of microphone/formant estimates. */
 (() => {
   'use strict';
-  const revision = '81c8086257d84f5e434790603bb39b901df8143c';
-  const repository = 'https://github.com/NewDanishPhonetics/IPA-sound-files';
-  const recordings = new Set('a e i o u y æ ø œ ɑ ɒ ɔ ɛ ɤ ɯ ɶ ʌ'.split(' '));
+  const revision = 'fc6270c08a8aed6141cbe04595db8801ba767b49';
+  const repository = 'https://github.com/serverhiccups/ipa-chart';
+  // Recording-name lookup adapted from serverhiccups/ipa-chart (CC BY-SA 4.0).
+  // Audio derivatives are CC BY-SA 3.0; full credits: reference-audio/ATTRIBUTION.html.
+  // Explicit character-to-file table from the pinned upstream IPA catalog.
+  const recordings = Object.freeze({
+    "i": "Close Front Unrounded Vowel.ogg",
+    "y": "Close Front Rounded Vowel.ogg",
+    "ɨ": "Close Central Unrounded Vowel.ogg",
+    "ʉ": "Close Central Rounded Vowel.ogg",
+    "ɯ": "Close Back Unrounded Vowel.ogg",
+    "u": "Close Back Rounded Vowel.ogg",
+    "ɪ": "Near-close Front Unrounded Vowel.ogg",
+    "ʏ": "Near-close Front Rounded Vowel.ogg",
+    "ʊ": "Near-close Near-back Rounded Vowel.ogg",
+    "e": "Close-mid Front Unrounded Vowel.ogg",
+    "ø": "Close-mid Front Rounded Vowel.ogg",
+    "ɘ": "Close-mid Central Unrounded Vowel.ogg",
+    "ɵ": "Close-mid Central Rounded Vowel.ogg",
+    "ɤ": "Close-mid Back Unrounded Vowel.ogg",
+    "o": "Close-mid Back Rounded Vowel.ogg",
+    "ə": "Mid Central Vowel.ogg",
+    "ɛ": "Open-mid Front Unrounded Vowel.ogg",
+    "œ": "Open-mid Front Rounded Vowel.ogg",
+    "ɜ": "Open-mid Central Unrounded Vowel.ogg",
+    "ɞ": "Open-mid Central Rounded Vowel.ogg",
+    "ʌ": "Open-mid Back Unrounded Vowel.ogg",
+    "ɔ": "Open-mid Back Rounded Vowel.ogg",
+    "æ": "Near-open Front Unrounded Vowel.ogg",
+    "ɐ": "Near-open Central Vowel.ogg",
+    "a": "Open Front Unrounded Vowel.ogg",
+    "ɶ": "Open Front Rounded Vowel.ogg",
+    "ɑ": "Open Back Unrounded Vowel.ogg",
+    "ɒ": "Open Back Rounded Vowel.ogg"
+});
   // Explicit IPA categories, not an inversion of schematic/measured F1/F2.
   // openness: close=0, open=6; frontness: back=0, front=4.
   const categories = [
@@ -16,10 +48,12 @@
   const vowels = Object.freeze(Object.fromEntries(categories.map(([symbol, height, backness, rounding]) => [symbol,
     Object.freeze({openness:height/6, frontness:backness/4, height, backness,
       rounding:['unrounded','rounded','unspecified'][rounding],
-      audio:recordings.has(symbol) ? Object.freeze({
-        url:`https://raw.githubusercontent.com/NewDanishPhonetics/IPA-sound-files/${revision}/${encodeURIComponent(symbol)}.wav`,
-        source:`${repository}/blob/${revision}/${encodeURIComponent(symbol)}.wav`,
-        author:'Ruben Schachtenhaufen', license:'CC0-1.0'
+      audio:recordings[symbol] ? Object.freeze({
+        url:`/vowelscope/reference-audio/u${symbol.codePointAt(0).toString(16).padStart(4,'0')}.mp3`,
+        originalFile:recordings[symbol],
+        title:recordings[symbol].replace(/\.ogg$/, ''),
+        source:`${repository}/blob/${revision}/public/sounds/${encodeURIComponent(recordings[symbol])}`,
+        license:'CC-BY-SA-3.0'
       }) : null})])));
   const copy = {
     en: {
@@ -31,7 +65,7 @@
       failed:'Unable to load audio. Retry or open the recording source.',
       blocked:'Playback was blocked. Press Replay to try again.',
       unsupported:'Audio playback is unavailable in this browser.',
-      source:'Recording: Ruben Schachtenhaufen · CC0', missingSource:'Browse recording collection',
+      source:'Community IPA recording · CC BY-SA 3.0', missingSource:'Browse recording collection',
       diagram:'Schematic side view, mouth facing right',
       instruction:'Tongue root ← → Tongue tip',
       label:s => `Illustrative tongue position for [${s}]`,
@@ -45,7 +79,7 @@
       failed:'无法加载录音，可重试或打开录音出处。',
       blocked:'浏览器阻止了播放，请按「重播」重试。',
       unsupported:'此浏览器暂不支持音频播放。',
-      source:'录音：Ruben Schachtenhaufen · CC0', missingSource:'浏览录音资料库',
+      source:'社区 IPA 录音 · CC BY-SA 3.0', missingSource:'浏览录音资料库',
       diagram:'口朝右的侧面舌位示意', instruction:'舌根 ← → 舌尖',
       label:s => `[ ${s} ] 的舌位示意`,
     }
@@ -146,6 +180,7 @@
       $('referenceReplay').disabled = !vowel.audio;
       $('referenceSource').href = vowel.audio?.source || repository;
       $('referenceSource').textContent = vowel.audio ? text.source : text.missingSource;
+      $('referenceSource').setAttribute('title', vowel.audio?.title || text.missingSource);
       move(vowel);
       play();
     }

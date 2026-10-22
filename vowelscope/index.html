@@ -206,7 +206,7 @@
         <div class="panel target-panel">
           <div class="panel-head" style="margin:0"><h3 class="panel-title">参考音位置</h3><span class="subtle">REFERENCE</span></div>
           <div class="target-buttons" id="targetButtons"></div>
-          <p class="target-explanation" id="targetDescription">28 个舌位示意 · 17 个真人参考音。点击元音查看与试听。</p>
+          <p class="target-explanation" id="targetDescription">28 个舌位示意 · 28 个真人参考音。点击元音查看与试听。</p>
           <section class="reference-demo" id="referenceDemo" hidden aria-label="舌位与参考发音">
             <div class="reference-heading"><strong class="reference-symbol" id="referenceSymbol"></strong><span class="reference-articulation" id="referenceArticulation"></span></div>
             <figure class="reference-figure">
@@ -231,9 +231,10 @@
             </figure>
             <div class="reference-controls"><button id="referenceReplay" type="button">▶ 重播</button><button id="referenceStop" type="button" disabled>■ 停止</button></div>
             <p class="reference-audio-status" id="referenceAudioStatus" role="status" aria-live="polite"></p>
-            <a class="reference-source" id="referenceSource" href="https://github.com/NewDanishPhonetics/IPA-sound-files" target="_blank" rel="noopener noreferrer">录音出处与许可</a>
-            <p class="reference-note">个人 IPA 发音示例，不是某种语言或口音的唯一标准。已核实录音来源与许可，音值尚未经独立语音学复核。</p>
-            <p class="reference-note">播放参考音会停止麦克风采集，避免混入测量。录音按需从 GitHub 加载；麦克风音频仍留在本机。</p>
+            <a class="reference-source" id="referenceSource" href="https://github.com/serverhiccups/ipa-chart" target="_blank" rel="noopener noreferrer">录音出处与许可</a>
+            <p class="reference-note"><a class="reference-source" id="referenceLicense" href="/vowelscope/reference-audio/ATTRIBUTION.html" target="_blank" rel="noopener noreferrer">音源集合署名：Peter Isotalo、Erutoon、TFighterPilot、Adamsa123。仅做 MP3 格式转换。署名与许可</a></p>
+            <p class="reference-note">社区 IPA 发音示例，不是某种语言或口音的唯一标准。每个符号均明确绑定对应源录音；这不等于独立专家音值认证。</p>
+            <p class="reference-note">播放参考音会停止麦克风采集，避免混入测量。录音由本站按需加载；麦克风音频仍留在本机。</p>
           </section>
         </div>
       </aside>
@@ -243,7 +244,7 @@
   </div>
   <script src="dsp/core.js"></script>
   <script src="dsp/profiler.js"></script>
-  <script src="reference-player.js"></script>
+  <script src="reference-player.js?v=20261022"></script>
   <script>
   (() => {
     'use strict';

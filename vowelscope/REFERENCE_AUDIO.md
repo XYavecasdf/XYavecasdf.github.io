@@ -1,96 +1,72 @@
-# Articulatory reference viewer and audio attribution
+# Articulatory references and complete IPA audio
 
-The Chinese and English reference-vowel buttons now select a schematic side-view
-tongue/lip animation. Repeated selection replays the same reference; switching
-vowels stops the previous recording. Keyboard buttons, pressed state, live playback
-status and reduced-motion preferences are supported.
+Both locale pages provide 28 illustrative tongue/lip positions and **28 playable
+human IPA examples**. Each symbol is mapped explicitly to a descriptive source
+recording, then to a unique Unicode-named MP3 served by this site. There is no
+array-position lookup and no substitution of a nearby vowel.
 
-Tongue positions use explicit IPA height/backness/rounding categories for all 28
-displayed symbols, not an inversion of microphone F1/F2. The moving contour is a
-teaching illustration, not a measured vocal tract, MRI animation or a unique
-articulatory solution. The symbols [ə, ɐ] do not specify rounding here: the
-illustration hides a fixed lip contour and shows an unknown marker instead.
-Phonetic reference examples use square brackets, separately from language-profile
-phonemic transcription. The transition between schematic positions is not a
-recording of real articulatory movement.
+## Source, mapping and rights
 
-## Selected recording source
+Source collection: [serverhiccups/ipa-chart](https://github.com/serverhiccups/ipa-chart),
+pinned at `fc6270c08a8aed6141cbe04595db8801ba767b49`. The distribution's
+[explicit catalog](https://github.com/serverhiccups/ipa-chart/blob/fc6270c08a8aed6141cbe04595db8801ba767b49/assets/symbol-data.json)
+contains all 28 character/name/audio triples. The unchanged catalog is retained
+in `reference-audio/upstream-symbol-data.json` with its CC BY-SA 4.0 site/data
+license attribution; its SHA-256 is pinned in the [asset inventory](reference-audio-sources.json).
 
-Creator: **Ruben Schachtenhaufen**, publishing as NewDanishPhonetics.
+The [audio-specific statement](https://github.com/serverhiccups/ipa-chart/blob/fc6270c08a8aed6141cbe04595db8801ba767b49/README.md)
+licenses the sound collection under **CC BY-SA 3.0** and credits **Peter Isotalo,
+User:Erutoon, User:TFighterPilot and User:Adamsa123**. These are the distributor's
+collective credits, not invented per-file performer assignments. The README's
+older `assets/sounds` path refers to the collection now under `public/sounds`.
+The site's separate CC BY-SA 4.0 license is not substituted for the audio license.
 
-- [Original IPA-sound-files repository](https://github.com/NewDanishPhonetics/IPA-sound-files).
-- Frozen revision: `81c8086257d84f5e434790603bb39b901df8143c`.
-- [Creator's recording statement](https://github.com/NewDanishPhonetics/IPA-sound-files/blob/81c8086257d84f5e434790603bb39b901df8143c/README.md).
-- [Explicit CC0 1.0 Universal license](https://github.com/NewDanishPhonetics/IPA-sound-files/blob/81c8086257d84f5e434790603bb39b901df8143c/LICENSE).
-- [Asset provenance and SHA-256 inventory](reference-audio-sources.json).
+The 28 public teaching MP3 derivatives retain CC BY-SA 3.0. Full credits, original
+source links, license URI and modification notice are in
+[ATTRIBUTION.md](reference-audio/ATTRIBUTION.md), linked visibly in both players.
+Original OGGs remain in the external source cache. The packaged MP3s are
+redistributable teaching derivatives, not raw research/validation recordings.
 
-The source README states “Recordings of IPA sounds by me, Ruben Schachtenhaufen”.
-Its license is CC0, rather than an assumed code license covering third-party
-recordings. Each of the 17 selected files was acquired over ordinary verified
-HTTPS at the pinned revision and checked as PCM WAV: 44.1 kHz, 16-bit, duration
-0.637–0.858 seconds. These are creator-labeled human IPA examples. No IPA
-Association endorsement, language/accent-specific standard, independent phonetic
-review or physical ground-truth status is claimed.
+Each original file was acquired by verified HTTPS at the pinned revision,
+SHA-256 recorded and decoded as Vorbis. FFmpeg converted it to mono 44.1-kHz
+MP3 using libmp3lame at 128 kbit/s. No deliberate pitch, playback-speed, vowel or
+formant adjustment was applied. Lossy re-encoding changes samples and may add
+codec padding. Original/derived durations, file names and hashes are all recorded.
 
-Available exact symbols: **a e i o u y æ ø œ ɑ ɒ ɔ ɛ ɤ ɯ ɶ ʌ**.
+## What this fixes and what it establishes
 
-Missing from this verified source: **ɨ ɵ ɪ ʊ ə ɜ ɐ ʉ ʏ ɘ ɞ**. Their diagrams
-remain usable and the interface explicitly reports that no verified recording
-is available; playback is disabled for that symbol. No neighboring vowel,
-speech-synthesis output or private validation-corpus audio is substituted.
+The previous release supplied only 17 recordings and explicitly disabled audio
+for 11 symbols. The user additionally reported many mismatched sounds. Its
+filename-to-symbol code did not demonstrate a numeric indexing swap, and the
+17 samples had not been independently verified for phonetic realization. That
+set is replaced in full; it is no longer the active teaching source.
 
-The official IPA, University of Victoria, ipachart.com and Wikimedia pages were
-inaccessible through this environment's proxy (403). GitHub creator documentation
-and the pinned source files were accessible and verified. A Wikipedia-derived
-mirror's general attribution alone was not used to fill the remaining voices.
-Additional audio needs exact symbol mapping, recording authorship and an explicit
-applicable permission/license before enabling it. This leaves 11 requested sounds
-unfilled; the feature must not be presented as 28 available recordings.
+The replacement has independent, explicit chart entries for every symbol, unique
+local paths and verified file hashes. Browser checks exercise each actual MP3
+and selected symbol rather than only checking source-file spelling. This
+establishes mapping/coverage and functioning playback; it is not independent
+expert certification that every recorded realization is perfect. Community IPA
+examples are not an institutionally endorsed or unique language/accent standard.
 
-## Playback, privacy and measurement boundary
+See [the repair record](docs/REFERENCE_SOUND_REPAIR_20261022.md). The dated
+2026-10-21 source/factual audits describe the previous release and are retained
+as historical evidence, not the current audio inventory.
 
-Recordings load from the pinned raw.githubusercontent.com URL only after a
-selection/replay action. Page load does not fetch audio. The visible source link
-credits the author/license per sound; reference playback makes a request to
-GitHub, while microphone audio remains local. No recording is copied into this
-public checkout and no research population/reference file is involved.
+## Anatomy, privacy and measurement boundary
 
-Starting reference playback synchronously cancels active/pending microphone
-capture. Starting the microphone stops reference playback; capture is not
-automatically resumed after a recording. This prevents intentional concurrent
-capture of reference audio. It cannot remove room echoes or certify a user's
-recording environment. Stop, selection changes and pagehide cancel playback;
-failed/blocked loads keep the diagram and replay controls usable.
+Tongue positions use explicit IPA height/backness/rounding categories, not an
+inversion of microphone F1/F2. Shapes/transitions are illustrations with a fixed
+jaw, not articulatory imaging of the recording or the user. [ə, ɐ] leave rounding
+unspecified, so the fixed lip depiction is hidden. Reference phone examples use
+square brackets; phonemic language-profile inventories keep slash notation.
+Chart F1/F2 values are illustrative and were not measured from these recordings.
 
-The shared `reference-player.js` and CSS serve both locale wrappers. DSP and the
-classic default remain unchanged. Previously frozen accuracy reports retain their
-original page/source digests; this new UI revision is not that evaluated revision.
+No audio is requested before a click. All sound assets load from the site's own
+origin, avoiding external runtime audio dependencies. Starting playback cancels
+active/pending capture; starting capture stops playback. Capture never resumes
+automatically after a reference ends. Stop, switching and pagehide cancel audio;
+stale playback events cannot change the new selection's status.
 
-## Verification
-
-Tests execute the real pages for selection, exact URLs/provenance, no eager audio,
-rapid switching/stale events, unavailable vowels, load/autoplay failures, capture
-interlock including late permission, stop/start and pagehide cleanup. Existing
-numeric replay and microphone lifecycle regressions remain required.
-
-Real Chromium UI checks use the exact verified WAV bytes served through request
-interception, checking decoding/playback, all 28 selections, changing paths,
-reduced motion and 1280/390/320-pixel viewports in both languages. This checks
-browser integration; it does not establish direct browser access to the live
-audio host, physical speaker audibility, microphone accuracy or mobile hardware.
-
-2026-10-21 checks: all 114 Node and 39 Python tests passed, including 16 reference
-player tests; bilingual benchmark self-tests and Phase 3/3b checks passed. A fresh
-read-only review found no Important/Critical issues. The restricted execution
-sandbox denied child-process creation (EPERM); the normal Node suite then passed
-with subprocess permission, without disabling or skipping those tests.
-Private Chromium results/screenshots are retained under
-`/workspace/research-results/reference-player-*`. No production deployment occurred.
-
-## Factual review before release
-
-See [the dated factual audit](docs/REFERENCE_FACT_CHECK_20261021.md). Corrections
-include unspecified rounding, schematic dorsal-surface/palate overlap, phonetic
-notation, incomplete basic-symbol coverage wording and local-processing claims.
-The UI now separates schematic F1/F2 coordinates from the example recordings:
-those numbers were not measured from the sound files and are not IPA standards.
+The shared viewer serves both locales. Classic DSP and the acoustic/display
+measurement separation remain unchanged. These audio clips are not ground truth
+for the independent acoustic validation protocol.

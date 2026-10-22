@@ -1,5 +1,8 @@
 # Reference viewer factual audit — 2026-10-21
 
+Historical release audit: the audio inventory/source below was replaced on
+2026-10-22; see [the sound repair](REFERENCE_SOUND_REPAIR_20261022.md).
+
 Scope: the reference-vowel controls, illustrative anatomy, audio attribution,
 phonetic descriptions and related chart/privacy claims in both locales.
 Baseline: `d7091cd`. This is a factual/implementation review, not an independent

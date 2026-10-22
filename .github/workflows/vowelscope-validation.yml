@@ -8,6 +8,7 @@ on:
       - "vowelscope/en/index.html"
       - "vowelscope/dsp/**"
       - "vowelscope/reference-*"
+      - "vowelscope/reference-audio/**"
       - ".github/workflows/vowelscope-validation.yml"
   pull_request:
     paths:
@@ -16,6 +17,7 @@ on:
       - "vowelscope/en/index.html"
       - "vowelscope/dsp/**"
       - "vowelscope/reference-*"
+      - "vowelscope/reference-audio/**"
       - ".github/workflows/vowelscope-validation.yml"
   workflow_dispatch:
 

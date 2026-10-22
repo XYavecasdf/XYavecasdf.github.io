@@ -1,5 +1,25 @@
 # VowelScope autonomous goal progress
 
+## 2026-10-22 — Complete reference-sound repair
+
+Confirmed 11 missing recordings in the published 17-recording viewer. A code
+index swap was not established; the user's broader phonetic-quality concern
+was not resolved by filename matching. Replaced the active collection with
+28 explicitly cataloged community IPA recordings from pinned
+`serverhiccups/ipa-chart` revision `fc6270c08a8aed6141cbe04595db8801ba767b49`.
+Each symbol has an explicit lookup and a distinct same-site MP3 teaching
+derivative; audio CC BY-SA 3.0 and catalog CC BY-SA 4.0 credits are retained.
+Original OGGs and all research/private recordings remain outside the checkout.
+
+121 Node / 39 Python tests, bilingual self-tests, Phase 3/3b and Jekyll build
+passed. Actual Chromium HTTP playback completed all 28 examples in both locales
+without mocked audio responses, with response hashes checked. Rapid switching,
+Stop, reduced motion and 1280/390/320-pixel layouts passed. Fresh review found
+no Important/Critical issues. See [repair details](../vowelscope/docs/REFERENCE_SOUND_REPAIR_20261022.md).
+These establish mapping and technical playback, not expert phonetic correctness
+or physical-device verification. DSP/defaults and the blocked independent
+accuracy goal are unchanged.
+
 ## 2026-10-21 — Requested factual review before publication
 
 Reviewed both locale pages and the reference viewer's phonetic categories,

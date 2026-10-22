@@ -14,7 +14,9 @@ export function readPageSource(filename) {
     if (match.index > inlineAt) throw Error('Local dependency must load before the production script');
     const relative = match[1];
     if (/^(?:[a-z]+:|\/)/i.test(relative)) throw Error('Validation requires local scripts: ' + relative);
-    const file = path.resolve(path.dirname(filename), relative);
+    // Query/fragment version selectors change browser identity/provenance, not
+    // the on-disk file that the browser receives from the static site.
+    const file = path.resolve(path.dirname(filename), relative.split(/[?#]/, 1)[0]);
     const content = fs.readFileSync(file, 'utf8');
     files.push(relative); contents.push(content);
     hash.update('\0').update(relative).update('\0').update(content);

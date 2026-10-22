@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import crypto from 'node:crypto';
 import vm from 'node:vm';
 import {loadPage} from './page_harness.mjs';
 
@@ -38,24 +39,34 @@ test('all 28 reference vowels have explicit articulatory categories', () => {
   assert.equal(data['ɐ'].rounding, 'unspecified');
 });
 
-test('only the 17 exact CC0 recordings are exposed, with pinned author provenance', () => {
+test('all 28 symbols have a local MP3 matched to an explicit source-catalog entry', () => {
   const data = moduleAPI().vowels;
-  const supported = Object.entries(data).filter(([, v]) => v.audio);
   const inventory = JSON.parse(fs.readFileSync('vowelscope/reference-audio-sources.json', 'utf8'));
-  const assets = inventory.assets.filter(asset => asset.file.endsWith('.wav'));
-  assert.equal(supported.length, 17);
-  assert.equal(assets.length, supported.length);
-  for (const [symbol, item] of supported) {
-    assert.equal(item.audio.license, 'CC0-1.0');
-    assert.equal(item.audio.author, 'Ruben Schachtenhaufen');
-    assert.ok(item.audio.url.includes('/81c8086257d84f5e434790603bb39b901df8143c/'));
-    assert.ok(item.audio.url.endsWith(encodeURIComponent(symbol) + '.wav'));
-    const source = assets.find(asset => asset.file === symbol + '.wav');
-    assert.ok(source && source.url === item.audio.url);
-    assert.match(source.sha256, /^[a-f0-9]{64}$/);
+  const sourceBytes = fs.readFileSync('vowelscope/reference-audio/upstream-symbol-data.json');
+  assert.equal(crypto.createHash('sha256').update(sourceBytes).digest('hex'), inventory.source_catalog_sha256);
+  const upstream = JSON.parse(sourceBytes).vowels;
+  assert.equal(inventory.recordings?.length, 28, 'Complete source catalog is missing');
+  assert.equal(Object.values(data).filter(v => v.audio).length, 28);
+  const files = new Set();
+  for (const [symbol, vowel] of Object.entries(data)) {
+    const asset = inventory.recordings.find(item => item.symbol === symbol);
+    assert.ok(asset, `Missing independent source catalog entry for ${symbol}`);
+    const original = upstream.find(item => item.character === symbol);
+    assert.equal(asset.title, original.name);
+    assert.equal(asset.original_file, original.audio);
+    assert.equal(vowel.audio.license, 'CC-BY-SA-3.0');
+    assert.equal(vowel.audio.title, asset.title);
+    assert.equal(vowel.audio.originalFile, asset.original_file);
+    const expected = `/vowelscope/reference-audio/u${symbol.codePointAt(0).toString(16).padStart(4, '0')}.mp3`;
+    assert.equal(vowel.audio.url, expected);
+    assert.equal(vowel.audio.url, '/' + asset.public_path);
+    assert.ok(fs.existsSync('.' + expected), `Missing deployed audio for ${symbol}`);
+    const bytes = fs.readFileSync('.' + expected);
+    assert.equal(crypto.createHash('sha256').update(bytes).digest('hex'), asset.mp3_sha256);
+    assert.ok(vowel.audio.source.includes('/fc6270c08a8aed6141cbe04595db8801ba767b49/public/sounds/'));
+    assert.ok(!files.has(expected), `Duplicate audio binding for ${symbol}`);
+    files.add(expected);
   }
-  assert.equal(data['ɪ'].audio, null, 'Do not substitute /i/ for /ɪ/');
-  assert.equal(data['ə'].audio, null, 'Do not invent missing reference recordings');
 });
 
 for (const page of pages) {
@@ -71,7 +82,7 @@ for (const page of pages) {
     assert.equal(nodes.get('referenceSymbol').textContent, '[ i ]');
     assert.ok(nodes.get('referenceTongue').d.startsWith('M '));
     assert.equal(device.instances.length, 1);
-    assert.ok(device.instances[0].src.endsWith('/i.wav'));
+    assert.ok(device.instances[0].src.endsWith('/u0069.mp3'));
     assert.equal(device.instances[0].plays, 1);
     button.dispatch('click');
     assert.equal(api.state.target, 'i', 'Second click replays without collapsing');
@@ -91,9 +102,25 @@ for (const page of pages) {
     assert.equal(nodes.get('referenceAudioStatus').textContent, status);
     click('ɪ');
     assert.ok(device.instances[1].paused);
-    assert.equal(nodes.get('referenceReplay').disabled, true);
-    assert.equal(device.instances.length, 2);
+    assert.equal(nodes.get('referenceReplay').disabled, false);
+    assert.equal(device.instances.length, 3);
+    assert.ok(device.instances[2].src.endsWith('/u026a.mp3'));
     assert.equal(nodes.get('referenceSymbol').textContent, '[ ɪ ]');
+  });
+
+  test(`${page}: every button, including previously missing vowels, starts its own audio`, () => {
+    const device = media();
+    const {nodes} = loadPage(page, {window: {Audio: device.Audio}});
+    const inventory = JSON.parse(fs.readFileSync('vowelscope/reference-audio-sources.json', 'utf8'));
+    assert.ok(Array.isArray(inventory.recordings), 'Complete source catalog is missing');
+    for (const button of nodes.get('targetButtons').children) {
+      button.dispatch('click');
+      assert.equal(nodes.get('referenceReplay').disabled, false, button.textContent);
+      const expected = inventory.recordings.find(item => item.symbol === button.textContent);
+      assert.equal(device.instances.at(-1).src, '/' + expected.public_path);
+      assert.equal(nodes.get('referenceSource').href, expected.source_page);
+    }
+    assert.equal(device.instances.length, 28);
   });
 
   test(`${page}: vowels without specified rounding do not teach a fixed lip shape`, () => {
