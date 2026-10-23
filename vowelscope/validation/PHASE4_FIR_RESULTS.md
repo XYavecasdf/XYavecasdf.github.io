@@ -32,7 +32,12 @@ but says little about the 4.5-kHz passband edge or 6.5-kHz alias attenuation.
 At 96-kHz input, 33 taps yield approximately -18.968 dB at 8 kHz; the earlier
 48-kHz two-tone test therefore cannot be generalized to all capture rates.
 
-![Sampled reachable-phase coefficient response](public-dataset/phase4-fir-response.png)
+![Sampled reachable-phase coefficient response](public-dataset/phase4-fir-response-reviewed-20261022.png)
+
+Figure-label review, 2026-10-22: the 16-kHz panel's stop-budget guide now ends
+at its 8-kHz input Nyquist limit. Hatching marks the out-of-domain 8–10-kHz
+area. The original figure and aggregate JSON are preserved; no measured values
+or historical results were changed. See [the figure audit](../docs/FIGURE_FACT_CHECK_20261022.md).
 
 The figure shows only 0–10 kHz; the [aggregate JSON](public-dataset/phase4-fir-response.json)
 retains the entire sampled frequency range. Lines do not bridge the unmeasured

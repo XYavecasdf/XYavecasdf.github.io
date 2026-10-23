@@ -145,10 +145,10 @@
       </div>
       <div class="header-tools"><a class="locale-switch" href="../" lang="zh-CN" aria-label="Open the Chinese version">中文</a><div class="header-info"><span class="privacy-dot"></span>Audio processed locally in your browser</div></div>
     </header>
-    <section class="intro"><div><span class="eyebrow">REAL-TIME FORMANT ANALYSIS</span><h2>Hear the sound. See the vowel.</h2><p>Sustain a vowel into your microphone and watch it move across the IPA vowel space.</p></div><div class="intro-right">Speech signal → LPC formants → Live vowel chart<br/>A personal lab for exploring pronunciation</div></section>
+    <section class="intro"><div><span class="eyebrow">REAL-TIME FORMANT ANALYSIS</span><h2>Hear the sound. See the vowel.</h2><p>Sustain a vowel into your microphone and see its estimated formants in F1–F2 acoustic space.</p></div><div class="intro-right">Speech signal → LPC formants → Live vowel chart<br/>A personal lab for exploring pronunciation</div></section>
     <main class="app-grid">
       <section class="panel chart-panel" aria-labelledby="chartHeading">
-        <div class="panel-head"><div><h3 class="panel-title" id="chartHeading">IPA Vowel Chart <span class="subtle">/ Acoustic vowel space</span></h3></div><div class="status" id="status"><span class="status-dot"></span><span id="statusText">Not started</span></div></div>
+        <div class="panel-head"><div><h3 class="panel-title" id="chartHeading">F1–F2 Vowel Plot <span class="subtle">/ Schematic IPA references</span></h3></div><div class="status" id="status"><span class="status-dot"></span><span id="statusText">Not started</span></div></div>
         <div class="profile-picker" aria-label="Language vowel inventory comparison">
           <div class="profile-header">COMPARE VOWEL INVENTORIES <span>Choose two references A and B · All 28 basic reference symbols stay visible</span></div>
           <div class="compare-selectors">
@@ -157,7 +157,7 @@
           </div>
         </div>
                 <div class="chart-wrap"><canvas id="vowelChart" width="1000" height="750" role="img" aria-label="F1 F2 vowel chart; horizontal F2 decreases to the right and vertical F1 increases downward"></canvas><div class="chart-placeholder" id="placeholder"><strong>Ready to analyze your voice</strong><small>Select Start Microphone to begin</small></div></div>
-        <div class="chart-caption"><div class="chart-legend"><span><i class="swatch" style="background:#9bb1a6"></i>28 basic IPA vowel symbols</span><span><i class="swatch" style="background:#217d62"></i>Reference A</span><span><i class="swatch" style="background:#3475c5"></i>Reference B</span><span><i class="swatch" style="background:#e18b62"></i>Estimated formants</span><span><i class="swatch" style="background:#98c6b2"></i>Trajectory</span></div><div>F2 decreases to the right · F1 increases downward; tongue position is not measured.</div></div>
+        <div class="chart-caption"><div class="chart-legend"><span><i class="swatch" style="background:#9bb1a6"></i>28 basic IPA vowel symbols</span><span><i class="swatch" style="background:#217d62"></i>Reference A</span><span><i class="swatch" style="background:#3475c5"></i>Reference B</span><span><i class="swatch" style="background:#e18b62"></i>Estimated formants</span><span><i class="swatch" style="background:#98c6b2"></i>Formant trajectory</span></div><div>F2 decreases to the right · F1 increases downward. Reference coordinates are illustrative; tongue position is not measured.</div></div>
         <div class="profile-explainer" aria-live="polite">
           <div class="profile-topline"><strong id="profileName">Compare vowel inventories</strong><span id="profileCount"></span></div>
           <p id="profileDescription">Green and blue denote references A and B. Shared vowels receive a two-color ring. Matching IPA symbols do not guarantee identical pronunciation.</p>
@@ -222,12 +222,12 @@
                 <circle cx="322" cy="47" r="25" fill="#fffdfa" stroke="#d9dfd5"/>
                 <ellipse id="referenceLipShape" cx="322" cy="47" rx="16" ry="4" fill="#fcf5ee" stroke="#ad655e" stroke-width="3"/>
                 <text id="referenceLipUnknown" x="322" y="53" text-anchor="middle" font-size="20" fill="#76857a" visibility="hidden">?</text>
-                <text x="322" y="87" text-anchor="middle" fill="#76857a" font-size="11">Lip shape</text>
+                <text x="322" y="87" text-anchor="middle" fill="#76857a" font-size="11">Front lip view</text>
                 <text x="44" y="159" fill="#76857a" font-size="11">Tongue</text>
                 <path d="M 74 164 L 125 174" fill="none" stroke="#a0aa9c" stroke-width="1.5"/>
                 <text x="183" y="253" text-anchor="middle" fill="#718577" font-size="10" id="referenceDirection">Tongue root ← → Tongue tip</text>
               </svg>
-              <figcaption>Illustrative position and transition · not recorded tongue motion</figcaption>
+              <figcaption>Conceptual tongue and lip shapes; jaw held fixed. Transitions do not reproduce actual speech movements.</figcaption>
             </figure>
             <div class="reference-controls"><button id="referenceReplay" type="button">▶ Replay</button><button id="referenceStop" type="button" disabled>■ Stop</button></div>
             <p class="reference-audio-status" id="referenceAudioStatus" role="status" aria-live="polite"></p>
@@ -327,8 +327,8 @@
       ctx.textAlign='right';for(let f1=200;f1<=1000;f1+=200)ctx.fillText(String(f1),margin.left-17,xy(f1,1000).y+5);
       ctx.font='bold 15px system-ui, sans-serif';ctx.textAlign='center';ctx.fillStyle='#566e65';ctx.fillText('F2 (Hz)  ·  Higher ← → Lower',margin.left+PW/2,H-14);
       ctx.save();ctx.translate(22,margin.top+PH/2);ctx.rotate(-Math.PI/2);ctx.fillText('F1 (Hz) · Increasing frequency ←',0,0);ctx.restore();
-      ctx.font='600 13px system-ui, sans-serif';ctx.fillStyle='#90a29a';ctx.textAlign='left';ctx.fillText('FRONT',margin.left+13,margin.top+23);
-      ctx.textAlign='right';ctx.fillText('BACK',W-margin.right-13,margin.top+23);
+      ctx.font='600 13px system-ui, sans-serif';ctx.fillStyle='#90a29a';ctx.textAlign='left';ctx.fillText('Higher F2',margin.left+13,margin.top+23);
+      ctx.textAlign='right';ctx.fillText('Lower F2',W-margin.right-13,margin.top+23);
       const A=PROFILES.find(p=>p.id===state.profileA)||PROFILES[0];
       const B=PROFILES.find(p=>p.id===state.profileB)||PROFILES[0];
       // All 28 schematic IPA references stay visible. Language-specific phonetic

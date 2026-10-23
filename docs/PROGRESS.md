@@ -1,5 +1,25 @@
 # VowelScope autonomous goal progress
 
+## 2026-10-22 — All-figure factual review
+
+Audited both locale canvas plots, all 28 category-driven tongue/lip poses,
+language inventory comparisons and both research FIR figures. Found misleading
+articulatory labels on the acoustic plot and a concrete Nyquist-domain guide
+error in both 16-kHz research panels. Renamed the plot and frequency headings,
+made the formant trajectory and fixed-jaw/front-lip-view concepts explicit,
+and regenerated corrected research figures from unchanged archived JSON.
+Original PNGs and data remain intact; no DSP or pose mapping changes were made.
+
+No additional category reversal was established. 121 Node /39 Python tests,
+bilingual self-tests, Phase 3/3b and Jekyll build passed. Actual Chromium checked
+28 poses and all 36 language-selector combinations per locale at desktop/mobile
+sizes. The actual plot artists reproduced then passed the Nyquist-guide check.
+Fresh review found no additional Important/Critical issues. See
+[the figure audit](../vowelscope/docs/FIGURE_FACT_CHECK_20261022.md) for inventory,
+findings and source-access limits. This is not expert anatomical certification,
+phonetic listening or an independent accuracy/device result. Corrections remain
+local; no publication was performed in this review.
+
 ## 2026-10-22 — Complete reference-sound repair
 
 Confirmed 11 missing recordings in the published 17-recording viewer. A code

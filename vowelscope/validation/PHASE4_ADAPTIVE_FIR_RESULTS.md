@@ -36,7 +36,12 @@ full JSON also reports all 64 phases. No continuous-band bound is claimed.
 | 48 | 49 | -0.948 to +0.026 | -24.962 | Yes |
 | 96 | 97 | -0.954 to +0.019 | -24.984 | Yes |
 
-![Actual coefficient responses for fixed and rate-scaled filters](public-dataset/phase4-fir-adaptive-response.png)
+![Actual coefficient responses for fixed and rate-scaled filters](public-dataset/phase4-fir-adaptive-response-reviewed-20261022.png)
+
+Figure-label review, 2026-10-22: the 16-kHz panel's stop-budget guide now ends
+at its 8-kHz input Nyquist limit. Hatching marks the out-of-domain 8–10-kHz
+area. The original figure and aggregate JSON are preserved; no measured values
+or historical results were changed. See [the figure audit](../docs/FIGURE_FACT_CHECK_20261022.md).
 
 Adaptive overlaps poly33 at 16 kHz and poly49 at 48 kHz. The figure displays
 0–10 kHz only, and does not connect the unsampled transition band. The

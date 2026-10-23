@@ -145,10 +145,10 @@
       </div>
       <div class="header-tools"><a href="./en/" class="locale-switch" lang="en" aria-label="Switch to English">English</a><div class="header-info"><span class="privacy-dot"></span>仅在浏览器本地处理音频</div></div>
     </header>
-    <section class="intro"><div><span class="eyebrow">REAL-TIME FORMANT ANALYSIS</span><h2>听见声音，看见元音。</h2><p>对着麦克风持续发一个元音，观察它在 IPA 元音空间中的位置。</p></div><div class="intro-right">语音信号 → LPC 共振峰估计 → 实时元音图<br/>适合个人发音探索与学习</div></section>
+    <section class="intro"><div><span class="eyebrow">REAL-TIME FORMANT ANALYSIS</span><h2>听见声音，看见元音。</h2><p>对着麦克风持续发一个元音，观察估计共振峰在 F1–F2 声学空间中的位置。</p></div><div class="intro-right">语音信号 → LPC 共振峰估计 → 实时元音图<br/>适合个人发音探索与学习</div></section>
     <main class="app-grid">
       <section class="panel chart-panel" aria-labelledby="chartHeading">
-        <div class="panel-head"><div><h3 class="panel-title" id="chartHeading">IPA Vowel Chart <span class="subtle">/ 元音空间</span></h3></div><div class="status" id="status"><span class="status-dot"></span><span id="statusText">尚未开启</span></div></div>
+        <div class="panel-head"><div><h3 class="panel-title" id="chartHeading">F1–F2 元音图 <span class="subtle">/ IPA 参考点示意</span></h3></div><div class="status" id="status"><span class="status-dot"></span><span id="statusText">尚未开启</span></div></div>
         <div class="profile-picker" aria-label="语言元音对照选择">
           <div class="profile-header">COMPARE VOWEL INVENTORIES <span>选择 A、B 两种语言 · 28 个基础参考符号始终保留</span></div>
           <div class="compare-selectors">
@@ -157,7 +157,7 @@
           </div>
         </div>
                 <div class="chart-wrap"><canvas id="vowelChart" width="1000" height="750" role="img" aria-label="F1 F2 vowel chart; horizontal F2 decreases to the right and vertical F1 increases downward"></canvas><div class="chart-placeholder" id="placeholder"><strong>准备好听你的声音</strong><small>请点击右侧「开启麦克风」</small></div></div>
-        <div class="chart-caption"><div class="chart-legend"><span><i class="swatch" style="background:#9bb1a6"></i>28 个基础 IPA 元音符号</span><span><i class="swatch" style="background:#217d62"></i>基准 A</span><span><i class="swatch" style="background:#3475c5"></i>基准 B</span><span><i class="swatch" style="background:#e18b62"></i>估计共振峰</span><span><i class="swatch" style="background:#98c6b2"></i>运动轨迹</span></div><div>F2 向右降低 · F1 向下升高；不是舌位测量。</div></div>
+        <div class="chart-caption"><div class="chart-legend"><span><i class="swatch" style="background:#9bb1a6"></i>28 个基础 IPA 元音符号</span><span><i class="swatch" style="background:#217d62"></i>基准 A</span><span><i class="swatch" style="background:#3475c5"></i>基准 B</span><span><i class="swatch" style="background:#e18b62"></i>估计共振峰</span><span><i class="swatch" style="background:#98c6b2"></i>共振峰轨迹</span></div><div>F2 向右降低 · F1 向下升高。参考点坐标仅为示意，非实测舌位。</div></div>
         <div class="profile-explainer" aria-live="polite">
           <div class="profile-topline"><strong id="profileName">语言元音对照</strong><span id="profileCount"></span></div>
           <p id="profileDescription">绿色和蓝色分别是 A、B 基准；共同元音显示双色圈。相同 IPA 符号不表示两种语言的精确发音完全一致。</p>
@@ -222,12 +222,12 @@
                 <circle cx="322" cy="47" r="25" fill="#fffdfa" stroke="#d9dfd5"/>
                 <ellipse id="referenceLipShape" cx="322" cy="47" rx="16" ry="4" fill="#fcf5ee" stroke="#ad655e" stroke-width="3"/>
                 <text id="referenceLipUnknown" x="322" y="53" text-anchor="middle" font-size="20" fill="#76857a" visibility="hidden">?</text>
-                <text x="322" y="87" text-anchor="middle" fill="#76857a" font-size="11">唇形</text>
+                <text x="322" y="87" text-anchor="middle" fill="#76857a" font-size="11">正面唇形</text>
                 <text x="44" y="159" fill="#76857a" font-size="11">舌头</text>
                 <path d="M 74 164 L 125 174" fill="none" stroke="#a0aa9c" stroke-width="1.5"/>
                 <text x="183" y="253" text-anchor="middle" fill="#718577" font-size="10" id="referenceDirection">舌根 ← → 舌尖</text>
               </svg>
-              <figcaption>舌位与过渡均为教学示意 · 非真实发音动作记录</figcaption>
+              <figcaption>舌位与唇形为概念示意；下颌固定，过渡不代表真实发音动作。</figcaption>
             </figure>
             <div class="reference-controls"><button id="referenceReplay" type="button">▶ 重播</button><button id="referenceStop" type="button" disabled>■ 停止</button></div>
             <p class="reference-audio-status" id="referenceAudioStatus" role="status" aria-live="polite"></p>
@@ -325,8 +325,8 @@
       ctx.textAlign='right';for(let f1=200;f1<=1000;f1+=200)ctx.fillText(String(f1),margin.left-17,xy(f1,1000).y+5);
       ctx.font='bold 15px system-ui, sans-serif';ctx.textAlign='center';ctx.fillStyle='#566e65';ctx.fillText('F2 (Hz)  ·  高频 ← → 低频',margin.left+PW/2,H-14);
       ctx.save();ctx.translate(22,margin.top+PH/2);ctx.rotate(-Math.PI/2);ctx.fillText('F1 (Hz) · 频率增加 ←',0,0);ctx.restore();
-      ctx.font='600 13px system-ui, sans-serif';ctx.fillStyle='#90a29a';ctx.textAlign='left';ctx.fillText('FRONT / 前',margin.left+13,margin.top+23);
-      ctx.textAlign='right';ctx.fillText('BACK / 后',W-margin.right-13,margin.top+23);
+      ctx.font='600 13px system-ui, sans-serif';ctx.fillStyle='#90a29a';ctx.textAlign='left';ctx.fillText('较高 F2',margin.left+13,margin.top+23);
+      ctx.textAlign='right';ctx.fillText('较低 F2',W-margin.right-13,margin.top+23);
       const A=PROFILES.find(p=>p.id===state.profileA)||PROFILES[0];
       const B=PROFILES.find(p=>p.id===state.profileB)||PROFILES[0];
       // All 28 schematic IPA references stay visible. Language-specific phonetic

@@ -39,15 +39,19 @@ def main():
         ax.set_title(title,fontsize=11)
         ax.axvspan(4.5,6.5,color='#ddd',alpha=.4)
         ax.hlines([-1,1],.25,4.5,color='#555',linestyles='dotted',linewidth=1)
-        ax.hlines(-20,6.5,10,color='#555',linestyles='dashed',linewidth=1)
+        nyquist_khz=rate/2000
+        ax.hlines(-20,6.5,min(10,nyquist_khz),color='#555',linestyles='dashed',linewidth=1)
+        if nyquist_khz<10:
+            ax.axvspan(nyquist_khz,10,facecolor='none',edgecolor='#bbb',hatch='///',linewidth=0)
         ax.set_xlim(0,10);ax.set_ylim(-80,3);ax.grid(alpha=.15)
         ax.set_xlabel('Input frequency (kHz)');ax.set_ylabel('Coefficient gain (dB)')
     axes[0,0].legend(loc='lower left')
     fig.suptitle('Sampled FIR response across microphone sample rates',fontsize=14)
-    fig.text(.5,.015,'Actual coefficients, reachable-phase envelopes; 0–10 kHz view. Grey band unsampled.\n'
+    fig.text(.5,.015,'Actual coefficients, reachable-phase envelopes; 0–10 kHz view.\n'
+             'Grey: unsampled transition. Hatched: above input Nyquist; no audit data or budget.\n'
              'Excludes boundaries, detrending, pre-emphasis, LPC and devices; full sampled response in JSON.',
              ha='center',fontsize=9)
-    fig.tight_layout(rect=(0,.07,1,.95))
+    fig.tight_layout(rect=(0,.10,1,.95))
     options.out.parent.mkdir(parents=True,exist_ok=True)
     with options.out.open('xb') as stream:fig.savefig(stream,format=options.out.suffix[1:],dpi=160)
     plt.close(fig)
