@@ -1,0 +1,559 @@
+{
+  "model": "September lattice model_499",
+  "max_decisions": 128,
+  "records": [
+    {
+      "map_index": 24,
+      "variant": "control",
+      "seed": 42,
+      "source_map_index": 24,
+      "decisions": 74,
+      "end_reason": "utility_done",
+      "observed_free_volume_m3": 416.8800000000001,
+      "rotor_contact_ticks": 0,
+      "crossings": [
+        {
+          "gate": "high",
+          "position": [
+            14.989372048605125,
+            12.1,
+            1.0475251192082156
+          ],
+          "within_opening": false,
+          "sample": 667
+        },
+        {
+          "gate": "high",
+          "position": [
+            14.96613378517911,
+            12.1,
+            1.0251321197157148
+          ],
+          "within_opening": false,
+          "sample": 2565
+        },
+        {
+          "gate": "low",
+          "position": [
+            14.96116657438507,
+            15.1,
+            1.0086469565742364
+          ],
+          "within_opening": true,
+          "sample": 776
+        },
+        {
+          "gate": "low",
+          "position": [
+            14.826408942902903,
+            15.1,
+            1.0481256582837928
+          ],
+          "within_opening": true,
+          "sample": 2363
+        }
+      ],
+      "far_pocket_visited": true,
+      "altitude_range": [
+        0.9333822727203369,
+        2.1907739639282227
+      ],
+      "terminal_diagnostics": {
+        "explored_volume": 416.8800048828125,
+        "utility_sum": 0.0,
+        "positive_utility_nodes": 0.0,
+        "tracked_local_frontiers": 92.0,
+        "global_frontier_count": 92.0,
+        "local_graph_nodes": 226.0,
+        "global_graph_nodes": 6.0,
+        "valid_action_count": 31.0,
+        "done_zero_utility": 1.0,
+        "done_no_guidepost": 1.0,
+        "agent_done": 1.0,
+        "stage_nodes_before_graph_update": 226.0,
+        "stage_nodes_after_local_nodes": 226.0,
+        "stage_nodes_after_neighbors": 226.0,
+        "stage_util_before_graph_update": 34.0,
+        "stage_util_after_neighbors": 34.0,
+        "stage_util_after_utility": 0.0,
+        "stage_pos_before_graph_update": 4.0,
+        "stage_pos_after_neighbors": 4.0,
+        "stage_pos_after_utility": 0.0
+      },
+      "notes": "Measured old-policy rollout; one run per variant. Planner completion and observed volume do not certify full coverage.",
+      "target_height_switches": 15,
+      "both_gates_crossed": true,
+      "stopped_before_far_region": false,
+      "stalled_decisions": [
+        35
+      ],
+      "status": "recorded",
+      "gif": "map24_control.gif"
+    },
+    {
+      "map_index": 24,
+      "variant": "restricted",
+      "seed": 42,
+      "source_map_index": 24,
+      "decisions": 83,
+      "end_reason": "utility_done",
+      "observed_free_volume_m3": 414.0560000000001,
+      "rotor_contact_ticks": 0,
+      "crossings": [
+        {
+          "gate": "high",
+          "position": [
+            15.051489532591088,
+            12.1,
+            2.192827571993581
+          ],
+          "within_opening": true,
+          "sample": 733
+        },
+        {
+          "gate": "high",
+          "position": [
+            14.955425350235762,
+            12.1,
+            2.1268058938270973
+          ],
+          "within_opening": true,
+          "sample": 2615
+        },
+        {
+          "gate": "low",
+          "position": [
+            14.97559441612681,
+            15.1,
+            0.8593210049130796
+          ],
+          "within_opening": true,
+          "sample": 832
+        },
+        {
+          "gate": "low",
+          "position": [
+            14.921844155095354,
+            15.1,
+            0.8956858532573523
+          ],
+          "within_opening": true,
+          "sample": 2419
+        }
+      ],
+      "far_pocket_visited": true,
+      "altitude_range": [
+        0.8561235666275024,
+        2.1955480575561523
+      ],
+      "terminal_diagnostics": {
+        "explored_volume": 414.0559997558594,
+        "utility_sum": 0.0,
+        "positive_utility_nodes": 0.0,
+        "tracked_local_frontiers": 87.0,
+        "global_frontier_count": 87.0,
+        "local_graph_nodes": 224.0,
+        "global_graph_nodes": 6.0,
+        "valid_action_count": 20.0,
+        "done_zero_utility": 1.0,
+        "done_no_guidepost": 1.0,
+        "agent_done": 1.0,
+        "stage_nodes_before_graph_update": 224.0,
+        "stage_nodes_after_local_nodes": 226.0,
+        "stage_nodes_after_neighbors": 224.0,
+        "stage_util_before_graph_update": 113.0,
+        "stage_util_after_neighbors": 113.0,
+        "stage_util_after_utility": 0.0,
+        "stage_pos_before_graph_update": 10.0,
+        "stage_pos_after_neighbors": 10.0,
+        "stage_pos_after_utility": 0.0
+      },
+      "notes": "Measured old-policy rollout; one run per variant. Planner completion and observed volume do not certify full coverage.",
+      "target_height_switches": 14,
+      "both_gates_crossed": true,
+      "stopped_before_far_region": false,
+      "stalled_decisions": [
+        62
+      ],
+      "status": "recorded",
+      "gif": "map24_restricted.gif"
+    },
+    {
+      "map_index": 32,
+      "variant": "control",
+      "seed": 42,
+      "source_map_index": 32,
+      "decisions": 79,
+      "end_reason": "utility_done",
+      "observed_free_volume_m3": 421.5040000000001,
+      "rotor_contact_ticks": 0,
+      "crossings": [
+        {
+          "gate": "high",
+          "position": [
+            6.1,
+            9.018251934051513,
+            2.0733460187911987
+          ],
+          "within_opening": true,
+          "sample": 1401
+        },
+        {
+          "gate": "high",
+          "position": [
+            6.1,
+            9.032642341523855,
+            1.012703126297632
+          ],
+          "within_opening": false,
+          "sample": 1616
+        },
+        {
+          "gate": "high",
+          "position": [
+            6.1,
+            9.056913255831033,
+            1.0439844802073521
+          ],
+          "within_opening": false,
+          "sample": 3137
+        },
+        {
+          "gate": "low",
+          "position": [
+            3.007881042889956,
+            8.1,
+            0.9729891917328377
+          ],
+          "within_opening": true,
+          "sample": 3317
+        },
+        {
+          "gate": "low",
+          "position": [
+            2.9189308092942254,
+            8.1,
+            1.0320259095551882
+          ],
+          "within_opening": true,
+          "sample": 3434
+        },
+        {
+          "gate": "low",
+          "position": [
+            3.014737247208418,
+            8.1,
+            1.592136513378664
+          ],
+          "within_opening": true,
+          "sample": 3474
+        },
+        {
+          "gate": "low",
+          "position": [
+            2.9850329007384597,
+            8.1,
+            1.7007046524854552
+          ],
+          "within_opening": false,
+          "sample": 3520
+        },
+        {
+          "gate": "low",
+          "position": [
+            3.0276924178000773,
+            8.1,
+            1.0184939678809892
+          ],
+          "within_opening": true,
+          "sample": 3601
+        }
+      ],
+      "far_pocket_visited": true,
+      "altitude_range": [
+        0.945347011089325,
+        2.151517868041992
+      ],
+      "terminal_diagnostics": {
+        "explored_volume": 421.5039978027344,
+        "utility_sum": 0.0,
+        "positive_utility_nodes": 0.0,
+        "tracked_local_frontiers": 95.0,
+        "global_frontier_count": 99.0,
+        "local_graph_nodes": 234.0,
+        "global_graph_nodes": 7.0,
+        "valid_action_count": 9.0,
+        "done_zero_utility": 1.0,
+        "done_no_guidepost": 1.0,
+        "agent_done": 1.0,
+        "stage_nodes_before_graph_update": 234.0,
+        "stage_nodes_after_local_nodes": 236.0,
+        "stage_nodes_after_neighbors": 234.0,
+        "stage_util_before_graph_update": 24.0,
+        "stage_util_after_neighbors": 24.0,
+        "stage_util_after_utility": 0.0,
+        "stage_pos_before_graph_update": 3.0,
+        "stage_pos_after_neighbors": 3.0,
+        "stage_pos_after_utility": 0.0
+      },
+      "notes": "Measured old-policy rollout; one run per variant. Planner completion and observed volume do not certify full coverage.",
+      "target_height_switches": 22,
+      "both_gates_crossed": true,
+      "stopped_before_far_region": false,
+      "stalled_decisions": [],
+      "status": "recorded",
+      "gif": "map32_control.gif"
+    },
+    {
+      "map_index": 32,
+      "variant": "restricted",
+      "seed": 42,
+      "source_map_index": 32,
+      "decisions": 96,
+      "end_reason": "utility_done",
+      "observed_free_volume_m3": 418.4560000000001,
+      "rotor_contact_ticks": 1,
+      "crossings": [
+        {
+          "gate": "high",
+          "position": [
+            6.1,
+            9.096053320110878,
+            2.068654884595191
+          ],
+          "within_opening": true,
+          "sample": 1826
+        },
+        {
+          "gate": "high",
+          "position": [
+            6.1,
+            8.971826018373648,
+            2.1307041608437096
+          ],
+          "within_opening": true,
+          "sample": 3266
+        },
+        {
+          "gate": "low",
+          "position": [
+            3.040500750986527,
+            8.1,
+            0.9479750947529867
+          ],
+          "within_opening": true,
+          "sample": 2311
+        },
+        {
+          "gate": "low",
+          "position": [
+            3.1776746535221383,
+            8.1,
+            0.9706312262855359
+          ],
+          "within_opening": true,
+          "sample": 3185
+        }
+      ],
+      "far_pocket_visited": true,
+      "altitude_range": [
+        0.8456507325172424,
+        2.1636910438537598
+      ],
+      "terminal_diagnostics": {
+        "explored_volume": 418.45599365234375,
+        "utility_sum": 0.0,
+        "positive_utility_nodes": 0.0,
+        "tracked_local_frontiers": 81.0,
+        "global_frontier_count": 101.0,
+        "local_graph_nodes": 232.0,
+        "global_graph_nodes": 7.0,
+        "valid_action_count": 26.0,
+        "done_zero_utility": 1.0,
+        "done_no_guidepost": 1.0,
+        "agent_done": 1.0,
+        "stage_nodes_before_graph_update": 232.0,
+        "stage_nodes_after_local_nodes": 232.0,
+        "stage_nodes_after_neighbors": 232.0,
+        "stage_util_before_graph_update": 388.0,
+        "stage_util_after_neighbors": 388.0,
+        "stage_util_after_utility": 0.0,
+        "stage_pos_before_graph_update": 19.0,
+        "stage_pos_after_neighbors": 19.0,
+        "stage_pos_after_utility": 0.0
+      },
+      "notes": "Measured old-policy rollout; one run per variant. Planner completion and observed volume do not certify full coverage.",
+      "target_height_switches": 37,
+      "both_gates_crossed": true,
+      "stopped_before_far_region": false,
+      "stalled_decisions": [],
+      "status": "recorded",
+      "gif": "map32_restricted.gif"
+    },
+    {
+      "map_index": 6,
+      "variant": "control",
+      "seed": 42,
+      "source_map_index": 6,
+      "decisions": 66,
+      "end_reason": "utility_done",
+      "observed_free_volume_m3": 407.87200000000007,
+      "rotor_contact_ticks": 0,
+      "crossings": [
+        {
+          "gate": "high",
+          "position": [
+            14.99652263865291,
+            12.1,
+            1.317944748575368
+          ],
+          "within_opening": false,
+          "sample": 3115
+        },
+        {
+          "gate": "low",
+          "position": [
+            14.923234753249629,
+            9.1,
+            1.055606422732094
+          ],
+          "within_opening": true,
+          "sample": 3265
+        }
+      ],
+      "far_pocket_visited": false,
+      "altitude_range": [
+        0.9490037560462952,
+        2.2358691692352295
+      ],
+      "terminal_diagnostics": {
+        "explored_volume": 407.87200927734375,
+        "utility_sum": 0.0,
+        "positive_utility_nodes": 0.0,
+        "tracked_local_frontiers": 57.0,
+        "global_frontier_count": 63.0,
+        "local_graph_nodes": 236.0,
+        "global_graph_nodes": 4.0,
+        "valid_action_count": 9.0,
+        "done_zero_utility": 1.0,
+        "done_no_guidepost": 1.0,
+        "agent_done": 1.0,
+        "stage_nodes_before_graph_update": 236.0,
+        "stage_nodes_after_local_nodes": 236.0,
+        "stage_nodes_after_neighbors": 236.0,
+        "stage_util_before_graph_update": 192.0,
+        "stage_util_after_neighbors": 192.0,
+        "stage_util_after_utility": 0.0,
+        "stage_pos_before_graph_update": 8.0,
+        "stage_pos_after_neighbors": 8.0,
+        "stage_pos_after_utility": 0.0
+      },
+      "notes": "Measured old-policy rollout; one run per variant. Planner completion and observed volume do not certify full coverage.",
+      "target_height_switches": 18,
+      "both_gates_crossed": true,
+      "stopped_before_far_region": true,
+      "stalled_decisions": [
+        54
+      ],
+      "status": "recorded",
+      "gif": "map6_control.gif"
+    },
+    {
+      "map_index": 6,
+      "variant": "restricted",
+      "seed": 42,
+      "source_map_index": 6,
+      "decisions": 77,
+      "end_reason": "utility_done",
+      "observed_free_volume_m3": 405.0880000000001,
+      "rotor_contact_ticks": 0,
+      "crossings": [
+        {
+          "gate": "high",
+          "position": [
+            14.898878323847802,
+            12.1,
+            2.1398182451622767
+          ],
+          "within_opening": true,
+          "sample": 2995
+        },
+        {
+          "gate": "high",
+          "position": [
+            14.926349804988117,
+            12.1,
+            2.0778189963127778
+          ],
+          "within_opening": true,
+          "sample": 3310
+        },
+        {
+          "gate": "high",
+          "position": [
+            15.03097883984366,
+            12.1,
+            2.1434268806253276
+          ],
+          "within_opening": true,
+          "sample": 3463
+        },
+        {
+          "gate": "low",
+          "position": [
+            15.018143443172574,
+            9.1,
+            0.9401167444024792
+          ],
+          "within_opening": true,
+          "sample": 3626
+        }
+      ],
+      "far_pocket_visited": true,
+      "altitude_range": [
+        0.8854244351387024,
+        2.2413363456726074
+      ],
+      "terminal_diagnostics": {
+        "explored_volume": 405.0880126953125,
+        "utility_sum": 0.0,
+        "positive_utility_nodes": 0.0,
+        "tracked_local_frontiers": 70.0,
+        "global_frontier_count": 70.0,
+        "local_graph_nodes": 234.0,
+        "global_graph_nodes": 4.0,
+        "valid_action_count": 6.0,
+        "done_zero_utility": 1.0,
+        "done_no_guidepost": 1.0,
+        "agent_done": 1.0,
+        "stage_nodes_before_graph_update": 234.0,
+        "stage_nodes_after_local_nodes": 238.0,
+        "stage_nodes_after_neighbors": 234.0,
+        "stage_util_before_graph_update": 117.0,
+        "stage_util_after_neighbors": 117.0,
+        "stage_util_after_utility": 0.0,
+        "stage_pos_before_graph_update": 7.0,
+        "stage_pos_after_neighbors": 7.0,
+        "stage_pos_after_utility": 0.0
+      },
+      "notes": "Measured old-policy rollout; one run per variant. Planner completion and observed volume do not certify full coverage.",
+      "target_height_switches": 19,
+      "both_gates_crossed": true,
+      "stopped_before_far_region": false,
+      "stalled_decisions": [
+        63
+      ],
+      "status": "recorded",
+      "gif": "map6_restricted.gif"
+    },
+    {
+      "map_index": 24,
+      "variant": "restricted_seed43",
+      "seed": 43,
+      "status": "runtime_error"
+    }
+  ],
+  "note": "Single paired run per map at seed 42; one additional restricted run at seed 43. These tests identify issues, not statistical success rates. All actions come from the learned policy.",
+  "stall_rule": "Less than 0.15 m net displacement in one decision interval while the selected waypoint remains more than 0.75 m away. This is a diagnostic flag, not proof of a controller fault.",
+  "target_rule": "The representative far-region point is considered visited within 1.2 m; this is not a full coverage metric."
+}
