@@ -35,4 +35,10 @@ A community fork of Actual Budget adding per-account currencies, converted accou
 
 - [View on GitHub](https://github.com/XYavecasdf/actual-multicurrency)
 
+### 3D-ARiADNE Exploration Replays
+
+Interactive evaluation of a learned lattice exploration policy across 32 simulated maps. View the observed geometry and flight trajectory for each map, with decision counts and explored free volume.
+
+- [Explore the 32-map replay gallery](/projects/ariadne-lattice/)
+
 ### Coming Soon
