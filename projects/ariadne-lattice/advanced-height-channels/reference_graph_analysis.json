@@ -1,0 +1,1263 @@
+{
+  "method": {
+    "reference": "Ideal global lattice using exact local geometry, not the observed online planner",
+    "xy_domain": "integer X,Y in [0,20), i.e.0 through19",
+    "z_levels": [
+      1,
+      2
+    ],
+    "neighbor_radius_m": 2.99,
+    "endpoint_z_m": 1.5,
+    "edge_rule": "Straight closed segment must not intersect any closed AABB; surface touching counts blocked",
+    "expansion": "Expand every obstacle AABB independently by0.4m on every axis; conservative box clearance, not exact spherical/body geometry",
+    "endpoints": "Exact case spawn XY and representative far-region target XY at Z1.5; links to every vertex within radius obey same collision rule",
+    "path_rule": "Undirected graph, BFS; recorded path minimizes edge count, not metric length"
+  },
+  "results": [
+    {
+      "case_id": "seed43_recheck",
+      "map_index": 24,
+      "aabb_expansion_m": 0.0,
+      "z_levels": [
+        1.0,
+        2.0
+      ],
+      "candidate_lattice_nodes": 800,
+      "free_lattice_nodes": 566,
+      "graph_vertices_including_endpoints": 568,
+      "undirected_edges": 6369,
+      "lattice_only_edges": 6299,
+      "start_degree": 34,
+      "target_degree": 36,
+      "start_inside_obstacle": false,
+      "target_inside_obstacle": false,
+      "components_including_endpoints": 4,
+      "start_component_vertices": 226,
+      "target_component_vertices": 226,
+      "reachable": true,
+      "start": [
+        4.980003356933594,
+        5.020000457763672,
+        1.5
+      ],
+      "target": [
+        6.900000000000001,
+        15.500000000000002,
+        1.5
+      ],
+      "bfs_path": [
+        [
+          4.980003356933594,
+          5.020000457763672,
+          1.5
+        ],
+        [
+          7.0,
+          5.0,
+          1.0
+        ],
+        [
+          9.0,
+          6.0,
+          2.0
+        ],
+        [
+          11.0,
+          8.0,
+          2.0
+        ],
+        [
+          13.0,
+          10.0,
+          2.0
+        ],
+        [
+          15.0,
+          12.0,
+          2.0
+        ],
+        [
+          15.0,
+          14.0,
+          1.0
+        ],
+        [
+          15.0,
+          16.0,
+          1.0
+        ],
+        [
+          13.0,
+          17.0,
+          1.0
+        ],
+        [
+          11.0,
+          17.0,
+          1.0
+        ],
+        [
+          9.0,
+          17.0,
+          1.0
+        ],
+        [
+          6.900000000000001,
+          15.500000000000002,
+          1.5
+        ]
+      ],
+      "bfs_path_length_m": 26.11664912712036,
+      "geometry_sha256": "57effc9dd567023418898b11914d1a6735d29ca74006b801846e875ce7eaa709"
+    },
+    {
+      "case_id": "seed43_recheck",
+      "map_index": 24,
+      "aabb_expansion_m": 0.4,
+      "z_levels": [
+        1.0,
+        2.0
+      ],
+      "candidate_lattice_nodes": 800,
+      "free_lattice_nodes": 566,
+      "graph_vertices_including_endpoints": 568,
+      "undirected_edges": 6151,
+      "lattice_only_edges": 6085,
+      "start_degree": 34,
+      "target_degree": 32,
+      "start_inside_obstacle": false,
+      "target_inside_obstacle": false,
+      "components_including_endpoints": 4,
+      "start_component_vertices": 226,
+      "target_component_vertices": 226,
+      "reachable": true,
+      "start": [
+        4.980003356933594,
+        5.020000457763672,
+        1.5
+      ],
+      "target": [
+        6.900000000000001,
+        15.500000000000002,
+        1.5
+      ],
+      "bfs_path": [
+        [
+          4.980003356933594,
+          5.020000457763672,
+          1.5
+        ],
+        [
+          6.0,
+          5.0,
+          1.0
+        ],
+        [
+          8.0,
+          5.0,
+          1.0
+        ],
+        [
+          9.0,
+          6.0,
+          1.0
+        ],
+        [
+          11.0,
+          8.0,
+          1.0
+        ],
+        [
+          13.0,
+          10.0,
+          1.0
+        ],
+        [
+          15.0,
+          11.0,
+          2.0
+        ],
+        [
+          15.0,
+          13.0,
+          2.0
+        ],
+        [
+          15.0,
+          13.0,
+          1.0
+        ],
+        [
+          15.0,
+          15.0,
+          1.0
+        ],
+        [
+          15.0,
+          17.0,
+          1.0
+        ],
+        [
+          13.0,
+          17.0,
+          1.0
+        ],
+        [
+          11.0,
+          17.0,
+          1.0
+        ],
+        [
+          9.0,
+          17.0,
+          1.0
+        ],
+        [
+          7.0,
+          17.0,
+          1.0
+        ],
+        [
+          6.900000000000001,
+          15.500000000000002,
+          1.5
+        ]
+      ],
+      "bfs_path_length_m": 29.240986295628222,
+      "geometry_sha256": "57effc9dd567023418898b11914d1a6735d29ca74006b801846e875ce7eaa709"
+    },
+    {
+      "case_id": "triple_alternation",
+      "map_index": 24,
+      "aabb_expansion_m": 0.0,
+      "z_levels": [
+        1.0,
+        2.0
+      ],
+      "candidate_lattice_nodes": 800,
+      "free_lattice_nodes": 566,
+      "graph_vertices_including_endpoints": 568,
+      "undirected_edges": 6365,
+      "lattice_only_edges": 6295,
+      "start_degree": 34,
+      "target_degree": 36,
+      "start_inside_obstacle": false,
+      "target_inside_obstacle": false,
+      "components_including_endpoints": 4,
+      "start_component_vertices": 226,
+      "target_component_vertices": 226,
+      "reachable": true,
+      "start": [
+        4.980003356933594,
+        5.020000457763672,
+        1.5
+      ],
+      "target": [
+        6.900000000000001,
+        15.500000000000002,
+        1.5
+      ],
+      "bfs_path": [
+        [
+          4.980003356933594,
+          5.020000457763672,
+          1.5
+        ],
+        [
+          7.0,
+          5.0,
+          1.0
+        ],
+        [
+          9.0,
+          6.0,
+          2.0
+        ],
+        [
+          11.0,
+          8.0,
+          2.0
+        ],
+        [
+          13.0,
+          10.0,
+          2.0
+        ],
+        [
+          15.0,
+          12.0,
+          2.0
+        ],
+        [
+          15.0,
+          14.0,
+          1.0
+        ],
+        [
+          15.0,
+          16.0,
+          2.0
+        ],
+        [
+          13.0,
+          17.0,
+          1.0
+        ],
+        [
+          11.0,
+          17.0,
+          1.0
+        ],
+        [
+          9.0,
+          17.0,
+          1.0
+        ],
+        [
+          6.900000000000001,
+          15.500000000000002,
+          1.5
+        ]
+      ],
+      "bfs_path_length_m": 26.566138869903536,
+      "geometry_sha256": "faa434931720f692e8628b29f351b9343767f8c74315a17bf2e0ed8c4f504563"
+    },
+    {
+      "case_id": "triple_alternation",
+      "map_index": 24,
+      "aabb_expansion_m": 0.4,
+      "z_levels": [
+        1.0,
+        2.0
+      ],
+      "candidate_lattice_nodes": 800,
+      "free_lattice_nodes": 565,
+      "graph_vertices_including_endpoints": 567,
+      "undirected_edges": 6143,
+      "lattice_only_edges": 6077,
+      "start_degree": 34,
+      "target_degree": 32,
+      "start_inside_obstacle": false,
+      "target_inside_obstacle": false,
+      "components_including_endpoints": 5,
+      "start_component_vertices": 155,
+      "target_component_vertices": 70,
+      "reachable": false,
+      "start": [
+        4.980003356933594,
+        5.020000457763672,
+        1.5
+      ],
+      "target": [
+        6.900000000000001,
+        15.500000000000002,
+        1.5
+      ],
+      "bfs_path": [],
+      "bfs_path_length_m": null,
+      "geometry_sha256": "faa434931720f692e8628b29f351b9343767f8c74315a17bf2e0ed8c4f504563"
+    },
+    {
+      "case_id": "reverse_order",
+      "map_index": 32,
+      "aabb_expansion_m": 0.0,
+      "z_levels": [
+        1.0,
+        2.0
+      ],
+      "candidate_lattice_nodes": 800,
+      "free_lattice_nodes": 582,
+      "graph_vertices_including_endpoints": 584,
+      "undirected_edges": 6992,
+      "lattice_only_edges": 6956,
+      "start_degree": 24,
+      "target_degree": 12,
+      "start_inside_obstacle": false,
+      "target_inside_obstacle": false,
+      "components_including_endpoints": 4,
+      "start_component_vertices": 234,
+      "target_component_vertices": 234,
+      "reachable": true,
+      "start": [
+        10.980003356933594,
+        7.019999980926514,
+        1.5
+      ],
+      "target": [
+        5.1,
+        5.1,
+        1.5
+      ],
+      "bfs_path": [
+        [
+          10.980003356933594,
+          7.019999980926514,
+          1.5
+        ],
+        [
+          10.0,
+          9.0,
+          1.0
+        ],
+        [
+          8.0,
+          9.0,
+          1.0
+        ],
+        [
+          6.0,
+          9.0,
+          1.0
+        ],
+        [
+          4.0,
+          9.0,
+          1.0
+        ],
+        [
+          3.0,
+          8.0,
+          2.0
+        ],
+        [
+          3.0,
+          6.0,
+          1.0
+        ],
+        [
+          5.1,
+          5.1,
+          1.5
+        ]
+      ],
+      "bfs_path_length_m": 14.572050294826132,
+      "geometry_sha256": "7a743535c6f6e7b077a2c893178cc6819cca20df6846ed78826d5c5f8fdbc176"
+    },
+    {
+      "case_id": "reverse_order",
+      "map_index": 32,
+      "aabb_expansion_m": 0.4,
+      "z_levels": [
+        1.0,
+        2.0
+      ],
+      "candidate_lattice_nodes": 800,
+      "free_lattice_nodes": 582,
+      "graph_vertices_including_endpoints": 584,
+      "undirected_edges": 6777,
+      "lattice_only_edges": 6745,
+      "start_degree": 22,
+      "target_degree": 10,
+      "start_inside_obstacle": false,
+      "target_inside_obstacle": false,
+      "components_including_endpoints": 4,
+      "start_component_vertices": 234,
+      "target_component_vertices": 234,
+      "reachable": true,
+      "start": [
+        10.980003356933594,
+        7.019999980926514,
+        1.5
+      ],
+      "target": [
+        5.1,
+        5.1,
+        1.5
+      ],
+      "bfs_path": [
+        [
+          10.980003356933594,
+          7.019999980926514,
+          1.5
+        ],
+        [
+          11.0,
+          9.0,
+          1.0
+        ],
+        [
+          9.0,
+          9.0,
+          1.0
+        ],
+        [
+          7.0,
+          9.0,
+          1.0
+        ],
+        [
+          5.0,
+          9.0,
+          1.0
+        ],
+        [
+          3.0,
+          9.0,
+          2.0
+        ],
+        [
+          3.0,
+          7.0,
+          2.0
+        ],
+        [
+          3.0,
+          5.0,
+          1.0
+        ],
+        [
+          5.1,
+          5.1,
+          1.5
+        ]
+      ],
+      "bfs_path_length_m": 16.675407876232146,
+      "geometry_sha256": "7a743535c6f6e7b077a2c893178cc6819cca20df6846ed78826d5c5f8fdbc176"
+    },
+    {
+      "case_id": "close_pair",
+      "map_index": 6,
+      "aabb_expansion_m": 0.0,
+      "z_levels": [
+        1.0,
+        2.0
+      ],
+      "candidate_lattice_nodes": 800,
+      "free_lattice_nodes": 616,
+      "graph_vertices_including_endpoints": 618,
+      "undirected_edges": 8208,
+      "lattice_only_edges": 8148,
+      "start_degree": 50,
+      "target_degree": 10,
+      "start_inside_obstacle": false,
+      "target_inside_obstacle": false,
+      "components_including_endpoints": 3,
+      "start_component_vertices": 238,
+      "target_component_vertices": 238,
+      "reachable": true,
+      "start": [
+        8.979999542236328,
+        15.020004272460938,
+        1.5
+      ],
+      "target": [
+        14.900000000000002,
+        6.500000000000001,
+        1.5
+      ],
+      "bfs_path": [
+        [
+          8.979999542236328,
+          15.020004272460938,
+          1.5
+        ],
+        [
+          10.0,
+          13.0,
+          1.0
+        ],
+        [
+          12.0,
+          13.0,
+          1.0
+        ],
+        [
+          14.0,
+          13.0,
+          1.0
+        ],
+        [
+          15.0,
+          11.0,
+          2.0
+        ],
+        [
+          15.0,
+          9.0,
+          1.0
+        ],
+        [
+          14.900000000000002,
+          6.500000000000001,
+          1.5
+        ]
+      ],
+      "bfs_path_length_m": 13.554530461760061,
+      "geometry_sha256": "423b2e83450b3d30627d9aff7f9c3f7c380cacd593059dd2cb486e7ae12e68f7"
+    },
+    {
+      "case_id": "close_pair",
+      "map_index": 6,
+      "aabb_expansion_m": 0.4,
+      "z_levels": [
+        1.0,
+        2.0
+      ],
+      "candidate_lattice_nodes": 800,
+      "free_lattice_nodes": 614,
+      "graph_vertices_including_endpoints": 616,
+      "undirected_edges": 8068,
+      "lattice_only_edges": 8008,
+      "start_degree": 50,
+      "target_degree": 10,
+      "start_inside_obstacle": false,
+      "target_inside_obstacle": false,
+      "components_including_endpoints": 4,
+      "start_component_vertices": 224,
+      "target_component_vertices": 12,
+      "reachable": false,
+      "start": [
+        8.979999542236328,
+        15.020004272460938,
+        1.5
+      ],
+      "target": [
+        14.900000000000002,
+        6.500000000000001,
+        1.5
+      ],
+      "bfs_path": [],
+      "bfs_path_length_m": null,
+      "geometry_sha256": "423b2e83450b3d30627d9aff7f9c3f7c380cacd593059dd2cb486e7ae12e68f7"
+    },
+    {
+      "case_id": "midheight_tunnel",
+      "map_index": 24,
+      "aabb_expansion_m": 0.0,
+      "z_levels": [
+        1.0,
+        2.0
+      ],
+      "candidate_lattice_nodes": 800,
+      "free_lattice_nodes": 564,
+      "graph_vertices_including_endpoints": 566,
+      "undirected_edges": 6368,
+      "lattice_only_edges": 6298,
+      "start_degree": 34,
+      "target_degree": 36,
+      "start_inside_obstacle": false,
+      "target_inside_obstacle": false,
+      "components_including_endpoints": 5,
+      "start_component_vertices": 153,
+      "target_component_vertices": 71,
+      "reachable": false,
+      "start": [
+        4.980003356933594,
+        5.020000457763672,
+        1.5
+      ],
+      "target": [
+        6.900000000000001,
+        15.500000000000002,
+        1.5
+      ],
+      "bfs_path": [],
+      "bfs_path_length_m": null,
+      "geometry_sha256": "5dc2bd37dda6669aa5bf05856b85b1b9a3883624c0b43f98ec67d75ef212330b"
+    },
+    {
+      "case_id": "midheight_tunnel",
+      "map_index": 24,
+      "aabb_expansion_m": 0.4,
+      "z_levels": [
+        1.0,
+        2.0
+      ],
+      "candidate_lattice_nodes": 800,
+      "free_lattice_nodes": 564,
+      "graph_vertices_including_endpoints": 566,
+      "undirected_edges": 6160,
+      "lattice_only_edges": 6094,
+      "start_degree": 34,
+      "target_degree": 32,
+      "start_inside_obstacle": false,
+      "target_inside_obstacle": false,
+      "components_including_endpoints": 5,
+      "start_component_vertices": 153,
+      "target_component_vertices": 71,
+      "reachable": false,
+      "start": [
+        4.980003356933594,
+        5.020000457763672,
+        1.5
+      ],
+      "target": [
+        6.900000000000001,
+        15.500000000000002,
+        1.5
+      ],
+      "bfs_path": [],
+      "bfs_path_length_m": null,
+      "geometry_sha256": "5dc2bd37dda6669aa5bf05856b85b1b9a3883624c0b43f98ec67d75ef212330b"
+    }
+  ],
+  "supplemental_midheight_with_z1_5": [
+    {
+      "case_id": "midheight_tunnel",
+      "map_index": 24,
+      "aabb_expansion_m": 0.0,
+      "z_levels": [
+        1.0,
+        1.5,
+        2.0
+      ],
+      "candidate_lattice_nodes": 1200,
+      "free_lattice_nodes": 848,
+      "graph_vertices_including_endpoints": 850,
+      "undirected_edges": 14850,
+      "lattice_only_edges": 14744,
+      "start_degree": 52,
+      "target_degree": 54,
+      "start_inside_obstacle": false,
+      "target_inside_obstacle": false,
+      "components_including_endpoints": 4,
+      "start_component_vertices": 337,
+      "target_component_vertices": 337,
+      "reachable": true,
+      "start": [
+        4.980003356933594,
+        5.020000457763672,
+        1.5
+      ],
+      "target": [
+        6.900000000000001,
+        15.500000000000002,
+        1.5
+      ],
+      "bfs_path": [
+        [
+          4.980003356933594,
+          5.020000457763672,
+          1.5
+        ],
+        [
+          7.0,
+          5.0,
+          1.0
+        ],
+        [
+          9.0,
+          6.0,
+          1.0
+        ],
+        [
+          11.0,
+          8.0,
+          1.0
+        ],
+        [
+          13.0,
+          10.0,
+          1.0
+        ],
+        [
+          15.0,
+          12.0,
+          1.0
+        ],
+        [
+          15.0,
+          14.0,
+          1.5
+        ],
+        [
+          15.0,
+          16.0,
+          1.0
+        ],
+        [
+          13.0,
+          17.0,
+          1.0
+        ],
+        [
+          11.0,
+          17.0,
+          1.0
+        ],
+        [
+          9.0,
+          17.0,
+          1.0
+        ],
+        [
+          6.900000000000001,
+          15.500000000000002,
+          1.5
+        ]
+      ],
+      "bfs_path_length_m": 25.790265009954844,
+      "geometry_sha256": "5dc2bd37dda6669aa5bf05856b85b1b9a3883624c0b43f98ec67d75ef212330b",
+      "purpose": "Supplemental representation probe adding Z1.5; not old lattice"
+    },
+    {
+      "case_id": "midheight_tunnel",
+      "map_index": 24,
+      "aabb_expansion_m": 0.4,
+      "z_levels": [
+        1.0,
+        1.5,
+        2.0
+      ],
+      "candidate_lattice_nodes": 1200,
+      "free_lattice_nodes": 848,
+      "graph_vertices_including_endpoints": 850,
+      "undirected_edges": 14370,
+      "lattice_only_edges": 14270,
+      "start_degree": 52,
+      "target_degree": 48,
+      "start_inside_obstacle": false,
+      "target_inside_obstacle": false,
+      "components_including_endpoints": 4,
+      "start_component_vertices": 337,
+      "target_component_vertices": 337,
+      "reachable": true,
+      "start": [
+        4.980003356933594,
+        5.020000457763672,
+        1.5
+      ],
+      "target": [
+        6.900000000000001,
+        15.500000000000002,
+        1.5
+      ],
+      "bfs_path": [
+        [
+          4.980003356933594,
+          5.020000457763672,
+          1.5
+        ],
+        [
+          6.0,
+          5.0,
+          1.0
+        ],
+        [
+          8.0,
+          5.0,
+          1.0
+        ],
+        [
+          9.0,
+          6.0,
+          1.0
+        ],
+        [
+          11.0,
+          8.0,
+          1.0
+        ],
+        [
+          13.0,
+          10.0,
+          1.0
+        ],
+        [
+          15.0,
+          11.0,
+          1.5
+        ],
+        [
+          15.0,
+          13.0,
+          1.5
+        ],
+        [
+          15.0,
+          15.0,
+          1.5
+        ],
+        [
+          15.0,
+          17.0,
+          1.0
+        ],
+        [
+          13.0,
+          17.0,
+          1.0
+        ],
+        [
+          11.0,
+          17.0,
+          1.0
+        ],
+        [
+          9.0,
+          17.0,
+          1.0
+        ],
+        [
+          7.0,
+          17.0,
+          1.0
+        ],
+        [
+          6.900000000000001,
+          15.500000000000002,
+          1.5
+        ]
+      ],
+      "bfs_path_length_m": 28.14433721313179,
+      "geometry_sha256": "5dc2bd37dda6669aa5bf05856b85b1b9a3883624c0b43f98ec67d75ef212330b",
+      "purpose": "Supplemental representation probe adding Z1.5; not old lattice"
+    }
+  ],
+  "elapsed_cpu_analysis_wall_seconds": 0.6246674032881856,
+  "supplemental_half_meter_xy": [
+    {
+      "case_id": "triple_alternation",
+      "map_index": 24,
+      "purpose": "Analytical global reference with half-meter XY sampling; same Z1/2 and radius2.99; no actual planner change",
+      "xy_spacing_m": 0.5,
+      "xy_domain": "0 through19.5 in0.5m increments, [0,20)",
+      "z_levels": [
+        1,
+        2
+      ],
+      "neighbor_radius_m": 2.99,
+      "aabb_expansion_m": 0.0,
+      "candidate_lattice_nodes": 3200,
+      "free_lattice_nodes": 2727,
+      "graph_vertices_including_endpoints": 2729,
+      "undirected_edges": 145392,
+      "lattice_only_edges": 145072,
+      "start_degree": 166,
+      "target_degree": 154,
+      "components_including_endpoints": 4,
+      "start_component_vertices": 1135,
+      "target_component_vertices": 1135,
+      "reachable": true,
+      "start": [
+        4.980003356933594,
+        5.020000457763672,
+        1.5
+      ],
+      "target": [
+        6.900000000000001,
+        15.500000000000002,
+        1.5
+      ],
+      "bfs_path": [
+        [
+          4.980003356933594,
+          5.020000457763672,
+          1.5
+        ],
+        [
+          7.5,
+          5.5,
+          2.0
+        ],
+        [
+          10.0,
+          7.0,
+          2.0
+        ],
+        [
+          11.5,
+          9.5,
+          2.0
+        ],
+        [
+          13.5,
+          11.5,
+          2.0
+        ],
+        [
+          15.5,
+          13.0,
+          1.0
+        ],
+        [
+          14.5,
+          14.5,
+          2.0
+        ],
+        [
+          14.0,
+          16.5,
+          1.0
+        ],
+        [
+          11.5,
+          16.5,
+          1.0
+        ],
+        [
+          9.0,
+          17.0,
+          1.0
+        ],
+        [
+          6.900000000000001,
+          15.500000000000002,
+          1.5
+        ]
+      ],
+      "bfs_path_length_m": 25.996576325391295,
+      "geometry_sha256": "faa434931720f692e8628b29f351b9343767f8c74315a17bf2e0ed8c4f504563"
+    },
+    {
+      "case_id": "triple_alternation",
+      "map_index": 24,
+      "purpose": "Analytical global reference with half-meter XY sampling; same Z1/2 and radius2.99; no actual planner change",
+      "xy_spacing_m": 0.5,
+      "xy_domain": "0 through19.5 in0.5m increments, [0,20)",
+      "z_levels": [
+        1,
+        2
+      ],
+      "neighbor_radius_m": 2.99,
+      "aabb_expansion_m": 0.4,
+      "candidate_lattice_nodes": 3200,
+      "free_lattice_nodes": 1854,
+      "graph_vertices_including_endpoints": 1856,
+      "undirected_edges": 82840,
+      "lattice_only_edges": 82616,
+      "start_degree": 112,
+      "target_degree": 112,
+      "components_including_endpoints": 4,
+      "start_component_vertices": 688,
+      "target_component_vertices": 688,
+      "reachable": true,
+      "start": [
+        4.980003356933594,
+        5.020000457763672,
+        1.5
+      ],
+      "target": [
+        6.900000000000001,
+        15.500000000000002,
+        1.5
+      ],
+      "bfs_path": [
+        [
+          4.980003356933594,
+          5.020000457763672,
+          1.5
+        ],
+        [
+          5.5,
+          4.5,
+          1.0
+        ],
+        [
+          8.0,
+          5.0,
+          2.0
+        ],
+        [
+          10.0,
+          7.0,
+          2.0
+        ],
+        [
+          12.0,
+          9.0,
+          2.0
+        ],
+        [
+          14.5,
+          10.5,
+          2.0
+        ],
+        [
+          15.0,
+          13.0,
+          2.0
+        ],
+        [
+          15.0,
+          13.0,
+          1.0
+        ],
+        [
+          15.0,
+          14.5,
+          1.0
+        ],
+        [
+          15.0,
+          14.5,
+          2.0
+        ],
+        [
+          14.5,
+          16.5,
+          2.0
+        ],
+        [
+          12.0,
+          17.0,
+          1.0
+        ],
+        [
+          9.5,
+          17.0,
+          1.0
+        ],
+        [
+          7.0,
+          16.5,
+          1.0
+        ],
+        [
+          6.900000000000001,
+          15.500000000000002,
+          1.5
+        ]
+      ],
+      "bfs_path_length_m": 29.22189298213319,
+      "geometry_sha256": "faa434931720f692e8628b29f351b9343767f8c74315a17bf2e0ed8c4f504563"
+    },
+    {
+      "case_id": "close_pair",
+      "map_index": 6,
+      "purpose": "Analytical global reference with half-meter XY sampling; same Z1/2 and radius2.99; no actual planner change",
+      "xy_spacing_m": 0.5,
+      "xy_domain": "0 through19.5 in0.5m increments, [0,20)",
+      "z_levels": [
+        1,
+        2
+      ],
+      "neighbor_radius_m": 2.99,
+      "aabb_expansion_m": 0.0,
+      "candidate_lattice_nodes": 3200,
+      "free_lattice_nodes": 2832,
+      "graph_vertices_including_endpoints": 2834,
+      "undirected_edges": 173273,
+      "lattice_only_edges": 172995,
+      "start_degree": 218,
+      "target_degree": 60,
+      "components_including_endpoints": 3,
+      "start_component_vertices": 1130,
+      "target_component_vertices": 1130,
+      "reachable": true,
+      "start": [
+        8.979999542236328,
+        15.020004272460938,
+        1.5
+      ],
+      "target": [
+        14.900000000000002,
+        6.500000000000001,
+        1.5
+      ],
+      "bfs_path": [
+        [
+          8.979999542236328,
+          15.020004272460938,
+          1.5
+        ],
+        [
+          10.5,
+          12.5,
+          1.0
+        ],
+        [
+          13.0,
+          13.0,
+          1.0
+        ],
+        [
+          15.0,
+          11.5,
+          2.0
+        ],
+        [
+          14.5,
+          9.0,
+          1.0
+        ],
+        [
+          14.900000000000002,
+          6.500000000000001,
+          1.5
+        ]
+      ],
+      "bfs_path_length_m": 13.546502681233834,
+      "geometry_sha256": "423b2e83450b3d30627d9aff7f9c3f7c380cacd593059dd2cb486e7ae12e68f7"
+    },
+    {
+      "case_id": "close_pair",
+      "map_index": 6,
+      "purpose": "Analytical global reference with half-meter XY sampling; same Z1/2 and radius2.99; no actual planner change",
+      "xy_spacing_m": 0.5,
+      "xy_domain": "0 through19.5 in0.5m increments, [0,20)",
+      "z_levels": [
+        1,
+        2
+      ],
+      "neighbor_radius_m": 2.99,
+      "aabb_expansion_m": 0.4,
+      "candidate_lattice_nodes": 3200,
+      "free_lattice_nodes": 2124,
+      "graph_vertices_including_endpoints": 2126,
+      "undirected_edges": 120893,
+      "lattice_only_edges": 120693,
+      "start_degree": 182,
+      "target_degree": 18,
+      "components_including_endpoints": 3,
+      "start_component_vertices": 774,
+      "target_component_vertices": 774,
+      "reachable": true,
+      "start": [
+        8.979999542236328,
+        15.020004272460938,
+        1.5
+      ],
+      "target": [
+        14.900000000000002,
+        6.500000000000001,
+        1.5
+      ],
+      "bfs_path": [
+        [
+          8.979999542236328,
+          15.020004272460938,
+          1.5
+        ],
+        [
+          9.5,
+          13.0,
+          1.0
+        ],
+        [
+          12.0,
+          13.0,
+          1.0
+        ],
+        [
+          14.5,
+          12.5,
+          2.0
+        ],
+        [
+          15.0,
+          10.5,
+          2.0
+        ],
+        [
+          15.0,
+          10.5,
+          1.0
+        ],
+        [
+          15.0,
+          8.0,
+          1.0
+        ],
+        [
+          14.900000000000002,
+          6.500000000000001,
+          1.5
+        ]
+      ],
+      "bfs_path_length_m": 14.529415238473936,
+      "geometry_sha256": "423b2e83450b3d30627d9aff7f9c3f7c380cacd593059dd2cb486e7ae12e68f7"
+    }
+  ],
+  "supplemental_half_meter_xy_elapsed_seconds": 3.1105153085663915
+}
