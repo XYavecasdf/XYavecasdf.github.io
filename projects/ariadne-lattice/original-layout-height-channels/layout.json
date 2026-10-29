@@ -1,0 +1,436 @@
+[
+  {
+    "shape": "box",
+    "name": "original wall",
+    "center": [
+      2.0,
+      6.0,
+      1.5
+    ],
+    "size": [
+      0.2,
+      8.0,
+      3.0
+    ]
+  },
+  {
+    "shape": "box",
+    "name": "original wall",
+    "center": [
+      2.0,
+      15.0,
+      1.5
+    ],
+    "size": [
+      0.2,
+      6.0,
+      3.0
+    ]
+  },
+  {
+    "shape": "box",
+    "name": "original wall",
+    "center": [
+      16.0,
+      11.0,
+      1.5
+    ],
+    "size": [
+      0.2,
+      14.0,
+      3.0
+    ]
+  },
+  {
+    "shape": "box",
+    "name": "original wall",
+    "center": [
+      8.0,
+      5.0,
+      1.5
+    ],
+    "size": [
+      0.2,
+      6.0,
+      3.0
+    ]
+  },
+  {
+    "shape": "box",
+    "name": "original wall",
+    "center": [
+      8.0,
+      16.0,
+      1.5
+    ],
+    "size": [
+      0.2,
+      4.0,
+      3.0
+    ]
+  },
+  {
+    "shape": "box",
+    "name": "original wall",
+    "center": [
+      10.0,
+      5.0,
+      1.5
+    ],
+    "size": [
+      0.2,
+      2.0,
+      3.0
+    ]
+  },
+  {
+    "shape": "box",
+    "name": "original wall",
+    "center": [
+      10.0,
+      11.0,
+      1.5
+    ],
+    "size": [
+      0.2,
+      2.0,
+      3.0
+    ]
+  },
+  {
+    "shape": "box",
+    "name": "original wall",
+    "center": [
+      10.0,
+      16.0,
+      1.5
+    ],
+    "size": [
+      0.2,
+      4.0,
+      3.0
+    ]
+  },
+  {
+    "shape": "box",
+    "name": "original wall",
+    "center": [
+      14.0,
+      12.0,
+      1.5
+    ],
+    "size": [
+      0.2,
+      4.0,
+      3.0
+    ]
+  },
+  {
+    "shape": "box",
+    "name": "original wall",
+    "center": [
+      4.0,
+      14.0,
+      1.5
+    ],
+    "size": [
+      0.2,
+      4.0,
+      3.0
+    ]
+  },
+  {
+    "shape": "box",
+    "name": "original wall",
+    "center": [
+      6.0,
+      13.0,
+      1.5
+    ],
+    "size": [
+      0.2,
+      6.0,
+      3.0
+    ]
+  },
+  {
+    "shape": "box",
+    "name": "original wall",
+    "center": [
+      12.0,
+      7.0,
+      1.5
+    ],
+    "size": [
+      0.2,
+      2.0,
+      3.0
+    ]
+  },
+  {
+    "shape": "box",
+    "name": "original wall",
+    "center": [
+      12.0,
+      13.0,
+      1.5
+    ],
+    "size": [
+      0.2,
+      2.0,
+      3.0
+    ]
+  },
+  {
+    "shape": "box",
+    "name": "original wall",
+    "center": [
+      5.0,
+      18.0,
+      1.5
+    ],
+    "size": [
+      6.0,
+      0.2,
+      3.0
+    ]
+  },
+  {
+    "shape": "box",
+    "name": "original wall",
+    "center": [
+      13.0,
+      18.0,
+      1.5
+    ],
+    "size": [
+      6.0,
+      0.2,
+      3.0
+    ]
+  },
+  {
+    "shape": "box",
+    "name": "original wall",
+    "center": [
+      5.0,
+      16.0,
+      1.5
+    ],
+    "size": [
+      2.0,
+      0.2,
+      3.0
+    ]
+  },
+  {
+    "shape": "box",
+    "name": "original wall",
+    "center": [
+      9.0,
+      14.0,
+      1.5
+    ],
+    "size": [
+      2.0,
+      0.2,
+      3.0
+    ]
+  },
+  {
+    "shape": "box",
+    "name": "original wall",
+    "center": [
+      13.0,
+      14.0,
+      1.5
+    ],
+    "size": [
+      2.0,
+      0.2,
+      3.0
+    ]
+  },
+  {
+    "shape": "box",
+    "name": "original wall",
+    "center": [
+      3.0,
+      12.0,
+      1.5
+    ],
+    "size": [
+      2.0,
+      0.2,
+      3.0
+    ]
+  },
+  {
+    "shape": "box",
+    "name": "original wall",
+    "center": [
+      11.0,
+      12.0,
+      1.5
+    ],
+    "size": [
+      2.0,
+      0.2,
+      3.0
+    ]
+  },
+  {
+    "shape": "box",
+    "name": "original wall",
+    "center": [
+      4.0,
+      10.0,
+      1.5
+    ],
+    "size": [
+      4.0,
+      0.2,
+      3.0
+    ]
+  },
+  {
+    "shape": "box",
+    "name": "original wall",
+    "center": [
+      12.0,
+      10.0,
+      1.5
+    ],
+    "size": [
+      4.0,
+      0.2,
+      3.0
+    ]
+  },
+  {
+    "shape": "box",
+    "name": "original wall",
+    "center": [
+      10.0,
+      8.0,
+      1.5
+    ],
+    "size": [
+      4.0,
+      0.2,
+      3.0
+    ]
+  },
+  {
+    "shape": "box",
+    "name": "original wall",
+    "center": [
+      11.0,
+      6.0,
+      1.5
+    ],
+    "size": [
+      2.0,
+      0.2,
+      3.0
+    ]
+  },
+  {
+    "shape": "box",
+    "name": "original wall",
+    "center": [
+      13.0,
+      4.0,
+      1.5
+    ],
+    "size": [
+      6.0,
+      0.2,
+      3.0
+    ]
+  },
+  {
+    "shape": "box",
+    "name": "original wall",
+    "center": [
+      5.0,
+      2.0,
+      1.5
+    ],
+    "size": [
+      6.0,
+      0.2,
+      3.0
+    ]
+  },
+  {
+    "shape": "box",
+    "name": "map22 roof",
+    "center": [
+      10.0,
+      10.0,
+      3.1
+    ],
+    "size": [
+      20,
+      20,
+      0.2
+    ]
+  },
+  {
+    "shape": "box",
+    "name": "high sill",
+    "center": [
+      7.0,
+      14.0,
+      0.7
+    ],
+    "size": [
+      2,
+      0.2,
+      1.4
+    ]
+  },
+  {
+    "shape": "box",
+    "name": "high lintel",
+    "center": [
+      7.0,
+      14.0,
+      2.95
+    ],
+    "size": [
+      2,
+      0.2,
+      0.1
+    ]
+  },
+  {
+    "shape": "box",
+    "name": "low sill",
+    "center": [
+      5.0,
+      17.0,
+      0.05
+    ],
+    "size": [
+      0.2,
+      2,
+      0.1
+    ]
+  },
+  {
+    "shape": "box",
+    "name": "low lintel",
+    "center": [
+      5.0,
+      17.0,
+      2.3
+    ],
+    "size": [
+      0.2,
+      2,
+      1.4
+    ]
+  }
+]

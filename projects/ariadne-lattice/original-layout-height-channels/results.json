@@ -1,0 +1,284 @@
+{
+  "control": {
+    "variant": "control",
+    "source_map_index": 22,
+    "decisions": 57,
+    "end_reason": "utility_done",
+    "observed_free_volume_m3": 386.3680000000001,
+    "rotor_contact_ticks": 0,
+    "crossings": [
+      {
+        "gate": "high",
+        "position": [
+          6.94971428212246,
+          14.0,
+          1.9296676977553369
+        ],
+        "within_opening": true,
+        "sample": 465
+      },
+      {
+        "gate": "high",
+        "position": [
+          6.944225438373446,
+          14.0,
+          0.9713225849162337
+        ],
+        "within_opening": false,
+        "sample": 1063
+      },
+      {
+        "gate": "low",
+        "position": [
+          5.0,
+          17.02476102730501,
+          1.0463779449565902
+        ],
+        "within_opening": true,
+        "sample": 661
+      },
+      {
+        "gate": "low",
+        "position": [
+          5.0,
+          16.98327518029902,
+          2.0210894976628095
+        ],
+        "within_opening": false,
+        "sample": 871
+      }
+    ],
+    "far_pocket_visited": true,
+    "altitude_range": [
+      0.9451947808265686,
+      2.1652543544769287
+    ],
+    "terminal_diagnostics": {
+      "explored_volume": 386.3680114746094,
+      "utility_sum": 0.0,
+      "positive_utility_nodes": 0.0,
+      "tracked_local_frontiers": 119.0,
+      "global_frontier_count": 119.0,
+      "local_graph_nodes": 208.0,
+      "global_graph_nodes": 6.0,
+      "valid_action_count": 37.0,
+      "done_zero_utility": 1.0,
+      "done_no_guidepost": 1.0,
+      "agent_done": 1.0,
+      "stage_nodes_before_graph_update": 208.0,
+      "stage_nodes_after_local_nodes": 208.0,
+      "stage_nodes_after_neighbors": 208.0,
+      "stage_util_before_graph_update": 598.0,
+      "stage_util_after_neighbors": 598.0,
+      "stage_util_after_utility": 0.0,
+      "stage_pos_before_graph_update": 28.0,
+      "stage_pos_after_neighbors": 28.0,
+      "stage_pos_after_utility": 0.0
+    },
+    "notes": "Measured old-policy rollout; one run per variant. Planner completion and observed volume do not certify full coverage."
+  },
+  "restricted": {
+    "variant": "restricted",
+    "source_map_index": 22,
+    "decisions": 76,
+    "end_reason": "utility_done",
+    "observed_free_volume_m3": 384.0160000000001,
+    "rotor_contact_ticks": 0,
+    "crossings": [
+      {
+        "gate": "high",
+        "position": [
+          6.966289743546804,
+          14.0,
+          2.1718269971536732
+        ],
+        "within_opening": true,
+        "sample": 2717
+      },
+      {
+        "gate": "high",
+        "position": [
+          7.148377463805748,
+          14.0,
+          2.1674174447536205
+        ],
+        "within_opening": true,
+        "sample": 3765
+      },
+      {
+        "gate": "low",
+        "position": [
+          5.0,
+          16.856832025231213,
+          0.8703505463961061
+        ],
+        "within_opening": true,
+        "sample": 2879
+      },
+      {
+        "gate": "low",
+        "position": [
+          5.0,
+          16.94125062609409,
+          0.9266070705690092
+        ],
+        "within_opening": true,
+        "sample": 3203
+      },
+      {
+        "gate": "low",
+        "position": [
+          5.0,
+          17.02516632839398,
+          0.9787550277503902
+        ],
+        "within_opening": true,
+        "sample": 3366
+      },
+      {
+        "gate": "low",
+        "position": [
+          5.0,
+          17.05440252439628,
+          0.8738666998702177
+        ],
+        "within_opening": true,
+        "sample": 3564
+      }
+    ],
+    "far_pocket_visited": true,
+    "altitude_range": [
+      0.8263550400733948,
+      2.1821517944335938
+    ],
+    "terminal_diagnostics": {
+      "explored_volume": 384.0159912109375,
+      "utility_sum": 0.0,
+      "positive_utility_nodes": 0.0,
+      "tracked_local_frontiers": 132.0,
+      "global_frontier_count": 135.0,
+      "local_graph_nodes": 206.0,
+      "global_graph_nodes": 6.0,
+      "valid_action_count": 21.0,
+      "done_zero_utility": 1.0,
+      "done_no_guidepost": 1.0,
+      "agent_done": 1.0,
+      "stage_nodes_before_graph_update": 206.0,
+      "stage_nodes_after_local_nodes": 207.0,
+      "stage_nodes_after_neighbors": 206.0,
+      "stage_util_before_graph_update": 206.0,
+      "stage_util_after_neighbors": 206.0,
+      "stage_util_after_utility": 0.0,
+      "stage_pos_before_graph_update": 12.0,
+      "stage_pos_after_neighbors": 12.0,
+      "stage_pos_after_utility": 0.0
+    },
+    "notes": "Measured old-policy rollout; one run per variant. Planner completion and observed volume do not certify full coverage."
+  },
+  "map_spec": {
+    "map_index": 22,
+    "source_sha256": "e836675a42dd2b07ae55e60f539620062d3122225c1497912d00bea84d8d0959",
+    "spawn_local_xy": [
+      6.979999542236328,
+      9.020000457763672
+    ],
+    "high_gate": {
+      "axis": "y",
+      "position": 14,
+      "span": [
+        6,
+        8
+      ],
+      "opening_z": [
+        1.4,
+        2.9
+      ]
+    },
+    "low_gate": {
+      "axis": "x",
+      "position": 5,
+      "span": [
+        16,
+        18
+      ],
+      "opening_z": [
+        0.1,
+        1.6
+      ]
+    },
+    "body_margin_check_m": 0.25,
+    "changes": "Original walls and spawn preserved. Both variants add the same roof. Restricted variant adds four gate boxes."
+  },
+  "frozen_diagnosis": {
+    "source_decisions": 31,
+    "replay": "Fresh graph rebuilt from the saved terminal map; not the exact historical graph state.",
+    "done": true,
+    "scalars": {
+      "explored_volume": 359.0480041503906,
+      "utility_sum": 0.0,
+      "positive_utility_nodes": 0.0,
+      "tracked_local_frontiers": 40.0,
+      "global_frontier_count": 42.0,
+      "local_graph_nodes": 83.0,
+      "global_graph_nodes": 3.0,
+      "valid_action_count": 45.0,
+      "done_zero_utility": 1.0,
+      "done_no_guidepost": 1.0,
+      "agent_done": 1.0,
+      "stage_nodes_before_graph_update": 0.0,
+      "stage_nodes_after_local_nodes": 150.0,
+      "stage_nodes_after_neighbors": 83.0,
+      "stage_util_before_graph_update": 0.0,
+      "stage_util_after_neighbors": 0.0,
+      "stage_util_after_utility": 0.0,
+      "stage_pos_before_graph_update": 0.0,
+      "stage_pos_after_neighbors": 0.0,
+      "stage_pos_after_utility": 0.0
+    },
+    "graph_nodes": 83,
+    "graph_nodes_beyond_first_gate": 0,
+    "known_free_voxels_beyond_first_gate": 1324,
+    "candidate_nodes_before_connectivity_pruning": 150,
+    "candidate_nodes_beyond_first_gate": 5,
+    "raw_count_scope": "All sampled candidates before connectivity pruning",
+    "raw_visible_frontiers_max": 40,
+    "useful_candidate_coordinates": [
+      [
+        -32.0,
+        68.0,
+        2.0
+      ],
+      [
+        -32.0,
+        69.0,
+        2.0
+      ],
+      [
+        -32.0,
+        70.0,
+        2.0
+      ],
+      [
+        -32.0,
+        71.0,
+        2.0
+      ],
+      [
+        -31.0,
+        71.0,
+        2.0
+      ]
+    ],
+    "raw_counts_histogram": {
+      "0": 138,
+      "2": 1,
+      "4": 1,
+      "5": 2,
+      "6": 3,
+      "19": 1,
+      "26": 2,
+      "36": 1,
+      "40": 1
+    }
+  }
+}
