@@ -1,0 +1,198 @@
+[
+  {
+    "shape": "box",
+    "name": "south wall",
+    "center": [
+      10,
+      140.1,
+      1.5
+    ],
+    "size": [
+      20,
+      0.2,
+      3
+    ]
+  },
+  {
+    "shape": "box",
+    "name": "north wall",
+    "center": [
+      10,
+      159.9,
+      1.5
+    ],
+    "size": [
+      20,
+      0.2,
+      3
+    ]
+  },
+  {
+    "shape": "box",
+    "name": "west wall",
+    "center": [
+      0.1,
+      150,
+      1.5
+    ],
+    "size": [
+      0.2,
+      20,
+      3
+    ]
+  },
+  {
+    "shape": "box",
+    "name": "east wall",
+    "center": [
+      19.9,
+      150,
+      1.5
+    ],
+    "size": [
+      0.2,
+      20,
+      3
+    ]
+  },
+  {
+    "shape": "box",
+    "name": "floor",
+    "center": [
+      10,
+      150,
+      -0.1
+    ],
+    "size": [
+      20,
+      20,
+      0.2
+    ]
+  },
+  {
+    "shape": "box",
+    "name": "roof",
+    "center": [
+      10,
+      150,
+      3.1
+    ],
+    "size": [
+      20,
+      20,
+      0.2
+    ]
+  },
+  {
+    "shape": "box",
+    "name": "high partition south",
+    "center": [
+      7,
+      144.5,
+      1.5
+    ],
+    "size": [
+      0.2,
+      9,
+      3
+    ]
+  },
+  {
+    "shape": "box",
+    "name": "high partition north",
+    "center": [
+      7,
+      155.5,
+      1.5
+    ],
+    "size": [
+      0.2,
+      9,
+      3
+    ]
+  },
+  {
+    "shape": "box",
+    "name": "high sill",
+    "center": [
+      7,
+      150,
+      0.7
+    ],
+    "size": [
+      0.2,
+      2,
+      1.4
+    ]
+  },
+  {
+    "shape": "box",
+    "name": "high lintel",
+    "center": [
+      7,
+      150,
+      2.95
+    ],
+    "size": [
+      0.2,
+      2,
+      0.10000000000000009
+    ]
+  },
+  {
+    "shape": "box",
+    "name": "low partition south",
+    "center": [
+      13,
+      144.5,
+      1.5
+    ],
+    "size": [
+      0.2,
+      9,
+      3
+    ]
+  },
+  {
+    "shape": "box",
+    "name": "low partition north",
+    "center": [
+      13,
+      155.5,
+      1.5
+    ],
+    "size": [
+      0.2,
+      9,
+      3
+    ]
+  },
+  {
+    "shape": "box",
+    "name": "low sill",
+    "center": [
+      13,
+      150,
+      0.05
+    ],
+    "size": [
+      0.2,
+      2,
+      0.1
+    ]
+  },
+  {
+    "shape": "box",
+    "name": "low lintel",
+    "center": [
+      13,
+      150,
+      2.3
+    ],
+    "size": [
+      0.2,
+      2,
+      1.4
+    ]
+  }
+]

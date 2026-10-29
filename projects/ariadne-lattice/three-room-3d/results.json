@@ -1,0 +1,51 @@
+{
+  "learned_policy": {
+    "layout": "three_room_height_gates_clearance",
+    "decisions": 31,
+    "end_reason": "utility_done",
+    "rooms_visited": [
+      "A"
+    ],
+    "crossings": [],
+    "rotor_contact_ticks": 0,
+    "observed_free_volume_m3": 359.04800000000006,
+    "min_altitude_m": 0.9844756722450256,
+    "max_altitude_m": 2.1168525218963623,
+    "note": "Old checkpoint, unchanged PPO/control settings; contact count covers rotor sensors only, not a complete clearance certificate.",
+    "control_mode": "learned_lattice_policy"
+  },
+  "scripted_control_check": {
+    "layout": "three_room_height_gates_clearance",
+    "decisions": 9,
+    "end_reason": "scripted_route_complete",
+    "rooms_visited": [
+      "A",
+      "B",
+      "C"
+    ],
+    "crossings": [
+      {
+        "gate": "high",
+        "x": 7.0,
+        "y": 10.115527525892993,
+        "z": 2.1643741609385554,
+        "within_opening": true,
+        "sample": 168
+      },
+      {
+        "gate": "low",
+        "x": 13.0,
+        "y": 10.172566178968372,
+        "z": 0.9037348072572748,
+        "within_opening": true,
+        "sample": 376
+      }
+    ],
+    "rotor_contact_ticks": 0,
+    "observed_free_volume_m3": 220.51200000000006,
+    "min_altitude_m": 0.9036362171173096,
+    "max_altitude_m": 2.2613658905029297,
+    "note": "Scripted waypoint/controller check; the loaded policy is not used to choose actions.",
+    "control_mode": "scripted_waypoints_not_learned_policy"
+  }
+}
