@@ -13,6 +13,7 @@ This site serves as a record of my projects, blogs, and evolving research intere
 - [About Me](/about/)
 - [Projects](/projects/)
 - [The Sound Cabinet — phonetics tools](/sound-cabinet/)
+- [Word Roots & Etymology Atlas](/word-power/)
 - [Blog](/blog/)
 - [Experience](/experience/)
 - [Contact](/contact/)
