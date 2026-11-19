@@ -28,6 +28,8 @@ const profile = args.profile || `${process.env.TEMP || '.'}\\word-power-cdp-prof
 
 const chromeProcess = spawn(chrome, [
   '--headless=new', '--disable-gpu', '--no-sandbox', '--disable-crash-reporter',
+  '--disable-extensions', '--disable-dev-shm-usage', '--disable-background-networking',
+  '--js-flags=--max-old-space-size=512',
   '--no-first-run', '--no-default-browser-check', `--remote-debugging-port=${port}`,
   '--remote-allow-origins=*', `--user-data-dir=${profile}`, 'about:blank',
 ], { stdio: 'ignore' });
@@ -88,11 +90,18 @@ try {
   await send('Page.enable');
   await send('Runtime.enable');
   await send('Log.enable');
+  await send('Network.enable');
+  await send('Network.setCacheDisabled', { cacheDisabled: true });
   for (let i = 0; i < 60; i += 1) {
     if (await evaluate('document.readyState') === 'complete') break;
     await sleep(200);
   }
-  await sleep(800);
+  for (let i = 0; i < 60; i += 1) {
+    const count = await evaluate(`document.querySelectorAll('button.word-chip').length`);
+    if (count >= 679) break;
+    await sleep(200);
+  }
+  await sleep(300);
 
   const initial = await evaluate(`(() => ({
     title: document.title,
@@ -189,7 +198,7 @@ try {
   if (!search.chips.includes('atheism')) failures.push('search did not find atheism');
   if (!detail.visible) failures.push('detail overlay did not open');
   if (detail.title !== 'atheism') failures.push(`detail title ${detail.title}`);
-  if (!detail.ipa.includes('ˈeɪθiɪzəm')) failures.push(`atheism IPA ${detail.ipa}`);
+  if (!String(detail.ipa || '').includes('ˈeɪθiɪzəm')) failures.push(`atheism IPA ${detail.ipa}`);
   if (detail.morphs < 2) failures.push(`atheism morphs ${detail.morphs}`);
   if (!detail.hasWiktionary) failures.push('Wiktionary source link missing');
   if (detail2.title !== 'philanthropist') failures.push(`philanthropist title ${detail2.title}`);
