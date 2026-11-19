@@ -1,0 +1,962 @@
+{
+  "audit_date": "2026-11-19",
+  "description": "Curated corrections applied to word-power/lexicon.json. Every correction is checked against the pre-change value before application.",
+  "ipa": {
+    "atheism": {
+      "old": "/əˈθaɪsəm/",
+      "new": "/ˈeɪθiɪzəm/",
+      "source": "Cambridge Dictionary，美式英语",
+      "url": "https://dictionary.cambridge.org/pronunciation/english/atheism",
+      "note": "Cambridge US /ˈeɪ.θi.ɪ.zəm/；Wiktionary /ˈeɪ.θi.ɪ.zəm/。原 /əˈθaɪsəm/ 重音与元音均不符。"
+    },
+    "beneficent": {
+      "old": "/ˌbɛnəˈfɪʃənt/",
+      "new": "/bəˈnɛfɪsənt/",
+      "source": "Cambridge Dictionary，美式英语",
+      "url": "https://dictionary.cambridge.org/pronunciation/english/beneficent",
+      "note": "Cambridge US /bəˈnef.ɪ.sənt/；原 /ˌbɛnəˈfɪʃənt/ 重音及 -fic- 辅音有误。"
+    },
+    "penurious": {
+      "old": "/ˌpɛnˈjuɹiəs/",
+      "new": "/pəˈnjʊriəs/",
+      "source": "Cambridge Dictionary，美式英语",
+      "url": "https://dictionary.cambridge.org/pronunciation/english/penurious",
+      "note": "Cambridge US /pəˈnjʊr.i.əs/；原 /ˌpɛnˈjuɹiəs/ 首音节元音及次重音有误。"
+    },
+    "philanthropist": {
+      "old": "/fəˈlænθɹəpəst/",
+      "new": "/fɪˈlænθrəpɪst/",
+      "source": "Cambridge Dictionary，美式英语",
+      "url": "https://dictionary.cambridge.org/pronunciation/english/philanthropist",
+      "note": "Cambridge US /fɪˈlæn.θrə.pɪst/；Oxford /fɪˈlænθrəpɪst/。原 /fəˈlænθɹəpəst/ 首元音与词尾弱化过度。"
+    },
+    "misogyny": {
+      "old": "/ˈmɪzədʒɪni/",
+      "new": "/mɪˈsɑdʒəni/",
+      "source": "Cambridge Dictionary，美式英语",
+      "url": "https://dictionary.cambridge.org/pronunciation/english/misogyny",
+      "note": "Cambridge US /mɪˈsɑː.dʒə.ni/；原 /ˈmɪzədʒɪni/ 把希腊语 miso- 误作 /mɪzə/ 且重音错位。"
+    },
+    "homophone": {
+      "old": "/ˈhoʊmoʊˌfoʊn/",
+      "new": "/ˈhɑməfoʊn/",
+      "source": "Cambridge Dictionary，美式英语",
+      "url": "https://dictionary.cambridge.org/pronunciation/english/homophone",
+      "note": "Cambridge US /ˈhɑː.mə.foʊn/；原 /ˈhoʊmoʊˌfoʊn/ 受拼写影响，两个 o 均误为 /oʊ/。"
+    },
+    "psychiatrist": {
+      "old": "/səˈkaɪətɹəst/",
+      "new": "/saɪˈkaɪətrɪst/",
+      "source": "Cambridge Dictionary，美式英语",
+      "url": "https://dictionary.cambridge.org/pronunciation/english/psychiatrist",
+      "note": "Cambridge US /saɪˈkaɪ.ə.trɪst/；原 /səˈkaɪətɹəst/ 丢失首个 /aɪ/ 音节。"
+    },
+    "genocidal": {
+      "old": "/ˈdʒɛnəˌsaɪdəl/",
+      "new": "/ˌdʒɛnəˈsaɪdəl/",
+      "source": "Cambridge Dictionary，美式英语",
+      "url": "https://dictionary.cambridge.org/pronunciation/english/genocidal",
+      "note": "Cambridge US /ˌdʒen.əˈsaɪ.dəl/；原 /ˈdʒɛnəˌsaɪdəl/ 主重音误置首音节。"
+    },
+    "introspect": {
+      "old": "/ˈɪntɹəˌspɛkt/",
+      "new": "/ˌɪntrəˈspɛkt/",
+      "source": "Cambridge Dictionary，美式英语",
+      "url": "https://dictionary.cambridge.org/pronunciation/english/introspect",
+      "note": "Cambridge US /ˌɪn.trəˈspekt/；原 /ˈɪntɹəˌspɛkt/ 主重音误置首音节。"
+    },
+    "preamble": {
+      "old": "/pɹiˈæmbəl/",
+      "new": "/ˈpriæmbəl/",
+      "source": "Cambridge Dictionary，美式英语",
+      "url": "https://dictionary.cambridge.org/pronunciation/english/preamble",
+      "note": "Cambridge US /ˈpriː.æm.bəl/；原 /pɹiˈæmbəl/ 主重音误置第二音节。"
+    },
+    "simulate": {
+      "old": "/ˈsɪmjələt/",
+      "new": "/ˈsɪmjəleɪt/",
+      "source": "Cambridge Dictionary，美式英语",
+      "url": "https://dictionary.cambridge.org/pronunciation/english/simulate",
+      "note": "Cambridge US /ˈsɪm.jə.leɪt/；原 /ˈsɪmjələt/ 把动词后缀 -ate 误读为 /ət/。"
+    },
+    "osteopath": {
+      "old": "/ˈɑstiəpæθ/",
+      "new": "/ˈɑstioʊpæθ/",
+      "source": "Cambridge Dictionary，美式英语",
+      "url": "https://dictionary.cambridge.org/pronunciation/english/osteopath",
+      "note": "Cambridge US /ˈɑː.sti.oʊ.pæθ/；原 /ˈɑstiəpæθ/ 漏掉 osteo- 的 /oʊ/。"
+    },
+    "egotist": {
+      "old": "/ˈiɡətɪst/",
+      "new": "/ˈiɡoʊtɪst/",
+      "source": "Cambridge Dictionary，美式英语",
+      "url": "https://dictionary.cambridge.org/pronunciation/english/egotist",
+      "note": "Cambridge US /ˈiː.ɡoʊ.tɪst/；原 /ˈiɡətɪst/ 漏掉 /oʊ/。"
+    },
+    "psychoanalysis": {
+      "old": "/ˌsaɪkoʊəˈnæləsəs/",
+      "new": "/ˌsaɪkoʊəˈnæləsɪs/",
+      "source": "Cambridge Dictionary，美式英语",
+      "url": "https://dictionary.cambridge.org/pronunciation/english/psychoanalysis",
+      "note": "Cambridge US /ˌsaɪ.koʊ.əˈnæl.ə.sɪs/；原词尾 /-səs/ 应为 /-sɪs/。"
+    },
+    "introvert": {
+      "old": "/ˈɪntɹoʊˌvɝt/",
+      "new": "/ˈɪntrəvɝt/",
+      "source": "Wiktionary，General American",
+      "url": "https://en.wiktionary.org/wiki/introvert",
+      "note": "Wiktionary GA /ˈɪn.tɹə.vɝt/；原 /ˈɪntɹoʊˌvɝt/ 受拼写影响把 -tro- 读作 /tɹoʊ/。名词义为主，故保留首重音。"
+    },
+    "appendicitis": {
+      "old": "/əˌpɛnˌdɪˈsaɪtɪz/",
+      "new": "/əˌpɛndəˈsaɪtɪs/",
+      "source": "Cambridge Dictionary，美式英语",
+      "url": "https://dictionary.cambridge.org/pronunciation/english/appendicitis",
+      "note": "Cambridge US /əˌpen.dəˈsaɪ.t̬əs/；原 /əˌpɛnˌdɪˈsaɪtɪz/ 词尾误作 /-ɪz/，且次重音过多。"
+    },
+    "analysis": {
+      "old": "/əˈnæləsəs/",
+      "new": "/əˈnæləsɪs/",
+      "source": "Wiktionary，General American",
+      "url": "https://en.wiktionary.org/wiki/analysis",
+      "note": "Wiktionary GA /əˈnælɪsɪs/ 或 /əˈnæləsɪs/；原词尾 /-əs/ 应为 /-ɪs/。"
+    },
+    "genesis": {
+      "old": "/ˈdʒɛnəsəs/",
+      "new": "/ˈdʒɛnəsɪs/",
+      "source": "Wiktionary，英语词条",
+      "url": "https://en.wiktionary.org/wiki/genesis",
+      "note": "Wiktionary /ˈdʒɛn.ə.sɪs/；原词尾 /-əs/ 应为 /-ɪs/。"
+    },
+    "intrepid": {
+      "old": "/ɪnˈtɹɛpəd/",
+      "new": "/ɪnˈtrɛpɪd/",
+      "source": "Wiktionary，英语词条",
+      "url": "https://en.wiktionary.org/wiki/intrepid",
+      "note": "Wiktionary /ɪnˈtɹɛpɪd/；原词尾 /-əd/ 应为 /-ɪd/。"
+    },
+    "neurosis": {
+      "old": "/nʊˈɹoʊsəs/",
+      "new": "/nʊˈɹoʊsɪs/",
+      "source": "Wiktionary，General American",
+      "url": "https://en.wiktionary.org/wiki/neurosis",
+      "note": "Wiktionary GA /n(j)ʊˈɹoʊsɪs/；原词尾 /-əs/ 应为 /-ɪs/。"
+    },
+    "epidermis": {
+      "old": "/ˌɛpəˈdɝməs/",
+      "new": "/ˌɛpəˈdɝmɪs/",
+      "source": "Wiktionary，General American",
+      "url": "https://en.wiktionary.org/wiki/epidermis",
+      "note": "Wiktionary GA /ˌɛp.əˈdɝ.mɪs/；原词尾 /-əs/ 应为 /-ɪs/。"
+    },
+    "opera": {
+      "old": "/ˈɑpɹə/",
+      "new": "/ˈɑpəɹə/",
+      "source": "Wiktionary，General American",
+      "url": "https://en.wiktionary.org/wiki/opera",
+      "note": "Wiktionary GA /ˈɑp(ə)ɹə/；原 /ˈɑpɹə/ 少了 epenthetic /ə/，音节数不足。"
+    },
+    "psychosis": {
+      "old": "/saɪˈkoʊsəs/",
+      "new": "/saɪˈkoʊsɪs/",
+      "source": "Wiktionary，General American",
+      "url": "https://en.wiktionary.org/wiki/psychosis",
+      "note": "Wiktionary GA /saɪˈkoʊsɪs/；原词尾 /-əs/ 应为 /-ɪs/。"
+    },
+    "intrepidity": {
+      "old": "/ˌɪnˈtɹɛpɪdəˌti/",
+      "new": "/ˌɪntɹəˈpɪdəti/",
+      "source": "Cambridge Dictionary，美式英语",
+      "url": "https://dictionary.cambridge.org/pronunciation/english/intrepidity",
+      "note": "Cambridge US /ˌɪn.trəˈpɪd.ə.t̬i/；原 /ˌɪnˈtrɛpɪdəti/ 主重音误置 /trɛp/。"
+    },
+    "orthodontist": {
+      "old": "/ˌɔɹθəˈdɑntəst/",
+      "new": "/ˌɔɹθəˈdɑntɪst/",
+      "source": "Wiktionary，英语词条",
+      "url": "https://en.wiktionary.org/wiki/orthodontist",
+      "note": "Wiktionary /ˌɔː(ɹ)θəˈdɒntɪst/；原词尾 /-əst/ 应为 /-ɪst/。"
+    },
+    "zoologist": {
+      "old": "/zoʊˈɑlədʒəst/",
+      "new": "/zoʊˈɑlədʒɪst/",
+      "source": "Wiktionary，General American",
+      "url": "https://en.wiktionary.org/wiki/zoologist",
+      "note": "Wiktionary GA /zoʊˈɑləd͡ʒɪst/；原词尾 /-əst/ 应为 /-ɪst/。"
+    },
+    "urbane": {
+      "old": "/ɚˈbeɪn/",
+      "new": "/ɝˈbeɪn/",
+      "source": "Cambridge Dictionary，美式英语",
+      "url": "https://dictionary.cambridge.org/pronunciation/english/urbane",
+      "note": "Cambridge US /ɝːˈbeɪn/；原 /ɚˈbeɪn/ 把重读音节误作非重读 r 化元音。Wiktionary GA 条目的双主重音标记应为录入错误。"
+    }
+  },
+  "roots": {
+    "adolescent": {
+      "remove": [
+        "-escent"
+      ],
+      "add": [
+        {
+          "term": "adolescere",
+          "zh": "成长",
+          "lang": "拉丁语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/adolescent",
+      "note": "拉丁语 adolescere「成长」；-escent 是后缀，不宜单独充当词根。"
+    },
+    "ambivalence": {
+      "remove": [],
+      "add": [
+        {
+          "term": "valeo",
+          "zh": "强健、有价值",
+          "lang": "拉丁语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/ambivalence",
+      "note": "德语 Ambivalenz，源自拉丁语 ambi- + valere「强健」。"
+    },
+    "ambivalent": {
+      "remove": [],
+      "add": [
+        {
+          "term": "valeo",
+          "zh": "强健、有价值",
+          "lang": "拉丁语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/ambivalent",
+      "note": "同上，经德语 Ambivalenz 进入英语。"
+    },
+    "analysis": {
+      "remove": [],
+      "add": [
+        {
+          "term": "lysis",
+          "zh": "松开、分解",
+          "lang": "古希腊语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/analysis",
+      "note": "希腊语 analysis，ana-「彻底」+ lysis「松开」。"
+    },
+    "appendicitis": {
+      "remove": [],
+      "add": [
+        {
+          "term": "appendix",
+          "zh": "附属物；阑尾",
+          "lang": "拉丁语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/appendicitis",
+      "note": "appendic- 来自拉丁语 appendix。"
+    },
+    "complacent": {
+      "remove": [],
+      "add": [
+        {
+          "term": "placeo",
+          "zh": "取悦",
+          "lang": "拉丁语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/complacent",
+      "note": "拉丁语 complacere「非常取悦」，placidus 同源。"
+    },
+    "concur": {
+      "remove": [],
+      "add": [
+        {
+          "term": "curro",
+          "zh": "跑",
+          "lang": "拉丁语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/concur",
+      "note": "拉丁语 concurrere「一起跑」。"
+    },
+    "congregate": {
+      "remove": [],
+      "add": [
+        {
+          "term": "grex",
+          "zh": "群、畜群",
+          "lang": "拉丁语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/congregate",
+      "note": "拉丁语 grex, gregis「群」。"
+    },
+    "convalescent": {
+      "remove": [
+        "-escent"
+      ],
+      "add": [
+        {
+          "term": "valesco",
+          "zh": "变强、康复",
+          "lang": "拉丁语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/convalescent",
+      "note": "拉丁语 convalescere「逐渐变强」。"
+    },
+    "dermatitis": {
+      "remove": [],
+      "add": [
+        {
+          "term": "derma",
+          "zh": "皮肤",
+          "lang": "古希腊语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/dermatitis",
+      "note": "希腊语 derma「皮肤」。"
+    },
+    "dichotomous": {
+      "remove": [],
+      "add": [
+        {
+          "term": "temnein",
+          "zh": "切",
+          "lang": "古希腊语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/dichotomous",
+      "note": "希腊语 dichotomos「切成两半」，temnein「切」。"
+    },
+    "epilogue": {
+      "remove": [],
+      "add": [
+        {
+          "term": "logos",
+          "zh": "言说、话语",
+          "lang": "古希腊语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/epilogue",
+      "note": "希腊语 epilogos，epi-「附加」+ logos「言说」。"
+    },
+    "euphoria": {
+      "remove": [],
+      "add": [
+        {
+          "term": "pherein",
+          "zh": "承载",
+          "lang": "古希腊语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/euphoria",
+      "note": "希腊语 euphoros「承受得好」，eu- + pherein。"
+    },
+    "extroverted": {
+      "remove": [],
+      "add": [
+        {
+          "term": "verto",
+          "zh": "转",
+          "lang": "拉丁语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/extroverted",
+      "note": "拉丁语 vertere「转」；extra- 的变体 extro-。"
+    },
+    "exuberant": {
+      "remove": [],
+      "add": [
+        {
+          "term": "uber",
+          "zh": "乳房；丰饶",
+          "lang": "拉丁语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/exuberant",
+      "note": "拉丁语 exuberare，uber「乳房」引申为丰饶。"
+    },
+    "hyperactive": {
+      "remove": [],
+      "add": [
+        {
+          "term": "ago",
+          "zh": "做、驱动",
+          "lang": "拉丁语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/hyperactive",
+      "note": "active 来自拉丁语 agere「做」。"
+    },
+    "hypersensitive": {
+      "remove": [],
+      "add": [
+        {
+          "term": "sentio",
+          "zh": "感觉",
+          "lang": "拉丁语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/hypersensitive",
+      "note": "sensitive 来自拉丁语 sentire「感觉」。"
+    },
+    "hypertension": {
+      "remove": [],
+      "add": [
+        {
+          "term": "tendo",
+          "zh": "伸展",
+          "lang": "拉丁语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/hypertension",
+      "note": "tension 来自拉丁语 tendere「伸展」。"
+    },
+    "hypochondriac": {
+      "remove": [],
+      "add": [
+        {
+          "term": "chondros",
+          "zh": "软骨",
+          "lang": "古希腊语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/hypochondriac",
+      "note": "希腊语 hypochondrios「肋下部位」，chondros「软骨」。"
+    },
+    "hypodermic": {
+      "remove": [],
+      "add": [
+        {
+          "term": "derma",
+          "zh": "皮肤",
+          "lang": "古希腊语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/hypodermic",
+      "note": "希腊语 derma「皮肤」。"
+    },
+    "hypotension": {
+      "remove": [],
+      "add": [
+        {
+          "term": "tendo",
+          "zh": "伸展",
+          "lang": "拉丁语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/hypotension",
+      "note": "tension 来自拉丁语 tendere「伸展」。"
+    },
+    "implacable": {
+      "remove": [],
+      "add": [
+        {
+          "term": "placare",
+          "zh": "安抚",
+          "lang": "拉丁语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/implacable",
+      "note": "拉丁语 placare「安抚」。"
+    },
+    "inarticulate": {
+      "remove": [],
+      "add": [
+        {
+          "term": "articulus",
+          "zh": "关节；小部分",
+          "lang": "拉丁语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/inarticulate",
+      "note": "拉丁语 articulus「关节、分节」。"
+    },
+    "incorrigible": {
+      "remove": [],
+      "add": [
+        {
+          "term": "corrigo",
+          "zh": "改正",
+          "lang": "拉丁语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/incorrigible",
+      "note": "拉丁语 corrigere「改正」。"
+    },
+    "international": {
+      "remove": [],
+      "add": [
+        {
+          "term": "natio",
+          "zh": "出生；民族",
+          "lang": "拉丁语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/international",
+      "note": "nation 来自拉丁语 natio「出生、族群」。"
+    },
+    "intraurban": {
+      "remove": [],
+      "add": [
+        {
+          "term": "urbs",
+          "zh": "城市",
+          "lang": "拉丁语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/intraurban",
+      "note": "拉丁语 urbs「城市」。"
+    },
+    "introspection": {
+      "remove": [],
+      "add": [
+        {
+          "term": "specio",
+          "zh": "看",
+          "lang": "拉丁语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/introspection",
+      "note": "拉丁语 introspicere「向内看」。"
+    },
+    "introspective": {
+      "remove": [],
+      "add": [
+        {
+          "term": "specio",
+          "zh": "看",
+          "lang": "拉丁语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/introspective",
+      "note": "同上。"
+    },
+    "kindness": {
+      "remove": [],
+      "add": [
+        {
+          "term": "cynd",
+          "zh": "天性、种类",
+          "lang": "古英语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/kindness",
+      "note": "古英语 cynd「天性、种类」+ -nes。"
+    },
+    "magnanimity": {
+      "remove": [],
+      "add": [
+        {
+          "term": "magnus",
+          "zh": "大",
+          "lang": "拉丁语"
+        },
+        {
+          "term": "animus",
+          "zh": "心灵、精神",
+          "lang": "拉丁语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/magnanimity",
+      "note": "拉丁语 magnanimitas，magnus「大」+ animus「心灵」。"
+    },
+    "obsolescent": {
+      "remove": [
+        "-escent"
+      ],
+      "add": [
+        {
+          "term": "obsolesco",
+          "zh": "变得过时、废弃",
+          "lang": "拉丁语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/obsolescent",
+      "note": "拉丁语 obsolescere「逐渐废弃」。"
+    },
+    "perspicacious": {
+      "remove": [],
+      "add": [
+        {
+          "term": "specio",
+          "zh": "看",
+          "lang": "拉丁语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/perspicacious",
+      "note": "拉丁语 perspicax「目光锐利」，specio「看」。"
+    },
+    "philanthropist": {
+      "remove": [],
+      "add": [
+        {
+          "term": "philos",
+          "zh": "爱、喜爱",
+          "lang": "古希腊语"
+        },
+        {
+          "term": "anthropos",
+          "zh": "人",
+          "lang": "古希腊语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/philanthropist",
+      "note": "希腊语 philanthropia「爱人」，philos + anthropos。"
+    },
+    "physician": {
+      "remove": [],
+      "add": [
+        {
+          "term": "physis",
+          "zh": "自然",
+          "lang": "古希腊语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/physician",
+      "note": "希腊语 physis「自然」；physic 原指自然科学/医术。"
+    },
+    "placate": {
+      "remove": [],
+      "add": [
+        {
+          "term": "placo",
+          "zh": "安抚",
+          "lang": "拉丁语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/placate",
+      "note": "拉丁语 placare「安抚」。"
+    },
+    "placation": {
+      "remove": [],
+      "add": [
+        {
+          "term": "placo",
+          "zh": "安抚",
+          "lang": "拉丁语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/placation",
+      "note": "同上。"
+    },
+    "prologue": {
+      "remove": [],
+      "add": [
+        {
+          "term": "logos",
+          "zh": "言说、话语",
+          "lang": "古希腊语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/prologue",
+      "note": "希腊语 prologos，pro-「在前」+ logos。"
+    },
+    "psychotic": {
+      "remove": [],
+      "add": [
+        {
+          "term": "psyche",
+          "zh": "灵魂、心智",
+          "lang": "古希腊语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/psychotic",
+      "note": "希腊语 psyche「灵魂、心智」。"
+    },
+    "suicide": {
+      "remove": [],
+      "add": [
+        {
+          "term": "sui",
+          "zh": "自己的",
+          "lang": "拉丁语"
+        },
+        {
+          "term": "caedo",
+          "zh": "杀",
+          "lang": "拉丁语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/suicide",
+      "note": "新拉丁语 suicidium，sui「自己的」+ caedere「杀」。"
+    },
+    "telegraph": {
+      "remove": [],
+      "add": [
+        {
+          "term": "graphein",
+          "zh": "写",
+          "lang": "古希腊语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/telegraph",
+      "note": "法语 télégraphe，tele- + -graphe「写」。"
+    },
+    "telepathy": {
+      "remove": [],
+      "add": [
+        {
+          "term": "pathos",
+          "zh": "感受、痛苦",
+          "lang": "古希腊语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/telepathy",
+      "note": "tele- + -pathy，pathos「感受」。"
+    },
+    "telescope": {
+      "remove": [],
+      "add": [
+        {
+          "term": "skopein",
+          "zh": "看",
+          "lang": "古希腊语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/telescope",
+      "note": "希腊语 teleskopos「远望」，skopein「看」。"
+    },
+    "trivial": {
+      "remove": [],
+      "add": [
+        {
+          "term": "trivium",
+          "zh": "三岔路",
+          "lang": "拉丁语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/trivial",
+      "note": "拉丁语 trivialis，trivium「三岔路」。"
+    },
+    "vocalize": {
+      "remove": [],
+      "add": [
+        {
+          "term": "vox",
+          "zh": "声音",
+          "lang": "拉丁语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/vocalize",
+      "note": "拉丁语 vox, vocis「声音」。"
+    },
+    "autonomous": {
+      "remove": [],
+      "add": [
+        {
+          "term": "nomos",
+          "zh": "法则",
+          "lang": "古希腊语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/autonomous",
+      "note": "希腊语 autonomos，autos「自身」+ nomos「法则」。"
+    },
+    "autonomy": {
+      "remove": [],
+      "add": [
+        {
+          "term": "autos",
+          "zh": "自身",
+          "lang": "古希腊语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/autonomy",
+      "note": "同上。"
+    },
+    "democracy": {
+      "remove": [],
+      "add": [
+        {
+          "term": "kratos",
+          "zh": "权力、统治",
+          "lang": "古希腊语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/democracy",
+      "note": "希腊语 demokratia，demos「人民」+ kratos「权力」。"
+    },
+    "monarchy": {
+      "remove": [],
+      "add": [
+        {
+          "term": "monos",
+          "zh": "单独、一个",
+          "lang": "古希腊语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/monarchy",
+      "note": "希腊语 monarkhia，monos「单独」+ archein「统治」。"
+    },
+    "photograph": {
+      "remove": [],
+      "add": [
+        {
+          "term": "graphein",
+          "zh": "写",
+          "lang": "古希腊语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/photograph",
+      "note": "photo-「光」+ -graph「写、记录」。"
+    },
+    "manuscript": {
+      "remove": [],
+      "add": [
+        {
+          "term": "manus",
+          "zh": "手",
+          "lang": "拉丁语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/manuscript",
+      "note": "拉丁语 manu scriptus「用手写的」。"
+    },
+    "omnipotent": {
+      "remove": [],
+      "add": [
+        {
+          "term": "potens",
+          "zh": "有能力",
+          "lang": "拉丁语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/omnipotent",
+      "note": "拉丁语 omnipotens，omnis「全部」+ potens「有能力」。"
+    },
+    "omnipresent": {
+      "remove": [],
+      "add": [
+        {
+          "term": "praesens",
+          "zh": "在场",
+          "lang": "拉丁语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/omnipresent",
+      "note": "omni- + present，praesens「在场」。"
+    },
+    "omniscience": {
+      "remove": [],
+      "add": [
+        {
+          "term": "omnis",
+          "zh": "全部",
+          "lang": "拉丁语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/omniscience",
+      "note": "中世纪拉丁语 omniscientia，omnis「全部」+ scire「知道」。"
+    },
+    "octopus": {
+      "remove": [],
+      "add": [
+        {
+          "term": "okto",
+          "zh": "八",
+          "lang": "古希腊语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/octopus",
+      "note": "希腊语 oktōpous，okto「八」+ pous「脚」。"
+    },
+    "theology": {
+      "remove": [],
+      "add": [
+        {
+          "term": "logia",
+          "zh": "言说、研究",
+          "lang": "古希腊语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/theology",
+      "note": "希腊语 theologia，theos「神」+ logia「言说、研究」。"
+    },
+    "sociology": {
+      "remove": [],
+      "add": [
+        {
+          "term": "logia",
+          "zh": "言说、研究",
+          "lang": "古希腊语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/sociology",
+      "note": "socio- + -logy，logia「研究」。"
+    },
+    "zoology": {
+      "remove": [],
+      "add": [
+        {
+          "term": "logia",
+          "zh": "言说、研究",
+          "lang": "古希腊语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/zoology",
+      "note": "zoo- + -logy，logia「研究」。"
+    },
+    "homonym": {
+      "remove": [],
+      "add": [
+        {
+          "term": "onyma",
+          "zh": "名字",
+          "lang": "古希腊语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/homonym",
+      "note": "希腊语 homonymos，homos「相同」+ onyma「名字」。"
+    },
+    "anonymous": {
+      "remove": [],
+      "add": [
+        {
+          "term": "an-",
+          "zh": "不、无",
+          "lang": "古希腊语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/anonymous",
+      "note": "希腊语 anōnymos，an-「无」+ onyma「名字」。"
+    },
+    "patronymic": {
+      "remove": [],
+      "add": [
+        {
+          "term": "onyma",
+          "zh": "名字",
+          "lang": "古希腊语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/patronymic",
+      "note": "希腊语 patrōnymikos，pater「父亲」+ onyma「名字」。"
+    },
+    "entomology": {
+      "remove": [
+        "en-",
+        "tome"
+      ],
+      "add": [
+        {
+          "term": "entomon",
+          "zh": "昆虫；字面“切开的”",
+          "lang": "古希腊语"
+        },
+        {
+          "term": "temnein",
+          "zh": "切",
+          "lang": "古希腊语"
+        }
+      ],
+      "source": "https://en.wiktionary.org/wiki/entomology",
+      "note": "希腊语 entomon「昆虫」原义“切开的（动物）”，来自 en-「在内」+ temnein「切」；不应拆成现代英语 en- + -tomy。"
+    }
+  },
+  "metadata": {
+    "ipa_note": "2026-11-19 复核：94 条原有词典来源 IPA 已重查；502 条与 Cambridge Dictionary / Wiktionary 英语词条交叉比对；27 条明显误读已更正。其余 48 条保留现有宽式转写，并在 audit.json 中标为未独立核验或宽式变体。",
+    "origin_note": "词根标签主要表示早期来源，未必是英语整词直接借入的语言；构词面板采用教学式历史语素拆解，保留整体借词与不确定词源的例外说明。2026-11-19 补齐 61 条缺失词根，并修正 entomology 等拆分。"
+  }
+}
