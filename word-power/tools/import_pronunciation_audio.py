@@ -15,6 +15,7 @@ import re
 import time
 from urllib.parse import urlencode, urlsplit, urlunsplit
 from urllib.request import Request, urlopen
+from american_pronunciation import ensure_american, is_american
 
 ROOT = Path(__file__).resolve().parents[1]
 AGENT = 'WordPowerPronunciation/1.0 (https://github.com/XYavecasdf/word-power; educational audio index)'
@@ -66,7 +67,7 @@ def extract_audio(text):
         if filename not in [x['filename'] for x in found]:
             found.append(dict(filename=filename, accent=accent))
     # Prefer an explicitly labelled US and UK sample, with at most two recordings.
-    rank = lambda x: (0 if x['accent'] in {'US', 'GA', 'General American'} else
+    rank = lambda x: (0 if is_american(x['accent']) else
                       1 if x['accent'] in {'UK', 'RP', 'Received Pronunciation', 'Southern England'} else 2)
     return sorted(found, key=rank)[:2]
 
@@ -130,12 +131,11 @@ def import_audio(cache):
                       for s in candidates[word] if file_key(s['filename']) in files]
         entry['pronunciation_audio'] = recordings
         attached += bool(recordings)
-    serialized = json.dumps({w: x['pronunciation_audio'] for w, x in data['lexicon'].items()}, sort_keys=True)
-    data['metadata']['pronunciation_audio_version'] = hashlib.sha256(serialized.encode()).hexdigest()[:12]
     data['metadata']['pronunciation_audio'] = dict(
         source='English Wiktionary / Wikimedia Commons', checked_on=date.today().isoformat(),
         recorded_words=attached, total_words=len(words), fallback='Browser English speech synthesis',
         note='Recordings linked from English audio templates; per-file credits retained. No audio modifications.')
+    ensure_american(data)
     (ROOT / 'lexicon.json').write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n')
     print(json.dumps(data['metadata']['pronunciation_audio'], indent=2))
 

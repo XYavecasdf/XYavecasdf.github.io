@@ -55,7 +55,10 @@ async function open(page, word) {
       for (const word of words) {
         const chip = [...document.querySelectorAll('.word-chip')].find(b => b.dataset.word === word);
         chip.click();
-        if (!document.getElementById('speak-word') || document.getElementById('detail-title').textContent !== word) missing.push(word);
+        const primary = document.querySelector('.audio-actions button:first-child');
+        if (!document.getElementById('speak-word') || primary?.id !== 'play-american' ||
+            !primary.getAttribute('aria-label').includes('美式英语') ||
+            document.getElementById('detail-title').textContent !== word) missing.push(word);
       }
       return {checked: words.length, missing};
     }, Object.keys(data.lexicon));
@@ -69,6 +72,15 @@ async function open(page, word) {
     await page.locator('[data-recording="0"]').click();
     await page.getByRole('status').filter({hasText: '录音暂时无法播放'}).waitFor();
     assert.equal(await page.locator('#speak-word').isEnabled(), true);
+    const americanPlayback = [];
+    for (const word of ['proscribe', 'laconicism', 'zoology']) {
+      await open(page, word);
+      await page.locator('#play-american[data-us-synthetic]').click();
+      await page.waitForFunction(() => {const a = window.__media.at(-1); return a?.currentTime > 0.02 && a.duration > 0}, null, {timeout: 12000});
+      const sample = await page.evaluate(() => ({src: window.__media.at(-1).src, duration: window.__media.at(-1).duration}));
+      assert.ok(sample.src.includes('/audio/en-US/'), word);
+      americanPlayback.push({word, ...sample});
+    }
     await page.evaluate(() => {
       window.__spoken = [];
       window.__cancelled = 0;
@@ -92,14 +104,18 @@ async function open(page, word) {
     await page.locator('#close-modal').click();
     assert.ok(await page.evaluate(() => window.__cancelled) > cancelledBeforeClose);
     await open(page, 'laconicism');
-    await page.evaluate(() => {window.speechSynthesis.getVoices = () => [{lang: 'zh-CN'}]});
     const spoken = await page.evaluate(() => window.__spoken.length);
-    await page.locator('#speak-word').click();
-    await page.getByRole('status').filter({hasText: '无法进行英语朗读'}).waitFor();
-    assert.equal(await page.evaluate(() => window.__spoken.length), spoken, 'Do not read with a Chinese-only voice');
+    for (const lang of ['en-GB', 'en-AU', 'zh-CN']) {
+      await page.evaluate(lang => {window.speechSynthesis.getVoices = () => [{lang}]}, lang);
+      await page.locator('#speak-word').click();
+      await page.getByRole('status').filter({hasText: '没有可用的美音朗读'}).waitFor();
+      assert.equal(await page.evaluate(() => window.__spoken.length), spoken, 'Do not substitute a non-US voice: ' + lang);
+    }
     await page.evaluate(() => {delete window.speechSynthesis});
     await page.locator('#speak-word').click();
-    await page.getByRole('status').filter({hasText: '无法进行英语朗读'}).waitFor();
+    await page.getByRole('status').filter({hasText: '没有可用的美音朗读'}).waitFor();
+    await page.locator('#play-american').click();
+    await page.waitForFunction(() => window.__media.at(-1)?.currentTime > 0.02);
 
     // A stale external lexicon must not erase the embedded audio index.
     const stale = structuredClone(data);
@@ -112,9 +128,9 @@ async function open(page, word) {
     await page.reload();
     await page.locator('[data-recording="0"]').waitFor();
     assert.deepEqual(errors, []);
-    console.log(JSON.stringify({ok: true, coverage, playback, failures: errors,
+    console.log(JSON.stringify({ok: true, coverage, playback, americanPlayback, failures: errors,
       checked: ['no autoplay', 'real Ogg/WAV/phrase playback', 'close stops audio', 'mobile layout',
         'failed recording', 'English synthesis', 'stop/close cancels speech',
-        'missing English voices/API', 'stale external JSON', 'offline embedded fallback']}, null, 2));
+        'US MP3 without browser speech', 'reject UK/AU-only voices', 'missing English voices/API', 'stale external JSON', 'offline embedded fallback']}, null, 2));
   } finally {await browser.close()}
 })().catch(e => {console.error(e); process.exitCode = 1});
