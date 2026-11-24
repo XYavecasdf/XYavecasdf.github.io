@@ -18,23 +18,28 @@
 @media (max-width:560px){.hero{padding:24px 0}.hero h1{font-size:29px}.hero-metrics strong{font-size:20px}.hero-metrics span{font-size:10px}.controls{gap:7px}.search-box{min-width:100%;flex-basis:100%}.control{padding:9px 10px}.intro{align-items:flex-start;padding:13px}.cat-head{padding:13px}.cat-head strong{font-size:14px}.cat-body{padding-left:17px;padding-right:12px}.root-button{font-size:15px}.detail-top{padding:17px}.detail-body{padding:17px}.detail-top h2{font-size:27px}.overlay{align-items:flex-end;padding:0}.detail{border-radius:18px 18px 0 0;max-height:88vh}.hover-card{display:none}}
 @media (prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
 .pronunciation{margin:14px 0 18px}.audio-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}.audio-play{min-height:44px;color:#126c60;border-color:#b8dace;background:#eef8f5}.audio-play[aria-pressed="true"]{background:#d9f1e9;border-color:#167d72}.audio-status,.audio-credits{font-size:11px;color:#657589;margin:8px 0 0;line-height:1.6}.audio-credits summary{cursor:pointer}.audio-credits p{margin:6px 0;overflow-wrap:anywhere}.audio-actions [hidden]{display:none}
+
+.audio-play.primary[aria-pressed="true"]{background:#244a7c;border-color:#244a7c;color:#fff}
+.ipa-line{display:flex;align-items:center;gap:9px;flex-wrap:wrap}.ipa-note{font-size:10px;color:#718199;background:#f0f4f8;border-radius:5px;padding:2px 6px}
+.audio-status:empty{margin:0}.audio-more{font-size:11px;color:#718199;align-self:center}.audio-more>summary{cursor:pointer;padding:10px 2px;min-height:44px}.audio-more[open]{flex-basis:100%;background:#f8fafd;border:1px solid var(--line);border-radius:10px;padding:3px 12px 12px}.audio-options{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:4px 0 9px}.audio-credits{margin-top:0}.audio-credits p:last-child{margin-bottom:0}
+.detail-footer{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-top:22px;border-top:1px solid var(--line);padding-top:12px}.entry-sources{flex:1;min-width:0;font-size:11px;color:#718199}.entry-sources>summary{cursor:pointer;padding:9px 0}.source-body{line-height:1.75;padding:4px 0 8px}.source-body p{margin:0 0 9px;overflow-wrap:anywhere}.source-links{display:flex;flex-wrap:wrap;gap:9px 14px}.site-notes{margin-top:18px}.site-notes>summary{cursor:pointer;padding:10px 0;font-size:11px}.site-notes p{line-height:1.8}.detail-top h2{line-height:1.2}
 </style>
 </head>
 <body>
 <header class="hero"><div class="shell hero-inner">
- <div><div class="eyebrow">The etymology atlas · Vocabulary learning</div><h1>Word Roots & Derivatives</h1><p>从 Ancient Greek、Latin 到现代英语｜点击单词听发音、探索 IPA 与构词；有历史典故的词条另附故事。</p></div>
- <div class="hero-metrics"><div><strong id="metric-roots">238</strong><span>构词项</span></div><div><strong id="metric-words">507</strong><span>不同单词</span></div><div><strong id="metric-branches">8</strong><span>语义主题</span></div></div>
+ <div><div class="eyebrow">Etymology atlas</div><h1>Word Roots & Derivatives</h1><p>词根 · 词族 · 发音</p></div>
+ <div class="hero-metrics"><div><strong id="metric-roots">238</strong><span>词根</span></div><div><strong id="metric-words">507</strong><span>单词</span></div><div><strong id="metric-branches">8</strong><span>主题</span></div></div>
 </div></header>
 <div class="topbar"><div class="shell controls">
- <label class="search-box"><span class="sr-only">搜索词根、单词或历史故事</span><span class="search-icon" aria-hidden="true">⌕</span><input id="search" type="search" placeholder="搜索单词 / 词根 / IPA / 释义 / 故事线索…" autocomplete="off"></label>
+ <label class="search-box"><span class="sr-only">搜索词根、单词或历史故事</span><span class="search-icon" aria-hidden="true">⌕</span><input id="search" type="search" placeholder="搜索单词、词根或释义…" autocomplete="off"></label>
  <select id="origin-filter" aria-label="筛选词根语源"><option value="">所有语源</option><option value="古希腊语">Ancient Greek</option><option value="拉丁语">Latin</option><option value="法语">French</option><option value="古英语">Old English</option></select>
- <button class="control primary" id="expand-all">展开全部</button><button class="control" id="collapse-all">折叠全部</button><button class="control" id="clear-all">清除筛选</button>
+ <button class="control primary" id="expand-all" aria-label="展开全部">展开</button><button class="control" id="collapse-all" aria-label="折叠全部">折叠</button><button class="control" id="clear-all" aria-label="清除筛选">重置</button>
 </div></div>
-<div class="shell layout"><aside class="sidebar"><div class="side-label">BROWSE BY THEME</div><nav id="theme-nav" aria-label="主题分类"></nav><div class="side-note">本图重新按语义组织书中 Etymology Review 内容。一个词可出现在多个词根下。</div></aside>
- <main class="content"><div class="intro"><span class="intro-symbol" aria-hidden="true">ἀ</span><div><strong>Root → Source Language → Word Family</strong><p>语源指构词成分的主要早期来源，<em>不一定是英语整词的直接借入语言</em>。单词卡片标明 IPA 的词典来源或推定状态，并区分教学式构词与历史借入路径。</p></div></div><div id="mindmap" aria-live="polite"></div><div class="footnote"><p class="story-footnote"><b>历史故事：</b>仅保留 4 则与词义直接相关的历史典故，关联 8 个词条。传说另有标记；没有对应典故的词条不显示故事区。</p><p><b>资料来源：</b>Norman Lewis, <i>Word Power Made Easy</i>（用户上传版；节点上的 p. 指该 PDF 的相关词源复习页），Wiktionary、Cambridge Dictionary、Oxford Learner’s Dictionaries、Collins English Dictionary、Dictionary.com 与 Online Etymology Dictionary。发音按词条标注来源；未独立确认的形式明确标识。</p><p><b>2026-11-19 复核：</b>507 条词义与结构完整；459 条 IPA 已获词典直接来源或 Wiktionary 交叉核对（其中 27 条明显误读已更正）；69 条词源/词根说明已逐条核对；其余 48 条保留宽式转写并标注为未独立核验。</p><p><b>版权与数据说明：</b>中文词义与构词提示为本项目编写的教学简释；部分 IPA 来自 CMU Pronouncing Dictionary 的近似转写，并非 Wiktionary 的原始 IPA。构词提示不等同于英语整词的历史借入路径；少量疑难词附特别说明。</p></div></main>
+<div class="shell layout"><aside class="sidebar"><div class="side-label">主题</div><nav id="theme-nav" aria-label="主题分类"></nav></aside>
+ <main class="content"><div id="mindmap" aria-live="polite"></div><details class="footnote site-notes"><summary>资料与说明</summary><p class="story-footnote"><b>历史故事：</b>仅保留 4 则与词义直接相关的历史典故，关联 8 个词条。传说另有标记；没有对应典故的词条不显示故事区。</p><p><b>资料来源：</b>Norman Lewis, <i>Word Power Made Easy</i>（页码按上传版 PDF 页序计），Wiktionary、Cambridge Dictionary、Oxford Learner’s Dictionaries、Collins English Dictionary、Dictionary.com 与 Online Etymology Dictionary。发音按词条标注来源；未独立确认的形式明确标识。</p><p><b>2026-11-19 复核：</b>507 条词义与结构完整；459 条 IPA 已获词典直接来源或 Wiktionary 交叉核对（其中 27 条明显误读已更正）；69 条词源/词根说明已逐条核对；其余 48 条保留宽式转写并标注为未独立核验。</p><p><b>版权与数据说明：</b>中文词义与构词提示为本项目编写的教学简释；部分 IPA 来自 CMU Pronouncing Dictionary 的近似转写，并非 Wiktionary 的原始 IPA。构词提示不等同于英语整词的历史借入路径；少量疑难词附特别说明。</p></details></main>
 </div>
 <div class="hover-card" id="hover-card" role="tooltip" aria-hidden="true"></div>
-<div class="overlay" id="overlay" aria-hidden="true"><section class="detail" id="detail" role="dialog" aria-modal="true" aria-labelledby="detail-title" tabindex="-1"><div class="detail-top"><div><h2 id="detail-title"></h2><div class="sub">Word family · Etymology record</div></div><button class="close" id="close-modal" aria-label="关闭词条">×</button></div><div class="detail-body" id="detail-body"></div></section></div>
+<div class="overlay" id="overlay" aria-hidden="true"><section class="detail" id="detail" role="dialog" aria-modal="true" aria-labelledby="detail-title" tabindex="-1"><div class="detail-top"><div><h2 id="detail-title"></h2></div><button class="close" id="close-modal" aria-label="关闭词条">×</button></div><div class="detail-body" id="detail-body"></div></section></div>
 <script id="word-data" type="application/json">{
   "metadata": {
     "title": "Word Power Made Easy · Etymology Atlas",
@@ -29862,7 +29867,7 @@ function render(){hideHover();root.replaceChildren();nav.replaceChildren();let f
   const n=document.createElement('button');n.className='navbtn';n.type='button';n.innerHTML=`<span>${esc(g.name)}</span><small>${selected.length}</small>`;n.onclick=()=>{const target=$('group-'+gi);if(target.classList.contains('collapsed'))target.classList.remove('collapsed');target.scrollIntoView({behavior:'smooth',block:'start'});n.classList.add('active')};nav.append(n);
   const sect=document.createElement('section');sect.className='cat'+(!query&&!allExpanded&&gi!==0?' collapsed':'');sect.id='group-'+gi;
   const head=document.createElement('button');head.className='cat-head';head.type='button';head.setAttribute('aria-expanded',!sect.classList.contains('collapsed'));
-  head.innerHTML=`<span><strong>${esc(g.name)}</strong><small>Group ${String(gi+1).padStart(2,'0')} · Semantic cluster</small></span><span class="count">${selected.length} 个词根　<span class="chev">⌄</span></span>`;
+  head.innerHTML=`<span><strong>${esc(g.name)}</strong></span><span class="count">${selected.length} 个词根　<span class="chev">⌄</span></span>`;
   head.addEventListener('click',()=>{sect.classList.toggle('collapsed');head.setAttribute('aria-expanded',String(!sect.classList.contains('collapsed')))});sect.append(head);
   const body=document.createElement('div');body.className='cat-body';
   for(const r of selected){
@@ -29872,31 +29877,30 @@ function render(){hideHover();root.replaceChildren();nav.replaceChildren();let f
    const orig=document.createElement('span');orig.className='origin '+langClass(r.lang);orig.textContent=langName(r.lang);orig.title='主要早期语源，不必然是借入英语的直接语言';h.append(orig);
    const m=document.createElement('span');m.className='root-zh';m.textContent=r.zh;h.append(m);
    if(r.original&&r.original!==r.term){const script=document.createElement('span');script.className='root-script';script.textContent=r.original;h.append(script)}
-   if(r.book_page){const page=document.createElement('span');page.className='root-pages';page.textContent='Book p. '+r.book_page;h.append(page)}
    const words=document.createElement('div');words.className='branch-words';
    for(const w of r.matchedWords){const item=document.createElement('button');item.type='button';item.className='word-chip'+(query&&key(w).includes(key(query))?' hassearch':'');item.dataset.word=w;item.title=w+'：悬停预览，点击查看详情';item.textContent=w;words.append(item)}
    br.append(h,words);body.append(br);
   }
   sect.append(body);root.append(sect);
  }
- if(!found)root.innerHTML='<div class="empty">没有匹配的词根或单词。可调整搜索内容或语源筛选。</div>';
+ if(!found)root.innerHTML='<div class="empty">没有匹配结果，试试其他关键词。</div>';
 }
 const storyKinds={narrative:'历史故事'};
 function pageLabel(pages){const spans=[];for(const p of [...new Set(pages)].sort((a,b)=>a-b)){const tail=spans.at(-1);if(tail&&tail[1]+1===p)tail[1]=p;else spans.push([p,p])}return spans.map(([a,b])=>a===b?String(a):a+'–'+b).join('、')}
 function storyHTML(x){const ref=x.book_story,story=data.book_stories?.[ref?.story_id];if(ref?.kind!=='narrative'||!story||!['historical','legend'].includes(story.historical_status))return '';
  const related=story.related_words.filter(w=>w!==x.word&&lex[w]);
- return `<section class="book-story" aria-label="历史故事"><div class="story-top"><span class="story-kicker">HISTORY · 历史故事</span><span class="story-kind">${story.historical_status==='legend'?'历史轶事 · 传说':'历史背景'}</span></div><h3>${esc(story.title)}</h3><p class="story-text">${esc(story.summary)}</p><p class="story-source">Norman Lewis · Word Power Made Easy<br>书内出处：PDF 第 ${esc(pageLabel(story.source_pages))} 页</p>${related.length?`<div class="story-related" aria-label="同一典故的关联词">${related.map(w=>`<button type="button" class="story-word" data-word="${esc(w)}" aria-label="查看关联词 ${esc(w)}">${esc(w)}</button>`).join('')}</div>`:''}<details class="story-evidence"><summary>查看出处说明</summary><p>当前词形出现于 PDF 第 ${esc(pageLabel(ref.mention_pages))} 页。页码按上传版 PDF 从第 1 页起计，非纸书页码。</p>${(story.historical_sources||[]).map(s=>`<a class="secondary-link" href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">史料与参考：${esc(s.label)} ↗</a>`).join('')}</details></section>`;
+ return `<section class="book-story" aria-label="历史故事"><div class="story-top"><span class="story-kicker">历史故事</span>${story.historical_status==='legend'?'<span class="story-kind">传说</span>':''}</div><h3>${esc(story.title)}</h3><p class="story-text">${esc(story.summary)}</p>${related.length?`<div class="story-related" aria-label="同一典故的关联词">${related.map(w=>`<button type="button" class="story-word" data-word="${esc(w)}" aria-label="查看关联词 ${esc(w)}">${esc(w)}</button>`).join('')}</div>`:''}<details class="story-evidence"><summary>出处</summary><p>Norman Lewis · Word Power Made Easy<br>PDF 第 ${esc(pageLabel(story.source_pages))} 页；当前词形见第 ${esc(pageLabel(ref.mention_pages))} 页。页码按上传版 PDF 页序计。</p>${(story.historical_sources||[]).map(s=>`<a class="secondary-link" href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">${esc(s.label)} ↗</a>`).join('')}</details></section>`;
 }
 function storyCopy(x){const ref=x.book_story,story=data.book_stories?.[ref?.story_id];return ref?.kind==='narrative'&&story&&['historical','legend'].includes(story.historical_status)?[storyKinds[ref.kind],story.title,story.summary,'Word Power Made Easy · PDF '+pageLabel(story.source_pages)]:[]}
-function analysisHTML(x){if(x.components.length){return `<div class="morphemes">${x.components.map((p,i)=>(i?'<span class="plus">+</span>':'')+`<span class="morph"><b>${esc(p.form)}</b><span>${esc(p.zh)}</span></span>`).join('')}</div>`}return '<div class="data-source">此词尚未完成逐成分的可靠拆解；下面仅列出本书中关联的构词项。</div>'}
-const audioLabels={US:'美音',GA:'美音',GenAm:'美音','General American':'美音','United States':'美音',UK:'英音',RP:'英音','Received Pronunciation':'英音','Southern England':'英音 · 英格兰南部',AU:'澳音',English:'英语原声','-':'英语原声'};
+function analysisHTML(x){if(x.components.length){return `<div class="morphemes">${x.components.map((p,i)=>(i?'<span class="plus">+</span>':'')+`<span class="morph"><b>${esc(p.form)}</b><span>${esc(p.zh)}</span></span>`).join('')}</div>`}return '<div class="data-source">暂无可靠拆分</div>'}
+const audioLabels={US:'美音',GA:'美音',GenAm:'美音','General American':'美音','United States':'美音',UK:'英音',RP:'英音','Received Pronunciation':'英音','Southern England':'英音','California':'美音','Texas':'美音','Southern California':'美音','Berkshire,SSB':'英音','Mid-Atlantic US':'美音','Connecticut':'美音','Queensland':'澳音','New Jersey':'美音','Midwestern US':'美音','Northern California':'美音','Canada':'加音','Maryland':'美音','London':'英音','Multicultural British English':'英音','New Mexico':'美音','Southern California with California Vowel Shift':'美音',AU:'澳音',English:'英语原声','-':'英语原声'};
 let audioSession=0, activePronunciation=null;
 function pronunciationHTML(x){const samples=x.pronunciation_audio||[], us=x.american_pronunciation;
  const mainIndex=us.kind==='recording'?us.recording_index:-1;
  const primary=`<button type="button" id="play-american" class="control audio-play primary" ${mainIndex>=0?`data-recording="${mainIndex}"`:'data-us-synthetic'} aria-pressed="false" aria-label="播放 ${esc(x.word)} 的美式英语${mainIndex>=0?'真人录音':'合成发音'}">▶ 美音${mainIndex>=0?'':' · 合成'}</button>`;
- const extra=samples.map((s,i)=>i===mainIndex?'':`<button type="button" class="control audio-play" data-recording="${i}" aria-pressed="false" aria-label="播放 ${esc(x.word)} 的 ${esc(audioLabels[s.accent]||s.accent)} 录音 ${i+1}">▶ ${esc(audioLabels[s.accent]||s.accent)}${samples.filter(t=>t.accent===s.accent).length>1?' '+(i+1):''}</button>`).join('');
+ const extra=samples.map((s,i)=>i===mainIndex?'':`<button type="button" class="control audio-play" data-recording="${i}" aria-pressed="false" title="${esc(s.accent)}" aria-label="播放 ${esc(x.word)} 的 ${esc(s.accent)} 录音 ${i+1}">▶ ${esc(audioLabels[s.accent]||s.accent)}${samples.filter(t=>(audioLabels[t.accent]||t.accent)===(audioLabels[s.accent]||s.accent)).length>1?' '+(i+1):''}</button>`).join('');
  const syntheticCredit=us.kind==='synthetic'?'<p>美音：CMU Flite · cmu_us_slt（美国英语合成语音，非真人录音）。<a href="./audio/README.md" target="_blank" rel="noopener noreferrer">来源与说明 ↗</a></p>':'';
- return `<section class="pronunciation" aria-label="单词发音"><div class="audio-actions">${primary}${extra}<button type="button" class="control" id="speak-word" aria-pressed="false" aria-label="用美式英语合成语音朗读 ${esc(x.word)}">🔊 浏览器美音</button><button type="button" class="control" id="stop-pronunciation" hidden>停止</button><a class="secondary-link" href="${esc(x.wiktionary_url)}#English" target="_blank" rel="noopener noreferrer">词典发音页 ↗</a></div><p id="audio-status" class="audio-status" role="status" aria-live="polite">${mainIndex>=0?'美音：Wiktionary / Wikimedia Commons 真人录音。':'美音：站内美国英语合成音频（非真人录音）。'}${samples.length&&mainIndex<0?'其他口音为真人录音。':''}</p><details class="audio-credits"><summary>发音来源与授权</summary>${syntheticCredit}${samples.map(s=>`<p><a href="${esc(s.file_url)}" target="_blank" rel="noopener noreferrer">${esc(s.accent)} · ${esc(s.artist)}</a> · ${s.license_url?`<a href="${esc(s.license_url)}" target="_blank" rel="noopener noreferrer">${esc(s.license)}</a>`:esc(s.license)} · 原始录音，未修改</p>`).join('')}</details></section>`;
+ return `<section class="pronunciation" aria-label="单词发音"><div class="audio-actions">${primary}${extra}<button type="button" class="control" id="stop-pronunciation" hidden>停止</button><details class="audio-more"><summary>更多</summary><div class="audio-options"><button type="button" class="control" id="speak-word" aria-pressed="false" aria-label="用美式英语合成语音朗读 ${esc(x.word)}">浏览器美音</button><a class="secondary-link" href="${esc(x.wiktionary_url)}#English" target="_blank" rel="noopener noreferrer">词典发音 ↗</a></div><div class="audio-credits">${syntheticCredit}${samples.map(s=>`<p><a href="${esc(s.file_url)}" target="_blank" rel="noopener noreferrer">${esc(s.accent)} · ${esc(s.artist)}</a> · ${s.license_url?`<a href="${esc(s.license_url)}" target="_blank" rel="noopener noreferrer">${esc(s.license)}</a>`:esc(s.license)} · 未修改</p>`).join('')}</div></details></div><p id="audio-status" class="audio-status" role="status" aria-live="polite"></p></section>`;
 }
 function stopPronunciation(){audioSession++;if(activePronunciation){activePronunciation();activePronunciation=null}}
 function bindPronunciation(x){const status=$('audio-status'), stop=$('stop-pronunciation');
@@ -29904,13 +29908,13 @@ function bindPronunciation(x){const status=$('audio-status'), stop=$('stop-pronu
   button.setAttribute('aria-pressed','true');stop.hidden=false;
   activePronunciation=()=>{cleanup();button.setAttribute('aria-pressed','false');stop.hidden=true};
   return {cleanup:fn=>{cleanup=fn},message:text=>{if(id===audioSession)status.textContent=text},
-   finish:text=>{if(id===audioSession){stopPronunciation();status.textContent=text}}};
+   finish:(text,reveal=false)=>{if(id===audioSession){stopPronunciation();status.textContent=text;if(reveal)detail.querySelector('.audio-more').open=true}}};
  }
  stop.onclick=()=>{stopPronunciation();status.textContent='已停止播放。'};
  function playAudio(sample,button,synthetic=false){if(!sample)return;
   const state=session(button), audio=new Audio();let timer;
   state.cleanup(()=>{clearTimeout(timer);audio.onplaying=null;audio.onended=null;audio.onerror=null;audio.pause();audio.removeAttribute('src');audio.load()});
-  const fail=()=>state.finish((synthetic?'美音':'录音')+'暂时无法播放，请点「浏览器美音」或打开词典发音页。');
+  const fail=()=>state.finish((synthetic?'美音':'录音')+'暂时无法播放，请选择下方备用发音。',true);
   audio.preload='none';audio.src=sample.url;
   audio.onplaying=()=>{clearTimeout(timer);state.message(synthetic?'正在播放美音 · 合成语音（非真人录音）':'正在播放真人录音 · '+(audioLabels[sample.accent]||sample.accent))};
   audio.onended=()=>state.finish(synthetic?'美音合成发音播放完毕。':'真人录音播放完毕。');audio.onerror=fail;
@@ -29938,17 +29942,16 @@ function bindPronunciation(x){const status=$('audio-status'), stop=$('stop-pronu
 }
 window.addEventListener('pagehide',stopPronunciation);
 document.addEventListener('visibilitychange',()=>{if(document.hidden){stopPronunciation();const status=$('audio-status');if(status)status.textContent='播放已停止。'}});
-function hoverHTML(x){let comps=x.components.length?x.components.map(p=>p.form).join(' + '):x.roots.map(x=>x.term).slice(0,3).join(' · ');return `<strong>${esc(x.word)}</strong><div class="pron">${esc(x.ipa||'IPA 暂缺')}</div><div class="def">${esc(x.zh)}</div><div class="compo">${x.components.length?'构词：':'关联词根：'}${esc(comps)}</div><div class="hover-tip">点击可播放发音、查看语源与出处；有历史典故的词条另附故事</div>`}
+function hoverHTML(x){let comps=x.components.length?x.components.map(p=>p.form).join(' + '):x.roots.map(x=>x.term).slice(0,3).join(' · ');return `<strong>${esc(x.word)}</strong><div class="pron">${esc(x.ipa||'IPA 暂缺')}</div><div class="def">${esc(x.zh)}</div><div class="compo">${x.components.length?'构词：':'关联词根：'}${esc(comps)}</div>`}
 function showHover(el){if(!el||window.matchMedia('(max-width:560px)').matches)return;const x=lex[el.dataset.word];if(!x)return;hover.innerHTML=hoverHTML(x);hover.classList.add('show');hover.setAttribute('aria-hidden','false');let box=el.getBoundingClientRect(),w=330,h=hover.offsetHeight;let xx=Math.min(window.innerWidth-w-15,Math.max(15,box.left));let yy=box.bottom+9;if(yy+h>window.innerHeight-12)yy=Math.max(12,box.top-h-9);hover.style.left=xx+'px';hover.style.top=yy+'px'}
 function hideHover(){clearTimeout(hoverTimer);hover.classList.remove('show');hover.setAttribute('aria-hidden','true')}
 function openWord(word){const x=lex[word];if(!x)return;stopPronunciation();hideHover();activeWord=x.word;if(!overlay.classList.contains('visible'))lastFocus=document.activeElement;
  $('detail-title').textContent=x.word;
- $('detail-body').innerHTML=`<div class="definition">${esc(x.zh)}</div><div class="ipa">${esc(x.ipa||'IPA：暂无已核对记录')}</div><div class="data-source">音标来源：${esc(x.ipa_source)}</div>${pronunciationHTML(x)}
- ${storyHTML(x)}<div class="info-label">Word formation · 构词解析</div>${analysisHTML(x)}<div class="data-source">${esc(x.component_status)}</div>
- <div class="info-label">Roots & source languages · 相关词根</div><div class="root-hints">${x.roots.map(r=>`<span class="hint-item"><b>${esc(r.term)}</b> · ${esc(r.zh)} · ${esc(langName(r.lang))}</span>`).join('')}</div>
+ $('detail-body').innerHTML=`<div class="definition">${esc(x.zh)}</div><div class="ipa-line"><div class="ipa">${esc(x.ipa||'暂无音标')}</div>${/近似|未.*核验|未找到|推定/.test(x.ipa_source)?'<span class="ipa-note">近似音标</span>':''}</div>${pronunciationHTML(x)}
+ ${storyHTML(x)}<div class="info-label">构词</div>${analysisHTML(x)}
+ <div class="info-label">词根</div><div class="root-hints">${x.roots.map(r=>`<span class="hint-item"><b>${esc(r.term)}</b> · ${esc(r.zh)} · ${esc(langName(r.lang))}</span>`).join('')}</div>
  ${x.origin_note?`<div class="detail-note">${esc(x.origin_note)}</div>`:''}
- <div class="info-label">Evidence · 资料来源</div><div class="status">${esc(x.source_status)}</div><div class="status">原书相关词根复习页（上传 PDF 页序）：${x.book_pages.length?x.book_pages.map(p=>'p. '+p).join(' · '):'未索引到页码'}</div>
- <div class="detail-links"><a class="link-out" href="${esc(x.wiktionary_url)}" target="_blank" rel="noopener noreferrer">打开 Wiktionary 词条 ↗</a>${x.ipa_url&&x.ipa_url!==x.wiktionary_url?`<a class="link-out" href="${esc(x.ipa_url)}" target="_blank" rel="noopener noreferrer">发音词典 ↗</a>`:''}<button class="control" type="button" id="copy-link">复制单词信息</button></div>`;
+ <div class="detail-footer"><details class="entry-sources"><summary>资料来源</summary><div class="source-body"><p><b>音标：</b>${esc(x.ipa_source)}</p><p><b>构词：</b>${esc(x.component_status)}</p><p>${esc(x.source_status)}<br>原书 PDF：${x.book_pages.length?x.book_pages.map(p=>'p. '+p).join(' · '):'暂无页码'}</p><div class="source-links"><a href="${esc(x.wiktionary_url)}" target="_blank" rel="noopener noreferrer">Wiktionary ↗</a>${x.ipa_url&&x.ipa_url!==x.wiktionary_url?`<a href="${esc(x.ipa_url)}" target="_blank" rel="noopener noreferrer">发音词典 ↗</a>`:''}</div></div></details><button class="control" type="button" id="copy-link" aria-label="复制单词信息">复制</button></div>`;
  overlay.classList.add('visible');overlay.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';detail.scrollTop=0;detail.focus();
  const url=new URL(location.href);url.searchParams.set('word',x.word);history.replaceState(null,'',url);
  detail.querySelectorAll('.story-word').forEach(b=>b.addEventListener('click',()=>openWord(b.dataset.word)));

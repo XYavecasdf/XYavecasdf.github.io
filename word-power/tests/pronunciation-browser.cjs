@@ -16,6 +16,12 @@ async function open(page, word) {
   await page.locator('.word-chip').filter({hasText: new RegExp('^' + word + '$')}).first().click();
 }
 
+async function audioOptions(page) {
+  if (await page.locator('.audio-more').getAttribute('open') === null) {
+    await page.locator('.audio-more > summary').click();
+  }
+}
+
 (async () => {
   const browser = await chromium.launch({executablePath: process.env.CHROME_BIN || '/usr/bin/chromium',
     headless: true, args: ['--no-sandbox']});
@@ -32,7 +38,11 @@ async function open(page, word) {
       window.Audio = function (...args) {const audio = new NativeAudio(...args); window.__media.push(audio); return audio};
     });
     await page.goto(base + '?word=laconic', {waitUntil: 'networkidle'});
-    await page.locator('#speak-word').waitFor();
+    await page.locator('#speak-word').waitFor({state: 'attached'});
+    assert.equal(await page.locator('.audio-more').getAttribute('open'), null);
+    assert.equal(await page.locator('.entry-sources').getAttribute('open'), null);
+    assert.equal(await page.locator('#audio-status').textContent(), '');
+    assert.equal(await page.locator('#play-american').isVisible(), true);
     assert.equal(mediaRequests.length, 0, 'No audio is requested before a playback click');
     const playback = [];
     for (const word of ['laconic', 'proscribe', 'alter ego']) {
@@ -71,6 +81,7 @@ async function open(page, word) {
     await page.route('https://upload.wikimedia.org/**', r => r.abort());
     await page.locator('[data-recording="0"]').click();
     await page.getByRole('status').filter({hasText: '录音暂时无法播放'}).waitFor();
+    assert.notEqual(await page.locator('.audio-more').getAttribute('open'), null, 'Failure reveals backup controls');
     assert.equal(await page.locator('#speak-word').isEnabled(), true);
     const americanPlayback = [];
     for (const word of ['proscribe', 'laconicism', 'zoology']) {
@@ -93,6 +104,7 @@ async function open(page, word) {
     });
     await open(page, 'laconicism');
     assert.equal(await page.locator('[data-recording]').count(), 0);
+    await audioOptions(page);
     await page.locator('#speak-word').click();
     assert.equal(await page.evaluate(() => window.__spoken.at(-1).text), 'laconicism');
     assert.equal(await page.evaluate(() => window.__spoken.at(-1).lang), 'en-US');
@@ -104,6 +116,7 @@ async function open(page, word) {
     await page.locator('#close-modal').click();
     assert.ok(await page.evaluate(() => window.__cancelled) > cancelledBeforeClose);
     await open(page, 'laconicism');
+    await audioOptions(page);
     const spoken = await page.evaluate(() => window.__spoken.length);
     for (const lang of ['en-GB', 'en-AU', 'zh-CN']) {
       await page.evaluate(lang => {window.speechSynthesis.getVoices = () => [{lang}]}, lang);
