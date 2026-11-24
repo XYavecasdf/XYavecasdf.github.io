@@ -162,6 +162,24 @@ try {
     }, 120));
   })()`);
 
+  const storyPanels = await evaluate(`(() => {
+    const results = [];
+    const search = document.getElementById('search');
+    for (const word of ['laconic', 'proscribe', 'stoic', 'omnipotent',
+                        'describe', 'prescribe', 'omnipresent', 'diaphanous',
+                        'anonymous', 'bilingual', 'egoist']) {
+      document.getElementById('close-modal')?.click();
+      search.value = word;
+      search.dispatchEvent(new Event('input', {bubbles: true}));
+      document.querySelector('button.word-chip[data-word="' + word + '"]').click();
+      const panel = document.querySelector('#detail-body .book-story');
+      results.push({word, title: document.getElementById('detail-title').textContent,
+        story: !!panel, text: panel?.textContent || '',
+        references: panel?.querySelectorAll('a.secondary-link').length || 0});
+    }
+    return results;
+  })()`);
+
   const filter = await evaluate(`(() => {
     document.getElementById('close-modal')?.click();
     const input = document.getElementById('search');
@@ -189,8 +207,15 @@ try {
     chips: document.querySelectorAll('button.word-chip').length
   }))()`);
 
-  const results = { initial, search, detail, detail2, filter, mobile };
+  const results = { initial, search, detail, detail2, storyPanels, filter, mobile };
   const failures = [];
+  for (const panel of storyPanels) {
+    const expected = ['laconic', 'proscribe', 'stoic', 'omnipotent'].includes(panel.word);
+    if (panel.title !== panel.word || panel.story !== expected) failures.push('story visibility: ' + panel.word);
+    if (expected && (!panel.text.includes('历史故事') || !panel.references)) failures.push('story content: ' + panel.word);
+    if (['laconic', 'omnipotent'].includes(panel.word) && !panel.text.includes('传说')) failures.push('legend label: ' + panel.word);
+    if (/作者|书中用例|构词练习/.test(panel.text)) failures.push('non-historical story text: ' + panel.word);
+  }
   if (initial.metrics.join(',') !== '238,507,8') failures.push(`metrics ${initial.metrics}`);
   if (initial.chips !== 679) failures.push(`initial chips ${initial.chips} != 679`);
   if (initial.branches !== 243) failures.push(`initial branches ${initial.branches} != 243`);

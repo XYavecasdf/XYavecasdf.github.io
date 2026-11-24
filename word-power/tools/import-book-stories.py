@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
-"""Attach reviewed Chinese book summaries without publishing the source PDF.
+"""Attach curated historical anecdotes without publishing the source PDF.
 
 Usage: python tools/import-book-stories.py /path/to/source.pdf
 Requires pdftotext. Page numbers are physical, one-based PDF page numbers.
-Editorial source: book-stories.tsv (word keys, page ranges, title, summary).
+Editorial source: book-stories.tsv (words, pages, title, narrative, status,
+reference label, reference URL). Entries without a historical anecdote have
+no book_story field. Never fill gaps with explanations or invented scenes.
 """
 import argparse
 from collections import Counter
@@ -14,9 +16,6 @@ import re
 import subprocess
 
 ROOT = Path(__file__).resolve().parents[1]
-CONTEXT = set('anonymous compunction concur confidence operation vocabulary virile assimilate consequence posthumous infant reverse dissection exuberant kindness physician appendicitis similarity dissimilar'.split())
-EXERCISE = set('anthropoid anthropomorphic anthropophobia democracy egomania bilingual bibliomania sophisticated international universe survive symphony telescope monarchy'.split())
-NARRATIVE = set('laconic laconism laconicism proscribe prescribe describe script manuscript postscript sycophant diaphanous stoic stoical stoicism omnipotent omnipresent'.split())
 
 def page_range(text):
     pages = []
@@ -32,22 +31,25 @@ def attach(pdf):
     if not pages[-1].strip():
         pages.pop()
     editorial = (ROOT / 'tools/book-stories.tsv').read_text()
+    for entry in data['lexicon'].values():
+        entry.pop('book_story', None)
     stories, assigned = {}, set()
     for number, line in enumerate(editorial.splitlines(), 1):
-        words, source, title, summary = line.split('\t')
+        words, source, title, summary, status, label, url = line.split('\t')
         words, source = words.split('|'), page_range(source)
         assert all(1 <= p <= len(pages) for p in source), (number, source)
-        sid = f'book-{number:03d}'
-        stories[sid] = dict(title=title, summary=summary, source_pages=source, related_words=words)
+        sid = f'history-{number:03d}'
+        assert status in {'historical', 'legend'}, status
+        stories[sid] = dict(title=title, summary=summary, source_pages=source,
+                            related_words=words, historical_status=status,
+                            historical_sources=[dict(label=label, url=url)])
         for word in words:
             assert word in data['lexicon'] and word not in assigned, word
             assigned.add(word)
             pattern = re.compile(r'(?<![A-Za-z])' + re.escape(word) + r'(?![A-Za-z])', re.I)
             evidence = [p for p in source if pattern.search(pages[p-1])]
             assert evidence, f'{word}: no literal occurrence on source pages'
-            kind = 'context' if word in CONTEXT else 'exercise' if word in EXERCISE else 'narrative' if word in NARRATIVE else 'explanation'
-            data['lexicon'][word]['book_story'] = dict(story_id=sid, kind=kind, mention_pages=evidence)
-    assert assigned == set(data['lexicon']), sorted(set(data['lexicon']) - assigned)
+            data['lexicon'][word]['book_story'] = dict(story_id=sid, kind='narrative', mention_pages=evidence)
     data['book_stories'] = stories
     version = hashlib.sha256(editorial.encode()).hexdigest()[:12]
     data['metadata']['book_stories_version'] = version
@@ -55,14 +57,9 @@ def attach(pdf):
         source_title='Word Power Made Easy', author='Norman Lewis', pdf_pages=len(pages),
         source_sha256=hashlib.sha256(pdf.read_bytes()).hexdigest(),
         page_basis='Physical PDF page, one-based; uploaded edition, not print page numbers.',
-        date='2026-11-19', word_count=len(assigned), summary_count=len(stories),
-        kinds=dict(Counter(x['book_story']['kind'] for x in data['lexicon'].values())),
-        note='中文整理；同词族可共享原书讲解。单独标记故事、词源讲解、构词练习与书中用例。未公开上传原书。')
-    # These links substantiate editorial corrections, separately from the book.
-    for word, label, url in [
-        ('alma mater', 'American Heritage · alma mater', 'https://www.ahdictionary.com/word/search.html?q=alma+mater'),
-        ('sycophant', 'Etymonline · sycophant', 'https://www.etymonline.com/word/sycophant')]:
-        data['lexicon'][word]['book_story']['editorial_sources'] = [dict(label=label, url=url)]
+        date='2026-11-24', word_count=len(assigned), summary_count=len(stories),
+        kinds=dict(Counter(x['book_story']['kind'] for x in data['lexicon'].values() if 'book_story' in x)),
+        note='仅保留直接相关的历史故事；传说单独标明。没有历史典故的词条不显示故事区。')
     encoded = json.dumps(data, ensure_ascii=False, indent=2) + '\n'
     (ROOT / 'lexicon.json').write_text(encoded)
     html = (ROOT / 'index.html').read_text()

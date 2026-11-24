@@ -5,7 +5,7 @@ This directory contains the deterministic validation and audit tooling for
 
 ## Data contract
 
-`lexicon.json` has three top-level keys:
+`lexicon.json` has four top-level keys:
 
 - `metadata`: editorial counts and notes. `roots` is the number of **unique**
   root terms; `word_instances` is the number of root-to-word links.
@@ -15,6 +15,16 @@ This directory contains the deterministic validation and audit tooling for
   (`word`, `zh`, `ipa`, `ipa_source`, `components`, `component_status`,
   `roots`, `book_pages`, `wiktionary_url`, `source_status`, `origin_note`,
   optional `ipa_url`). New optional fields are ignored by the page.
+- `book_stories`: four historical anecdotes, linked only to eight directly
+  related entries through the optional `book_story` field. General etymology
+  explanations, exercises, invented examples, and disputed etymological origin
+  tales are excluded. Legends are explicitly labelled and references retained.
+  `metadata.book_stories.word_count` counts linked entries, not the full lexicon.
+
+`tools/book-stories.tsv` is the curated source: words, PDF page ranges, title,
+Chinese narrative, historical status, reference label, reference URL (tab-separated).
+The importer requires the original private PDF to verify literal word occurrences.
+Do not restore a story to every word or copy an anecdote to unrelated root siblings.
 
 `index.html` embeds the same object in
 `<script id="word-data" type="application/json">` as an offline fallback.

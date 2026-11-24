@@ -14,6 +14,11 @@ const context = vm.createContext({data, lex: data.lexicon, esc});
 vm.runInContext(renderer + '\nthis.renderStory=storyHTML;this.copyStory=storyCopy;this.pages=pageLabel;', context);
 for (const [word, entry] of Object.entries(data.lexicon)) {
   const output = context.renderStory(entry);
+  if (!entry.book_story) {
+    assert.equal(output, '', word);
+    assert.equal(context.copyStory(entry).length, 0, word);
+    continue;
+  }
   const story = data.book_stories[entry.book_story.story_id];
   assert.ok(output.includes(esc(story.title)), word);
   assert.ok(output.includes(esc(story.summary)), word);
@@ -23,6 +28,11 @@ for (const [word, entry] of Object.entries(data.lexicon)) {
   assert.equal((output.match(/class="story-word"/g) || []).length, story.related_words.length - 1, word);
 }
 assert.equal(context.renderStory({word:'unknown'}), '');
+for (const kind of ['explanation', 'context', 'exercise']) {
+  const stale = {...data.lexicon.laconic, book_story: {...data.lexicon.laconic.book_story, kind}};
+  assert.equal(context.renderStory(stale), '', kind);
+  assert.equal(context.copyStory(stale).length, 0, kind);
+}
 assert.equal(context.pages([3,1,2,7,7]), '1–3、7');
 const fixture = data.book_stories[data.lexicon.laconic.book_story.story_id];
 const original = fixture.summary;
@@ -31,4 +41,4 @@ const escaped = context.renderStory(data.lexicon.laconic);
 assert.ok(escaped.includes('&lt;img'));
 assert.ok(!escaped.includes('<img'));
 fixture.summary = original;
-console.log('PASS: all 507 story panels, related links, copy text, escaping and application syntax');
+console.log('PASS: historical stories only, empty panels/copy omitted on other entries, stale types rejected, escaping and application syntax');
