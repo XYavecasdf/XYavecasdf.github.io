@@ -17,6 +17,16 @@ assert.equal(model.nodes.get('origin:地名:egypt').kind,'place');
 assert.equal(model.nodes.get('origin:人名:boycott').kind,'person');
 assert.equal(M.search(model,'philanthropy')[0].id,'word:philanthropy');
 assert.ok(M.search(model,'慈善').some(n=>n.id==='word:philanthropy'));
+const full=M.fullGraph(model);
+assert.equal(full.nodes.length,model.nodes.size);
+assert.deepEqual(new Set(full.nodes.map(n=>n.id)),new Set(model.nodes.keys()),'Full graph must contain every word and origin');
+assert.deepEqual(full.edges,model.edges,'Full graph must retain every recorded edge');
+assert.equal(full.components.flat().length,model.nodes.size);
+assert.equal(new Set(full.components.flat()).size,model.nodes.size);
+for(const e of full.edges)assert.equal(full.nodes.find(n=>n.id===e.source).component,full.nodes.find(n=>n.id===e.target).component,'Connected-component layout may not split an edge');
+full.nodes[0].label='mutated';full.edges[0].source={id:'layout mutation'};
+assert.equal(model.nodes.get('word:egoist').label,'egoist');
+assert.equal(typeof model.edges[0].source,'string','Force layout must not mutate source edges');
 for (const word of Object.keys(data.lexicon)) assert.ok(M.neighborhood(model,M.wordId(word)).snapshot().nodes.length>1,word);
 
 // Future high-degree roots must retain a visible, bounded expansion path.

@@ -17,9 +17,10 @@
     const places = geography.places, placesById = new Map(places.map(p => [p.id, p]));
     const byWord = new Map(places.map(p => [p.word, p]));
     const nodesByLabel = new Map([...model.nodes.values()].filter(n => n.kind === 'word').map(n => [M.norm(n.word), n.id]));
-    let state = {view:'map', place:'quanzhou', focus:M.wordId('philanthropy')};
-    let selected = state.focus, graph = null, simulation = null, zoom = null, svg = null;
+    let state = {view:'network', place:'quanzhou', focus:'', scope:'all'};
+    let selected = null, graph = null, simulation = null, zoom = null, svg = null;
     let width = 0, height = 0, mapTransform = null, graphTransform = null, active = false;
+    let globalLayout=null,globalView=null,globalTransform=null,wide=false;
     const positions = new Map();
     host.innerHTML = `
       <div class="explore-toolbar">
@@ -37,11 +38,14 @@
       </div>
       <div class="explore-body" id="explore-panel" role="tabpanel" aria-labelledby="tab-map">
         <section class="explore-viz" aria-label="探索画布">
-          <div class="viz-caption"><strong id="viz-title"></strong><span id="viz-count"></span></div>
+          <div class="viz-caption"><div class="viz-heading"><strong id="viz-title"></strong><span id="viz-count"></span></div>
+            <div class="network-tools" id="network-tools" hidden><div class="network-scope" role="group" aria-label="关系网范围"><button type="button" id="network-all" aria-pressed="true">全图</button><button type="button" id="network-local" aria-pressed="false">局部</button></div><button type="button" class="network-wide" id="network-wide" aria-label="全屏查看关系网" aria-pressed="false">⛶</button></div>
+          </div>
           <div class="explore-canvas" id="explore-canvas"></div>
           <div class="canvas-controls" aria-label="画布控制">
             <button type="button" id="explore-zoom-in" aria-label="放大">+</button>
             <button type="button" id="explore-zoom-out" aria-label="缩小">−</button>
+            <button type="button" id="network-locate" aria-label="定位所选节点" hidden>◎</button>
             <button type="button" id="explore-reset" aria-label="重置当前视图">重置</button>
           </div>
           <div class="viz-legend" id="viz-legend"></div>
@@ -50,7 +54,8 @@
       </div>
       <p class="explore-status" id="explore-status" role="status" aria-live="polite"></p>
       <details class="explore-footer"><summary>资料与操作</summary>
-        <p>拖动画布平移，双指或滚轮缩放。键盘聚焦画布后可用方向键平移、+ / − 缩放、0 重置；节点可用 Tab 与 Enter 选择。</p>
+        <p>拖动画布平移，双指或滚轮缩放。全图包含全部单词；放大逐步显示词名，悬停高亮相连节点，双击单词打开词条。搜索可以定位任一单词或词根。</p>
+        <p>键盘聚焦画布后可用方向键平移、+ / − 缩放、0 全览；Enter 选择节点，也可用搜索和右侧关联按钮浏览。全屏时按 Escape 返回。</p>
         <p>关系仅来自词库已收录的词根关联；人名、地名分别标记，不视为可自由拼接的词根。地点使用城市级参照位置，不表示具体发明地点或传播路线。埃及区域表示旧称中的历史误认。</p>
         <p>底图：${link('https://www.naturalearthdata.com/about/terms-of-use/', 'Natural Earth · 公有领域')} · 当代地理参照。坐标：Wikidata；词源与原书故事见词条。${link('./vendor/README.md', '数据与授权')}</p>
       </details>`;
@@ -65,11 +70,14 @@
     function setTab(view, notify = true) {
       state.view = view === 'network' ? 'network' : 'map';
       host.dataset.view = state.view;
+      if(state.view==='map'){delete host.dataset.scope;$('network-locate').hidden=true;$('explore-reset').textContent='重置';}
       for (const tab of ['map','network']) {
         $('tab-' + tab).setAttribute('aria-selected', String(state.view === tab));
         $('tab-' + tab).tabIndex = state.view === tab ? 0 : -1;
       }
       $('explore-panel').setAttribute('aria-labelledby', 'tab-' + state.view);
+      $('network-tools').hidden=state.view!=='network';
+      if(state.view!=='network')setWide(false);
       clearSearch(); render(); if (notify) emit();
     }
     function choosePlace(id, recenter = true) {
@@ -81,16 +89,23 @@
       status.textContent = placesById.get(id).zh + ' · ' + placesById.get(id).word;
       emit();
     }
-    function focusGraph(id) {
-      id = resolveFocus(id); state.focus = id; selected = id;
-      graph = M.neighborhood(model, id); positions.clear(); graphTransform = null;
+    function focusGraph(id,center=true) {
+      id = id ? resolveFocus(id) : state.scope==='local' ? M.wordId('philanthropy') : null;
+      state.focus = id||''; selected = id;
       clearSearch();
-      if (state.view !== 'network') setTab('network', false);
-      else render();
-      status.textContent = '以 ' + model.nodes.get(id).label + ' 为中心'; emit();
+      if(state.scope==='all'){
+        if(state.view!=='network')setTab('network',false);
+        else if(!globalView)render();
+        globalView.select(id,{center});renderGraphCard();
+      }else{
+        graph = M.neighborhood(model, id); positions.clear(); graphTransform = null;
+        if (state.view !== 'network') setTab('network', false);else render();
+      }
+      $('network-locate').hidden=state.scope!=='all'||!id;
+      status.textContent = id ? '已选择 '+model.nodes.get(id).label : '全部词库'; emit();
     }
-    function selectNode(id) {
-      focusGraph(id);
+    function selectNode(id,center=false) {
+      focusGraph(id,center);
     }
     function wireCard() {
       card.querySelectorAll('[data-open-word]').forEach(b => b.onclick = () => options.onOpenWord(b.dataset.openWord));
@@ -110,8 +125,14 @@
       wireCard();
     }
     function renderGraphCard() {
-      const node = model.nodes.get(selected), word = options.data.lexicon[node.word], remaining = graph.remaining(selected);
-      const neighbors = model.neighbors(selected).filter(id => graph.visible.has(id));
+      if(!selected){
+        const suggested=['ego','anthropos','philein','logos','loquor','senex','credo','genos']
+          .map(term=>[...model.nodes.values()].find(n=>n.kind==='root'&&n.label===term)).filter(Boolean);
+        card.innerHTML=`<p class="explore-kicker">全部词库</p><h2>词根关系网</h2><div class="network-overview"><span><b>${Object.keys(options.data.lexicon).length}</b> 单词</span><span><b>${model.nodes.size-Object.keys(options.data.lexicon).length}</b> 词源</span></div><p class="explore-definition">放大看词名，点选看关联。</p><div class="graph-related" aria-label="从词根开始">${suggested.map(n=>`<button data-graph-node="${esc(n.id)}">${esc(n.label)}</button>`).join('')}</div>`;
+        wireCard();return;
+      }
+      const node = model.nodes.get(selected), word = options.data.lexicon[node.word], remaining = state.scope==='all'?0:graph.remaining(selected);
+      const neighbors = model.neighbors(selected).filter(id => state.scope==='all'||graph.visible.has(id));
       card.innerHTML = `<p class="explore-kicker">${kindName(node.kind)}${node.lang && node.kind === 'root' ? ' · ' + esc(node.lang) : ''}</p>
         <h2>${esc(node.label)}</h2><p class="explore-definition">${esc(node.zh)} ${word ? options.posHTML(word) : ''}</p>
         <div class="explore-actions">${word ? `<button class="control primary" data-open-word="${esc(word.word)}">查看词条</button>` : ''}
@@ -119,7 +140,7 @@
         ${['person','place'].includes(node.kind) ? '<p class="explore-note">专名词源：名称与这个人或地方有关，不作为可自由拼接的词根。</p>' : ''}
         <div class="graph-related" aria-label="关联节点">${neighbors.map(id => `<button data-graph-node="${esc(id)}">${esc(model.nodes.get(id).label)}</button>`).join('')}</div>
         ${remaining ? `<button class="control explore-more" id="explore-more">展开更多 · 余 ${remaining}</button>` : ''}
-        <p class="explore-summary">${model.neighbors(selected).length} 个直接关联 · 已显示 ${neighbors.length}</p>`;
+        <p class="explore-summary">${model.neighbors(selected).length} 个直接关联${state.scope==='local'?' · 已显示 '+neighbors.length:''}</p>`;
       wireCard();
       if ($('explore-more')) $('explore-more').onclick = () => {
         graph.expand(selected); drawNetwork(); renderGraphCard(); status.textContent = '已展开更多关联';
@@ -127,6 +148,7 @@
     }
     function prepare() {
       simulation?.stop(); svg?.on('.zoom', null);
+      globalView?.dispose();globalView=null;
       width = canvas.clientWidth; height = canvas.clientHeight;
       canvas.replaceChildren();
       svg = d3.select(canvas).append('svg').attr('viewBox', [0,0,width,height]).attr('tabindex', 0)
@@ -196,9 +218,26 @@
       return function(event, datum) { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); fn(event,datum); } };
     }
     function renderNetwork() {
-      if (!graph) { graph = M.neighborhood(model,state.focus); selected = state.focus; }
-      drawNetwork(); renderGraphCard();
-      $('viz-title').textContent = '词源关系';
+      host.dataset.scope=state.scope;
+      $('network-all').setAttribute('aria-pressed',String(state.scope==='all'));
+      $('network-local').setAttribute('aria-pressed',String(state.scope==='local'));
+      $('network-locate').hidden=state.scope!=='all'||!selected;
+      $('explore-reset').textContent=state.scope==='all'?'全览':'重置';
+      if(state.scope==='all'){
+        const layer=prepare();
+        if(!globalLayout)globalLayout=window.WordPowerGlobalNetwork.createLayout(model);
+        const saved=globalTransform;
+        globalView=window.WordPowerGlobalNetwork.draw({svg,layer,width,height,model,layout:globalLayout,savedTransform:saved,selected,
+          onSelect:selectNode,onOpenWord:options.onOpenWord,onCamera:t=>{globalTransform=t}});
+        zoom=globalView.zoom;
+        if(selected&&!saved)globalView.select(selected,{center:true});
+        $('viz-count').textContent=Object.keys(options.data.lexicon).length+' 单词 · '+(model.nodes.size-Object.keys(options.data.lexicon).length)+' 词源';
+      }else{
+        if(!graph) { state.focus=state.focus||M.wordId('philanthropy');graph = M.neighborhood(model,state.focus); selected = state.focus; }
+        drawNetwork();
+      }
+      renderGraphCard();
+      $('viz-title').textContent = state.scope==='all'?'全部词根关系':'词源关系';
       $('viz-legend').innerHTML = ['word','root','person','place'].map(kind => `<span class="legend-item"><i class="legend-dot ${kind}"></i>${kindName(kind)}</span>`).join('');
     }
     function drawNetwork() {
@@ -247,6 +286,7 @@
     function reset() {
       clearSearch();
       if (state.view === 'map') { mapTransform=null; svg.call(zoom.transform,d3.zoomIdentity); }
+      else if(state.scope==='all'){selected=null;state.focus='';globalView.select(null);globalView.fit();renderGraphCard();$('network-locate').hidden=true;emit();}
       else { graph=M.neighborhood(model,state.focus); selected=state.focus; positions.clear(); graphTransform=null; renderNetwork(); }
       status.textContent='视图已重置';
     }
@@ -267,6 +307,20 @@
       results.hidden=false;search.setAttribute('aria-expanded','true');
     }
     $('explore-back').onclick=options.onBack;
+    function setScope(scope){
+      state.scope=scope;graph=null;positions.clear();graphTransform=null;
+      if(scope==='local'&&!selected){selected=M.wordId('philanthropy');state.focus=selected;}
+      if(scope==='all')globalTransform=null;
+      renderNetwork();emit();
+    }
+    function setWide(value){
+      wide=value;host.classList.toggle('explore-fullscreen',wide);document.body.classList.toggle('explore-wide',wide);
+      $('network-wide').setAttribute('aria-pressed',String(wide));$('network-wide').setAttribute('aria-label',wide?'退出全屏':'全屏查看关系网');
+    }
+    $('network-all').onclick=()=>setScope('all');$('network-local').onclick=()=>setScope('local');
+    $('network-wide').onclick=()=>setWide(!wide);
+    $('network-locate').onclick=()=>globalView?.select(selected,{center:true});
+    document.addEventListener('keydown',event=>{if(event.key==='Escape'&&wide&&!document.querySelector('#overlay[aria-hidden="false"]'))setWide(false);},true);
     for (const view of ['map','network']) $('tab-'+view).onclick=()=>setTab(view);
     host.querySelector('[role=tablist]').onkeydown=event=>{
       if (['ArrowLeft','ArrowRight','Home','End'].includes(event.key)) {
@@ -280,17 +334,19 @@
     search.onkeydown=event=>{if(event.key==='Escape')clearSearch();if(event.key==='ArrowDown'){event.preventDefault();results.querySelector('button')?.focus();}};
     host.querySelector('form').onsubmit=event=>{event.preventDefault();results.querySelector('button')?.click();};
     document.addEventListener('pointerdown',event=>{if(!event.target.closest('.explore-search')){results.hidden=true;search.setAttribute('aria-expanded','false');}});
-    const observer=new ResizeObserver(()=>{if(active && (canvas.clientWidth!==width || canvas.clientHeight!==height)){mapTransform=null;graphTransform=null;positions.clear();render();}});
+    const observer=new ResizeObserver(()=>{if(active && (canvas.clientWidth!==width || canvas.clientHeight!==height)){mapTransform=null;graphTransform=null;globalTransform=null;positions.clear();render();}});
     observer.observe(canvas);
     return {
       activate(next) {
-        const focus=resolveFocus(next.focus || state.focus);
-        if(focus!==state.focus){graph=null;selected=focus;positions.clear();graphTransform=null;}
+        const scope=next.scope==='local'?'local':'all';
+        const focus=next.focus?resolveFocus(next.focus):scope==='local'?M.wordId('philanthropy'):'';
+        if(focus!==state.focus){graph=null;selected=focus||null;positions.clear();graphTransform=null;}
+        if(focus!==state.focus)globalTransform=null;
         if(next.place && next.place!==state.place)mapTransform=null;
-        state={view:next.view==='network'?'network':'map',place:placesById.has(next.place)?next.place:state.place,focus};
+        state={view:next.view==='network'?'network':'map',place:placesById.has(next.place)?next.place:state.place,focus:focus||'',scope};
         active=true;setTab(state.view,false);emit();
       },
-      pause() { active=false;simulation?.stop();clearSearch(); },
+      pause() { active=false;simulation?.stop();globalView?.dispose();globalView=null;setWide(false);clearSearch(); },
       state:()=>({...state})
     };
   }

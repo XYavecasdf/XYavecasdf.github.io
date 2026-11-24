@@ -139,27 +139,41 @@ verification statuses.
 
 ## Exploration views
 
-The library's single **Explore** entry lazy-loads `explore.js`, `explore.css`,
-`explore-model.js` and same-origin D3/Natural Earth assets. Word cards, POS,
+The library's **Mind map** entry opens the complete network and lazy-loads
+`explore.js`, `explore.css`, `explore-model.js`, `network-global.js` and
+same-origin D3/Natural Earth assets. Word cards, POS,
 stories and US audio continue to use the library's existing renderer.
 
 `explore-model.js` merges origins by normalized `(language, term)` and creates
 only the explicit `groups[].roots[].words` edges. The complete index has 527
-words and 257 origins; each view opens a local neighborhood, with at most 20
-neighbors per expansion and an explicit remaining count. Person/place origins
-have distinct types. No spelling-based relationships are inferred.
+words, 257 origins and 686 deduplicated edges. The default **All** view renders
+every node and edge; search, selection, hover and zoom never discard nodes.
+Labels appear progressively with zoom; overlap checks keep the overview sparse
+and account for node positions in detailed views. Roots have
+larger dots, while person/place origins retain distinct types and colors.
+
+`network-global.js` packs the actual connected components to seed a deterministic
+force layout. Packing adds no semantic edges. Warm-up runs in short animation
+frame batches, with the result cached in memory across view changes. The global
+view supports node dragging, pan/zoom, neighbor highlighting, search location,
+fullscreen (Escape to leave) and double-click to open the shared word card.
+The optional **Local** view retains the original neighborhood explorer, with
+at most 20 neighbors per expansion and an explicit remaining count.
 
 `places.json` contains eight sourced geographic associations. City coordinates
 are approximate references; Egypt uses the basemap country polygon and records
 the historical misidentification explicitly. Vendor provenance and licenses are
 in `../vendor/README.md`.
 
-Shareable routes use `?view=map&place=quanzhou` or
-`?view=network&focus=philanthropy`; origins use the model's `origin:...` ID.
+Shareable routes use `?view=network` for the full overview,
+`?view=network&focus=philanthropy` to locate a node in the full graph, or
+`?view=network&scope=local&focus=philanthropy` for a local neighborhood.
+Origins use the model's `origin:...` ID. The map uses `?view=map&place=quanzhou`.
 Both support the existing `word` parameter for an open card. Returning to the
 library retains its in-memory filters, expansion state and scroll position.
 
 ```sh
 node tests/check-explore-model.cjs
 node tests/explore-browser.cjs --url http://127.0.0.1:8765/word-power/
+node tests/global-network-browser.cjs --url http://127.0.0.1:8765/word-power/
 ```

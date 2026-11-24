@@ -59,5 +59,20 @@
     return [...model.nodes.values()].filter(n => norm(n.label + ' ' + n.zh).includes(q))
       .sort((a, b) => score(a) - score(b) || a.label.localeCompare(b.label, 'en')).slice(0, limit);
   }
-  return {norm, wordId, originId, build, neighborhood, search};
+  function fullGraph(model) {
+    const seen = new Set(), components = [];
+    for (const id of model.nodes.keys()) {
+      if (seen.has(id)) continue;
+      const members = [id]; seen.add(id);
+      for (let i = 0; i < members.length; i++) for (const neighbor of model.neighbors(members[i])) {
+        if (!seen.has(neighbor)) { seen.add(neighbor); members.push(neighbor); }
+      }
+      components.push(members);
+    }
+    components.sort((a, b) => b.length - a.length);
+    const membership = new Map(components.flatMap((ids, index) => ids.map(id => [id, index])));
+    return {nodes: [...model.nodes.values()].map(n => ({...n, degree: model.adjacency.get(n.id).size, component: membership.get(n.id)})),
+      edges: model.edges.map(e => ({...e})), components};
+  }
+  return {norm, wordId, originId, build, neighborhood, fullGraph, search};
 });

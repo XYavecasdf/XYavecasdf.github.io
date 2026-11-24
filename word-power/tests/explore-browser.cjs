@@ -30,6 +30,8 @@ async function chooseSearch(page,text,result){
   await page.evaluate(()=>scrollTo({top:650,behavior:'instant'}));
   const scroll=await page.evaluate(()=>scrollY);
   await page.locator('#explore-entry').click();await ready(page);
+  assert.equal(await page.locator('#network-all').getAttribute('aria-pressed'),'true');
+  await page.locator('#tab-map').click();
   assert.equal(await page.locator('.place-marker').count(),7);
   assert.equal(await page.locator('.world-country.egypt').count(),1);
   assert.equal(await page.locator('.world-country.egypt').getAttribute('role'),'button');
@@ -71,6 +73,7 @@ async function chooseSearch(page,text,result){
   await close(page);assert.equal(await page.evaluate(()=>window.__audio.at(-1).paused),true);
   await chooseSearch(page,'philanthropy','关系网');
   assert.equal(await page.locator('#explore-card h2').textContent(),'philanthropy');
+  await page.locator('#network-local').click();
   assert.equal(await page.locator('.graph-node').count(),11);
   await node(page,'anthropos').focus();await page.keyboard.press('Enter');
   assert.equal(await page.locator('#explore-card h2').textContent(),'anthropos');
@@ -143,7 +146,7 @@ async function chooseSearch(page,text,result){
   fixture.groups.push({name:'Browser fixture',roots:[{term:'expansion fixture',lang:'test',zh:'fixture',words:fixtureWords}]});
   const many=await context.newPage();many.on('pageerror',e=>errors.push(String(e)));
   await many.route('**/lexicon.json',r=>r.fulfill({json:fixture}));
-  await many.goto(base+'?view=network&focus='+encodeURIComponent('origin:test:expansion fixture'));await ready(many);
+  await many.goto(base+'?view=network&scope=local&focus='+encodeURIComponent('origin:test:expansion fixture'));await ready(many);
   assert.equal(await many.locator('.graph-node').count(),21);
   assert.match(await many.locator('#explore-more').textContent(),/余 31/);
   await many.locator('#explore-more').click();assert.equal(await many.locator('.graph-node').count(),41);
