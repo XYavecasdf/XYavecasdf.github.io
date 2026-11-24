@@ -21,6 +21,16 @@ This directory contains the deterministic validation and audit tooling for
   tales are excluded. Legends are explicitly labelled and references retained.
   `metadata.book_stories.word_count` counts linked entries, not the full lexicon.
 
+Each lexicon entry also has `pronunciation_audio`, an array of up to two
+recordings explicitly linked from the English Wiktionary entry. Every clip
+includes the Commons URL, file page, speaker/artist credit, accent and license.
+Audio is fetched only after a playback click and is not copied into this repo.
+The initial index covers 471 of 507 entries; all entries offer browser English
+speech synthesis, labelled separately from human recordings. Availability of
+that fallback depends on the user's browser and installed English voices.
+Playback errors retain the fallback and dictionary link; changing/closing the
+word card stops audio. Audio is independent of the IPA transcription source.
+
 `tools/book-stories.tsv` is the curated source: words, PDF page ranges, title,
 Chinese narrative, historical status, reference label, reference URL (tab-separated).
 The importer requires the original private PDF to verify literal word occurrences.
@@ -46,6 +56,12 @@ python tools/sync_embedded.py --check
 
 # update the embedded fallback after editing lexicon.json
 python tools/sync_embedded.py
+
+# refresh the recording index (network required; keep raw responses private)
+python tools/import_pronunciation_audio.py --cache /path/outside/checkout/audio-cache
+python tools/sync_embedded.py
+python tests/check-pronunciation-audio.py
+node tests/pronunciation-browser.cjs --url http://127.0.0.1:8765/word-power/
 
 # re-apply the curated 2026-11-19 corrections (idempotent; refuses mismatches)
 python tools/apply_corrections.py
