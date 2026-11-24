@@ -15,7 +15,12 @@ const hit=(page,id)=>page.locator('.global-node[data-node-id="'+id+'"] .global-h
   const context=await browser.newContext({ignoreHTTPSErrors:args.includes('--ignore-https-errors')});
   const page=await context.newPage(),errors=[];page.on('pageerror',e=>errors.push(String(e)));
   const started=Date.now();await page.setViewportSize({width:1600,height:1100});
-  await page.goto(base+'?view=network');await ready(page);
+  let releaseLexicon;const gate=new Promise(resolve=>{releaseLexicon=resolve;});
+  await page.route('**/lexicon.json',async route=>{await gate;await route.continue();});
+  await page.goto(base);
+  assert.equal(await page.locator('#explore-entry').isDisabled(),true,'Entry must wait for its handler during slow hydration');
+  const opening=page.locator('#explore-entry').click();releaseLexicon();await opening;await ready(page);
+  await page.unroute('**/lexicon.json');
   const loadMs=Date.now()-started;
   assert.equal(await page.locator('#network-all').getAttribute('aria-pressed'),'true');
   assert.equal(await page.locator('.global-node.word').count(),Object.keys(data.lexicon).length);

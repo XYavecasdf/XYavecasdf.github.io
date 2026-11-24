@@ -24,6 +24,7 @@
 .audio-status:empty{margin:0}.audio-more{font-size:11px;color:#718199;align-self:center}.audio-more>summary{cursor:pointer;padding:10px 2px;min-height:44px}.audio-more[open]{flex-basis:100%;background:#f8fafd;border:1px solid var(--line);border-radius:10px;padding:3px 12px 12px}.audio-options{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:4px 0 9px}.audio-credits{margin-top:0}.audio-credits p:last-child{margin-bottom:0}
 .detail-footer{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-top:22px;border-top:1px solid var(--line);padding-top:12px}.entry-sources{flex:1;min-width:0;font-size:11px;color:#718199}.entry-sources>summary{cursor:pointer;padding:9px 0}.source-body{line-height:1.75;padding:4px 0 8px}.source-body p{margin:0 0 9px;overflow-wrap:anywhere}.source-links{display:flex;flex-wrap:wrap;gap:9px 14px}.site-notes{margin-top:18px}.site-notes>summary{cursor:pointer;padding:10px 0;font-size:11px}.site-notes p{line-height:1.8}.detail-top h2{line-height:1.2}
 .definition-line{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin:0 0 11px}.definition-line .definition{margin:0}.pos-tags{color:#75869b;font:italic 12px/1.5 Georgia,serif;white-space:nowrap}.pos-tags abbr{text-decoration:none;cursor:help}.hover-card .pos-tags{color:#b5d4ed}
+.control:disabled{opacity:.5;cursor:wait}
 </style>
 </head>
 <body>
@@ -35,7 +36,7 @@
  <label class="search-box"><span class="sr-only">搜索词根、单词或历史故事</span><span class="search-icon" aria-hidden="true">⌕</span><input id="search" type="search" placeholder="搜索单词、词根或释义…" autocomplete="off"></label>
  <select id="origin-filter" aria-label="筛选词根语源"><option value="">所有语源</option><option value="古希腊语">Ancient Greek</option><option value="拉丁语">Latin</option><option value="法语">French</option><option value="古英语">Old English</option><option value="人名">人名</option><option value="地名">地名</option></select>
  <button class="control primary" id="expand-all" aria-label="展开全部">展开</button><button class="control" id="collapse-all" aria-label="折叠全部">折叠</button><button class="control" id="clear-all" aria-label="清除筛选">重置</button>
- <button class="control" id="explore-entry" aria-label="查看全部单词的词根思维导图">思维导图 ↗</button>
+ <button class="control" id="explore-entry" aria-label="查看全部单词的词根思维导图" disabled>思维导图 ↗</button>
 </div></div>
 <div class="shell layout" id="library-view"><aside class="sidebar"><div class="side-label">主题</div><nav id="theme-nav" aria-label="主题分类"></nav></aside>
  <main class="content"><div id="mindmap" aria-live="polite"></div><details class="footnote site-notes"><summary>资料与说明</summary><p class="story-footnote"><b>历史故事：</b>收录 30 则典故，关联 33 个词条；同一词可有多则。传说、转述与争议旧说分别标记，出处可展开查看。</p><p><b>词源分类：</b>新增专名词源不作为可自由拼接的词根。<br><b>资料来源：</b>Norman Lewis, <i>Word Power Made Easy</i>（页码按上传版 PDF 页序计），Wiktionary、Cambridge Dictionary、Oxford Learner’s Dictionaries、Collins English Dictionary、Dictionary.com 与 Online Etymology Dictionary。发音按词条标注来源；未独立确认的形式明确标识。</p><p><b>2026-11-19 复核：</b>原有 507 条词义与结构完整；459 条 IPA 已获词典直接来源或 Wiktionary 交叉核对（其中 27 条明显误读已更正）；69 条词源/词根说明已逐条核对；其余 48 条保留宽式转写并标注为未独立核验。</p><p><b>版权与数据说明：</b>中文词义与构词提示为本项目编写的教学简释；部分 IPA 来自 CMU Pronouncing Dictionary 的近似转写，并非 Wiktionary 的原始 IPA。构词提示不等同于英语整词的历史借入路径；少量疑难词附特别说明。</p></details></main>
@@ -34732,6 +34733,7 @@ function returnToLibrary(){
 }
 function stateFromURL(){const params=new URL(location.href).searchParams;return {view:params.get('view'),place:params.get('place')||lastExploreState.place,focus:params.get('focus')||'',scope:params.get('scope')||'all'}}
 $('explore-entry').onclick=()=>showExplore(lastExploreState,true,true);
+$('explore-entry').disabled=false;
 window.addEventListener('popstate',async()=>{
  const params=new URL(location.href).searchParams,wanted=params.get('word'),token=routeToken+1;closeWord();
  if(['map','network'].includes(params.get('view')))await showExplore(stateFromURL());else showLibrary();
