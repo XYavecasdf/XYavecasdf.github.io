@@ -78,7 +78,7 @@ async function audioOptions(page) {
         const chip = [...document.querySelectorAll('.word-chip')].find(b => b.dataset.word === word);
         chip.click();
         const primary = document.querySelector('.audio-actions button:first-child');
-        if (!document.getElementById('speak-word') || primary?.id !== 'play-american' ||
+        if (!document.getElementById('speak-word') || !document.querySelector('#detail .pos-tags') || primary?.id !== 'play-american' ||
             !primary.getAttribute('aria-label').includes('美式英语') ||
             document.getElementById('detail-title').textContent !== word) missing.push(word);
       }

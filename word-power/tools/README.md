@@ -53,6 +53,13 @@ The page prefers `./lexicon.json` when served over HTTP.
 
 ## Commands
 
+Every entry has sourced `parts_of_speech` codes and a revision-pinned
+`pos_source_url`. Only English lexical headings are indexed; extra categories
+whose senses are all explicitly obsolete/archaic/rare/dated/nonstandard/humorous
+are omitted. A sole attested historical category is retained and marked.
+Refresh with `python tools/import_parts_of_speech.py --cache /private/cache`,
+then synchronize the embedded data and run `tests/check-parts-of-speech.py`.
+
 Run from `word-power/`:
 
 ```sh
