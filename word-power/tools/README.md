@@ -9,25 +9,26 @@ This directory contains the deterministic validation and audit tooling for
 
 - `metadata`: editorial counts and notes. `roots` is the number of **unique**
   root terms; `word_instances` is the number of root-to-word links.
-- `groups`: eight semantic groups. Every word in a group must exist in
+- `groups`: nine semantic groups (including named origins). Every word in a group must exist in
   `lexicon`.
-- `lexicon`: 507 entries keyed by word. Each entry keeps the existing fields
+- `lexicon`: 527 entries keyed by word. Each entry keeps the existing fields
   (`word`, `zh`, `ipa`, `ipa_source`, `components`, `component_status`,
   `roots`, `book_pages`, `wiktionary_url`, `source_status`, `origin_note`,
-  optional `ipa_url`). New optional fields are ignored by the page.
-- `book_stories`: four historical anecdotes, linked only to eight directly
-  related entries through the optional `book_story` field. General etymology
-  explanations, exercises, invented examples, and disputed etymological origin
-  tales are excluded. Legends are explicitly labelled and references retained.
+  optional `ipa_url`). Additional fields are described below.
+- `book_stories`: 30 historical anecdotes and origin narratives, linked to 33 entries
+  through optional `book_stories` arrays. A word can have multiple stories.
+  General explanations, exercises and invented examples remain excluded.
+  Legends, reported anecdotes and disputed origin accounts carry explicit labels.
+  Each story retains physical PDF pages, reference links and editorial notes.
   `metadata.book_stories.word_count` counts linked entries, not the full lexicon.
 
 Each lexicon entry also has `pronunciation_audio`, an array of up to two
 recordings explicitly linked from the English Wiktionary entry. Every clip
 includes the Commons URL, file page, speaker/artist credit, accent and license.
 Audio is fetched only after a playback click and is not copied into this repo.
-The recording index covers 471 of 507 entries. Every entry additionally has
-`american_pronunciation`: 269 link to explicitly US-labelled human recordings;
-238 ship a local MP3 generated with CMU Flite's US SLT voice. Synthetic audio is
+The recording index covers 490 of 527 entries. Every entry additionally has
+`american_pronunciation`: 276 link to explicitly US-labelled human recordings;
+251 ship a local MP3 generated with CMU Flite's US SLT voice. Synthetic audio is
 clearly labelled and works without browser voices. The first button is always
 the American option; other recorded accents remain additional choices.
 The optional browser speech button requests `en-US` and rejects UK/Australian
@@ -36,9 +37,15 @@ Playback errors retain the fallback and dictionary link; changing/closing the
 word card stops audio. Audio is independent of the IPA transcription source.
 
 `tools/book-stories.tsv` is the curated source: words, PDF page ranges, title,
-Chinese narrative, historical status, reference label, reference URL (tab-separated).
-The importer requires the original private PDF to verify literal word occurrences.
-Do not restore a story to every word or copy an anecdote to unrelated root siblings.
+Chinese narrative, historical status, reference label, reference URL, optional editorial note (tab-separated).
+The importer requires the original private PDF to verify word occurrences,
+including explicitly listed source forms such as guppies and cantaloupes.
+Do not copy an anecdote to unrelated root siblings.
+
+`story-word-additions.json` adds 20 entries from the named-origin material and
+the Borden example. Named sources use explicit 人名/地名 origin labels, not
+productive-morpheme claims. `audit.json` retains its original dated audit and
+adds separately dated supplement records; two inferred IPA forms stay unverified.
 
 `index.html` embeds the same object in
 `<script id="word-data" type="application/json">` as an offline fallback.
@@ -49,6 +56,12 @@ The page prefers `./lexicon.json` when served over HTTP.
 Run from `word-power/`:
 
 ```sh
+# reconcile curated additions and verify all story references against the private PDF
+python tools/import_story_words.py
+python tools/import-book-stories.py /private/path/Word_Power_Made_Easy.pdf
+python tools/import_pronunciation_audio.py --cache /path/outside/checkout/audio-cache
+python tools/sync_embedded.py
+
 # structural checks, metadata counts, IPA format, URL shape, embedded/external sync
 python tools/validate_lexicon.py
 
@@ -68,6 +81,7 @@ python tools/american_pronunciation.py
 python tools/sync_embedded.py
 python tests/check-pronunciation-audio.py
 node tests/pronunciation-browser.cjs --url http://127.0.0.1:8765/word-power/
+node tests/story-browser.cjs --url http://127.0.0.1:8765/word-power/
 
 # re-apply the curated 2026-11-19 corrections (idempotent; refuses mismatches)
 python tools/apply_corrections.py

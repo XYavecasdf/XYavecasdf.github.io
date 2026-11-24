@@ -58,10 +58,10 @@ for word, entry in data['lexicon'].items():
         us_synthetic += 1
 meta = data['metadata']['pronunciation_audio']
 assert meta['recorded_words'] == recorded
-assert meta['total_words'] == len(data['lexicon']) == 507
+assert meta['total_words'] == len(data['lexicon'])
 assert meta['american_recorded_words'] == us_recorded
 assert meta['american_synthetic_words'] == us_synthetic
-assert meta['american_total_words'] == us_recorded + us_synthetic == 507
+assert meta['american_total_words'] == us_recorded + us_synthetic == len(data['lexicon'])
 serialized = json.dumps({w: dict(recordings=x['pronunciation_audio'], american=x['american_pronunciation']) for w, x in data['lexicon'].items()}, sort_keys=True)
 assert hashlib.sha256(serialized.encode()).hexdigest()[:12] == data['metadata']['pronunciation_audio_version']
-print(f'PASS: {recorded}/507 recorded; US coverage {us_recorded} human + {us_synthetic} synthetic = 507; asset hashes, language extraction and embedded parity')
+print(f'PASS: {recorded}/{len(data['lexicon'])} recorded; US coverage {us_recorded} human + {us_synthetic} synthetic = {len(data["lexicon"])}; asset hashes, language extraction and embedded parity')

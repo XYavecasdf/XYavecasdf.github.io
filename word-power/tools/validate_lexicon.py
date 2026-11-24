@@ -28,8 +28,9 @@ REQUIRED_ENTRY = (
     "word", "zh", "ipa", "ipa_source", "components", "component_status",
     "roots", "book_pages", "wiktionary_url", "source_status", "origin_note",
 )
-IPA_ALLOWED = set("abdefhijklmnoprstuvwzæŋɑɔəɚɛɝɡɪɹʃʊʌʒˈˌ͡θðɜɒ .")
-LANGUAGES = {"古希腊语", "拉丁语", "法语", "古英语", "德语", "意大利语", "西班牙语"}
+IPA_ALLOWED = set("abdefhijklmnoprstuvwzæŋɑɔəɚɛɝɡɪɹɾʃʊʌʒˈˌ͡θðɜɒ .ː")
+# Origin labels include named sources, which are not productive morphemes.
+LANGUAGES = {"古希腊语", "拉丁语", "法语", "古英语", "德语", "意大利语", "西班牙语", "人名", "地名"}
 
 
 class Report:

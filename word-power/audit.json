@@ -2,18 +2,18 @@
   "metadata": {
     "title": "Word Power Made Easy · 2026-11-19 lexicon audit",
     "audit_date": "2026-11-19",
-    "total_entries": 507,
+    "total_entries": 527,
     "summary": {
-      "total": 507,
-      "ipa_PLAUSIBLE_BUT_UNVERIFIED": 48,
-      "etymology_PLAUSIBLE_BUT_UNVERIFIED": 438,
+      "total": 527,
+      "ipa_PLAUSIBLE_BUT_UNVERIFIED": 50,
+      "etymology_PLAUSIBLE_BUT_UNVERIFIED": 458,
       "overall_PLAUSIBLE_BUT_UNVERIFIED": 46,
-      "ipa_sources": 502,
-      "verified_ipa": 459,
+      "ipa_sources": 522,
+      "verified_ipa": 477,
       "verified_etymology": 69,
-      "ipa_VERIFIED": 432,
-      "overall_PARTIALLY_VERIFIED": 394,
-      "entries_changed": 397,
+      "ipa_VERIFIED": 450,
+      "overall_PARTIALLY_VERIFIED": 414,
+      "entries_changed": 417,
       "source_links_added": 365,
       "etymology_VERIFIED": 69,
       "overall_VERIFIED": 67,
@@ -32,7 +32,13 @@
       "Chinese glosses were checked structurally; they are project editorial definitions, not independently dictionary-verified translations.",
       "Component analyses are pedagogical; only entries listed with etymology_status=VERIFIED were re-checked against a source etymology.",
       "A Cambridge/Wiktionary match is a broad-transcription cross-check, not an audio perception test."
-    ]
+    ],
+    "supplement": {
+      "date": "2026-11-24",
+      "base_audit_entries": 507,
+      "added_story_words": 20,
+      "note": "The baseline audit is retained; supplement records are separately dated."
+    }
   },
   "records": [
     {
@@ -25231,6 +25237,648 @@
       "changes_made": [
         "Missing lexical roots added and etymology note recorded",
         "IPA source link and cross-check note added"
+      ]
+    },
+    {
+      "word": "martinet",
+      "ipa": "/mɑɹtɪˈnɛt/",
+      "ipa_source": "Wiktionary IPA（2026-11-24；按原记录规范字形及音节分隔）",
+      "ipa_source_url": "https://en.wiktionary.org/wiki/martinet",
+      "ipa_status": "VERIFIED",
+      "ipa_sources": [
+        "https://en.wiktionary.org/wiki/martinet"
+      ],
+      "morphological_analysis": [],
+      "morphology_status": "NOT_APPLICABLE",
+      "historical_etymology": "让·马蒂内",
+      "etymology_sources": [
+        "https://en.wiktionary.org/wiki/martinet"
+      ],
+      "etymology_status": "PLAUSIBLE_BUT_UNVERIFIED",
+      "chinese_definition": "苛刻的纪律执行者",
+      "chinese_status": "PLAUSIBLE_BUT_UNVERIFIED",
+      "verification_status": "PARTIALLY_VERIFIED",
+      "confidence": "medium",
+      "issues": [
+        "Chinese gloss is editorial; named origins are not productive morphemes.",
+        "Historical anecdotes and disputed origins have separate story-level notes."
+      ],
+      "changes_made": [
+        "Added from the uploaded book; supplement dated 2026-11-24."
+      ],
+      "checked_on": "2026-11-24",
+      "book_pages": [
+        360
+      ]
+    },
+    {
+      "word": "chauvinist",
+      "ipa": "/ˈʃoʊvɪnɪst/",
+      "ipa_source": "Wiktionary enPR 发音重拼转换的近似美式 IPA，待独立核验",
+      "ipa_source_url": "https://en.wiktionary.org/wiki/chauvinist",
+      "ipa_status": "PLAUSIBLE_BUT_UNVERIFIED",
+      "ipa_sources": [
+        "https://en.wiktionary.org/wiki/chauvinist"
+      ],
+      "morphological_analysis": [],
+      "morphology_status": "NOT_APPLICABLE",
+      "historical_etymology": "尼古拉·沙文（传说人物）",
+      "etymology_sources": [
+        "https://en.wiktionary.org/wiki/chauvinist"
+      ],
+      "etymology_status": "PLAUSIBLE_BUT_UNVERIFIED",
+      "chinese_definition": "沙文主义者；盲目拥护本群体的人",
+      "chinese_status": "PLAUSIBLE_BUT_UNVERIFIED",
+      "verification_status": "PARTIALLY_VERIFIED",
+      "confidence": "medium",
+      "issues": [
+        "Chinese gloss is editorial; named origins are not productive morphemes.",
+        "Historical anecdotes and disputed origins have separate story-level notes.",
+        "IPA is an approximation, not an independently verified US dictionary transcription."
+      ],
+      "changes_made": [
+        "Added from the uploaded book; supplement dated 2026-11-24."
+      ],
+      "checked_on": "2026-11-24",
+      "book_pages": [
+        362
+      ]
+    },
+    {
+      "word": "parricide",
+      "ipa": "/ˈpæɹɪsaɪd/",
+      "ipa_source": "Wiktionary IPA（英式记录；另提供美音音频）",
+      "ipa_source_url": "https://en.wiktionary.org/wiki/parricide",
+      "ipa_status": "VERIFIED",
+      "ipa_sources": [
+        "https://en.wiktionary.org/wiki/parricide"
+      ],
+      "morphological_analysis": [],
+      "morphology_status": "NOT_APPLICABLE",
+      "historical_etymology": "杀害",
+      "etymology_sources": [
+        "https://en.wiktionary.org/wiki/parricide"
+      ],
+      "etymology_status": "PLAUSIBLE_BUT_UNVERIFIED",
+      "chinese_definition": "杀害父母或近亲；弑亲者",
+      "chinese_status": "PLAUSIBLE_BUT_UNVERIFIED",
+      "verification_status": "PARTIALLY_VERIFIED",
+      "confidence": "medium",
+      "issues": [
+        "Chinese gloss is editorial; named origins are not productive morphemes.",
+        "Historical anecdotes and disputed origins have separate story-level notes."
+      ],
+      "changes_made": [
+        "Added from the uploaded book; supplement dated 2026-11-24."
+      ],
+      "checked_on": "2026-11-24",
+      "book_pages": [
+        364
+      ]
+    },
+    {
+      "word": "bloomers",
+      "ipa": "/ˈbluːmɚz/",
+      "ipa_source": "根据 bloomer 的词典读音与规则复数推定的近似美式 IPA，待独立核验",
+      "ipa_source_url": "https://en.wiktionary.org/wiki/bloomers",
+      "ipa_status": "PLAUSIBLE_BUT_UNVERIFIED",
+      "ipa_sources": [
+        "https://en.wiktionary.org/wiki/bloomers"
+      ],
+      "morphological_analysis": [],
+      "morphology_status": "NOT_APPLICABLE",
+      "historical_etymology": "艾米莉娅·布卢默",
+      "etymology_sources": [
+        "https://en.wiktionary.org/wiki/bloomers"
+      ],
+      "etymology_status": "PLAUSIBLE_BUT_UNVERIFIED",
+      "chinese_definition": "女式灯笼裤；旧式宽松女裤",
+      "chinese_status": "PLAUSIBLE_BUT_UNVERIFIED",
+      "verification_status": "PARTIALLY_VERIFIED",
+      "confidence": "medium",
+      "issues": [
+        "Chinese gloss is editorial; named origins are not productive morphemes.",
+        "Historical anecdotes and disputed origins have separate story-level notes.",
+        "IPA is an approximation, not an independently verified US dictionary transcription."
+      ],
+      "changes_made": [
+        "Added from the uploaded book; supplement dated 2026-11-24."
+      ],
+      "checked_on": "2026-11-24",
+      "book_pages": [
+        421
+      ]
+    },
+    {
+      "word": "boycott",
+      "ipa": "/ˈbɔɪkɑt/",
+      "ipa_source": "Wiktionary IPA（2026-11-24；按原记录规范字形及音节分隔）",
+      "ipa_source_url": "https://en.wiktionary.org/wiki/boycott",
+      "ipa_status": "VERIFIED",
+      "ipa_sources": [
+        "https://en.wiktionary.org/wiki/boycott"
+      ],
+      "morphological_analysis": [],
+      "morphology_status": "NOT_APPLICABLE",
+      "historical_etymology": "查尔斯·博伊科特",
+      "etymology_sources": [
+        "https://en.wiktionary.org/wiki/boycott"
+      ],
+      "etymology_status": "PLAUSIBLE_BUT_UNVERIFIED",
+      "chinese_definition": "抵制；联合拒绝往来",
+      "chinese_status": "PLAUSIBLE_BUT_UNVERIFIED",
+      "verification_status": "PARTIALLY_VERIFIED",
+      "confidence": "medium",
+      "issues": [
+        "Chinese gloss is editorial; named origins are not productive morphemes.",
+        "Historical anecdotes and disputed origins have separate story-level notes."
+      ],
+      "changes_made": [
+        "Added from the uploaded book; supplement dated 2026-11-24."
+      ],
+      "checked_on": "2026-11-24",
+      "book_pages": [
+        421
+      ]
+    },
+    {
+      "word": "marcel",
+      "ipa": "/mɑːɹˈsɛl/",
+      "ipa_source": "Wiktionary IPA（展开可选的卷舌音，供美式读音参考）",
+      "ipa_source_url": "https://en.wiktionary.org/wiki/marcel",
+      "ipa_status": "VERIFIED",
+      "ipa_sources": [
+        "https://en.wiktionary.org/wiki/marcel"
+      ],
+      "morphological_analysis": [],
+      "morphology_status": "NOT_APPLICABLE",
+      "historical_etymology": "马塞尔（理发师名）",
+      "etymology_sources": [
+        "https://en.wiktionary.org/wiki/marcel"
+      ],
+      "etymology_status": "PLAUSIBLE_BUT_UNVERIFIED",
+      "chinese_definition": "马塞尔式波浪卷发；烫成波浪卷",
+      "chinese_status": "PLAUSIBLE_BUT_UNVERIFIED",
+      "verification_status": "PARTIALLY_VERIFIED",
+      "confidence": "medium",
+      "issues": [
+        "Chinese gloss is editorial; named origins are not productive morphemes.",
+        "Historical anecdotes and disputed origins have separate story-level notes."
+      ],
+      "changes_made": [
+        "Added from the uploaded book; supplement dated 2026-11-24."
+      ],
+      "checked_on": "2026-11-24",
+      "book_pages": [
+        421
+      ]
+    },
+    {
+      "word": "silhouette",
+      "ipa": "/ˌsɪluˈɛt/",
+      "ipa_source": "Wiktionary IPA（2026-11-24；按原记录规范字形及音节分隔）",
+      "ipa_source_url": "https://en.wiktionary.org/wiki/silhouette",
+      "ipa_status": "VERIFIED",
+      "ipa_sources": [
+        "https://en.wiktionary.org/wiki/silhouette"
+      ],
+      "morphological_analysis": [],
+      "morphology_status": "NOT_APPLICABLE",
+      "historical_etymology": "艾蒂安·德·西卢埃特",
+      "etymology_sources": [
+        "https://en.wiktionary.org/wiki/silhouette"
+      ],
+      "etymology_status": "PLAUSIBLE_BUT_UNVERIFIED",
+      "chinese_definition": "剪影；轮廓",
+      "chinese_status": "PLAUSIBLE_BUT_UNVERIFIED",
+      "verification_status": "PARTIALLY_VERIFIED",
+      "confidence": "medium",
+      "issues": [
+        "Chinese gloss is editorial; named origins are not productive morphemes.",
+        "Historical anecdotes and disputed origins have separate story-level notes."
+      ],
+      "changes_made": [
+        "Added from the uploaded book; supplement dated 2026-11-24."
+      ],
+      "checked_on": "2026-11-24",
+      "book_pages": [
+        421
+      ]
+    },
+    {
+      "word": "derrick",
+      "ipa": "/ˈdɛɹɪk/",
+      "ipa_source": "Wiktionary IPA（2026-11-24；按原记录规范字形及音节分隔）",
+      "ipa_source_url": "https://en.wiktionary.org/wiki/derrick",
+      "ipa_status": "VERIFIED",
+      "ipa_sources": [
+        "https://en.wiktionary.org/wiki/derrick"
+      ],
+      "morphological_analysis": [],
+      "morphology_status": "NOT_APPLICABLE",
+      "historical_etymology": "德里克（刽子手名）",
+      "etymology_sources": [
+        "https://en.wiktionary.org/wiki/derrick"
+      ],
+      "etymology_status": "PLAUSIBLE_BUT_UNVERIFIED",
+      "chinese_definition": "起重架；井架",
+      "chinese_status": "PLAUSIBLE_BUT_UNVERIFIED",
+      "verification_status": "PARTIALLY_VERIFIED",
+      "confidence": "medium",
+      "issues": [
+        "Chinese gloss is editorial; named origins are not productive morphemes.",
+        "Historical anecdotes and disputed origins have separate story-level notes."
+      ],
+      "changes_made": [
+        "Added from the uploaded book; supplement dated 2026-11-24."
+      ],
+      "checked_on": "2026-11-24",
+      "book_pages": [
+        421
+      ]
+    },
+    {
+      "word": "sadist",
+      "ipa": "/ˈseɪdɪst/",
+      "ipa_source": "Wiktionary IPA（2026-11-24；按原记录规范字形及音节分隔）",
+      "ipa_source_url": "https://en.wiktionary.org/wiki/sadist",
+      "ipa_status": "VERIFIED",
+      "ipa_sources": [
+        "https://en.wiktionary.org/wiki/sadist"
+      ],
+      "morphological_analysis": [],
+      "morphology_status": "NOT_APPLICABLE",
+      "historical_etymology": "萨德侯爵",
+      "etymology_sources": [
+        "https://en.wiktionary.org/wiki/sadist"
+      ],
+      "etymology_status": "PLAUSIBLE_BUT_UNVERIFIED",
+      "chinese_definition": "以他人痛苦为乐的人；施虐者",
+      "chinese_status": "PLAUSIBLE_BUT_UNVERIFIED",
+      "verification_status": "PARTIALLY_VERIFIED",
+      "confidence": "medium",
+      "issues": [
+        "Chinese gloss is editorial; named origins are not productive morphemes.",
+        "Historical anecdotes and disputed origins have separate story-level notes."
+      ],
+      "changes_made": [
+        "Added from the uploaded book; supplement dated 2026-11-24."
+      ],
+      "checked_on": "2026-11-24",
+      "book_pages": [
+        422
+      ]
+    },
+    {
+      "word": "galvanism",
+      "ipa": "/ˈɡælvəˌnɪzəm/",
+      "ipa_source": "Wiktionary IPA（2026-11-24；按原记录规范字形及音节分隔）",
+      "ipa_source_url": "https://en.wiktionary.org/wiki/galvanism",
+      "ipa_status": "VERIFIED",
+      "ipa_sources": [
+        "https://en.wiktionary.org/wiki/galvanism"
+      ],
+      "morphological_analysis": [],
+      "morphology_status": "NOT_APPLICABLE",
+      "historical_etymology": "路易吉·伽伐尼",
+      "etymology_sources": [
+        "https://en.wiktionary.org/wiki/galvanism"
+      ],
+      "etymology_status": "PLAUSIBLE_BUT_UNVERIFIED",
+      "chinese_definition": "电流作用；电刺激",
+      "chinese_status": "PLAUSIBLE_BUT_UNVERIFIED",
+      "verification_status": "PARTIALLY_VERIFIED",
+      "confidence": "medium",
+      "issues": [
+        "Chinese gloss is editorial; named origins are not productive morphemes.",
+        "Historical anecdotes and disputed origins have separate story-level notes."
+      ],
+      "changes_made": [
+        "Added from the uploaded book; supplement dated 2026-11-24."
+      ],
+      "checked_on": "2026-11-24",
+      "book_pages": [
+        422
+      ]
+    },
+    {
+      "word": "guppy",
+      "ipa": "/ˈɡʌpi/",
+      "ipa_source": "Wiktionary IPA（2026-11-24；按原记录规范字形及音节分隔）",
+      "ipa_source_url": "https://en.wiktionary.org/wiki/guppy",
+      "ipa_status": "VERIFIED",
+      "ipa_sources": [
+        "https://en.wiktionary.org/wiki/guppy"
+      ],
+      "morphological_analysis": [],
+      "morphology_status": "NOT_APPLICABLE",
+      "historical_etymology": "罗伯特·J. L. 古皮",
+      "etymology_sources": [
+        "https://en.wiktionary.org/wiki/guppy"
+      ],
+      "etymology_status": "PLAUSIBLE_BUT_UNVERIFIED",
+      "chinese_definition": "孔雀鱼（复数 guppies）",
+      "chinese_status": "PLAUSIBLE_BUT_UNVERIFIED",
+      "verification_status": "PARTIALLY_VERIFIED",
+      "confidence": "medium",
+      "issues": [
+        "Chinese gloss is editorial; named origins are not productive morphemes.",
+        "Historical anecdotes and disputed origins have separate story-level notes."
+      ],
+      "changes_made": [
+        "Added from the uploaded book; supplement dated 2026-11-24."
+      ],
+      "checked_on": "2026-11-24",
+      "book_pages": [
+        422
+      ]
+    },
+    {
+      "word": "nicotine",
+      "ipa": "/ˈnɪkətiːn/",
+      "ipa_source": "Wiktionary IPA（2026-11-24；按原记录规范字形及音节分隔）",
+      "ipa_source_url": "https://en.wiktionary.org/wiki/nicotine",
+      "ipa_status": "VERIFIED",
+      "ipa_sources": [
+        "https://en.wiktionary.org/wiki/nicotine"
+      ],
+      "morphological_analysis": [],
+      "morphology_status": "NOT_APPLICABLE",
+      "historical_etymology": "让·尼古",
+      "etymology_sources": [
+        "https://en.wiktionary.org/wiki/nicotine"
+      ],
+      "etymology_status": "PLAUSIBLE_BUT_UNVERIFIED",
+      "chinese_definition": "尼古丁",
+      "chinese_status": "PLAUSIBLE_BUT_UNVERIFIED",
+      "verification_status": "PARTIALLY_VERIFIED",
+      "confidence": "medium",
+      "issues": [
+        "Chinese gloss is editorial; named origins are not productive morphemes.",
+        "Historical anecdotes and disputed origins have separate story-level notes."
+      ],
+      "changes_made": [
+        "Added from the uploaded book; supplement dated 2026-11-24."
+      ],
+      "checked_on": "2026-11-24",
+      "book_pages": [
+        422
+      ]
+    },
+    {
+      "word": "bayonet",
+      "ipa": "/ˌbeɪəˈnɛt/",
+      "ipa_source": "Wiktionary IPA（2026-11-24；按原记录规范字形及音节分隔）",
+      "ipa_source_url": "https://en.wiktionary.org/wiki/bayonet",
+      "ipa_status": "VERIFIED",
+      "ipa_sources": [
+        "https://en.wiktionary.org/wiki/bayonet"
+      ],
+      "morphological_analysis": [],
+      "morphology_status": "NOT_APPLICABLE",
+      "historical_etymology": "法国巴约讷",
+      "etymology_sources": [
+        "https://en.wiktionary.org/wiki/bayonet"
+      ],
+      "etymology_status": "PLAUSIBLE_BUT_UNVERIFIED",
+      "chinese_definition": "刺刀",
+      "chinese_status": "PLAUSIBLE_BUT_UNVERIFIED",
+      "verification_status": "PARTIALLY_VERIFIED",
+      "confidence": "medium",
+      "issues": [
+        "Chinese gloss is editorial; named origins are not productive morphemes.",
+        "Historical anecdotes and disputed origins have separate story-level notes."
+      ],
+      "changes_made": [
+        "Added from the uploaded book; supplement dated 2026-11-24."
+      ],
+      "checked_on": "2026-11-24",
+      "book_pages": [
+        422
+      ]
+    },
+    {
+      "word": "cantaloupe",
+      "ipa": "/ˈkæntəloʊp/",
+      "ipa_source": "Wiktionary IPA（2026-11-24；按原记录规范字形及音节分隔）",
+      "ipa_source_url": "https://en.wiktionary.org/wiki/cantaloupe",
+      "ipa_status": "VERIFIED",
+      "ipa_sources": [
+        "https://en.wiktionary.org/wiki/cantaloupe"
+      ],
+      "morphological_analysis": [],
+      "morphology_status": "NOT_APPLICABLE",
+      "historical_etymology": "意大利坎塔卢波",
+      "etymology_sources": [
+        "https://en.wiktionary.org/wiki/cantaloupe"
+      ],
+      "etymology_status": "PLAUSIBLE_BUT_UNVERIFIED",
+      "chinese_definition": "甜瓜；香瓜",
+      "chinese_status": "PLAUSIBLE_BUT_UNVERIFIED",
+      "verification_status": "PARTIALLY_VERIFIED",
+      "confidence": "medium",
+      "issues": [
+        "Chinese gloss is editorial; named origins are not productive morphemes.",
+        "Historical anecdotes and disputed origins have separate story-level notes."
+      ],
+      "changes_made": [
+        "Added from the uploaded book; supplement dated 2026-11-24."
+      ],
+      "checked_on": "2026-11-24",
+      "book_pages": [
+        422
+      ]
+    },
+    {
+      "word": "calico",
+      "ipa": "/ˈkælɪkoʊ/",
+      "ipa_source": "Wiktionary IPA（2026-11-24；按原记录规范字形及音节分隔）",
+      "ipa_source_url": "https://en.wiktionary.org/wiki/calico",
+      "ipa_status": "VERIFIED",
+      "ipa_sources": [
+        "https://en.wiktionary.org/wiki/calico"
+      ],
+      "morphological_analysis": [],
+      "morphology_status": "NOT_APPLICABLE",
+      "historical_etymology": "印度卡利卡特（科泽科德）",
+      "etymology_sources": [
+        "https://en.wiktionary.org/wiki/calico"
+      ],
+      "etymology_status": "PLAUSIBLE_BUT_UNVERIFIED",
+      "chinese_definition": "印花棉布；白棉布",
+      "chinese_status": "PLAUSIBLE_BUT_UNVERIFIED",
+      "verification_status": "PARTIALLY_VERIFIED",
+      "confidence": "medium",
+      "issues": [
+        "Chinese gloss is editorial; named origins are not productive morphemes.",
+        "Historical anecdotes and disputed origins have separate story-level notes."
+      ],
+      "changes_made": [
+        "Added from the uploaded book; supplement dated 2026-11-24."
+      ],
+      "checked_on": "2026-11-24",
+      "book_pages": [
+        422
+      ]
+    },
+    {
+      "word": "tuxedo",
+      "ipa": "/tʌkˈsidoʊ/",
+      "ipa_source": "Wiktionary IPA（2026-11-24；按原记录规范字形及音节分隔）",
+      "ipa_source_url": "https://en.wiktionary.org/wiki/tuxedo",
+      "ipa_status": "VERIFIED",
+      "ipa_sources": [
+        "https://en.wiktionary.org/wiki/tuxedo"
+      ],
+      "morphological_analysis": [],
+      "morphology_status": "NOT_APPLICABLE",
+      "historical_etymology": "美国纽约塔克西多公园",
+      "etymology_sources": [
+        "https://en.wiktionary.org/wiki/tuxedo"
+      ],
+      "etymology_status": "PLAUSIBLE_BUT_UNVERIFIED",
+      "chinese_definition": "男式晚礼服；无尾礼服",
+      "chinese_status": "PLAUSIBLE_BUT_UNVERIFIED",
+      "verification_status": "PARTIALLY_VERIFIED",
+      "confidence": "medium",
+      "issues": [
+        "Chinese gloss is editorial; named origins are not productive morphemes.",
+        "Historical anecdotes and disputed origins have separate story-level notes."
+      ],
+      "changes_made": [
+        "Added from the uploaded book; supplement dated 2026-11-24."
+      ],
+      "checked_on": "2026-11-24",
+      "book_pages": [
+        423
+      ]
+    },
+    {
+      "word": "Gypsy",
+      "ipa": "/ˈd͡ʒɪpsi/",
+      "ipa_source": "Wiktionary IPA（2026-11-24；按原记录规范字形及音节分隔）",
+      "ipa_source_url": "https://en.wiktionary.org/wiki/Gypsy",
+      "ipa_status": "VERIFIED",
+      "ipa_sources": [
+        "https://en.wiktionary.org/wiki/Gypsy"
+      ],
+      "morphological_analysis": [],
+      "morphology_status": "NOT_APPLICABLE",
+      "historical_etymology": "埃及（旧时误认的来历）",
+      "etymology_sources": [
+        "https://en.wiktionary.org/wiki/Gypsy"
+      ],
+      "etymology_status": "PLAUSIBLE_BUT_UNVERIFIED",
+      "chinese_definition": "吉卜赛人（罗姆人的旧称，有时具冒犯性）",
+      "chinese_status": "PLAUSIBLE_BUT_UNVERIFIED",
+      "verification_status": "PARTIALLY_VERIFIED",
+      "confidence": "medium",
+      "issues": [
+        "Chinese gloss is editorial; named origins are not productive morphemes.",
+        "Historical anecdotes and disputed origins have separate story-level notes."
+      ],
+      "changes_made": [
+        "Added from the uploaded book; supplement dated 2026-11-24."
+      ],
+      "checked_on": "2026-11-24",
+      "book_pages": [
+        423
+      ]
+    },
+    {
+      "word": "damask",
+      "ipa": "/ˈdæməsk/",
+      "ipa_source": "Wiktionary IPA（2026-11-24；按原记录规范字形及音节分隔）",
+      "ipa_source_url": "https://en.wiktionary.org/wiki/damask",
+      "ipa_status": "VERIFIED",
+      "ipa_sources": [
+        "https://en.wiktionary.org/wiki/damask"
+      ],
+      "morphological_analysis": [],
+      "morphology_status": "NOT_APPLICABLE",
+      "historical_etymology": "叙利亚大马士革",
+      "etymology_sources": [
+        "https://en.wiktionary.org/wiki/damask"
+      ],
+      "etymology_status": "PLAUSIBLE_BUT_UNVERIFIED",
+      "chinese_definition": "锦缎；提花织物",
+      "chinese_status": "PLAUSIBLE_BUT_UNVERIFIED",
+      "verification_status": "PARTIALLY_VERIFIED",
+      "confidence": "medium",
+      "issues": [
+        "Chinese gloss is editorial; named origins are not productive morphemes.",
+        "Historical anecdotes and disputed origins have separate story-level notes."
+      ],
+      "changes_made": [
+        "Added from the uploaded book; supplement dated 2026-11-24."
+      ],
+      "checked_on": "2026-11-24",
+      "book_pages": [
+        423
+      ]
+    },
+    {
+      "word": "satin",
+      "ipa": "/ˈsætɪn/",
+      "ipa_source": "Wiktionary IPA（2026-11-24；按原记录规范字形及音节分隔）",
+      "ipa_source_url": "https://en.wiktionary.org/wiki/satin",
+      "ipa_status": "VERIFIED",
+      "ipa_sources": [
+        "https://en.wiktionary.org/wiki/satin"
+      ],
+      "morphological_analysis": [],
+      "morphology_status": "NOT_APPLICABLE",
+      "historical_etymology": "刺桐港，今泉州",
+      "etymology_sources": [
+        "https://en.wiktionary.org/wiki/satin"
+      ],
+      "etymology_status": "PLAUSIBLE_BUT_UNVERIFIED",
+      "chinese_definition": "缎子；缎纹织物",
+      "chinese_status": "PLAUSIBLE_BUT_UNVERIFIED",
+      "verification_status": "PARTIALLY_VERIFIED",
+      "confidence": "medium",
+      "issues": [
+        "Chinese gloss is editorial; named origins are not productive morphemes.",
+        "Historical anecdotes and disputed origins have separate story-level notes."
+      ],
+      "changes_made": [
+        "Added from the uploaded book; supplement dated 2026-11-24."
+      ],
+      "checked_on": "2026-11-24",
+      "book_pages": [
+        423
+      ]
+    },
+    {
+      "word": "frankfurter",
+      "ipa": "/ˈfɹæŋkfɝɾɚ/",
+      "ipa_source": "Wiktionary IPA（2026-11-24；按原记录规范字形及音节分隔）",
+      "ipa_source_url": "https://en.wiktionary.org/wiki/frankfurter",
+      "ipa_status": "VERIFIED",
+      "ipa_sources": [
+        "https://en.wiktionary.org/wiki/frankfurter"
+      ],
+      "morphological_analysis": [],
+      "morphology_status": "NOT_APPLICABLE",
+      "historical_etymology": "德国法兰克福",
+      "etymology_sources": [
+        "https://en.wiktionary.org/wiki/frankfurter"
+      ],
+      "etymology_status": "PLAUSIBLE_BUT_UNVERIFIED",
+      "chinese_definition": "法兰克福香肠",
+      "chinese_status": "PLAUSIBLE_BUT_UNVERIFIED",
+      "verification_status": "PARTIALLY_VERIFIED",
+      "confidence": "medium",
+      "issues": [
+        "Chinese gloss is editorial; named origins are not productive morphemes.",
+        "Historical anecdotes and disputed origins have separate story-level notes."
+      ],
+      "changes_made": [
+        "Added from the uploaded book; supplement dated 2026-11-24."
+      ],
+      "checked_on": "2026-11-24",
+      "book_pages": [
+        423
       ]
     }
   ]

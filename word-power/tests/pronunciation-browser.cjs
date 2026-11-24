@@ -58,6 +58,18 @@ async function audioOptions(page) {
       await page.locator('#close-modal').click();
       assert.equal(await page.evaluate(() => window.__media.at(-1).paused), true, 'Close must stop audio');
     }
+    const addedPlayback = [];
+    for (const word of ['martinet', 'boycott', 'bloomers']) {
+      await open(page, word);
+      await page.locator('#play-american').click();
+      await page.waitForFunction(() => {const a=window.__media.at(-1);return a?.currentTime>0.02&&a.duration>0}, null, {timeout:18000});
+      const sample=await page.evaluate(() => ({src:window.__media.at(-1).src,duration:window.__media.at(-1).duration}));
+      const entry=data.lexicon[word],us=entry.american_pronunciation;
+      const expected=us.kind==='recording'?entry.pronunciation_audio[us.recording_index].url:new URL(us.url,base).href;
+      assert.equal(sample.src,expected,word);
+      addedPlayback.push({word,kind:us.kind,...sample});
+    }
+    await page.locator('#close-modal').click();
     // Every entry must retain a readable card and the synthesis option.
     await page.locator('#clear-all').click();
     const coverage = await page.evaluate(words => {
@@ -141,7 +153,7 @@ async function audioOptions(page) {
     await page.reload();
     await page.locator('[data-recording="0"]').waitFor();
     assert.deepEqual(errors, []);
-    console.log(JSON.stringify({ok: true, coverage, playback, americanPlayback, failures: errors,
+    console.log(JSON.stringify({ok: true, coverage, playback, addedPlayback, americanPlayback, failures: errors,
       checked: ['no autoplay', 'real Ogg/WAV/phrase playback', 'close stops audio', 'mobile layout',
         'failed recording', 'English synthesis', 'stop/close cancels speech',
         'US MP3 without browser speech', 'reject UK/AU-only voices', 'missing English voices/API', 'stale external JSON', 'offline embedded fallback']}, null, 2));

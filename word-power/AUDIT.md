@@ -152,3 +152,22 @@ node tools/browser_test.mjs --url http://127.0.0.1:8765/word-power/
 ```
 
 浏览器测试实测结果（2026-11-19）：507 个词条、679 个词实例、243 个词根分支、8 个语义组；搜索 `atheism` 返回 1 条；词卡显示 `/ˈeɪθiɪzəm/`、3 个构词成分、Cambridge 与 Wiktionary 链接；`philanthropist` 显示新增的 `philos` / `anthropos` 词根；古希腊语筛选返回 296 个词实例；390px 视口无横向溢出、侧栏隐藏。
+
+
+## 2026-11-24 story restoration supplement
+
+The 2026-11-19 figures above describe the original 507-word audit. A separately
+dated supplement now adds 20 story-related entries, bringing the current lexicon
+to 527 words in 9 groups. The supplement keeps 18 dictionary-sourced IPA records
+and 2 explicitly inferred, unverified forms (bloomers and chauvinist); it does
+not retroactively mark their complete etymologies or Chinese glosses verified.
+
+The uploaded 675-page book was checked for the restored material: 30 narratives
+now have 37 word-to-story references across 33 entries. Each reference is checked
+against its physical PDF pages, allowing declared inflected source forms.
+Laconic retains three stories; laconism and laconicism each retain two. Reported dialogue,
+contested origin tales and old factual errors receive separate editorial labels
+or notes. The original PDF and extracted text are not published.
+
+Every current entry retains a US playback option: 276 human recordings and
+251 explicitly labelled, shipped US synthetic clips.

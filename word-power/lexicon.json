@@ -1,12 +1,12 @@
 {
   "metadata": {
     "title": "Word Power Made Easy · Etymology Atlas",
-    "roots": 238,
-    "word_instances": 679,
-    "unique_words": 507,
+    "roots": 257,
+    "word_instances": 699,
+    "unique_words": 527,
     "origin_note": "词根标签主要表示早期来源，未必是英语整词直接借入的语言；构词面板采用教学式历史语素拆解，保留整体借词与不确定词源的例外说明。2026-11-19 补齐 61 条缺失词根，并修正 entomology 等拆分。",
     "ipa_note": "2026-11-19 复核：94 条原有词典来源 IPA 已重查；502 条与 Cambridge Dictionary / Wiktionary 英语词条交叉比对；27 条明显误读已更正。其余 48 条保留现有宽式转写，并在 audit.json 中标为未独立核验或宽式变体。",
-    "book_stories_version": "9d77d6c6d449",
+    "book_stories_version": "f101332291df",
     "book_stories": {
       "source_title": "Word Power Made Easy",
       "author": "Norman Lewis",
@@ -14,24 +14,26 @@
       "source_sha256": "f2ed9b6ff7c08b80cc11def67dc2a467e4ee43c8a6c289e7c68447fffc8c9b2e",
       "page_basis": "Physical PDF page, one-based; uploaded edition, not print page numbers.",
       "date": "2026-11-24",
-      "word_count": 8,
-      "summary_count": 4,
+      "schema_version": 2,
+      "word_count": 33,
+      "summary_count": 30,
+      "reference_count": 37,
       "kinds": {
-        "narrative": 8
+        "narrative": 37
       },
-      "note": "仅保留直接相关的历史故事；传说单独标明。没有历史典故的词条不显示故事区。"
+      "note": "一词可关联多则历史故事；传说、转述轶事与争议旧说另作标记。没有典故的词条不显示故事区。"
     },
-    "pronunciation_audio_version": "27fd81a0ed3d",
+    "pronunciation_audio_version": "f33327f20bd6",
     "pronunciation_audio": {
       "source": "English Wiktionary / Wikimedia Commons; CMU Flite US SLT",
       "checked_on": "2026-11-24",
-      "recorded_words": 471,
-      "total_words": 507,
+      "recorded_words": 490,
+      "total_words": 527,
       "fallback": "Browser en-US speech synthesis only",
       "note": "Every word has a primary US option: an explicitly US-labelled Commons recording or a shipped CMU Flite US SLT synthetic MP3. Other accents remain additional options.",
-      "american_recorded_words": 269,
-      "american_synthetic_words": 238,
-      "american_total_words": 507
+      "american_recorded_words": 276,
+      "american_synthetic_words": 251,
+      "american_total_words": 527
     }
   },
   "groups": [
@@ -3205,7 +3207,8 @@
             "suicide",
             "patricide",
             "genocide",
-            "regicide"
+            "regicide",
+            "parricide"
           ]
         },
         {
@@ -3423,6 +3426,221 @@
           "wiktionary": "-fy",
           "words": [
             "magnify"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "people-places",
+      "name": "人物·地名·典故",
+      "roots": [
+        {
+          "term": "Martinet",
+          "zh": "让·马蒂内",
+          "lang": "人名",
+          "meaning": "让·马蒂内",
+          "original": "Martinet",
+          "book_page": 360,
+          "words": [
+            "martinet"
+          ]
+        },
+        {
+          "term": "Chauvin",
+          "zh": "尼古拉·沙文（传说人物）",
+          "lang": "人名",
+          "meaning": "尼古拉·沙文（传说人物）",
+          "original": "Chauvin",
+          "book_page": 362,
+          "words": [
+            "chauvinist"
+          ]
+        },
+        {
+          "term": "Bloomer",
+          "zh": "艾米莉娅·布卢默",
+          "lang": "人名",
+          "meaning": "艾米莉娅·布卢默",
+          "original": "Bloomer",
+          "book_page": 421,
+          "words": [
+            "bloomers"
+          ]
+        },
+        {
+          "term": "Boycott",
+          "zh": "查尔斯·博伊科特",
+          "lang": "人名",
+          "meaning": "查尔斯·博伊科特",
+          "original": "Boycott",
+          "book_page": 421,
+          "words": [
+            "boycott"
+          ]
+        },
+        {
+          "term": "Marcel",
+          "zh": "马塞尔（理发师名）",
+          "lang": "人名",
+          "meaning": "马塞尔（理发师名）",
+          "original": "Marcel",
+          "book_page": 421,
+          "words": [
+            "marcel"
+          ]
+        },
+        {
+          "term": "Silhouette",
+          "zh": "艾蒂安·德·西卢埃特",
+          "lang": "人名",
+          "meaning": "艾蒂安·德·西卢埃特",
+          "original": "Silhouette",
+          "book_page": 421,
+          "words": [
+            "silhouette"
+          ]
+        },
+        {
+          "term": "Derrick",
+          "zh": "德里克（刽子手名）",
+          "lang": "人名",
+          "meaning": "德里克（刽子手名）",
+          "original": "Derrick",
+          "book_page": 421,
+          "words": [
+            "derrick"
+          ]
+        },
+        {
+          "term": "de Sade",
+          "zh": "萨德侯爵",
+          "lang": "人名",
+          "meaning": "萨德侯爵",
+          "original": "de Sade",
+          "book_page": 422,
+          "words": [
+            "sadist"
+          ]
+        },
+        {
+          "term": "Galvani",
+          "zh": "路易吉·伽伐尼",
+          "lang": "人名",
+          "meaning": "路易吉·伽伐尼",
+          "original": "Galvani",
+          "book_page": 422,
+          "words": [
+            "galvanism"
+          ]
+        },
+        {
+          "term": "Guppy",
+          "zh": "罗伯特·J. L. 古皮",
+          "lang": "人名",
+          "meaning": "罗伯特·J. L. 古皮",
+          "original": "Guppy",
+          "book_page": 422,
+          "words": [
+            "guppy"
+          ]
+        },
+        {
+          "term": "Nicot",
+          "zh": "让·尼古",
+          "lang": "人名",
+          "meaning": "让·尼古",
+          "original": "Nicot",
+          "book_page": 422,
+          "words": [
+            "nicotine"
+          ]
+        },
+        {
+          "term": "Bayonne",
+          "zh": "法国巴约讷",
+          "lang": "地名",
+          "meaning": "法国巴约讷",
+          "original": "Bayonne",
+          "book_page": 422,
+          "words": [
+            "bayonet"
+          ]
+        },
+        {
+          "term": "Cantalupo",
+          "zh": "意大利坎塔卢波",
+          "lang": "地名",
+          "meaning": "意大利坎塔卢波",
+          "original": "Cantalupo",
+          "book_page": 422,
+          "words": [
+            "cantaloupe"
+          ]
+        },
+        {
+          "term": "Calicut",
+          "zh": "印度卡利卡特（科泽科德）",
+          "lang": "地名",
+          "meaning": "印度卡利卡特（科泽科德）",
+          "original": "Calicut",
+          "book_page": 422,
+          "words": [
+            "calico"
+          ]
+        },
+        {
+          "term": "Tuxedo Park",
+          "zh": "美国纽约塔克西多公园",
+          "lang": "地名",
+          "meaning": "美国纽约塔克西多公园",
+          "original": "Tuxedo Park",
+          "book_page": 423,
+          "words": [
+            "tuxedo"
+          ]
+        },
+        {
+          "term": "Egypt",
+          "zh": "埃及（旧时误认的来历）",
+          "lang": "地名",
+          "meaning": "埃及（旧时误认的来历）",
+          "original": "Egypt",
+          "book_page": 423,
+          "words": [
+            "Gypsy"
+          ]
+        },
+        {
+          "term": "Damascus",
+          "zh": "叙利亚大马士革",
+          "lang": "地名",
+          "meaning": "叙利亚大马士革",
+          "original": "Damascus",
+          "book_page": 423,
+          "words": [
+            "damask"
+          ]
+        },
+        {
+          "term": "Zaitun",
+          "zh": "刺桐港，今泉州",
+          "lang": "地名",
+          "meaning": "刺桐港，今泉州",
+          "original": "Zaitun",
+          "book_page": 423,
+          "words": [
+            "satin"
+          ]
+        },
+        {
+          "term": "Frankfurt",
+          "zh": "德国法兰克福",
+          "lang": "地名",
+          "meaning": "德国法兰克福",
+          "original": "Frankfurt",
+          "book_page": 423,
+          "words": [
+            "frankfurter"
           ]
         }
       ]
@@ -4971,26 +5189,26 @@
       "ipa_url": "https://dictionary.cambridge.org/pronunciation/english/animosity",
       "pronunciation_audio": [
         {
-          "url": "https://upload.wikimedia.org/wikipedia/commons/7/79/LL-Q1860_%28eng%29-Vealhurl-animosity.wav",
-          "file_url": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-animosity.wav",
-          "artist": "Speaker: Vealhurl Recorder: Vealhurl",
-          "license": "CC BY-SA 4.0",
-          "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-          "accent": "Southern England"
-        },
-        {
           "url": "https://upload.wikimedia.org/wikipedia/commons/7/78/LL-Q1860_%28eng%29-Wodencafe-animosity.wav",
           "file_url": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Wodencafe-animosity.wav",
           "artist": "Speaker: Wodencafe Recorder: Wodencafe",
           "license": "CC0",
           "license_url": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
           "accent": "Texas"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/7/79/LL-Q1860_%28eng%29-Vealhurl-animosity.wav",
+          "file_url": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-animosity.wav",
+          "artist": "Speaker: Vealhurl Recorder: Vealhurl",
+          "license": "CC BY-SA 4.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+          "accent": "Southern England"
         }
       ],
       "american_pronunciation": {
         "kind": "recording",
         "locale": "en-US",
-        "recording_index": 1
+        "recording_index": 0
       }
     },
     "anodyne": {
@@ -7115,26 +7333,26 @@
       "ipa_url": "https://dictionary.cambridge.org/pronunciation/english/bonus",
       "pronunciation_audio": [
         {
-          "url": "https://upload.wikimedia.org/wikipedia/commons/8/81/LL-Q1860_%28eng%29-Vealhurl-bonus.wav",
-          "file_url": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-bonus.wav",
-          "artist": "Speaker: Vealhurl Recorder: Vealhurl",
-          "license": "CC BY-SA 4.0",
-          "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-          "accent": "Southern England"
-        },
-        {
           "url": "https://upload.wikimedia.org/wikipedia/commons/f/f7/LL-Q1860_%28eng%29-Wodencafe-bonus.wav",
           "file_url": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Wodencafe-bonus.wav",
           "artist": "Speaker: Wodencafe Recorder: Wodencafe",
           "license": "CC0",
           "license_url": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
           "accent": "Texas"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/8/81/LL-Q1860_%28eng%29-Vealhurl-bonus.wav",
+          "file_url": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-bonus.wav",
+          "artist": "Speaker: Vealhurl Recorder: Vealhurl",
+          "license": "CC BY-SA 4.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+          "accent": "Southern England"
         }
       ],
       "american_pronunciation": {
         "kind": "recording",
         "locale": "en-US",
-        "recording_index": 1
+        "recording_index": 0
       }
     },
     "botanical": {
@@ -8232,26 +8450,26 @@
       "ipa_url": "https://dictionary.cambridge.org/pronunciation/english/chronological",
       "pronunciation_audio": [
         {
-          "url": "https://upload.wikimedia.org/wikipedia/commons/c/cb/LL-Q1860_%28eng%29-Vealhurl-chronological.wav",
-          "file_url": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-chronological.wav",
-          "artist": "Speaker: Vealhurl Recorder: Vealhurl",
-          "license": "CC BY-SA 4.0",
-          "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-          "accent": "Southern England"
-        },
-        {
           "url": "https://upload.wikimedia.org/wikipedia/commons/c/c8/LL-Q1860_%28eng%29-Wodencafe-chronological.wav",
           "file_url": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Wodencafe-chronological.wav",
           "artist": "Speaker: Wodencafe Recorder: Wodencafe",
           "license": "CC0",
           "license_url": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
           "accent": "Texas"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/c/cb/LL-Q1860_%28eng%29-Vealhurl-chronological.wav",
+          "file_url": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-chronological.wav",
+          "artist": "Speaker: Vealhurl Recorder: Vealhurl",
+          "license": "CC BY-SA 4.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+          "accent": "Southern England"
         }
       ],
       "american_pronunciation": {
         "kind": "recording",
         "locale": "en-US",
-        "recording_index": 1
+        "recording_index": 0
       }
     },
     "chronology": {
@@ -9259,26 +9477,26 @@
       "ipa_url": "https://dictionary.cambridge.org/pronunciation/english/credence",
       "pronunciation_audio": [
         {
-          "url": "https://upload.wikimedia.org/wikipedia/commons/c/c8/LL-Q1860_%28eng%29-Vealhurl-credence.wav",
-          "file_url": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-credence.wav",
-          "artist": "Speaker: Vealhurl Recorder: Vealhurl",
-          "license": "CC BY-SA 4.0",
-          "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-          "accent": "Southern England"
-        },
-        {
           "url": "https://upload.wikimedia.org/wikipedia/commons/6/67/En-us-credence.ogg",
           "file_url": "https://commons.wikimedia.org/wiki/File:En-us-credence.ogg",
           "artist": "Steve Shives",
           "license": "CC0",
           "license_url": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
           "accent": "Maryland"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/c/c8/LL-Q1860_%28eng%29-Vealhurl-credence.wav",
+          "file_url": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-credence.wav",
+          "artist": "Speaker: Vealhurl Recorder: Vealhurl",
+          "license": "CC BY-SA 4.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+          "accent": "Southern England"
         }
       ],
       "american_pronunciation": {
         "kind": "recording",
         "locale": "en-US",
-        "recording_index": 1
+        "recording_index": 0
       }
     },
     "credentials": {
@@ -9356,26 +9574,26 @@
       "ipa_url": "https://dictionary.cambridge.org/pronunciation/english/credible",
       "pronunciation_audio": [
         {
-          "url": "https://upload.wikimedia.org/wikipedia/commons/9/97/LL-Q1860_%28eng%29-Vealhurl-credible.wav",
-          "file_url": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-credible.wav",
-          "artist": "Speaker: Vealhurl Recorder: Vealhurl",
-          "license": "CC BY-SA 4.0",
-          "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-          "accent": "Southern England"
-        },
-        {
           "url": "https://upload.wikimedia.org/wikipedia/commons/1/1b/En-us-credible.ogg",
           "file_url": "https://commons.wikimedia.org/wiki/File:En-us-credible.ogg",
           "artist": "Steve Shives",
           "license": "CC0",
           "license_url": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
           "accent": "Mid-Atlantic US"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/9/97/LL-Q1860_%28eng%29-Vealhurl-credible.wav",
+          "file_url": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-credible.wav",
+          "artist": "Speaker: Vealhurl Recorder: Vealhurl",
+          "license": "CC BY-SA 4.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+          "accent": "Southern England"
         }
       ],
       "american_pronunciation": {
         "kind": "recording",
         "locale": "en-US",
-        "recording_index": 1
+        "recording_index": 0
       }
     },
     "credo": {
@@ -9843,26 +10061,26 @@
       "ipa_url": "https://dictionary.cambridge.org/pronunciation/english/democracy",
       "pronunciation_audio": [
         {
-          "url": "https://upload.wikimedia.org/wikipedia/commons/5/5c/LL-Q1860_%28eng%29-Vealhurl-democracy.wav",
-          "file_url": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-democracy.wav",
-          "artist": "Speaker: Vealhurl Recorder: Vealhurl",
-          "license": "CC BY-SA 4.0",
-          "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-          "accent": "Southern England"
-        },
-        {
           "url": "https://upload.wikimedia.org/wikipedia/commons/2/2c/LL-Q1860_%28eng%29-Simplificationalizer-democracy.wav",
           "file_url": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Simplificationalizer-democracy.wav",
           "artist": "Speaker: Simplificationalizer Recorder: Simplificationalizer",
           "license": "CC0",
           "license_url": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
           "accent": "New Jersey"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/5/5c/LL-Q1860_%28eng%29-Vealhurl-democracy.wav",
+          "file_url": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-democracy.wav",
+          "artist": "Speaker: Vealhurl Recorder: Vealhurl",
+          "license": "CC BY-SA 4.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+          "accent": "Southern England"
         }
       ],
       "american_pronunciation": {
         "kind": "recording",
         "locale": "en-US",
-        "recording_index": 1
+        "recording_index": 0
       }
     },
     "dermatitis": {
@@ -12444,26 +12662,26 @@
       "ipa_url": "https://dictionary.cambridge.org/pronunciation/english/evolution",
       "pronunciation_audio": [
         {
-          "url": "https://upload.wikimedia.org/wikipedia/commons/8/86/LL-Q1860_%28eng%29-Berrely-evolution.wav",
-          "file_url": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Berrely-evolution.wav",
-          "artist": "Speaker: Berrely Recorder: Berrely",
-          "license": "CC0",
-          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
-          "accent": "London"
-        },
-        {
           "url": "https://upload.wikimedia.org/wikipedia/commons/3/33/En-us-evolution.ogg",
           "file_url": "https://commons.wikimedia.org/wiki/File:En-us-evolution.ogg",
           "artist": "No machine-readable author provided. Dvortybot assumed (based on copyright claims).",
           "license": "CC BY-SA 3.0",
           "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
           "accent": "California"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/8/86/LL-Q1860_%28eng%29-Berrely-evolution.wav",
+          "file_url": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Berrely-evolution.wav",
+          "artist": "Speaker: Berrely Recorder: Berrely",
+          "license": "CC0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
+          "accent": "London"
         }
       ],
       "american_pronunciation": {
         "kind": "recording",
         "locale": "en-US",
-        "recording_index": 1
+        "recording_index": 0
       }
     },
     "evolve": {
@@ -13362,7 +13580,19 @@
         "engine": "CMU Flite",
         "voice": "cmu_us_slt",
         "sha256": "756c3bb8f064af7b242c7a7ddccd18369ba2f9f0e60611522dcb018be562d223"
-      }
+      },
+      "book_stories": [
+        {
+          "story_id": "history-009",
+          "kind": "narrative",
+          "mention_pages": [
+            364
+          ],
+          "source_forms": [
+            "genocide"
+          ]
+        }
+      ]
     },
     "geography": {
       "word": "geography",
@@ -16295,14 +16525,6 @@
       "source_status": "本书索引 + 人工释义；Wiktionary 外链供进一步核对",
       "origin_note": null,
       "ipa_url": "https://dictionary.cambridge.org/pronunciation/english/laconic",
-      "book_story": {
-        "story_id": "history-002",
-        "kind": "narrative",
-        "mention_pages": [
-          317,
-          318
-        ]
-      },
       "pronunciation_audio": [
         {
           "url": "https://upload.wikimedia.org/wikipedia/commons/7/77/En-us-laconic.ogg",
@@ -16325,7 +16547,40 @@
         "kind": "recording",
         "locale": "en-US",
         "recording_index": 0
-      }
+      },
+      "book_stories": [
+        {
+          "story_id": "history-002",
+          "kind": "narrative",
+          "mention_pages": [
+            317,
+            318
+          ],
+          "source_forms": [
+            "laconic"
+          ]
+        },
+        {
+          "story_id": "history-005",
+          "kind": "narrative",
+          "mention_pages": [
+            301
+          ],
+          "source_forms": [
+            "laconic"
+          ]
+        },
+        {
+          "story_id": "history-007",
+          "kind": "narrative",
+          "mention_pages": [
+            318
+          ],
+          "source_forms": [
+            "laconic"
+          ]
+        }
+      ]
     },
     "laconicism": {
       "word": "laconicism",
@@ -16357,13 +16612,6 @@
       "source_status": "本书索引 + 人工释义；Wiktionary 外链供进一步核对",
       "origin_note": null,
       "ipa_url": "https://www.collinsdictionary.com/us/dictionary/english/laconicism",
-      "book_story": {
-        "story_id": "history-002",
-        "kind": "narrative",
-        "mention_pages": [
-          318
-        ]
-      },
       "pronunciation_audio": [],
       "american_pronunciation": {
         "kind": "synthetic",
@@ -16372,7 +16620,29 @@
         "engine": "CMU Flite",
         "voice": "cmu_us_slt",
         "sha256": "5315ae97e87c056203111c8bbc51233ac7ec37eea2c0da99dc76b39374fdc72b"
-      }
+      },
+      "book_stories": [
+        {
+          "story_id": "history-002",
+          "kind": "narrative",
+          "mention_pages": [
+            318
+          ],
+          "source_forms": [
+            "laconicism"
+          ]
+        },
+        {
+          "story_id": "history-007",
+          "kind": "narrative",
+          "mention_pages": [
+            318
+          ],
+          "source_forms": [
+            "laconicism"
+          ]
+        }
+      ]
     },
     "laconism": {
       "word": "laconism",
@@ -16404,13 +16674,6 @@
       "source_status": "本书索引 + 人工释义；Wiktionary 外链供进一步核对",
       "origin_note": null,
       "ipa_url": "https://www.collinsdictionary.com/us/dictionary/english/laconism",
-      "book_story": {
-        "story_id": "history-002",
-        "kind": "narrative",
-        "mention_pages": [
-          318
-        ]
-      },
       "pronunciation_audio": [],
       "american_pronunciation": {
         "kind": "synthetic",
@@ -16419,7 +16682,29 @@
         "engine": "CMU Flite",
         "voice": "cmu_us_slt",
         "sha256": "597a6112d6dfa7e5f21b75ed6ca5e4d8eab3d1adee300846b5af843a06dcadca"
-      }
+      },
+      "book_stories": [
+        {
+          "story_id": "history-002",
+          "kind": "narrative",
+          "mention_pages": [
+            318
+          ],
+          "source_forms": [
+            "laconism"
+          ]
+        },
+        {
+          "story_id": "history-007",
+          "kind": "narrative",
+          "mention_pages": [
+            318
+          ],
+          "source_forms": [
+            "laconism"
+          ]
+        }
+      ]
     },
     "leonine": {
       "word": "leonine",
@@ -19050,13 +19335,6 @@
       "source_status": "本书索引 + 人工释义；Wiktionary 外链供进一步核对",
       "origin_note": "拉丁语 omnipotens，omnis「全部」+ potens「有能力」。",
       "ipa_url": "https://dictionary.cambridge.org/pronunciation/english/omnipotent",
-      "book_story": {
-        "story_id": "history-004",
-        "kind": "narrative",
-        "mention_pages": [
-          539
-        ]
-      },
       "pronunciation_audio": [
         {
           "url": "https://upload.wikimedia.org/wikipedia/commons/8/8c/En-us-omnipotent.ogg",
@@ -19071,7 +19349,19 @@
         "kind": "recording",
         "locale": "en-US",
         "recording_index": 0
-      }
+      },
+      "book_stories": [
+        {
+          "story_id": "history-004",
+          "kind": "narrative",
+          "mention_pages": [
+            539
+          ],
+          "source_forms": [
+            "omnipotent"
+          ]
+        }
+      ]
     },
     "omnipresent": {
       "word": "omnipresent",
@@ -19563,26 +19853,26 @@
       "origin_note": null,
       "pronunciation_audio": [
         {
-          "url": "https://upload.wikimedia.org/wikipedia/commons/7/76/LL-Q1860_%28eng%29-Vealhurl-ophthalmology.wav",
-          "file_url": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-ophthalmology.wav",
-          "artist": "Speaker: Vealhurl Recorder: Vealhurl",
-          "license": "CC BY-SA 4.0",
-          "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-          "accent": "Southern England"
-        },
-        {
           "url": "https://upload.wikimedia.org/wikipedia/commons/4/40/LL-Q1860_%28eng%29-Paul2520-ophthalmology.wav",
           "file_url": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Paul2520-ophthalmology.wav",
           "artist": "Speaker: Paul2520 Recorder: Paul2520",
           "license": "CC0",
           "license_url": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
           "accent": "Midwestern US"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/7/76/LL-Q1860_%28eng%29-Vealhurl-ophthalmology.wav",
+          "file_url": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-ophthalmology.wav",
+          "artist": "Speaker: Vealhurl Recorder: Vealhurl",
+          "license": "CC BY-SA 4.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+          "accent": "Southern England"
         }
       ],
       "american_pronunciation": {
         "kind": "recording",
         "locale": "en-US",
-        "recording_index": 1
+        "recording_index": 0
       }
     },
     "optical": {
@@ -20569,26 +20859,26 @@
       "ipa_url": "https://dictionary.cambridge.org/pronunciation/english/pathology",
       "pronunciation_audio": [
         {
-          "url": "https://upload.wikimedia.org/wikipedia/commons/8/86/LL-Q1860_%28eng%29-Vealhurl-pathology.wav",
-          "file_url": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-pathology.wav",
-          "artist": "Speaker: Vealhurl Recorder: Vealhurl",
-          "license": "CC BY-SA 4.0",
-          "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-          "accent": "Southern England"
-        },
-        {
           "url": "https://upload.wikimedia.org/wikipedia/commons/8/8d/LL-Q7976_%28mis%29-Lurkingherern-pathology.wav",
           "file_url": "https://commons.wikimedia.org/wiki/File:LL-Q7976_(mis)-Lurkingherern-pathology.wav",
           "artist": "Speaker: Lurkingherern Recorder: Lurkingherern",
           "license": "CC BY 4.0",
           "license_url": "https://creativecommons.org/licenses/by/4.0",
           "accent": "United States"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/8/86/LL-Q1860_%28eng%29-Vealhurl-pathology.wav",
+          "file_url": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-pathology.wav",
+          "artist": "Speaker: Vealhurl Recorder: Vealhurl",
+          "license": "CC BY-SA 4.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+          "accent": "Southern England"
         }
       ],
       "american_pronunciation": {
         "kind": "recording",
         "locale": "en-US",
-        "recording_index": 1
+        "recording_index": 0
       }
     },
     "patriarch": {
@@ -21622,26 +21912,26 @@
       "ipa_url": "https://dictionary.cambridge.org/pronunciation/english/philanthropy",
       "pronunciation_audio": [
         {
-          "url": "https://upload.wikimedia.org/wikipedia/commons/b/b4/LL-Q1860_%28eng%29-Vealhurl-philanthropy.wav",
-          "file_url": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-philanthropy.wav",
-          "artist": "Speaker: Vealhurl Recorder: Vealhurl",
-          "license": "CC BY-SA 4.0",
-          "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-          "accent": "Berkshire,SSB"
-        },
-        {
           "url": "https://upload.wikimedia.org/wikipedia/commons/5/54/LL-Q1860_%28eng%29-Wodencafe-philanthropy.wav",
           "file_url": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Wodencafe-philanthropy.wav",
           "artist": "Speaker: Wodencafe Recorder: Wodencafe",
           "license": "CC0",
           "license_url": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
           "accent": "Texas"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/b/b4/LL-Q1860_%28eng%29-Vealhurl-philanthropy.wav",
+          "file_url": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-philanthropy.wav",
+          "artist": "Speaker: Vealhurl Recorder: Vealhurl",
+          "license": "CC BY-SA 4.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+          "accent": "Berkshire,SSB"
         }
       ],
       "american_pronunciation": {
         "kind": "recording",
         "locale": "en-US",
-        "recording_index": 1
+        "recording_index": 0
       }
     },
     "philology": {
@@ -21732,26 +22022,26 @@
       "ipa_url": "https://dictionary.cambridge.org/pronunciation/english/philosopher",
       "pronunciation_audio": [
         {
-          "url": "https://upload.wikimedia.org/wikipedia/commons/e/eb/LL-Q1860_%28eng%29-Vealhurl-philosopher.wav",
-          "file_url": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-philosopher.wav",
-          "artist": "Speaker: Vealhurl Recorder: Vealhurl",
-          "license": "CC BY-SA 4.0",
-          "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-          "accent": "Southern England"
-        },
-        {
           "url": "https://upload.wikimedia.org/wikipedia/commons/5/57/En-us-philosopher.ogg",
           "file_url": "https://commons.wikimedia.org/wiki/File:En-us-philosopher.ogg",
           "artist": "Steve Shives",
           "license": "CC0",
           "license_url": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
           "accent": "Mid-Atlantic US"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/e/eb/LL-Q1860_%28eng%29-Vealhurl-philosopher.wav",
+          "file_url": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-philosopher.wav",
+          "artist": "Speaker: Vealhurl Recorder: Vealhurl",
+          "license": "CC BY-SA 4.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+          "accent": "Southern England"
         }
       ],
       "american_pronunciation": {
         "kind": "recording",
         "locale": "en-US",
-        "recording_index": 1
+        "recording_index": 0
       }
     },
     "philosophy": {
@@ -23029,14 +23319,6 @@
       "source_status": "本书索引 + 人工释义；Wiktionary 外链供进一步核对",
       "origin_note": null,
       "ipa_url": "https://dictionary.cambridge.org/pronunciation/english/proscribe",
-      "book_story": {
-        "story_id": "history-001",
-        "kind": "narrative",
-        "mention_pages": [
-          270,
-          271
-        ]
-      },
       "pronunciation_audio": [
         {
           "url": "https://upload.wikimedia.org/wikipedia/commons/3/34/LL-Q1860_%28eng%29-Vealhurl-proscribe.wav",
@@ -23054,7 +23336,20 @@
         "engine": "CMU Flite",
         "voice": "cmu_us_slt",
         "sha256": "c9343243405af33f3669fd7ef9097cff047d1bf7854ac96c873f68724cc2e454"
-      }
+      },
+      "book_stories": [
+        {
+          "story_id": "history-001",
+          "kind": "narrative",
+          "mention_pages": [
+            270,
+            271
+          ],
+          "source_forms": [
+            "proscribe"
+          ]
+        }
+      ]
     },
     "prospect": {
       "word": "prospect",
@@ -24295,7 +24590,19 @@
         "engine": "CMU Flite",
         "voice": "cmu_us_slt",
         "sha256": "38070c0a0a2c4bf4207f8db6af7dd75ed093a20a7f58cf6a195f8bd60602d0e6"
-      }
+      },
+      "book_stories": [
+        {
+          "story_id": "history-010",
+          "kind": "narrative",
+          "mention_pages": [
+            364
+          ],
+          "source_forms": [
+            "regicide"
+          ]
+        }
+      ]
     },
     "reticent": {
       "word": "reticent",
@@ -25544,26 +25851,26 @@
       "ipa_url": "https://dictionary.cambridge.org/pronunciation/english/similarity",
       "pronunciation_audio": [
         {
-          "url": "https://upload.wikimedia.org/wikipedia/commons/c/ce/LL-Q1860_%28eng%29-Vealhurl-similarity.wav",
-          "file_url": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-similarity.wav",
-          "artist": "Speaker: Vealhurl Recorder: Vealhurl",
-          "license": "CC BY-SA 4.0",
-          "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-          "accent": "Southern England"
-        },
-        {
           "url": "https://upload.wikimedia.org/wikipedia/commons/4/44/LL-Q1860_%28eng%29-Arlo_Barnes-similarity.wav",
           "file_url": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Arlo_Barnes-similarity.wav",
           "artist": "Speaker: Arlo Barnes Recorder: Arlo Barnes",
           "license": "CC0",
           "license_url": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
           "accent": "New Mexico"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/c/ce/LL-Q1860_%28eng%29-Vealhurl-similarity.wav",
+          "file_url": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-similarity.wav",
+          "artist": "Speaker: Vealhurl Recorder: Vealhurl",
+          "license": "CC BY-SA 4.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+          "accent": "Southern England"
         }
       ],
       "american_pronunciation": {
         "kind": "recording",
         "locale": "en-US",
-        "recording_index": 1
+        "recording_index": 0
       }
     },
     "simulate": {
@@ -26494,13 +26801,6 @@
       "source_status": "本书索引 + 人工释义；Wiktionary 外链供进一步核对",
       "origin_note": null,
       "ipa_url": "https://dictionary.cambridge.org/pronunciation/english/stoic",
-      "book_story": {
-        "story_id": "history-003",
-        "kind": "narrative",
-        "mention_pages": [
-          468
-        ]
-      },
       "pronunciation_audio": [
         {
           "url": "https://upload.wikimedia.org/wikipedia/commons/3/3e/LL-Q1860_%28eng%29-Wodencafe-stoic.wav",
@@ -26523,7 +26823,19 @@
         "kind": "recording",
         "locale": "en-US",
         "recording_index": 0
-      }
+      },
+      "book_stories": [
+        {
+          "story_id": "history-003",
+          "kind": "narrative",
+          "mention_pages": [
+            468
+          ],
+          "source_forms": [
+            "stoic"
+          ]
+        }
+      ]
     },
     "stoical": {
       "word": "stoical",
@@ -26555,13 +26867,6 @@
       "source_status": "本书索引 + 人工释义；Wiktionary 外链供进一步核对",
       "origin_note": null,
       "ipa_url": "https://en.wiktionary.org/wiki/stoical",
-      "book_story": {
-        "story_id": "history-003",
-        "kind": "narrative",
-        "mention_pages": [
-          468
-        ]
-      },
       "pronunciation_audio": [
         {
           "url": "https://upload.wikimedia.org/wikipedia/commons/c/c4/LL-Q1860_%28eng%29-Vealhurl-stoical.wav",
@@ -26579,7 +26884,19 @@
         "engine": "CMU Flite",
         "voice": "cmu_us_slt",
         "sha256": "6bd1a9a5df3bcdafb3acd8ff33834c9a203e9a360eb640b0742ff285fe9c96af"
-      }
+      },
+      "book_stories": [
+        {
+          "story_id": "history-003",
+          "kind": "narrative",
+          "mention_pages": [
+            468
+          ],
+          "source_forms": [
+            "stoical"
+          ]
+        }
+      ]
     },
     "stoicism": {
       "word": "stoicism",
@@ -26611,13 +26928,6 @@
       "source_status": "本书索引 + 人工释义；Wiktionary 外链供进一步核对",
       "origin_note": null,
       "ipa_url": "https://dictionary.cambridge.org/pronunciation/english/stoicism",
-      "book_story": {
-        "story_id": "history-003",
-        "kind": "narrative",
-        "mention_pages": [
-          468
-        ]
-      },
       "pronunciation_audio": [
         {
           "url": "https://upload.wikimedia.org/wikipedia/commons/9/94/LL-Q1860_%28eng%29-Vealhurl-stoicism.wav",
@@ -26635,7 +26945,19 @@
         "engine": "CMU Flite",
         "voice": "cmu_us_slt",
         "sha256": "7c59a51be96888f2b6305af4e6a888dd4ce0de0fa1fc494954ae3a3e8bf6c23a"
-      }
+      },
+      "book_stories": [
+        {
+          "story_id": "history-003",
+          "kind": "narrative",
+          "mention_pages": [
+            468
+          ],
+          "source_forms": [
+            "stoicism"
+          ]
+        }
+      ]
     },
     "subsequent": {
       "word": "subsequent",
@@ -26839,26 +27161,26 @@
       "ipa_url": "https://dictionary.cambridge.org/pronunciation/english/suicide",
       "pronunciation_audio": [
         {
-          "url": "https://upload.wikimedia.org/wikipedia/commons/d/d2/En-uk-suicide.ogg",
-          "file_url": "https://commons.wikimedia.org/wiki/File:En-uk-suicide.ogg",
-          "artist": "TaxRebate",
-          "license": "CC BY-SA 4.0",
-          "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-          "accent": "UK"
-        },
-        {
           "url": "https://upload.wikimedia.org/wikipedia/commons/0/0b/En_US_Suicide.wav",
           "file_url": "https://commons.wikimedia.org/wiki/File:En_US_Suicide.wav",
           "artist": "SalomeCzapiewski",
           "license": "CC BY-SA 4.0",
           "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
           "accent": "Southern California"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/d/d2/En-uk-suicide.ogg",
+          "file_url": "https://commons.wikimedia.org/wiki/File:En-uk-suicide.ogg",
+          "artist": "TaxRebate",
+          "license": "CC BY-SA 4.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+          "accent": "UK"
         }
       ],
       "american_pronunciation": {
         "kind": "recording",
         "locale": "en-US",
-        "recording_index": 1
+        "recording_index": 0
       }
     },
     "survive": {
@@ -26956,7 +27278,19 @@
         "kind": "recording",
         "locale": "en-US",
         "recording_index": 0
-      }
+      },
+      "book_stories": [
+        {
+          "story_id": "history-008",
+          "kind": "narrative",
+          "mention_pages": [
+            360
+          ],
+          "source_forms": [
+            "sycophant"
+          ]
+        }
+      ]
     },
     "sympathy": {
       "word": "sympathy",
@@ -27369,7 +27703,19 @@
         "kind": "recording",
         "locale": "en-US",
         "recording_index": 0
-      }
+      },
+      "book_stories": [
+        {
+          "story_id": "history-006",
+          "kind": "narrative",
+          "mention_pages": [
+            309
+          ],
+          "source_forms": [
+            "taciturn"
+          ]
+        }
+      ]
     },
     "taciturnity": {
       "word": "taciturnity",
@@ -27409,7 +27755,19 @@
         "engine": "CMU Flite",
         "voice": "cmu_us_slt",
         "sha256": "22e1950f737ed8513c72684e4bef4139c85eb2e135de0ee5e8b0837f6559fa91"
-      }
+      },
+      "book_stories": [
+        {
+          "story_id": "history-006",
+          "kind": "narrative",
+          "mention_pages": [
+            309
+          ],
+          "source_forms": [
+            "taciturnity"
+          ]
+        }
+      ]
     },
     "telegraph": {
       "word": "telegraph",
@@ -28612,26 +28970,26 @@
       "ipa_url": "https://dictionary.cambridge.org/pronunciation/english/verbal",
       "pronunciation_audio": [
         {
-          "url": "https://upload.wikimedia.org/wikipedia/commons/a/a7/En-au-verbal.ogg",
-          "file_url": "https://commons.wikimedia.org/wiki/File:En-au-verbal.ogg",
-          "artist": "Commander Keane",
-          "license": "CC BY-SA 4.0",
-          "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
-          "accent": "Queensland"
-        },
-        {
           "url": "https://upload.wikimedia.org/wikipedia/commons/b/b9/En-us-verbal.ogg",
           "file_url": "https://commons.wikimedia.org/wiki/File:En-us-verbal.ogg",
           "artist": "Neskaya",
           "license": "CC BY-SA 3.0",
           "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
           "accent": "Southern California"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/a/a7/En-au-verbal.ogg",
+          "file_url": "https://commons.wikimedia.org/wiki/File:En-au-verbal.ogg",
+          "artist": "Commander Keane",
+          "license": "CC BY-SA 4.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+          "accent": "Queensland"
         }
       ],
       "american_pronunciation": {
         "kind": "recording",
         "locale": "en-US",
-        "recording_index": 1
+        "recording_index": 0
       }
     },
     "verbalize": {
@@ -29716,6 +30074,1089 @@
         "voice": "cmu_us_slt",
         "sha256": "06595be06b280cbdd75dfe270069c650843141b35ba9e197479f86b004017ce8"
       }
+    },
+    "martinet": {
+      "word": "martinet",
+      "zh": "苛刻的纪律执行者",
+      "ipa": "/mɑɹtɪˈnɛt/",
+      "ipa_source": "Wiktionary IPA（2026-11-24；按原记录规范字形及音节分隔）",
+      "components": [],
+      "component_status": "专名衍生词；不把人名、地名当作可自由拼接的词根。",
+      "roots": [
+        {
+          "term": "Martinet",
+          "zh": "让·马蒂内",
+          "lang": "人名"
+        }
+      ],
+      "book_pages": [
+        360
+      ],
+      "wiktionary_url": "https://en.wiktionary.org/wiki/martinet",
+      "ipa_url": "https://en.wiktionary.org/wiki/martinet",
+      "source_status": "2026-11-24 原书故事词条补录；词典音标与词源资料另列。",
+      "origin_kind": "人名",
+      "origin_note": null,
+      "pronunciation_audio": [
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/9/9d/LL-Q1860_%28eng%29-Naomi_Persephone_Amethyst_%28NaomiAmethyst%29-martinet.wav",
+          "file_url": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Naomi_Persephone_Amethyst_(NaomiAmethyst)-martinet.wav",
+          "artist": "Speaker: Naomi Persephone Amethyst Recorder: NaomiAmethyst",
+          "license": "CC BY-SA 4.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+          "accent": "US"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/1/1f/LL-Q1860_%28eng%29-Vealhurl-martinet.wav",
+          "file_url": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-martinet.wav",
+          "artist": "Speaker: Vealhurl Recorder: Vealhurl",
+          "license": "CC BY-SA 4.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+          "accent": "Southern England"
+        }
+      ],
+      "american_pronunciation": {
+        "kind": "recording",
+        "locale": "en-US",
+        "recording_index": 0
+      },
+      "book_stories": [
+        {
+          "story_id": "history-012",
+          "kind": "narrative",
+          "mention_pages": [
+            360
+          ],
+          "source_forms": [
+            "martinet"
+          ]
+        }
+      ]
+    },
+    "chauvinist": {
+      "word": "chauvinist",
+      "zh": "沙文主义者；盲目拥护本群体的人",
+      "ipa": "/ˈʃoʊvɪnɪst/",
+      "ipa_source": "Wiktionary enPR 发音重拼转换的近似美式 IPA，待独立核验",
+      "components": [],
+      "component_status": "专名衍生词；不把人名、地名当作可自由拼接的词根。",
+      "roots": [
+        {
+          "term": "Chauvin",
+          "zh": "尼古拉·沙文（传说人物）",
+          "lang": "人名"
+        }
+      ],
+      "book_pages": [
+        362
+      ],
+      "wiktionary_url": "https://en.wiktionary.org/wiki/chauvinist",
+      "ipa_url": "https://en.wiktionary.org/wiki/chauvinist",
+      "source_status": "2026-11-24 原书故事词条补录；词典音标与词源资料另列。",
+      "origin_kind": "人名",
+      "origin_note": null,
+      "pronunciation_audio": [
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/5/55/LL-Q1860_%28eng%29-Vealhurl-chauvinist.wav",
+          "file_url": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-chauvinist.wav",
+          "artist": "Speaker: Vealhurl Recorder: Vealhurl",
+          "license": "CC BY-SA 4.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+          "accent": "Southern England"
+        }
+      ],
+      "american_pronunciation": {
+        "kind": "synthetic",
+        "locale": "en-US",
+        "url": "./audio/en-US/872e4c9aed3d68ec.mp3",
+        "engine": "CMU Flite",
+        "voice": "cmu_us_slt",
+        "sha256": "69be9134f7eee131f0516d18ba3052f0bc6c4ece3f27fb3b01d2461703b37e8a"
+      },
+      "book_stories": [
+        {
+          "story_id": "history-013",
+          "kind": "narrative",
+          "mention_pages": [
+            362
+          ],
+          "source_forms": [
+            "chauvinist"
+          ]
+        }
+      ]
+    },
+    "parricide": {
+      "word": "parricide",
+      "zh": "杀害父母或近亲；弑亲者",
+      "ipa": "/ˈpæɹɪsaɪd/",
+      "ipa_source": "Wiktionary IPA（英式记录；另提供美音音频）",
+      "components": [],
+      "component_status": "历史借入词；parri- 的来源有争议，不作强制拆分。",
+      "roots": [
+        {
+          "term": "-cide",
+          "zh": "杀害",
+          "lang": "拉丁语"
+        }
+      ],
+      "book_pages": [
+        364
+      ],
+      "wiktionary_url": "https://en.wiktionary.org/wiki/parricide",
+      "ipa_url": "https://en.wiktionary.org/wiki/parricide",
+      "source_status": "2026-11-24 原书故事词条补录；词典音标与词源资料另列。",
+      "origin_kind": "拉丁语",
+      "origin_note": null,
+      "ipa_accent": "UK",
+      "pronunciation_audio": [
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/b/b0/LL-Q1860_%28eng%29-Vealhurl-parricide.wav",
+          "file_url": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-parricide.wav",
+          "artist": "Speaker: Vealhurl Recorder: Vealhurl",
+          "license": "CC BY-SA 4.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+          "accent": "Southern England"
+        }
+      ],
+      "american_pronunciation": {
+        "kind": "synthetic",
+        "locale": "en-US",
+        "url": "./audio/en-US/a0b378a308a756c2.mp3",
+        "engine": "CMU Flite",
+        "voice": "cmu_us_slt",
+        "sha256": "431494271c90f7172689e42af04a1346c358d3bebf2f23fe67d0f33c26ebedb6"
+      },
+      "book_stories": [
+        {
+          "story_id": "history-011",
+          "kind": "narrative",
+          "mention_pages": [
+            364
+          ],
+          "source_forms": [
+            "parricide"
+          ]
+        }
+      ]
+    },
+    "bloomers": {
+      "word": "bloomers",
+      "zh": "女式灯笼裤；旧式宽松女裤",
+      "ipa": "/ˈbluːmɚz/",
+      "ipa_source": "根据 bloomer 的词典读音与规则复数推定的近似美式 IPA，待独立核验",
+      "components": [],
+      "component_status": "专名衍生词；不把人名、地名当作可自由拼接的词根。",
+      "roots": [
+        {
+          "term": "Bloomer",
+          "zh": "艾米莉娅·布卢默",
+          "lang": "人名"
+        }
+      ],
+      "book_pages": [
+        421
+      ],
+      "wiktionary_url": "https://en.wiktionary.org/wiki/bloomers",
+      "ipa_url": "https://en.wiktionary.org/wiki/bloomers",
+      "source_status": "2026-11-24 原书故事词条补录；词典音标与词源资料另列。",
+      "origin_kind": "人名",
+      "origin_note": null,
+      "pronunciation_audio": [
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/8/88/LL-Q1860_%28eng%29-Flame%2C_not_lame-bloomers.wav",
+          "file_url": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Flame,_not_lame-bloomers.wav",
+          "artist": "Speaker: Flame, not lame Recorder: Flame, not lame",
+          "license": "CC0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
+          "accent": "US"
+        }
+      ],
+      "american_pronunciation": {
+        "kind": "recording",
+        "locale": "en-US",
+        "recording_index": 0
+      },
+      "book_stories": [
+        {
+          "story_id": "history-014",
+          "kind": "narrative",
+          "mention_pages": [
+            421
+          ],
+          "source_forms": [
+            "bloomers"
+          ]
+        }
+      ]
+    },
+    "boycott": {
+      "word": "boycott",
+      "zh": "抵制；联合拒绝往来",
+      "ipa": "/ˈbɔɪkɑt/",
+      "ipa_source": "Wiktionary IPA（2026-11-24；按原记录规范字形及音节分隔）",
+      "components": [],
+      "component_status": "专名衍生词；不把人名、地名当作可自由拼接的词根。",
+      "roots": [
+        {
+          "term": "Boycott",
+          "zh": "查尔斯·博伊科特",
+          "lang": "人名"
+        }
+      ],
+      "book_pages": [
+        421
+      ],
+      "wiktionary_url": "https://en.wiktionary.org/wiki/boycott",
+      "ipa_url": "https://en.wiktionary.org/wiki/boycott",
+      "source_status": "2026-11-24 原书故事词条补录；词典音标与词源资料另列。",
+      "origin_kind": "人名",
+      "origin_note": null,
+      "pronunciation_audio": [
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/4/44/LL-Q1860_%28eng%29-Vealhurl-boycott.wav",
+          "file_url": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-boycott.wav",
+          "artist": "Speaker: Vealhurl Recorder: Vealhurl",
+          "license": "CC BY-SA 4.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+          "accent": "Southern England"
+        }
+      ],
+      "american_pronunciation": {
+        "kind": "synthetic",
+        "locale": "en-US",
+        "url": "./audio/en-US/b309e056bdebb6cd.mp3",
+        "engine": "CMU Flite",
+        "voice": "cmu_us_slt",
+        "sha256": "c8297c686551eed250b5228845bd6fa7d3eada47fac38ebe0eadcabf3bdbb86d"
+      },
+      "book_stories": [
+        {
+          "story_id": "history-015",
+          "kind": "narrative",
+          "mention_pages": [
+            421
+          ],
+          "source_forms": [
+            "boycott"
+          ]
+        }
+      ]
+    },
+    "marcel": {
+      "word": "marcel",
+      "zh": "马塞尔式波浪卷发；烫成波浪卷",
+      "ipa": "/mɑːɹˈsɛl/",
+      "ipa_source": "Wiktionary IPA（展开可选的卷舌音，供美式读音参考）",
+      "components": [],
+      "component_status": "专名衍生词；不把人名、地名当作可自由拼接的词根。",
+      "roots": [
+        {
+          "term": "Marcel",
+          "zh": "马塞尔（理发师名）",
+          "lang": "人名"
+        }
+      ],
+      "book_pages": [
+        421
+      ],
+      "wiktionary_url": "https://en.wiktionary.org/wiki/marcel",
+      "ipa_url": "https://en.wiktionary.org/wiki/marcel",
+      "source_status": "2026-11-24 原书故事词条补录；词典音标与词源资料另列。",
+      "origin_kind": "人名",
+      "origin_note": null,
+      "pronunciation_audio": [],
+      "american_pronunciation": {
+        "kind": "synthetic",
+        "locale": "en-US",
+        "url": "./audio/en-US/2896e4f96a0b91d7.mp3",
+        "engine": "CMU Flite",
+        "voice": "cmu_us_slt",
+        "sha256": "b5957be97fb4e39337c17a77680ed0ff4566ee570cd1bcb89dae6a21270adb9e"
+      },
+      "book_stories": [
+        {
+          "story_id": "history-016",
+          "kind": "narrative",
+          "mention_pages": [
+            421
+          ],
+          "source_forms": [
+            "marcel"
+          ]
+        }
+      ]
+    },
+    "silhouette": {
+      "word": "silhouette",
+      "zh": "剪影；轮廓",
+      "ipa": "/ˌsɪluˈɛt/",
+      "ipa_source": "Wiktionary IPA（2026-11-24；按原记录规范字形及音节分隔）",
+      "components": [],
+      "component_status": "专名衍生词；不把人名、地名当作可自由拼接的词根。",
+      "roots": [
+        {
+          "term": "Silhouette",
+          "zh": "艾蒂安·德·西卢埃特",
+          "lang": "人名"
+        }
+      ],
+      "book_pages": [
+        421
+      ],
+      "wiktionary_url": "https://en.wiktionary.org/wiki/silhouette",
+      "ipa_url": "https://en.wiktionary.org/wiki/silhouette",
+      "source_status": "2026-11-24 原书故事词条补录；词典音标与词源资料另列。",
+      "origin_kind": "人名",
+      "origin_note": null,
+      "pronunciation_audio": [
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/5/5d/En-us-silhouette.ogg",
+          "file_url": "https://commons.wikimedia.org/wiki/File:En-us-silhouette.ogg",
+          "artist": "Sylvanmoon",
+          "license": "CC BY-SA 4.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+          "accent": "GA"
+        }
+      ],
+      "american_pronunciation": {
+        "kind": "recording",
+        "locale": "en-US",
+        "recording_index": 0
+      },
+      "book_stories": [
+        {
+          "story_id": "history-017",
+          "kind": "narrative",
+          "mention_pages": [
+            421
+          ],
+          "source_forms": [
+            "silhouette"
+          ]
+        }
+      ]
+    },
+    "derrick": {
+      "word": "derrick",
+      "zh": "起重架；井架",
+      "ipa": "/ˈdɛɹɪk/",
+      "ipa_source": "Wiktionary IPA（2026-11-24；按原记录规范字形及音节分隔）",
+      "components": [],
+      "component_status": "专名衍生词；不把人名、地名当作可自由拼接的词根。",
+      "roots": [
+        {
+          "term": "Derrick",
+          "zh": "德里克（刽子手名）",
+          "lang": "人名"
+        }
+      ],
+      "book_pages": [
+        421
+      ],
+      "wiktionary_url": "https://en.wiktionary.org/wiki/derrick",
+      "ipa_url": "https://en.wiktionary.org/wiki/derrick",
+      "source_status": "2026-11-24 原书故事词条补录；词典音标与词源资料另列。",
+      "origin_kind": "人名",
+      "origin_note": null,
+      "pronunciation_audio": [
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/d/da/LL-Q1860_%28eng%29-Flame%2C_not_lame-derrick.wav",
+          "file_url": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Flame,_not_lame-derrick.wav",
+          "artist": "Speaker: Flame, not lame Recorder: Flame, not lame",
+          "license": "CC0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
+          "accent": "US"
+        }
+      ],
+      "american_pronunciation": {
+        "kind": "recording",
+        "locale": "en-US",
+        "recording_index": 0
+      },
+      "book_stories": [
+        {
+          "story_id": "history-018",
+          "kind": "narrative",
+          "mention_pages": [
+            421
+          ],
+          "source_forms": [
+            "derrick"
+          ]
+        }
+      ]
+    },
+    "sadist": {
+      "word": "sadist",
+      "zh": "以他人痛苦为乐的人；施虐者",
+      "ipa": "/ˈseɪdɪst/",
+      "ipa_source": "Wiktionary IPA（2026-11-24；按原记录规范字形及音节分隔）",
+      "components": [],
+      "component_status": "专名衍生词；不把人名、地名当作可自由拼接的词根。",
+      "roots": [
+        {
+          "term": "de Sade",
+          "zh": "萨德侯爵",
+          "lang": "人名"
+        }
+      ],
+      "book_pages": [
+        422
+      ],
+      "wiktionary_url": "https://en.wiktionary.org/wiki/sadist",
+      "ipa_url": "https://en.wiktionary.org/wiki/sadist",
+      "source_status": "2026-11-24 原书故事词条补录；词典音标与词源资料另列。",
+      "origin_kind": "人名",
+      "origin_note": null,
+      "pronunciation_audio": [
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/a/a1/LL-Q1860_%28eng%29-NaomiAmethyst-sadist.wav",
+          "file_url": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-NaomiAmethyst-sadist.wav",
+          "artist": "Speaker: NaomiAmethyst Recorder: NaomiAmethyst",
+          "license": "CC BY-SA 4.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+          "accent": "US"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/5/59/LL-Q1860_%28eng%29-Vealhurl-sadist.wav",
+          "file_url": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-sadist.wav",
+          "artist": "Speaker: Vealhurl Recorder: Vealhurl",
+          "license": "CC BY-SA 4.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+          "accent": "Southern England"
+        }
+      ],
+      "american_pronunciation": {
+        "kind": "recording",
+        "locale": "en-US",
+        "recording_index": 0
+      },
+      "book_stories": [
+        {
+          "story_id": "history-019",
+          "kind": "narrative",
+          "mention_pages": [
+            422
+          ],
+          "source_forms": [
+            "sadist"
+          ]
+        }
+      ]
+    },
+    "galvanism": {
+      "word": "galvanism",
+      "zh": "电流作用；电刺激",
+      "ipa": "/ˈɡælvəˌnɪzəm/",
+      "ipa_source": "Wiktionary IPA（2026-11-24；按原记录规范字形及音节分隔）",
+      "components": [],
+      "component_status": "专名衍生词；不把人名、地名当作可自由拼接的词根。",
+      "roots": [
+        {
+          "term": "Galvani",
+          "zh": "路易吉·伽伐尼",
+          "lang": "人名"
+        }
+      ],
+      "book_pages": [
+        422
+      ],
+      "wiktionary_url": "https://en.wiktionary.org/wiki/galvanism",
+      "ipa_url": "https://en.wiktionary.org/wiki/galvanism",
+      "source_status": "2026-11-24 原书故事词条补录；词典音标与词源资料另列。",
+      "origin_kind": "人名",
+      "origin_note": null,
+      "pronunciation_audio": [
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/a/a7/LL-Q1860_%28eng%29-Vealhurl-galvanism.wav",
+          "file_url": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-galvanism.wav",
+          "artist": "Speaker: Vealhurl Recorder: Vealhurl",
+          "license": "CC BY-SA 4.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+          "accent": "Southern England"
+        }
+      ],
+      "american_pronunciation": {
+        "kind": "synthetic",
+        "locale": "en-US",
+        "url": "./audio/en-US/e4ac4dc270144323.mp3",
+        "engine": "CMU Flite",
+        "voice": "cmu_us_slt",
+        "sha256": "15a187c51d670f8053474253e1ab6c82826994e1ae7120991bd9fc094977508c"
+      },
+      "book_stories": [
+        {
+          "story_id": "history-020",
+          "kind": "narrative",
+          "mention_pages": [
+            422
+          ],
+          "source_forms": [
+            "galvanism"
+          ]
+        }
+      ]
+    },
+    "guppy": {
+      "word": "guppy",
+      "zh": "孔雀鱼（复数 guppies）",
+      "ipa": "/ˈɡʌpi/",
+      "ipa_source": "Wiktionary IPA（2026-11-24；按原记录规范字形及音节分隔）",
+      "components": [],
+      "component_status": "专名衍生词；不把人名、地名当作可自由拼接的词根。",
+      "roots": [
+        {
+          "term": "Guppy",
+          "zh": "罗伯特·J. L. 古皮",
+          "lang": "人名"
+        }
+      ],
+      "book_pages": [
+        422
+      ],
+      "wiktionary_url": "https://en.wiktionary.org/wiki/guppy",
+      "ipa_url": "https://en.wiktionary.org/wiki/guppy",
+      "source_status": "2026-11-24 原书故事词条补录；词典音标与词源资料另列。",
+      "origin_kind": "人名",
+      "origin_note": null,
+      "aliases": [
+        "guppies"
+      ],
+      "pronunciation_audio": [
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/4/45/LL-Q1860_%28eng%29-Vealhurl-guppy.wav",
+          "file_url": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-guppy.wav",
+          "artist": "Speaker: Vealhurl Recorder: Vealhurl",
+          "license": "CC BY-SA 4.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+          "accent": "Southern England"
+        }
+      ],
+      "source_forms": [
+        "guppies"
+      ],
+      "american_pronunciation": {
+        "kind": "synthetic",
+        "locale": "en-US",
+        "url": "./audio/en-US/495e173f098b88f9.mp3",
+        "engine": "CMU Flite",
+        "voice": "cmu_us_slt",
+        "sha256": "284f858d8e6131efd141161a533e9b5b5903af4feae48462c33234d7fb900b09"
+      },
+      "book_stories": [
+        {
+          "story_id": "history-021",
+          "kind": "narrative",
+          "mention_pages": [
+            422
+          ],
+          "source_forms": [
+            "guppy",
+            "guppies"
+          ]
+        }
+      ]
+    },
+    "nicotine": {
+      "word": "nicotine",
+      "zh": "尼古丁",
+      "ipa": "/ˈnɪkətiːn/",
+      "ipa_source": "Wiktionary IPA（2026-11-24；按原记录规范字形及音节分隔）",
+      "components": [],
+      "component_status": "专名衍生词；不把人名、地名当作可自由拼接的词根。",
+      "roots": [
+        {
+          "term": "Nicot",
+          "zh": "让·尼古",
+          "lang": "人名"
+        }
+      ],
+      "book_pages": [
+        422
+      ],
+      "wiktionary_url": "https://en.wiktionary.org/wiki/nicotine",
+      "ipa_url": "https://en.wiktionary.org/wiki/nicotine",
+      "source_status": "2026-11-24 原书故事词条补录；词典音标与词源资料另列。",
+      "origin_kind": "人名",
+      "origin_note": null,
+      "pronunciation_audio": [
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/2/2b/LL-Q1860_%28eng%29-Vealhurl-nicotine.wav",
+          "file_url": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-nicotine.wav",
+          "artist": "Speaker: Vealhurl Recorder: Vealhurl",
+          "license": "CC BY-SA 4.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+          "accent": "Southern England"
+        }
+      ],
+      "american_pronunciation": {
+        "kind": "synthetic",
+        "locale": "en-US",
+        "url": "./audio/en-US/31400f3cd6d27167.mp3",
+        "engine": "CMU Flite",
+        "voice": "cmu_us_slt",
+        "sha256": "a56305252fe008d2fb3f5b7baed646707a823fe719ca29250392b498ca3dc0d2"
+      },
+      "book_stories": [
+        {
+          "story_id": "history-022",
+          "kind": "narrative",
+          "mention_pages": [
+            422
+          ],
+          "source_forms": [
+            "nicotine"
+          ]
+        }
+      ]
+    },
+    "bayonet": {
+      "word": "bayonet",
+      "zh": "刺刀",
+      "ipa": "/ˌbeɪəˈnɛt/",
+      "ipa_source": "Wiktionary IPA（2026-11-24；按原记录规范字形及音节分隔）",
+      "components": [],
+      "component_status": "专名衍生词；不把人名、地名当作可自由拼接的词根。",
+      "roots": [
+        {
+          "term": "Bayonne",
+          "zh": "法国巴约讷",
+          "lang": "地名"
+        }
+      ],
+      "book_pages": [
+        422
+      ],
+      "wiktionary_url": "https://en.wiktionary.org/wiki/bayonet",
+      "ipa_url": "https://en.wiktionary.org/wiki/bayonet",
+      "source_status": "2026-11-24 原书故事词条补录；词典音标与词源资料另列。",
+      "origin_kind": "地名",
+      "origin_note": null,
+      "pronunciation_audio": [
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/6/6c/LL-Q1860_%28eng%29-Vealhurl-bayonet.wav",
+          "file_url": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-bayonet.wav",
+          "artist": "Speaker: Vealhurl Recorder: Vealhurl",
+          "license": "CC BY-SA 4.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+          "accent": "Southern England"
+        }
+      ],
+      "american_pronunciation": {
+        "kind": "synthetic",
+        "locale": "en-US",
+        "url": "./audio/en-US/9d33335413867e36.mp3",
+        "engine": "CMU Flite",
+        "voice": "cmu_us_slt",
+        "sha256": "f74e6617d5d45f5ddaeef282c9e48322f5761dd361d1798c7edd66749b2856e6"
+      },
+      "book_stories": [
+        {
+          "story_id": "history-023",
+          "kind": "narrative",
+          "mention_pages": [
+            422
+          ],
+          "source_forms": [
+            "bayonet"
+          ]
+        }
+      ]
+    },
+    "cantaloupe": {
+      "word": "cantaloupe",
+      "zh": "甜瓜；香瓜",
+      "ipa": "/ˈkæntəloʊp/",
+      "ipa_source": "Wiktionary IPA（2026-11-24；按原记录规范字形及音节分隔）",
+      "components": [],
+      "component_status": "专名衍生词；不把人名、地名当作可自由拼接的词根。",
+      "roots": [
+        {
+          "term": "Cantalupo",
+          "zh": "意大利坎塔卢波",
+          "lang": "地名"
+        }
+      ],
+      "book_pages": [
+        422
+      ],
+      "wiktionary_url": "https://en.wiktionary.org/wiki/cantaloupe",
+      "ipa_url": "https://en.wiktionary.org/wiki/cantaloupe",
+      "source_status": "2026-11-24 原书故事词条补录；词典音标与词源资料另列。",
+      "origin_kind": "地名",
+      "origin_note": null,
+      "pronunciation_audio": [
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/4/4d/En-us-cantaloupe.ogg",
+          "file_url": "https://commons.wikimedia.org/wiki/File:En-us-cantaloupe.ogg",
+          "artist": "Paul2520",
+          "license": "CC BY-SA 4.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+          "accent": "US"
+        },
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/a/aa/LL-Q1860_%28eng%29-Flame%2C_not_lame-cantelope.wav",
+          "file_url": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Flame,_not_lame-cantelope.wav",
+          "artist": "Speaker: Flame, not lame Recorder: Flame, not lame",
+          "license": "CC0",
+          "license_url": "https://creativecommons.org/publicdomain/zero/1.0/deed.en",
+          "accent": "US"
+        }
+      ],
+      "source_forms": [
+        "cantaloupes"
+      ],
+      "aliases": [
+        "cantaloupes"
+      ],
+      "american_pronunciation": {
+        "kind": "recording",
+        "locale": "en-US",
+        "recording_index": 0
+      },
+      "book_stories": [
+        {
+          "story_id": "history-024",
+          "kind": "narrative",
+          "mention_pages": [
+            422
+          ],
+          "source_forms": [
+            "cantaloupe",
+            "cantaloupes"
+          ]
+        }
+      ]
+    },
+    "calico": {
+      "word": "calico",
+      "zh": "印花棉布；白棉布",
+      "ipa": "/ˈkælɪkoʊ/",
+      "ipa_source": "Wiktionary IPA（2026-11-24；按原记录规范字形及音节分隔）",
+      "components": [],
+      "component_status": "专名衍生词；不把人名、地名当作可自由拼接的词根。",
+      "roots": [
+        {
+          "term": "Calicut",
+          "zh": "印度卡利卡特（科泽科德）",
+          "lang": "地名"
+        }
+      ],
+      "book_pages": [
+        422
+      ],
+      "wiktionary_url": "https://en.wiktionary.org/wiki/calico",
+      "ipa_url": "https://en.wiktionary.org/wiki/calico",
+      "source_status": "2026-11-24 原书故事词条补录；词典音标与词源资料另列。",
+      "origin_kind": "地名",
+      "origin_note": null,
+      "pronunciation_audio": [
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/d/d9/LL-Q1860_%28eng%29-Vealhurl-calico.wav",
+          "file_url": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-calico.wav",
+          "artist": "Speaker: Vealhurl Recorder: Vealhurl",
+          "license": "CC BY-SA 4.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+          "accent": "Southern England"
+        }
+      ],
+      "american_pronunciation": {
+        "kind": "synthetic",
+        "locale": "en-US",
+        "url": "./audio/en-US/f0c61afc0c8e584f.mp3",
+        "engine": "CMU Flite",
+        "voice": "cmu_us_slt",
+        "sha256": "b6ae3d7c46e23a71440d03850568fbc37571a357ca1c76b54371b653517c6d36"
+      },
+      "book_stories": [
+        {
+          "story_id": "history-025",
+          "kind": "narrative",
+          "mention_pages": [
+            422
+          ],
+          "source_forms": [
+            "calico"
+          ]
+        }
+      ]
+    },
+    "tuxedo": {
+      "word": "tuxedo",
+      "zh": "男式晚礼服；无尾礼服",
+      "ipa": "/tʌkˈsidoʊ/",
+      "ipa_source": "Wiktionary IPA（2026-11-24；按原记录规范字形及音节分隔）",
+      "components": [],
+      "component_status": "专名衍生词；不把人名、地名当作可自由拼接的词根。",
+      "roots": [
+        {
+          "term": "Tuxedo Park",
+          "zh": "美国纽约塔克西多公园",
+          "lang": "地名"
+        }
+      ],
+      "book_pages": [
+        423
+      ],
+      "wiktionary_url": "https://en.wiktionary.org/wiki/tuxedo",
+      "ipa_url": "https://en.wiktionary.org/wiki/tuxedo",
+      "source_status": "2026-11-24 原书故事词条补录；词典音标与词源资料另列。",
+      "origin_kind": "地名",
+      "origin_note": null,
+      "pronunciation_audio": [
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/9/90/LL-Q1860_%28eng%29-Vealhurl-tuxedo.wav",
+          "file_url": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-tuxedo.wav",
+          "artist": "Speaker: Vealhurl Recorder: Vealhurl",
+          "license": "CC BY-SA 4.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+          "accent": "Southern England"
+        }
+      ],
+      "american_pronunciation": {
+        "kind": "synthetic",
+        "locale": "en-US",
+        "url": "./audio/en-US/662ecdca2ea4b566.mp3",
+        "engine": "CMU Flite",
+        "voice": "cmu_us_slt",
+        "sha256": "6089e249269263f930c504e4e9c814160c190eeccde8754713137231101cf6cd"
+      },
+      "book_stories": [
+        {
+          "story_id": "history-026",
+          "kind": "narrative",
+          "mention_pages": [
+            423
+          ],
+          "source_forms": [
+            "tuxedo"
+          ]
+        }
+      ]
+    },
+    "Gypsy": {
+      "word": "Gypsy",
+      "zh": "吉卜赛人（罗姆人的旧称，有时具冒犯性）",
+      "ipa": "/ˈd͡ʒɪpsi/",
+      "ipa_source": "Wiktionary IPA（2026-11-24；按原记录规范字形及音节分隔）",
+      "components": [],
+      "component_status": "专名衍生词；不把人名、地名当作可自由拼接的词根。",
+      "roots": [
+        {
+          "term": "Egypt",
+          "zh": "埃及（旧时误认的来历）",
+          "lang": "地名"
+        }
+      ],
+      "book_pages": [
+        423
+      ],
+      "wiktionary_url": "https://en.wiktionary.org/wiki/Gypsy",
+      "ipa_url": "https://en.wiktionary.org/wiki/Gypsy",
+      "source_status": "2026-11-24 原书故事词条补录；词典音标与词源资料另列。",
+      "origin_kind": "地名",
+      "origin_note": null,
+      "pronunciation_audio": [
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/d/de/LL-Q1860_%28eng%29-Vealhurl-Gypsy.wav",
+          "file_url": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-Gypsy.wav",
+          "artist": "Speaker: Vealhurl Recorder: Vealhurl",
+          "license": "CC BY-SA 4.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+          "accent": "Southern England"
+        }
+      ],
+      "source_forms": [
+        "Gypsies"
+      ],
+      "aliases": [
+        "Gypsies"
+      ],
+      "american_pronunciation": {
+        "kind": "synthetic",
+        "locale": "en-US",
+        "url": "./audio/en-US/08dce2d270e18aef.mp3",
+        "engine": "CMU Flite",
+        "voice": "cmu_us_slt",
+        "sha256": "22318298e2e634d579031e15b672a9571749df4be904b49254632a1fe1c14434"
+      },
+      "book_stories": [
+        {
+          "story_id": "history-027",
+          "kind": "narrative",
+          "mention_pages": [
+            423
+          ],
+          "source_forms": [
+            "Gypsy",
+            "Gypsies"
+          ]
+        }
+      ]
+    },
+    "damask": {
+      "word": "damask",
+      "zh": "锦缎；提花织物",
+      "ipa": "/ˈdæməsk/",
+      "ipa_source": "Wiktionary IPA（2026-11-24；按原记录规范字形及音节分隔）",
+      "components": [],
+      "component_status": "专名衍生词；不把人名、地名当作可自由拼接的词根。",
+      "roots": [
+        {
+          "term": "Damascus",
+          "zh": "叙利亚大马士革",
+          "lang": "地名"
+        }
+      ],
+      "book_pages": [
+        423
+      ],
+      "wiktionary_url": "https://en.wiktionary.org/wiki/damask",
+      "ipa_url": "https://en.wiktionary.org/wiki/damask",
+      "source_status": "2026-11-24 原书故事词条补录；词典音标与词源资料另列。",
+      "origin_kind": "地名",
+      "origin_note": null,
+      "pronunciation_audio": [
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/8/84/LL-Q1860_%28eng%29-Vealhurl-damask.wav",
+          "file_url": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-damask.wav",
+          "artist": "Speaker: Vealhurl Recorder: Vealhurl",
+          "license": "CC BY-SA 4.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/4.0",
+          "accent": "Southern England"
+        }
+      ],
+      "american_pronunciation": {
+        "kind": "synthetic",
+        "locale": "en-US",
+        "url": "./audio/en-US/9940c81ceb3b1fe7.mp3",
+        "engine": "CMU Flite",
+        "voice": "cmu_us_slt",
+        "sha256": "3323ed47cbecc107aaf966cc08403a8651e58b44547eb801c36cd044bd80554f"
+      },
+      "book_stories": [
+        {
+          "story_id": "history-028",
+          "kind": "narrative",
+          "mention_pages": [
+            423
+          ],
+          "source_forms": [
+            "damask"
+          ]
+        }
+      ]
+    },
+    "satin": {
+      "word": "satin",
+      "zh": "缎子；缎纹织物",
+      "ipa": "/ˈsætɪn/",
+      "ipa_source": "Wiktionary IPA（2026-11-24；按原记录规范字形及音节分隔）",
+      "components": [],
+      "component_status": "专名衍生词；不把人名、地名当作可自由拼接的词根。",
+      "roots": [
+        {
+          "term": "Zaitun",
+          "zh": "刺桐港，今泉州",
+          "lang": "地名"
+        }
+      ],
+      "book_pages": [
+        423
+      ],
+      "wiktionary_url": "https://en.wiktionary.org/wiki/satin",
+      "ipa_url": "https://en.wiktionary.org/wiki/satin",
+      "source_status": "2026-11-24 原书故事词条补录；词典音标与词源资料另列。",
+      "origin_kind": "地名",
+      "origin_note": null,
+      "pronunciation_audio": [
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/2/2c/En-us-satin.ogg",
+          "file_url": "https://commons.wikimedia.org/wiki/File:En-us-satin.ogg",
+          "artist": "Neskaya",
+          "license": "CC BY-SA 3.0",
+          "license_url": "https://creativecommons.org/licenses/by-sa/3.0/",
+          "accent": "US"
+        }
+      ],
+      "american_pronunciation": {
+        "kind": "recording",
+        "locale": "en-US",
+        "recording_index": 0
+      },
+      "book_stories": [
+        {
+          "story_id": "history-029",
+          "kind": "narrative",
+          "mention_pages": [
+            423
+          ],
+          "source_forms": [
+            "satin"
+          ]
+        }
+      ]
+    },
+    "frankfurter": {
+      "word": "frankfurter",
+      "zh": "法兰克福香肠",
+      "ipa": "/ˈfɹæŋkfɝɾɚ/",
+      "ipa_source": "Wiktionary IPA（2026-11-24；按原记录规范字形及音节分隔）",
+      "components": [],
+      "component_status": "专名衍生词；不把人名、地名当作可自由拼接的词根。",
+      "roots": [
+        {
+          "term": "Frankfurt",
+          "zh": "德国法兰克福",
+          "lang": "地名"
+        }
+      ],
+      "book_pages": [
+        423
+      ],
+      "wiktionary_url": "https://en.wiktionary.org/wiki/frankfurter",
+      "ipa_url": "https://en.wiktionary.org/wiki/frankfurter",
+      "source_status": "2026-11-24 原书故事词条补录；词典音标与词源资料另列。",
+      "origin_kind": "地名",
+      "origin_note": null,
+      "pronunciation_audio": [
+        {
+          "url": "https://upload.wikimedia.org/wikipedia/commons/7/73/LL-Q1860_%28eng%29-Vealhurl-Frankfurter.wav",
+          "file_url": "https://commons.wikimedia.org/wiki/File:LL-Q1860_(eng)-Vealhurl-Frankfurter.wav",
+          "artist": "Speaker: Vealhurl Recorder: Vealhurl",
+          "license": "CC BY 4.0",
+          "license_url": "https://creativecommons.org/licenses/by/4.0",
+          "accent": "Southern England"
+        }
+      ],
+      "source_forms": [
+        "frankfurters"
+      ],
+      "aliases": [
+        "frankfurters"
+      ],
+      "american_pronunciation": {
+        "kind": "synthetic",
+        "locale": "en-US",
+        "url": "./audio/en-US/48d8f6af16225a02.mp3",
+        "engine": "CMU Flite",
+        "voice": "cmu_us_slt",
+        "sha256": "b643d53b4d0b9a1b364f38919b8ad71cfbb13cee0422ed60a7747ba1b12d3fbf"
+      },
+      "book_stories": [
+        {
+          "story_id": "history-030",
+          "kind": "narrative",
+          "mention_pages": [
+            423
+          ],
+          "source_forms": [
+            "frankfurter",
+            "frankfurters"
+          ]
+        }
+      ]
     }
   },
   "book_stories": {
@@ -29735,11 +31176,12 @@
           "label": "普鲁塔克《苏拉传》第 31 章",
           "url": "https://penelope.uchicago.edu/Thayer/E/Roman/Texts/Plutarch/Lives/Sulla%2A.html#31"
         }
-      ]
+      ],
+      "editorial_note": ""
     },
     "history-002": {
       "title": "斯巴达人只回答一个“如果”",
-      "summary": "相传，马其顿的腓力向斯巴达人发出威胁：如果攻入拉科尼亚，就要把他们赶出去。斯巴达人的回信只有一个词：“如果。”他们把整段威胁压回了那个尚未实现的前提。拉科尼亚是斯巴达所在的地区，laconic 因而让人联想到这种简短有力的回答。这是一则古代流传的轶事，不能当作逐字保存的外交实录。",
+      "summary": "相传，马其顿的腓力派人威胁斯巴达：如果攻下这座城，就把它烧成平地。斯巴达人的回信却只有一个词：“如果。”威胁中最关键的前提，被这个极短的回答顶了回去。斯巴达位于拉科尼亚，laconic 因此让人联想到当地人简短而有力的说话方式。这则轶事有不同传本，不能当作逐字保存的外交记录。",
       "source_pages": [
         317,
         318
@@ -29755,11 +31197,12 @@
           "label": "普鲁塔克《论多言》中的斯巴达轶事",
           "url": "https://www.gutenberg.org/files/62618/62618-h/62618-h.htm"
         }
-      ]
+      ],
+      "editorial_note": ""
     },
     "history-003": {
       "title": "柱廊下的哲学课",
-      "summary": "雅典有一座以壁画闻名的彩绘柱廊，名叫 Stoa Poikile。芝诺常在这里来回踱步，与聚集的人讨论哲学。他的追随者逐渐以这处讲学地点得名，成为斯多葛派。一座公共柱廊的名字，就这样留在了一个哲学流派的名称里，也进入了英语的 stoic、stoical 和 stoicism。",
+      "summary": "古希腊哲学家芝诺在雅典的彩绘柱廊 Stoa Poikile 讲学。聚集在柱廊边的人听他谈如何面对人生：不被强烈的激情牵着走，面对快乐与悲伤保持自持，对无法避免的处境不一味怨叹。追随者逐渐以这处讲学地点得名，成为斯多葛派。柱廊 stoa 的名字留在了 stoic、stoical 和 stoicism 中，日常用法也由此联想到逆境中的坚忍。",
       "source_pages": [
         468
       ],
@@ -29774,7 +31217,8 @@
           "label": "第欧根尼·拉尔修《名哲言行录》卷七（Digital Milliet）",
           "url": "https://digmill.perseids.org/commentary/113"
         }
-      ]
+      ],
+      "editorial_note": "哲学主张只保留与此段典故有关的简述，不等同于斯多葛学派的全部思想；不沿用原书以当代心理学评价该学派的议论。"
     },
     "history-004": {
       "title": "国王能命令海潮吗",
@@ -29792,7 +31236,480 @@
           "label": "休谟《英国史》第三章中的克努特传说",
           "url": "https://davidhume.org/texts/h/3"
         }
-      ]
+      ],
+      "editorial_note": ""
+    },
+    "history-005": {
+      "title": "“你输了”：两个词的回答",
+      "summary": "相传，在一次宴会上，一名年轻女记者坐在以寡言著称的美国总统柯立芝身旁。她告诉他，自己已与编辑打赌，要让总统当晚对她说出超过两个词。柯立芝只回答：“You lose.”——“你输了。”两个英语单词既回应了她，又使她无法赢下赌局；这正是 laconic 所说的简短有力。",
+      "source_pages": [
+        301
+      ],
+      "related_words": [
+        "laconic"
+      ],
+      "historical_status": "reported",
+      "historical_sources": [
+        {
+          "label": "词典对照 · laconic",
+          "url": "https://en.wiktionary.org/wiki/laconic"
+        }
+      ],
+      "editorial_note": "原书明确以 anecdote、so the story goes 引出。保留为轶事转述，不宣称对话已获同时代记录证实。"
+    },
+    "history-006": {
+      "title": "沉默总统与按字计酬的专栏",
+      "summary": "柯立芝的寡言让“沉默的卡尔”这个称呼广为流传。后来，他不再竞选连任，转而为《纽约先驱论坛报》撰写每日专栏。一则稿酬传闻称，他写出的每个词值两美元：从前惜字如金的人，如今竟真的按字收钱。有人打趣说，他沉默的时候反倒显得更有智慧。",
+      "source_pages": [
+        309
+      ],
+      "related_words": [
+        "taciturn",
+        "taciturnity"
+      ],
+      "historical_status": "reported",
+      "historical_sources": [
+        {
+          "label": "词典对照 · taciturn",
+          "url": "https://en.wiktionary.org/wiki/taciturn"
+        }
+      ],
+      "editorial_note": "“每词两美元”在原书中被明确称为传闻，不能作为已经独立证实的稿酬数字；后一评语保留其玩笑性质。"
+    },
+    "history-007": {
+      "title": "“发现潜艇，已将其击沉”",
+      "summary": "第二次世界大战期间，一名海军指挥官据传发回一份极短的战报：“Saw sub, sank same.”意思是“发现潜艇，已将其击沉”。短短四个英语词省去铺陈，把发现与结果一并交代。这种简短有力的表达本身，就可以称作一个 laconism。",
+      "source_pages": [
+        318
+      ],
+      "related_words": [
+        "laconic",
+        "laconism",
+        "laconicism"
+      ],
+      "historical_status": "reported",
+      "historical_sources": [
+        {
+          "label": "词典对照 · laconism",
+          "url": "https://en.wiktionary.org/wiki/laconism"
+        }
+      ],
+      "editorial_note": "原书未交代指挥官姓名、舰名或档案出处，故仅标作原书转述；不补造具体战役背景。"
+    },
+    "history-008": {
+      "title": "无花果告密者",
+      "summary": "一种古希腊词源旧说讲道：有人把神圣果园里无花果被偷采的事报告给官员；另一版本则说，他们揭发无花果商人逃避税款。这些“指出无花果的人”靠告密讨好掌权者，逐渐被拿来比喻逢迎、谄媚的人。sykon 是无花果，phanein 是显现，但把这两个词根连成某一桩具体告密史，仍存在争议。",
+      "source_pages": [
+        360
+      ],
+      "related_words": [
+        "sycophant"
+      ],
+      "historical_status": "disputed",
+      "historical_sources": [
+        {
+          "label": "Etymonline · sycophant",
+          "url": "https://www.etymonline.com/word/sycophant"
+        }
+      ],
+      "editorial_note": "原书在此引用 Shipley 的词源说法。保留两种旧说，同时标明具体历史解释未获定论；不把它挂到仅共用 phanein 的 diaphanous 上。"
+    },
+    "history-009": {
+      "title": "为一种罪行创造名字",
+      "summary": "二十世纪，波兰犹太裔法学家拉斐尔·莱姆金长期关注针对整个族群的毁灭性暴行。1944 年，他在《轴心国在被占领欧洲的统治》中提出 genocide，把希腊语 genos（族群）与表示杀害的 -cide 组合起来，为这种罪行命名。此后他继续推动国际社会把预防和惩治种族灭绝写入公约。",
+      "source_pages": [
+        364
+      ],
+      "related_words": [
+        "genocide"
+      ],
+      "historical_status": "historical",
+      "historical_sources": [
+        {
+          "label": "美国大屠杀纪念馆 · 莱姆金与 genocide",
+          "url": "https://encyclopedia.ushmm.org/content/en/article/coining-a-word-and-championing-a-cause-the-story-of-raphael-lemkin"
+        }
+      ],
+      "editorial_note": "原书把 1944 年的莱姆金称为联合国官员，这一表述不准确：联合国成立于 1945 年。这里保留造词年代，并按纪念馆资料校正身份和背景。"
+    },
+    "history-010": {
+      "title": "林肯在剧院遇刺",
+      "summary": "1865 年 4 月 14 日晚，林肯在华盛顿福特剧院观看演出。演员约翰·威尔克斯·布斯进入总统包厢，开枪袭击林肯后逃走。林肯被移到剧院对面的房屋救治，次日清晨去世。这场刺杀发生在美国内战即将结束之时。",
+      "source_pages": [
+        364
+      ],
+      "related_words": [
+        "regicide"
+      ],
+      "historical_status": "historical",
+      "historical_sources": [
+        {
+          "label": "美国国会图书馆 · 林肯遇刺时间线",
+          "url": "https://www.loc.gov/collections/abraham-lincoln-papers/articles-and-essays/assassination-of-president-abraham-lincoln/timeline/"
+        }
+      ],
+      "editorial_note": "用法提醒：原书把总统遇刺作为 regicide 的广义例子；现代常用义通常专指弑君，林肯遇刺更常称 assassination。"
+    },
+    "history-011": {
+      "title": "丽兹·博登与一首流传的民谣",
+      "summary": "十九世纪九十年代，丽兹·博登因父亲和继母遭斧击身亡而受到起诉，并被送上法庭。她最终没有被判有罪，案件却在公众想象中不断流传。一首押韵民谣把她写成挥斧行凶的人，甚至编出夸张的击打次数。民谣传得很广，却不能代替证据，也不能抹去未获定罪这一事实。",
+      "source_pages": [
+        364,
+        365
+      ],
+      "related_words": [
+        "parricide"
+      ],
+      "historical_status": "historical",
+      "historical_sources": [
+        {
+          "label": "词典对照 · parricide",
+          "url": "https://en.wiktionary.org/wiki/parricide"
+        }
+      ],
+      "editorial_note": "原书用 parricide 引出此案，并明确写明未被定罪。民谣不是实际伤情或定罪记录，不将其中的数字和指控当作史实。"
+    },
+    "history-012": {
+      "title": "把姓氏练成军纪",
+      "summary": "路易十四统治时期，法国军官让·马蒂内以严厉的步兵操练和纪律要求闻名。在他的训练场上，命令必须服从，动作必须符合规定，细小的偏差也不能轻易放过。后来，他的姓氏 Martinet 离开了军官名册，进入日常语言，用来指那种苛刻地要求别人遵守纪律的人。",
+      "source_pages": [
+        360
+      ],
+      "related_words": [
+        "martinet"
+      ],
+      "historical_status": "historical",
+      "historical_sources": [
+        {
+          "label": "词典对照 · martinet",
+          "url": "https://en.wiktionary.org/wiki/martinet"
+        }
+      ],
+      "editorial_note": ""
+    },
+    "history-013": {
+      "title": "对拿破仑忠诚到成为笑柄",
+      "summary": "法国流传着一个名叫尼古拉·沙文的士兵形象：无论别人怎样议论，他总不停地赞颂拿破仑，把对国家和皇帝的忠诚推到夸张的地步。这个形象成为讽刺对象，Chauvin 的名字也进入 chauvinist，指盲目而排他的拥护者。沙文本人是否真实存在并无定论，因此这是一则人物传说。",
+      "source_pages": [
+        362
+      ],
+      "related_words": [
+        "chauvinist"
+      ],
+      "historical_status": "legend",
+      "historical_sources": [
+        {
+          "label": "词典对照 · chauvinist",
+          "url": "https://en.wiktionary.org/wiki/chauvinist"
+        }
+      ],
+      "editorial_note": "沙文常被视为传说或戏剧化人物，不将其生平细节写成已证实事实。"
+    },
+    "history-014": {
+      "title": "裤子为何用了宣传者的名字",
+      "summary": "十九世纪的美国，伊丽莎白·史密斯·米勒尝试了一种便于活动的穿法：裙下配宽松长裤，裤脚收至脚踝。艾米莉娅·布卢默见到这种服装后，积极为它宣传。人们逐渐把这类女裤叫作 bloomers，留下的不是最先试穿者的姓，而是推广者 Bloomer 的名字。",
+      "source_pages": [
+        421
+      ],
+      "related_words": [
+        "bloomers"
+      ],
+      "historical_status": "historical",
+      "historical_sources": [
+        {
+          "label": "词典对照 · bloomers",
+          "url": "https://en.wiktionary.org/wiki/bloomers"
+        }
+      ],
+      "editorial_note": "原书给出的起始年份与其他记载有差异，此处不沿用单一的发明年份；服装并非凭空由某一人发明，叙述限于米勒与布卢默的推广关系。"
+    },
+    "history-015": {
+      "title": "没有人肯与他交易",
+      "summary": "十九世纪的爱尔兰，土地代理人查尔斯·博伊科特替地主向农民收租。农民以集体不合作表示抗议：不替他干活，不与他买卖，也不愿受雇收割庄稼。原本掌握收租权的人陷入了日常生活处处无人合作的处境。Boycott 的姓氏因此变成了 boycott，表示以拒绝往来实施抵制。",
+      "source_pages": [
+        421
+      ],
+      "related_words": [
+        "boycott"
+      ],
+      "historical_status": "historical",
+      "historical_sources": [
+        {
+          "label": "词典对照 · boycott",
+          "url": "https://en.wiktionary.org/wiki/boycott"
+        }
+      ],
+      "editorial_note": ""
+    },
+    "history-016": {
+      "title": "理发师的波浪",
+      "summary": "十九世纪巴黎流传着一位名叫马塞尔的理发师的故事。他想改变当时常见的小卷发，尝试把头发烫成连续、深而整齐的波浪。新发型受到欢迎，marcel 也成为这种波浪卷发及烫发方法的名称。具体发明者的身份和早期归属有不同说法，这个名字的来历不能简化为毫无争议的发明专利。",
+      "source_pages": [
+        421
+      ],
+      "related_words": [
+        "marcel"
+      ],
+      "historical_status": "disputed",
+      "historical_sources": [
+        {
+          "label": "词典对照 · marcel",
+          "url": "https://en.wiktionary.org/wiki/marcel"
+        }
+      ],
+      "editorial_note": "原书只用 Marcel 一名概述理发师故事；现行词典也注明发明者说法不一，因此不增补未经确证的全名或唯一发明年份。"
+    },
+    "history-017": {
+      "title": "节俭大臣与简单的侧影",
+      "summary": "十八世纪法国财政大臣艾蒂安·德·西卢埃特主张节省开支。一种词源旧说把他的节俭形象同廉价而简单的侧面肖像联系起来：不必绘出丰富细节，只保留黑色外轮廓。于是，Silhouette 这个姓氏成了剪影的名称。名称确与他有关，但为何由他的名字指向这种画像，流传着不同解释。",
+      "source_pages": [
+        421
+      ],
+      "related_words": [
+        "silhouette"
+      ],
+      "historical_status": "disputed",
+      "historical_sources": [
+        {
+          "label": "词典对照 · silhouette",
+          "url": "https://en.wiktionary.org/wiki/silhouette"
+        }
+      ],
+      "editorial_note": "保留原书的节俭说，同时不把这一解释写成已经排除其他版本的定论。"
+    },
+    "history-018": {
+      "title": "从绞架到起重架",
+      "summary": "从前英国有一位姓德里克的刽子手，他借绞架把受刑者吊起。Derrick 的名字随后被用来称绞架；后来，人们又把同样用于吊起重物的支架叫作 derrick。一个与刑场相连的姓氏，便沿着“把东西吊起来”的形象，转到了码头、工地和油井的机械装置上。",
+      "source_pages": [
+        421
+      ],
+      "related_words": [
+        "derrick"
+      ],
+      "historical_status": "historical",
+      "historical_sources": [
+        {
+          "label": "词典对照 · derrick",
+          "url": "https://en.wiktionary.org/wiki/derrick"
+        }
+      ],
+      "editorial_note": ""
+    },
+    "history-019": {
+      "title": "萨德的名字进入词典",
+      "summary": "十八世纪法国贵族萨德侯爵在作品中描写残酷、强迫以及从他人的痛苦中获得快感的情形。他的作品引起强烈反响，姓名也逐渐成为描述这类倾向的词源。由 de Sade 衍生出的 sadist，用来指以他人受苦为乐的人，而不再只是某一位法国作家的姓名。",
+      "source_pages": [
+        422
+      ],
+      "related_words": [
+        "sadist"
+      ],
+      "historical_status": "historical",
+      "historical_sources": [
+        {
+          "label": "词典对照 · sadist",
+          "url": "https://en.wiktionary.org/wiki/sadist"
+        }
+      ],
+      "editorial_note": "原书称 Count de Sade；较准确的称谓是 Marquis de Sade（萨德侯爵）。不把文学情节直接当作其全部真实生平。"
+    },
+    "history-020": {
+      "title": "青蛙腿突然动了起来",
+      "summary": "意大利医生路易吉·伽伐尼研究电对动物组织的作用时，发现处理过的青蛙腿会在电刺激或金属接触下发生收缩。原本静止的肌肉突然抽动，促使他反复实验，并提出“动物电”的解释。Galvani 的名字由此留在 galvanism 一词中，也进入后来表示突然激起行动的相关表达。",
+      "source_pages": [
+        422
+      ],
+      "related_words": [
+        "galvanism"
+      ],
+      "historical_status": "historical",
+      "historical_sources": [
+        {
+          "label": "伽利略博物馆 · Luigi Galvani",
+          "url": "https://catalogue.museogalileo.it/biography/LuigiGalvani.html"
+        }
+      ],
+      "editorial_note": "原书把后续发现概括得过于直接。这里区分实验现象与伽伐尼自己的动物电解释，不把全部电化学发现归于他一人。"
+    },
+    "history-021": {
+      "title": "一批寄往博物馆的小鱼",
+      "summary": "十九世纪，生活在特立尼达的博物学家罗伯特·约翰·莱希米尔·古皮把小型热带鱼标本寄往英国博物馆。接收者在早期分类命名中采用了 Guppy 的姓氏。后来，即使鱼类学对它的正式分类名称作了调整，guppy 仍作为俗名留了下来，成为今天水族箱里常见的孔雀鱼。",
+      "source_pages": [
+        422
+      ],
+      "related_words": [
+        "guppy"
+      ],
+      "historical_status": "historical",
+      "historical_sources": [
+        {
+          "label": "词典对照 · guppy",
+          "url": "https://en.wiktionary.org/wiki/guppy"
+        }
+      ],
+      "editorial_note": "原书小标题使用复数 Guppies；这里采用常用词典词头 guppy，并保留复数检索。叙述不沿用原书存在分歧的寄送年份。"
+    },
+    "history-022": {
+      "title": "外交官带回的烟草种子",
+      "summary": "十六世纪，法国驻葡萄牙的外交官让·尼古接触到烟草，并把种子和相关消息送回法国。他在法国推广烟草的活动，使 Nicot 这个姓氏同这种植物联系起来。后来，烟草中的一种生物碱被命名为 nicotine。外交官的姓名，就这样留在了化学名词里。",
+      "source_pages": [
+        422
+      ],
+      "related_words": [
+        "nicotine"
+      ],
+      "historical_status": "historical",
+      "historical_sources": [
+        {
+          "label": "词典对照 · nicotine",
+          "url": "https://en.wiktionary.org/wiki/nicotine"
+        }
+      ],
+      "editorial_note": ""
+    },
+    "history-023": {
+      "title": "枪口上的巴约讷",
+      "summary": "法国城镇巴约讷的名字 Bayonne 与一种刀具的名称联系起来，法语 baïonnette 随后进入英语，成为 bayonet。刀刃装到长枪的枪口，步枪便兼有了近距离刺击的用途。一个地方的名字随着这件武器传播，最后成为“刺刀”的通用名称。",
+      "source_pages": [
+        422
+      ],
+      "related_words": [
+        "bayonet"
+      ],
+      "historical_status": "historical",
+      "historical_sources": [
+        {
+          "label": "词典对照 · bayonet",
+          "url": "https://en.wiktionary.org/wiki/bayonet"
+        }
+      ],
+      "editorial_note": "地名与名称的关系不等同于对唯一发明地点、发明人的确证；不增补原书未交代的具体战役故事。"
+    },
+    "history-024": {
+      "title": "甜瓜带走了庄园的名字",
+      "summary": "罗马附近有一个名叫 Cantalupo 的地方，与教皇的夏季庄园有关。一种关于甜瓜传入欧洲的叙述，把当地列为早期栽种地点。瓜被人们认识和传播时，也带上了这个地名：意大利语 Cantalupo 经法语 cantaloup，成为英语 cantaloupe。吃进嘴里的果实，名字却保存着一处意大利地方。",
+      "source_pages": [
+        422
+      ],
+      "related_words": [
+        "cantaloupe"
+      ],
+      "historical_status": "historical",
+      "historical_sources": [
+        {
+          "label": "词典对照 · cantaloupe",
+          "url": "https://en.wiktionary.org/wiki/cantaloupe"
+        }
+      ],
+      "editorial_note": "保留传统词源叙述，不由此断言所有现代甜瓜品种均从同一庄园起源。"
+    },
+    "history-025": {
+      "title": "港口名字变成了棉布名",
+      "summary": "印度西南海岸的卡利卡特是一座繁忙的贸易港口，欧洲商人通过这里接触并输入棉织物。布匹随着海路运到远方，港口的名字 Calicut 也跟着它们传播。后来 calico 不再只是使人想到某个港口，而成为一类棉布的名称。地名与贸易一起，织进了商品的名字。",
+      "source_pages": [
+        422
+      ],
+      "related_words": [
+        "calico"
+      ],
+      "historical_status": "historical",
+      "historical_sources": [
+        {
+          "label": "词典对照 · calico",
+          "url": "https://en.wiktionary.org/wiki/calico"
+        }
+      ],
+      "editorial_note": ""
+    },
+    "history-026": {
+      "title": "俱乐部里没有燕尾的礼服",
+      "summary": "纽约州塔克西多公园是一个富裕的社交社区。当地乡村俱乐部流行起一种短式男士晚礼服，不带传统燕尾服后面的长尾。随着这种装束受到欢迎，Tuxedo Park 的地名被借去称呼服装，tuxedo 逐渐成为英语里无尾晚礼服及整套礼服的名称。",
+      "source_pages": [
+        423
+      ],
+      "related_words": [
+        "tuxedo"
+      ],
+      "historical_status": "historical",
+      "historical_sources": [
+        {
+          "label": "词典对照 · tuxedo",
+          "url": "https://en.wiktionary.org/wiki/tuxedo"
+        }
+      ],
+      "editorial_note": "叙述限于地名和服装流行的关系，不把关于首次穿着者的不同传说合并成一份确定的发明记录。"
+    },
+    "history-027": {
+      "title": "一次被保留下来的来历误认",
+      "summary": "罗姆人早期出现在英国时，被一些人误认为来自埃及。Egyptian 一类称呼经过缩短和变化，形成了 Gypsy。后来，人们已知道“来自埃及”并不是这一群体的真实族源，这个旧称却继续留在英语中。一个民族被外人误认的来历，因而成为名称的一部分。",
+      "source_pages": [
+        423
+      ],
+      "related_words": [
+        "Gypsy"
+      ],
+      "historical_status": "historical",
+      "historical_sources": [
+        {
+          "label": "词典对照 · Gypsy",
+          "url": "https://en.wiktionary.org/wiki/Gypsy"
+        }
+      ],
+      "editorial_note": "Gypsy 是罗姆人的历史外称，在一些语境中具有冒犯性；本条用于解释旧称的来历，不将其作为所有相关群体的统一自称。"
+    },
+    "history-028": {
+      "title": "丝织品记住了大马士革",
+      "summary": "大马士革以精美织物和贸易闻名。带有细密花纹的丝织品在流通中与这座城市相联系，地名 Damascus 便进入了 damask 的名称。货物可以运到许多国家，后来也可以采用不同纤维织造，但名字仍使人想到曾经以这种织物著称的城市。",
+      "source_pages": [
+        423
+      ],
+      "related_words": [
+        "damask"
+      ],
+      "historical_status": "historical",
+      "historical_sources": [
+        {
+          "label": "词典对照 · damask",
+          "url": "https://en.wiktionary.org/wiki/damask"
+        }
+      ],
+      "editorial_note": "保留织物与城市的命名联系，不把原书“最先制造”一语扩展为所有此类织法唯一的历史起点。"
+    },
+    "history-029": {
+      "title": "刺桐港的名字远渡重洋",
+      "summary": "中国东南沿海的泉州，旧时又称刺桐城，是重要的海上贸易港口。阿拉伯商人称它为 Zaitun，马可·波罗也以 Zaitun 记述这座海港。随着丝织品及其名称向西传播，这个地名被认为经由法语 satin 留进了英语。柔滑缎面的名字里，保存着一条从刺桐港通向海外的语言线索。",
+      "source_pages": [
+        423
+      ],
+      "related_words": [
+        "satin"
+      ],
+      "historical_status": "historical",
+      "historical_sources": [
+        {
+          "label": "词典对照 · satin",
+          "url": "https://en.wiktionary.org/wiki/satin"
+        }
+      ],
+      "editorial_note": ""
+    },
+    "history-030": {
+      "title": "香肠走出了法兰克福",
+      "summary": "德国法兰克福以当地的熏制香肠闻名。人们用 frankfurter 称呼这种“法兰克福式”的香肠；食品随着商人和移民走到别处，地名衍生的称呼也一同留下。后来，在熟食店、超市或热狗摊上听到这个词，未必是在说香肠来自今天的法兰克福，而是在沿用一种已经传播开的食品名称。",
+      "source_pages": [
+        423
+      ],
+      "related_words": [
+        "frankfurter"
+      ],
+      "historical_status": "historical",
+      "historical_sources": [
+        {
+          "label": "词典对照 · frankfurter",
+          "url": "https://en.wiktionary.org/wiki/frankfurter"
+        }
+      ],
+      "editorial_note": "这是食品名称与城市的联系，不据此排除其他城市对相关香肠制作传统的贡献。"
     }
   }
 }

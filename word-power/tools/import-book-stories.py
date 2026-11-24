@@ -4,8 +4,8 @@
 Usage: python tools/import-book-stories.py /path/to/source.pdf
 Requires pdftotext. Page numbers are physical, one-based PDF page numbers.
 Editorial source: book-stories.tsv (words, pages, title, narrative, status,
-reference label, reference URL). Entries without a historical anecdote have
-no book_story field. Never fill gaps with explanations or invented scenes.
+reference label, reference URL, optional editorial note). Entries can reference
+multiple stories. Never fill gaps with explanations or invented scenes.
 """
 import argparse
 from collections import Counter
@@ -33,23 +33,28 @@ def attach(pdf):
     editorial = (ROOT / 'tools/book-stories.tsv').read_text()
     for entry in data['lexicon'].values():
         entry.pop('book_story', None)
+        entry.pop('book_stories', None)
     stories, assigned = {}, set()
     for number, line in enumerate(editorial.splitlines(), 1):
-        words, source, title, summary, status, label, url = line.split('\t')
+        columns = line.split('\t')
+        words, source, title, summary, status, label, url = columns[:7]
+        note = columns[7] if len(columns) > 7 else ''
         words, source = words.split('|'), page_range(source)
         assert all(1 <= p <= len(pages) for p in source), (number, source)
         sid = f'history-{number:03d}'
-        assert status in {'historical', 'legend'}, status
+        assert status in {'historical', 'legend', 'reported', 'disputed'}, status
         stories[sid] = dict(title=title, summary=summary, source_pages=source,
                             related_words=words, historical_status=status,
-                            historical_sources=[dict(label=label, url=url)])
+                            historical_sources=[dict(label=label, url=url)], editorial_note=note)
         for word in words:
-            assert word in data['lexicon'] and word not in assigned, word
+            assert word in data['lexicon'], word
             assigned.add(word)
-            pattern = re.compile(r'(?<![A-Za-z])' + re.escape(word) + r'(?![A-Za-z])', re.I)
+            forms = [word, *data['lexicon'][word].get('source_forms', [])]
+            pattern = re.compile(r'(?<![A-Za-z])(?:' + '|'.join(re.escape(w) for w in forms) + r')(?![A-Za-z])', re.I)
             evidence = [p for p in source if pattern.search(pages[p-1])]
             assert evidence, f'{word}: no literal occurrence on source pages'
-            data['lexicon'][word]['book_story'] = dict(story_id=sid, kind='narrative', mention_pages=evidence)
+            data['lexicon'][word].setdefault('book_stories', []).append(
+                dict(story_id=sid, kind='narrative', mention_pages=evidence, source_forms=forms))
     data['book_stories'] = stories
     version = hashlib.sha256(editorial.encode()).hexdigest()[:12]
     data['metadata']['book_stories_version'] = version
@@ -57,9 +62,10 @@ def attach(pdf):
         source_title='Word Power Made Easy', author='Norman Lewis', pdf_pages=len(pages),
         source_sha256=hashlib.sha256(pdf.read_bytes()).hexdigest(),
         page_basis='Physical PDF page, one-based; uploaded edition, not print page numbers.',
-        date='2026-11-24', word_count=len(assigned), summary_count=len(stories),
-        kinds=dict(Counter(x['book_story']['kind'] for x in data['lexicon'].values() if 'book_story' in x)),
-        note='仅保留直接相关的历史故事；传说单独标明。没有历史典故的词条不显示故事区。')
+        date='2026-11-24', schema_version=2, word_count=len(assigned), summary_count=len(stories),
+        reference_count=sum(len(x.get('book_stories', [])) for x in data['lexicon'].values()),
+        kinds=dict(Counter(ref['kind'] for x in data['lexicon'].values() for ref in x.get('book_stories', []))),
+        note='一词可关联多则历史故事；传说、转述轶事与争议旧说另作标记。没有典故的词条不显示故事区。')
     encoded = json.dumps(data, ensure_ascii=False, indent=2) + '\n'
     (ROOT / 'lexicon.json').write_text(encoded)
     html = (ROOT / 'index.html').read_text()

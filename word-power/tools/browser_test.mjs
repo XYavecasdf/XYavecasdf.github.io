@@ -13,6 +13,11 @@
  * pixel equivalence.
  */
 import { spawn } from 'node:child_process';
+import { readFileSync } from 'node:fs';
+const expectedData = JSON.parse(readFileSync(new URL('../lexicon.json', import.meta.url), 'utf8'));
+const expectedMetrics = [expectedData.metadata.roots, expectedData.metadata.unique_words, expectedData.groups.length].join(',');
+const expectedChips = expectedData.metadata.word_instances;
+const expectedBranches = expectedData.groups.reduce((n,g) => n + g.roots.length, 0);
 import { setTimeout as sleep } from 'node:timers/promises';
 
 const args = Object.fromEntries(
@@ -98,7 +103,7 @@ try {
   }
   for (let i = 0; i < 60; i += 1) {
     const count = await evaluate(`document.querySelectorAll('button.word-chip').length`);
-    if (count >= 679) break;
+    if (count >= expectedChips) break;
     await sleep(200);
   }
   await sleep(300);
@@ -166,6 +171,7 @@ try {
     const results = [];
     const search = document.getElementById('search');
     for (const word of ['laconic', 'proscribe', 'stoic', 'omnipotent',
+                        'sycophant', 'taciturn', 'genocide', 'boycott', 'nicotine', 'satin',
                         'describe', 'prescribe', 'omnipresent', 'diaphanous',
                         'anonymous', 'bilingual', 'egoist']) {
       document.getElementById('close-modal')?.click();
@@ -210,15 +216,15 @@ try {
   const results = { initial, search, detail, detail2, storyPanels, filter, mobile };
   const failures = [];
   for (const panel of storyPanels) {
-    const expected = ['laconic', 'proscribe', 'stoic', 'omnipotent'].includes(panel.word);
+    const expected = ['laconic', 'proscribe', 'stoic', 'omnipotent', 'sycophant', 'taciturn', 'genocide', 'boycott', 'nicotine', 'satin'].includes(panel.word);
     if (panel.title !== panel.word || panel.story !== expected) failures.push('story visibility: ' + panel.word);
     if (expected && (!panel.text.includes('历史故事') || !panel.references)) failures.push('story content: ' + panel.word);
     if (['laconic', 'omnipotent'].includes(panel.word) && !panel.text.includes('传说')) failures.push('legend label: ' + panel.word);
     if (/作者|书中用例|构词练习/.test(panel.text)) failures.push('non-historical story text: ' + panel.word);
   }
-  if (initial.metrics.join(',') !== '238,507,8') failures.push(`metrics ${initial.metrics}`);
-  if (initial.chips !== 679) failures.push(`initial chips ${initial.chips} != 679`);
-  if (initial.branches !== 243) failures.push(`initial branches ${initial.branches} != 243`);
+  if (initial.metrics.join(',') !== expectedMetrics) failures.push(`metrics ${initial.metrics}`);
+  if (initial.chips !== expectedChips) failures.push(`initial chips ${initial.chips} != ${expectedChips}`);
+  if (initial.branches !== expectedBranches) failures.push(`initial branches ${initial.branches} != ${expectedBranches}`);
   if (!initial.search) failures.push('search input missing');
   if (!search.chips.includes('atheism')) failures.push('search did not find atheism');
   if (!detail.visible) failures.push('detail overlay did not open');
