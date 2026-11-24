@@ -8,7 +8,7 @@
 <title>Word Power · Interactive Etymology Atlas</title>
 <style>
 :root{--bg:#f5f7fa;--paper:#fff;--ink:#1b293b;--muted:#657589;--line:#dfe6ef;--navy:#1b3658;--blue:#385e99;--lightblue:#ecf2fa;--teal:#067367;--teallight:#eaf7f3;--gold:#a36a22;--goldlight:#fff5e8;--shadow:0 14px 48px #0a22441a;--radius:14px}
-*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:18px}body{margin:0;min-width:320px;background:var(--bg);color:var(--ink);font:14px/1.55 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid #87b7ff;outline-offset:2px}a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}.shell{max-width:1420px;margin:auto;padding:0 24px}
+*{box-sizing:border-box}[hidden]{display:none!important}html{scroll-behavior:smooth;scroll-padding-top:18px}body{margin:0;min-width:320px;background:var(--bg);color:var(--ink);font:14px/1.55 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif}button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid #87b7ff;outline-offset:2px}a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}.shell{max-width:1420px;margin:auto;padding:0 24px}
 .hero{background:radial-gradient(ellipse at 90% 5%,#3d6284 0%,transparent 58%),linear-gradient(115deg,#10283f,#1e4566);color:#f9fcff;padding:33px 0 31px}.hero-inner{display:flex;gap:24px;align-items:flex-end;justify-content:space-between}.eyebrow{text-transform:uppercase;letter-spacing:.18em;color:#b5d4ed;font-size:11px;font-weight:800}.hero h1{font-family:Georgia,"Times New Roman",serif;font-weight:500;letter-spacing:-.035em;font-size:clamp(28px,4vw,43px);margin:8px 0 5px}.hero p{color:#d7e6f3;margin:0;max-width:720px}.hero-metrics{display:flex;gap:19px;color:#edf6fc;white-space:nowrap}.hero-metrics div{border-left:1px solid #7892aa66;padding-left:15px}.hero-metrics strong{display:block;font-size:26px;line-height:1.2;font-weight:650}.hero-metrics span{font-size:11px;color:#c4dae9}.topbar{background:#ffffffeb;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:12;backdrop-filter:blur(14px)}.controls{display:flex;align-items:center;gap:10px;padding-top:13px;padding-bottom:13px;flex-wrap:wrap}.search-box{position:relative;min-width:260px;flex:1}.search-box input{width:100%;background:#f8fafd;border:1px solid #d1dceb;padding:11px 14px 11px 40px;border-radius:10px;outline:none}.search-box input:focus{border-color:#6490c4;box-shadow:0 0 0 3px #83bbf52f}.search-icon{position:absolute;left:14px;top:11px;color:#7387a1}.control{background:white;color:#3f536a;border:1px solid #d2dce8;border-radius:9px;padding:10px 12px;font-size:12px;font-weight:700}.control:hover{background:#eef4fa}.control.primary{color:white;background:#345d93;border-color:#345d93}.control.primary:hover{background:#244a7c}.control.primary:active,.word-chip:active{transform:translateY(1px)}select{padding:11px 9px;border:1px solid #d2dce8;background:white;border-radius:9px;color:#456079;max-width:210px}
 .layout{display:grid;grid-template-columns:225px minmax(0,1fr);gap:22px;padding-top:22px;padding-bottom:36px}.sidebar{align-self:start;position:sticky;top:84px;background:var(--paper);border:1px solid var(--line);padding:14px;border-radius:var(--radius);box-shadow:0 3px 14px #17355808}.side-label{font-size:10px;letter-spacing:.15em;color:#8c9bb0;font-weight:900;margin:5px 8px 11px}.navbtn{width:100%;display:flex;justify-content:space-between;align-items:center;text-align:left;border:0;background:transparent;color:#4b5d73;border-radius:8px;padding:10px 9px;margin:2px 0;gap:8px;font-size:12px}.navbtn:hover,.navbtn.active{color:#214e83;background:#e9f2fc}.navbtn small{color:#91a0b0}.side-note{font-size:12px;color:#8090a0;border-top:1px solid var(--line);padding:14px 8px 4px;margin-top:10px}.content{min-width:0}.intro{display:flex;gap:16px;align-items:center;padding:17px 19px;background:white;border:1px solid var(--line);border-radius:var(--radius);margin-bottom:16px}.intro-symbol{font-family:Georgia,serif;border-radius:10px;color:white;background:#24486b;font-size:32px;padding:8px 14px}.intro p{margin:0;font-size:12px;color:#63768c}.intro strong{display:block;font-size:13px;color:#344b65;margin-bottom:3px}.cat{border:1px solid var(--line);background:#fff;border-radius:var(--radius);margin:0 0 12px;overflow:hidden;box-shadow:0 3px 12px #0a224408}.cat-head{width:100%;border:0;background:linear-gradient(90deg,#f6f9fd,#fff);padding:16px 19px;display:flex;justify-content:space-between;align-items:center;gap:10px;text-align:left}.cat-head:hover{background:#eff5fc}.cat-head strong{font-size:16px;font-weight:750}.cat-head small{display:block;font-size:11px;color:#91a3b8;font-weight:450}.count{font-size:11px;color:#74869c;background:#edf2f8;border:1px solid #e1e9f3;padding:5px 9px;border-radius:99px;white-space:nowrap}.cat-body{padding:4px 18px 17px 32px;border-top:1px solid var(--line)}.cat.collapsed .cat-body{display:none}.branch{border-left:2px solid #c7d9ee;position:relative;margin:12px 0 0 7px;padding:0 0 5px 18px}.branch:before{content:'';position:absolute;left:-2px;top:19px;width:14px;border-top:2px solid #c7d9ee}.branch-head{display:flex;flex-wrap:wrap;gap:6px 11px;align-items:center;min-height:32px}.root-button{border:0;padding:1px 0;background:none;color:#28528a;font-weight:750;font-size:16px;letter-spacing:-.015em}.root-button:hover{text-decoration:underline}.origin{font-size:11px;border-radius:6px;padding:3px 6px;font-weight:800}.origin.gr{color:#6a4d93;background:#f2edf9}.origin.la{color:#8d5617;background:#fff5e8}.origin.fr{color:#006d77;background:#e7f5f6}.origin.other{color:#5f6b77;background:#eef1f5}.root-zh{font-size:13px;color:#5b6b7e}.root-script{font-family:Georgia,"Times New Roman",serif;color:#8a728d;font-size:12px}.root-pages{font-size:10px;color:#9caabd}.branch-words{margin-top:7px;display:flex;gap:7px;flex-wrap:wrap}.word-chip{border:1px solid #d4e9e2;border-radius:8px;background:#eef8f5;padding:6px 9px;color:#126c60;font-size:12px;font-weight:620;transition:background .14s,border-color .14s}.word-chip:hover,.word-chip:focus-visible{background:#d9f1e9;border-color:#8bc3b1;text-decoration:none}.word-chip.hassearch{background:#fff0d2;border-color:#e8c787;color:#715320}.branch.folded .branch-words{display:none}.word-chip small{font-size:10px;color:#819a94;padding-left:2px;font-weight:400}.empty{padding:60px 20px;text-align:center;color:#7d8ea1}.footnote{font-size:12px;color:#6f8195;padding:6px 4px 30px}.footnote p{margin:7px 0}
 .hover-card{position:fixed;z-index:40;pointer-events:none;width:min(330px,calc(100vw - 30px));background:#17354f;color:#eef7ff;border:1px solid #547793;border-radius:12px;box-shadow:var(--shadow);padding:14px 17px;opacity:0;transform:translateY(5px);transition:opacity .1s,transform .1s}.hover-card.show{opacity:1;transform:translateY(0)}.hover-card strong{font-size:18px;font-family:Georgia,serif}.hover-card .pron{color:#bfe2f0;font-family:Georgia,serif}.hover-card .def{font-size:13px;padding-top:5px}.hover-card .compo{font-size:11px;color:#d5e5f0;border-top:1px solid #7290a454;margin-top:9px;padding-top:9px}.hover-card .hover-tip{font-size:10px;opacity:.65;margin-top:8px}
@@ -31,14 +31,16 @@
  <div><div class="eyebrow">Etymology atlas</div><h1>Word Roots & Derivatives</h1><p>词根 · 词族 · 发音</p></div>
  <div class="hero-metrics"><div><strong id="metric-roots">257</strong><span>词源</span></div><div><strong id="metric-words">527</strong><span>单词</span></div><div><strong id="metric-branches">9</strong><span>主题</span></div></div>
 </div></header>
-<div class="topbar"><div class="shell controls">
+<div class="topbar" id="library-controls"><div class="shell controls">
  <label class="search-box"><span class="sr-only">搜索词根、单词或历史故事</span><span class="search-icon" aria-hidden="true">⌕</span><input id="search" type="search" placeholder="搜索单词、词根或释义…" autocomplete="off"></label>
  <select id="origin-filter" aria-label="筛选词根语源"><option value="">所有语源</option><option value="古希腊语">Ancient Greek</option><option value="拉丁语">Latin</option><option value="法语">French</option><option value="古英语">Old English</option><option value="人名">人名</option><option value="地名">地名</option></select>
  <button class="control primary" id="expand-all" aria-label="展开全部">展开</button><button class="control" id="collapse-all" aria-label="折叠全部">折叠</button><button class="control" id="clear-all" aria-label="清除筛选">重置</button>
+ <button class="control" id="explore-entry" aria-label="探索词源地图与关系网">探索 ↗</button>
 </div></div>
-<div class="shell layout"><aside class="sidebar"><div class="side-label">主题</div><nav id="theme-nav" aria-label="主题分类"></nav></aside>
+<div class="shell layout" id="library-view"><aside class="sidebar"><div class="side-label">主题</div><nav id="theme-nav" aria-label="主题分类"></nav></aside>
  <main class="content"><div id="mindmap" aria-live="polite"></div><details class="footnote site-notes"><summary>资料与说明</summary><p class="story-footnote"><b>历史故事：</b>收录 30 则典故，关联 33 个词条；同一词可有多则。传说、转述与争议旧说分别标记，出处可展开查看。</p><p><b>词源分类：</b>新增专名词源不作为可自由拼接的词根。<br><b>资料来源：</b>Norman Lewis, <i>Word Power Made Easy</i>（页码按上传版 PDF 页序计），Wiktionary、Cambridge Dictionary、Oxford Learner’s Dictionaries、Collins English Dictionary、Dictionary.com 与 Online Etymology Dictionary。发音按词条标注来源；未独立确认的形式明确标识。</p><p><b>2026-11-19 复核：</b>原有 507 条词义与结构完整；459 条 IPA 已获词典直接来源或 Wiktionary 交叉核对（其中 27 条明显误读已更正）；69 条词源/词根说明已逐条核对；其余 48 条保留宽式转写并标注为未独立核验。</p><p><b>版权与数据说明：</b>中文词义与构词提示为本项目编写的教学简释；部分 IPA 来自 CMU Pronouncing Dictionary 的近似转写，并非 Wiktionary 的原始 IPA。构词提示不等同于英语整词的历史借入路径；少量疑难词附特别说明。</p></details></main>
 </div>
+<section class="shell explore" id="exploration" aria-label="词源探索" hidden></section>
 <div class="hover-card" id="hover-card" role="tooltip" aria-hidden="true"></div>
 <div class="overlay" id="overlay" aria-hidden="true"><section class="detail" id="detail" role="dialog" aria-modal="true" aria-labelledby="detail-title" tabindex="-1"><div class="detail-top"><div><h2 id="detail-title"></h2></div><button class="close" id="close-modal" aria-label="关闭词条">×</button></div><div class="detail-body" id="detail-body"></div></section></div>
 <script id="word-data" type="application/json">{
@@ -34676,6 +34678,65 @@ $('expand-all').onclick=()=>{allExpanded=true;root.querySelectorAll('.cat').forE
 $('collapse-all').onclick=()=>{allExpanded=false;root.querySelectorAll('.cat').forEach(x=>x.classList.add('collapsed'));root.querySelectorAll('.cat-head').forEach(x=>x.setAttribute('aria-expanded','false'))};
 $('clear-all').onclick=()=>{search.value='';filter.value='';query='';render()};
 render();
+// Exploration loads independently; saved standalone HTML keeps the full word library.
+const exploration=$('exploration'), libraryPanels=[$('library-controls'),$('library-view')];
+let exploreController=null, explorePromise=null, routeToken=0, libraryScroll=0;
+let lastExploreState={view:'map',place:'quanzhou',focus:'philanthropy'};
+function exploreURL(state,push=false){
+ const url=new URL(location.href);url.searchParams.set('view',state.view);url.searchParams.set('place',state.place);
+ url.searchParams.set('focus',state.focus.replace(/^word:/,''));
+ if(url.href!==location.href)history[push?'pushState':'replaceState'](null,'',url);
+}
+function loadExploreAsset(file,style=false){return new Promise((resolve,reject)=>{
+ const el=document.createElement(style?'link':'script');let timer;
+ const fail=()=>{clearTimeout(timer);el.remove();reject(new Error('Exploration asset unavailable: '+file))};
+ el.onload=()=>{clearTimeout(timer);resolve()};el.onerror=fail;timer=setTimeout(fail,15000);
+ if(style){el.rel='stylesheet';el.href=file}else{el.src=file}
+ document.head.append(el);
+})}
+async function ensureExplore(){
+ if(exploreController)return exploreController;
+ if(!explorePromise)explorePromise=(async()=>{
+  await Promise.all([loadExploreAsset('./explore.css?v=1',true),window.d3?Promise.resolve():loadExploreAsset('./vendor/d3.v7.9.0.min.js'),window.WordPowerExploreModel?Promise.resolve():loadExploreAsset('./explore-model.js?v=1')]);
+  if(!window.WordPowerExplore)await loadExploreAsset('./explore.js?v=1');
+  exploreController=await window.WordPowerExplore.mount(exploration,{data,posHTML,onOpenWord:openWord,onBack:returnToLibrary,
+   onState:state=>{lastExploreState=state;if(!exploration.hidden)exploreURL(state)}});
+  return exploreController;
+ })().catch(error=>{explorePromise=null;throw error});
+ return explorePromise;
+}
+async function showExplore(state,push=false,focus=false){
+ const token=++routeToken;
+ if(exploration.hidden)libraryScroll=window.scrollY;
+ hideHover();stopPronunciation();libraryPanels.forEach(el=>el.hidden=true);exploration.hidden=false;document.body.classList.add('exploring');
+ if(push)exploreURL(state,true);
+ if(!exploreController)exploration.innerHTML='<div class="explore-load" role="status">正在载入探索…</div>';
+ window.scrollTo({top:0,behavior:'instant'});
+ try{
+  const controller=await ensureExplore();if(token!==routeToken||exploration.hidden)return;
+  controller.activate(state);if(focus)$('tab-'+controller.state().view).focus({preventScroll:true});
+ }catch(error){
+  if(token!==routeToken||exploration.hidden)return;
+  exploration.innerHTML='<div class="explore-load"><p role="status">探索暂时无法载入，请联网后重试。</p><button class="control primary" id="explore-retry">重试</button><button class="control" id="explore-fallback">返回词库</button></div>';
+  $('explore-retry').onclick=()=>showExplore(state,false,true);$('explore-fallback').onclick=returnToLibrary;
+ }
+}
+function showLibrary(focus=false){
+ ++routeToken;exploreController?.pause();exploration.hidden=true;libraryPanels.forEach(el=>el.hidden=false);document.body.classList.remove('exploring');
+ if(focus)$('explore-entry').focus({preventScroll:true});window.scrollTo({top:libraryScroll,behavior:'instant'});
+}
+function returnToLibrary(){
+ closeWord();const url=new URL(location.href);for(const key of ['view','place','focus'])url.searchParams.delete(key);
+ history.pushState(null,'',url);showLibrary(true);
+}
+function stateFromURL(){const params=new URL(location.href).searchParams;return {view:params.get('view'),place:params.get('place')||lastExploreState.place,focus:params.get('focus')||lastExploreState.focus}}
+$('explore-entry').onclick=()=>showExplore(lastExploreState,true,true);
+window.addEventListener('popstate',async()=>{
+ const params=new URL(location.href).searchParams,wanted=params.get('word'),token=routeToken+1;closeWord();
+ if(['map','network'].includes(params.get('view')))await showExplore(stateFromURL());else showLibrary();
+ if(token===routeToken&&wanted&&lex[wanted])openWord(wanted);
+});
+if(['map','network'].includes(new URL(location.href).searchParams.get('view')))await showExplore(stateFromURL());
 const initialWord=new URL(location.href).searchParams.get('word');if(initialWord&&lex[initialWord])openWord(initialWord);
 })();
 </script>

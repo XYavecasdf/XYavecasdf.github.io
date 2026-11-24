@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "checked_on": "2026-11-24",
+  "coordinate_note": "City-level reference locations, not invention sites, estates or historical travel routes. Egypt is a country area, not a point of origin.",
+  "places": [
+    {"id":"bayonne","name":"Bayonne","zh":"巴约讷","region":"法国","word":"bayonet","origin":"Bayonne","kind":"city","coordinates":[-1.4764,43.4925],"note":"名称与巴约讷有关；不能据此认定刺刀的唯一发明地点。","coordinate_source":"https://www.wikidata.org/wiki/Q134674","etymology_source":"https://en.wiktionary.org/wiki/bayonet#Etymology"},
+    {"id":"cantalupo","name":"Cantalupo","zh":"坎塔卢波","region":"意大利 · 罗马附近","word":"cantaloupe","origin":"Cantalupo","kind":"city","coordinates":[12.65,42.3],"note":"传统词源指向罗马附近的 Cantalupo。地图以 Cantalupo in Sabina 为区域参照，不定位到具体庄园。","coordinate_source":"https://www.wikidata.org/wiki/Q223480","etymology_source":"https://en.wiktionary.org/wiki/cantaloupe#Etymology"},
+    {"id":"calicut","name":"Calicut · Kozhikode","zh":"卡利卡特 · 科泽科德","region":"印度","word":"calico","origin":"Calicut","kind":"city","coordinates":[75.7803,11.2478],"note":"Calicut 是今 Kozhikode 的旧称；棉布名称保留了这座贸易港口的名字。","coordinate_source":"https://www.wikidata.org/wiki/Q28729","etymology_source":"https://en.wiktionary.org/wiki/calico#Etymology"},
+    {"id":"tuxedo-park","name":"Tuxedo Park","zh":"塔克西多公园","region":"美国 · 纽约州","word":"tuxedo","origin":"Tuxedo Park","kind":"city","coordinates":[-74.2017,41.2014],"note":"晚礼服名称与纽约州 Tuxedo Park 的社交俱乐部有关。此处标记村镇位置。","coordinate_source":"https://www.wikidata.org/wiki/Q3273900","etymology_source":"https://en.wiktionary.org/wiki/tuxedo#Etymology"},
+    {"id":"egypt","name":"Egypt","zh":"埃及","region":"历史误认","word":"Gypsy","origin":"Egypt","kind":"country","country_code":"EGY","relation":"historical-misidentification","note":"旧称来自将罗姆人误认作埃及人的历史观念。埃及不是罗姆人的真实族源地；Gypsy 在一些语境中具有冒犯性。","coordinate_source":"https://www.wikidata.org/wiki/Q79","etymology_source":"https://en.wiktionary.org/wiki/Gypsy#Etymology"},
+    {"id":"damascus","name":"Damascus","zh":"大马士革","region":"叙利亚","word":"damask","origin":"Damascus","kind":"city","coordinates":[36.2919,33.5131],"note":"锦缎的名称经其他语言，追溯到大马士革的地名。","coordinate_source":"https://www.wikidata.org/wiki/Q3766","etymology_source":"https://en.wiktionary.org/wiki/damask#Etymology"},
+    {"id":"quanzhou","name":"Zaitun · Quanzhou","zh":"刺桐港 · 泉州","region":"中国","word":"satin","origin":"Zaitun","kind":"city","coordinates":[118.5858,24.9139],"note":"Zaitun 是泉州在中世纪海外文献中的名称；satin 的传统词源与此有关。","coordinate_source":"https://www.wikidata.org/wiki/Q68695","etymology_source":"https://en.wiktionary.org/wiki/satin#Etymology"},
+    {"id":"frankfurt","name":"Frankfurt","zh":"法兰克福","region":"德国","word":"frankfurter","origin":"Frankfurt","kind":"city","coordinates":[8.6822,50.1106],"note":"Frankfurter 原指与法兰克福有关的人或物，后来用于当地式样的香肠。","coordinate_source":"https://www.wikidata.org/wiki/Q1794","etymology_source":"https://en.wiktionary.org/wiki/frankfurter#Etymology"}
+  ]
+}

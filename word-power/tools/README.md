@@ -136,3 +136,30 @@ committed `audit.json` records the source URLs and claims, so the website
 remains usable without the cache. Re-running `build_audit.py` requires the
 cache; without it the script still produces records but cannot refresh the
 verification statuses.
+
+## Exploration views
+
+The library's single **Explore** entry lazy-loads `explore.js`, `explore.css`,
+`explore-model.js` and same-origin D3/Natural Earth assets. Word cards, POS,
+stories and US audio continue to use the library's existing renderer.
+
+`explore-model.js` merges origins by normalized `(language, term)` and creates
+only the explicit `groups[].roots[].words` edges. The complete index has 527
+words and 257 origins; each view opens a local neighborhood, with at most 20
+neighbors per expansion and an explicit remaining count. Person/place origins
+have distinct types. No spelling-based relationships are inferred.
+
+`places.json` contains eight sourced geographic associations. City coordinates
+are approximate references; Egypt uses the basemap country polygon and records
+the historical misidentification explicitly. Vendor provenance and licenses are
+in `../vendor/README.md`.
+
+Shareable routes use `?view=map&place=quanzhou` or
+`?view=network&focus=philanthropy`; origins use the model's `origin:...` ID.
+Both support the existing `word` parameter for an open card. Returning to the
+library retains its in-memory filters, expansion state and scroll position.
+
+```sh
+node tests/check-explore-model.cjs
+node tests/explore-browser.cjs --url http://127.0.0.1:8765/word-power/
+```
