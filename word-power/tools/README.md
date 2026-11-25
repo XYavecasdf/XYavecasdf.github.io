@@ -177,3 +177,29 @@ node tests/check-explore-model.cjs
 node tests/explore-browser.cjs --url http://127.0.0.1:8765/word-power/
 node tests/global-network-browser.cjs --url http://127.0.0.1:8765/word-power/
 ```
+
+## Pathfinder game
+
+The **Pathfinder** exploration tab lazy-loads `pathfinder-model.js` and
+`pathfinder.js`. Twelve curated word pairs progress from two to six graph edges.
+Every pair is validated against the existing word/root graph with breadth-first
+search; proper-name nodes are excluded, and no links are inferred for the game.
+
+A move must follow one recorded edge. The player sees the visited route and
+the current node's neighbors; the target appears in the canvas once reached or
+adjacent. Sidebar choices provide a keyboard/touch alternative. Hints identify
+one valid next move without moving the player. Loops count as traversed edges;
+undo/rewind edit the current route. Completion reports its edge count against
+the shortest route. Revealing a reference route explicitly marks the round as
+unfinished; restarting clears the attempt and hint count.
+
+`?view=game&challenge=shared-humanity` shares a fresh puzzle. Progress survives
+in-page view switches, but no account, local storage or cross-device sync is
+used. Word lookups reuse the library's existing modal and pronunciation controls.
+Canvas reset fits the current graph; the separate restart action resets a round.
+Failure to load optional game code leaves the map and full graph available.
+
+```sh
+node tests/check-pathfinder-model.cjs
+node tests/pathfinder-browser.cjs --url http://127.0.0.1:8765/word-power/
+```

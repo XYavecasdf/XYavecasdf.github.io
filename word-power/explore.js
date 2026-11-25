@@ -17,10 +17,12 @@
     const places = geography.places, placesById = new Map(places.map(p => [p.id, p]));
     const byWord = new Map(places.map(p => [p.word, p]));
     const nodesByLabel = new Map([...model.nodes.values()].filter(n => n.kind === 'word').map(n => [M.norm(n.word), n.id]));
-    let state = {view:'network', place:'quanzhou', focus:'', scope:'all'};
+    let state = {view:'network', place:'quanzhou', focus:'', scope:'all',challenge:''};
     let selected = null, graph = null, simulation = null, zoom = null, svg = null;
     let width = 0, height = 0, mapTransform = null, graphTransform = null, active = false;
     let globalLayout=null,globalView=null,globalTransform=null,wide=false;
+    let game=null,gamePromise=null,gameView=null,gameTransform=null,gameRequest=0;
+    const views=['map','network','game'];
     const positions = new Map();
     host.innerHTML = `
       <div class="explore-toolbar">
@@ -28,6 +30,7 @@
         <div class="explore-tabs" role="tablist" aria-label="探索方式">
           <button type="button" role="tab" id="tab-map" aria-controls="explore-panel" aria-selected="true">地图</button>
           <button type="button" role="tab" id="tab-network" aria-controls="explore-panel" aria-selected="false" tabindex="-1">关系网</button>
+          <button type="button" role="tab" id="tab-game" aria-controls="explore-panel" aria-selected="false" tabindex="-1">寻路</button>
         </div>
         <form class="explore-search" role="search" autocomplete="off">
           <label class="sr-only" for="explore-search">搜索单词、词根或地点</label>
@@ -36,6 +39,7 @@
           <div class="explore-results" id="explore-results" hidden></div>
         </form>
       </div>
+      <section class="pathfinder-banner" id="pathfinder-banner" aria-label="本题目标" hidden></section>
       <div class="explore-body" id="explore-panel" role="tabpanel" aria-labelledby="tab-map">
         <section class="explore-viz" aria-label="探索画布">
           <div class="viz-caption"><div class="viz-heading"><strong id="viz-title"></strong><span id="viz-count"></span></div>
@@ -54,8 +58,8 @@
       </div>
       <p class="explore-status" id="explore-status" role="status" aria-live="polite"></p>
       <details class="explore-footer"><summary>资料与操作</summary>
-        <p>拖动画布平移，双指或滚轮缩放。全图包含全部单词；放大逐步显示词名，悬停高亮相连节点，双击单词打开词条。搜索可以定位任一单词或词根。</p>
-        <p>键盘聚焦画布后可用方向键平移、+ / − 缩放、0 全览；Enter 选择节点，也可用搜索和右侧关联按钮浏览。全屏时按 Escape 返回。</p>
+        <p id="explore-operating-help"></p>
+        <p id="explore-keyboard-help"></p>
         <p>关系仅来自词库已收录的词根关联；人名、地名分别标记，不视为可自由拼接的词根。地点使用城市级参照位置，不表示具体发明地点或传播路线。埃及区域表示旧称中的历史误认。</p>
         <p>底图：${link('https://www.naturalearthdata.com/about/terms-of-use/', 'Natural Earth · 公有领域')} · 当代地理参照。坐标：Wikidata；词源与原书故事见词条。${link('./vendor/README.md', '数据与授权')}</p>
       </details>`;
@@ -68,16 +72,23 @@
       return model.nodes.has(value) ? value : nodesByLabel.get(M.norm(value)) || M.wordId('philanthropy');
     }
     function setTab(view, notify = true) {
-      state.view = view === 'network' ? 'network' : 'map';
+      state.view = views.includes(view) ? view : 'network';
       host.dataset.view = state.view;
       if(state.view==='map'){delete host.dataset.scope;$('network-locate').hidden=true;$('explore-reset').textContent='重置';}
-      for (const tab of ['map','network']) {
+      for (const tab of views) {
         $('tab-' + tab).setAttribute('aria-selected', String(state.view === tab));
         $('tab-' + tab).tabIndex = state.view === tab ? 0 : -1;
       }
       $('explore-panel').setAttribute('aria-labelledby', 'tab-' + state.view);
-      $('network-tools').hidden=state.view!=='network';
-      if(state.view!=='network')setWide(false);
+      $('network-tools').hidden=state.view==='map';
+      host.querySelector('.network-scope').hidden=state.view!=='network';
+      host.querySelector('.explore-search').hidden=state.view==='game';
+      $('pathfinder-banner').hidden=state.view!=='game';
+      $('explore-operating-help').textContent=state.view==='game'?'每一步沿一条连线前进：单词 → 词根 → 单词。可点击图中节点或右侧选项；点击上方的起点、终点词可查看释义和发音。':state.view==='map'?'拖动画布平移，双指或滚轮缩放；点击地点查看相关单词与词源。':'拖动画布平移，双指或滚轮缩放。全图包含全部单词；放大逐步显示词名，悬停高亮相连节点，双击单词打开词条。搜索可以定位任一单词或词根。';
+      $('explore-keyboard-help').textContent=state.view==='game'?'Tab 可聚焦节点和选项，Enter 选择。画布支持方向键平移、+ / − 缩放、0 全览。全屏时按 Escape 返回。':'键盘聚焦画布后可用方向键平移、+ / − 缩放、0 全览；Enter 选择节点，也可用搜索和右侧关联按钮浏览。全屏时按 Escape 返回。';
+      $('network-wide').setAttribute('aria-label',wide?'退出全屏':state.view==='game'?'全屏查看图谱寻路':'全屏查看关系网');
+      $('network-locate').hidden=state.view!=='network'||state.scope!=='all'||!selected;
+      if(state.view==='map')setWide(false);
       clearSearch(); render(); if (notify) emit();
     }
     function choosePlace(id, recenter = true) {
@@ -149,12 +160,14 @@
     function prepare() {
       simulation?.stop(); svg?.on('.zoom', null);
       globalView?.dispose();globalView=null;
+      gameView?.dispose();gameView=null;
+      zoom=null;
       width = canvas.clientWidth; height = canvas.clientHeight;
       canvas.replaceChildren();
       svg = d3.select(canvas).append('svg').attr('viewBox', [0,0,width,height]).attr('tabindex', 0)
-        .attr('role', 'group').attr('aria-label', state.view === 'map' ? '词源地图，可平移缩放' : '词源关系网，可平移缩放');
+        .attr('role', 'group').attr('aria-label', state.view === 'map' ? '词源地图，可平移缩放' : state.view==='game'?'图谱寻路，可平移缩放':'词源关系网，可平移缩放');
       svg.on('keydown.pan', event => {
-        if (event.target !== svg.node()) return;
+        if (event.target !== svg.node()||!zoom) return;
         const delta = {ArrowLeft:[55,0],ArrowRight:[-55,0],ArrowUp:[0,55],ArrowDown:[0,-55]}[event.key];
         if (delta) { event.preventDefault(); svg.call(zoom.translateBy, delta[0] / d3.zoomTransform(svg.node()).k, delta[1] / d3.zoomTransform(svg.node()).k); }
         if (['+','=','-','0'].includes(event.key)) { event.preventDefault(); if (event.key === '0') reset(); else svg.call(zoom.scaleBy, event.key === '-' ? 1 / 1.4 : 1.4); }
@@ -282,10 +295,62 @@
       zoomable(layer,[.15,4],graphTransform || fitted,t => { graphTransform=t; });
       $('viz-count').textContent=ns.length+' 个节点';
     }
-    function render() { if (!active) return; status.textContent=''; state.view === 'map' ? renderMap() : renderNetwork(); }
+    function loadGameScript(file,globalName){
+      if(window[globalName])return Promise.resolve();
+      return new Promise((resolve,reject)=>{
+        const script=document.createElement('script');let timer;
+        const fail=()=>{clearTimeout(timer);script.remove();reject(new Error('Pathfinder unavailable: '+file));};
+        script.onload=()=>{clearTimeout(timer);window[globalName]?resolve():fail();};script.onerror=fail;
+        timer=setTimeout(fail,15000);script.src=new URL(file,base);document.head.append(script);
+      });
+    }
+    function ensureGame(){
+      if(game)return Promise.resolve(game);
+      if(!gamePromise)gamePromise=Promise.all([
+        loadGameScript('pathfinder-model.js?v=1','WordPowerPathfinderModel'),
+        loadGameScript('pathfinder.js?v=1','WordPowerPathfinder')
+      ]).then(()=>{
+        game=window.WordPowerPathfinder.create({model,data:options.data,posHTML:options.posHTML,onOpenWord:options.onOpenWord,
+          onExplore:id=>{state.scope='all';focusGraph(id,true);},
+          onChange:event=>{
+            if(event.changed){gameTransform=null;state.challenge=game.snapshot().id;if(active&&state.view==='game')renderGame();emit();}
+            if(event.message)status.textContent=event.message;
+            if(event.completed){card.querySelector('#pathfinder-result')?.focus({preventScroll:true});if(width<600)card.scrollIntoView({block:'nearest',behavior:'instant'});}
+            else if(event.keyboard){
+              const target=card.querySelector(`[data-game-action="${event.action}"]:not(:disabled)`)||card.querySelector('[data-game-move]');
+              target?.focus({preventScroll:true});
+            }
+          }});
+        return game;
+      }).catch(error=>{gamePromise=null;throw error;});
+      return gamePromise;
+    }
+    function renderGame(){
+      delete host.dataset.scope;
+      $('network-locate').hidden=true;$('explore-reset').textContent='全览';
+      $('viz-title').textContent='图谱寻路';
+      $('viz-legend').innerHTML='<span class="legend-item"><i class="legend-dot"></i>当前节点</span><span class="legend-item"><i class="legend-dot root"></i>词根</span><span class="legend-item"><i class="legend-dot place"></i>已走路线</span>';
+      if(!game){
+        const request=++gameRequest;
+        prepare();$('viz-count').textContent='正在载入…';
+        card.innerHTML='<p class="explore-definition" role="status">正在准备寻路题…</p>';
+        ensureGame().then(()=>{if(request===gameRequest&&active&&state.view==='game'){renderGame();emit();}}).catch(()=>{
+          if(request!==gameRequest||!active||state.view!=='game')return;
+          $('viz-count').textContent='';card.innerHTML='<p class="explore-definition" role="status">寻路暂时无法载入。</p><button type="button" class="control" id="pathfinder-retry">重试</button>';
+          $('pathfinder-retry').onclick=renderGame;
+        });return;
+      }
+      state.challenge=game.activate(state.challenge);
+      game.renderPanel($('pathfinder-banner'),card);
+      const layer=prepare();gameView=game.draw({svg,layer,width,height,savedTransform:gameTransform,onCamera:t=>{gameTransform=t;}});zoom=gameView.zoom;
+      const round=game.snapshot();$('viz-count').textContent=round.phase==='revealed'?'参考路线':round.steps+' 步';
+      if(round.phase==='revealed')$('viz-legend').lastElementChild.innerHTML='<i class="legend-dot place"></i>参考路线';
+    }
+    function render() { if (!active) return; status.textContent=''; state.view === 'map' ? renderMap() : state.view==='game'?renderGame():renderNetwork(); }
     function reset() {
       clearSearch();
       if (state.view === 'map') { mapTransform=null; svg.call(zoom.transform,d3.zoomIdentity); }
+      else if(state.view==='game'){gameView?.fit();}
       else if(state.scope==='all'){selected=null;state.focus='';globalView.select(null);globalView.fit();renderGraphCard();$('network-locate').hidden=true;emit();}
       else { graph=M.neighborhood(model,state.focus); selected=state.focus; positions.clear(); graphTransform=null; renderNetwork(); }
       status.textContent='视图已重置';
@@ -315,26 +380,27 @@
     }
     function setWide(value){
       wide=value;host.classList.toggle('explore-fullscreen',wide);document.body.classList.toggle('explore-wide',wide);
-      $('network-wide').setAttribute('aria-pressed',String(wide));$('network-wide').setAttribute('aria-label',wide?'退出全屏':'全屏查看关系网');
+      $('network-wide').setAttribute('aria-pressed',String(wide));$('network-wide').setAttribute('aria-label',wide?'退出全屏':state.view==='game'?'全屏查看图谱寻路':'全屏查看关系网');
     }
     $('network-all').onclick=()=>setScope('all');$('network-local').onclick=()=>setScope('local');
     $('network-wide').onclick=()=>setWide(!wide);
     $('network-locate').onclick=()=>globalView?.select(selected,{center:true});
     document.addEventListener('keydown',event=>{if(event.key==='Escape'&&wide&&!document.querySelector('#overlay[aria-hidden="false"]'))setWide(false);},true);
-    for (const view of ['map','network']) $('tab-'+view).onclick=()=>setTab(view);
+    for (const view of views) $('tab-'+view).onclick=()=>setTab(view);
     host.querySelector('[role=tablist]').onkeydown=event=>{
       if (['ArrowLeft','ArrowRight','Home','End'].includes(event.key)) {
-        event.preventDefault();const view=event.key==='Home'?'map':event.key==='End'?'network':state.view==='map'?'network':'map';setTab(view);$('tab-'+view).focus();
+        event.preventDefault();const focused=event.target.closest('[role=tab]')?.id.replace('tab-','')||state.view;
+        const view=event.key==='Home'?views[0]:event.key==='End'?views.at(-1):views[(views.indexOf(focused)+(event.key==='ArrowRight'?1:views.length-1))%views.length];setTab(view);$('tab-'+view).focus();
       }
     };
-    $('explore-zoom-in').onclick=()=>svg.call(zoom.scaleBy,1.4);
-    $('explore-zoom-out').onclick=()=>svg.call(zoom.scaleBy,1/1.4);
+    $('explore-zoom-in').onclick=()=>{if(svg&&zoom)svg.call(zoom.scaleBy,1.4);};
+    $('explore-zoom-out').onclick=()=>{if(svg&&zoom)svg.call(zoom.scaleBy,1/1.4);};
     $('explore-reset').onclick=reset;
     search.addEventListener('input',showResults);
     search.onkeydown=event=>{if(event.key==='Escape')clearSearch();if(event.key==='ArrowDown'){event.preventDefault();results.querySelector('button')?.focus();}};
     host.querySelector('form').onsubmit=event=>{event.preventDefault();results.querySelector('button')?.click();};
     document.addEventListener('pointerdown',event=>{if(!event.target.closest('.explore-search')){results.hidden=true;search.setAttribute('aria-expanded','false');}});
-    const observer=new ResizeObserver(()=>{if(active && (canvas.clientWidth!==width || canvas.clientHeight!==height)){mapTransform=null;graphTransform=null;globalTransform=null;positions.clear();render();}});
+    const observer=new ResizeObserver(()=>{if(active && (canvas.clientWidth!==width || canvas.clientHeight!==height)){mapTransform=null;graphTransform=null;globalTransform=null;gameTransform=null;positions.clear();render();}});
     observer.observe(canvas);
     return {
       activate(next) {
@@ -343,10 +409,10 @@
         if(focus!==state.focus){graph=null;selected=focus||null;positions.clear();graphTransform=null;}
         if(focus!==state.focus)globalTransform=null;
         if(next.place && next.place!==state.place)mapTransform=null;
-        state={view:next.view==='network'?'network':'map',place:placesById.has(next.place)?next.place:state.place,focus:focus||'',scope};
+        state={view:views.includes(next.view)?next.view:'network',place:placesById.has(next.place)?next.place:state.place,focus:focus||'',scope,challenge:next.challenge??state.challenge};
         active=true;setTab(state.view,false);emit();
       },
-      pause() { active=false;simulation?.stop();globalView?.dispose();globalView=null;setWide(false);clearSearch(); },
+      pause() { active=false;simulation?.stop();globalView?.dispose();globalView=null;gameView?.dispose();gameView=null;setWide(false);clearSearch(); },
       state:()=>({...state})
     };
   }

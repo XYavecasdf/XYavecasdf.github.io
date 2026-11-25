@@ -34685,8 +34685,9 @@ let exploreController=null, explorePromise=null, routeToken=0, libraryScroll=0;
 let lastExploreState={view:'network',place:'quanzhou',focus:'',scope:'all'};
 function exploreURL(state,push=false){
  const url=new URL(location.href);url.searchParams.set('view',state.view);url.searchParams.set('place',state.place);
- if(state.focus)url.searchParams.set('focus',state.focus.replace(/^word:/,''));else url.searchParams.delete('focus');
- if(state.scope==='local')url.searchParams.set('scope','local');else url.searchParams.delete('scope');
+ if(state.view!=='game'&&state.focus)url.searchParams.set('focus',state.focus.replace(/^word:/,''));else url.searchParams.delete('focus');
+ if(state.view!=='game'&&state.scope==='local')url.searchParams.set('scope','local');else url.searchParams.delete('scope');
+ if(state.view==='game'&&state.challenge)url.searchParams.set('challenge',state.challenge);else url.searchParams.delete('challenge');
  if(url.href!==location.href)history[push?'pushState':'replaceState'](null,'',url);
 }
 function loadExploreAsset(file,style=false){return new Promise((resolve,reject)=>{
@@ -34699,8 +34700,8 @@ function loadExploreAsset(file,style=false){return new Promise((resolve,reject)=
 async function ensureExplore(){
  if(exploreController)return exploreController;
  if(!explorePromise)explorePromise=(async()=>{
-  await Promise.all([loadExploreAsset('./explore.css?v=2',true),window.d3?Promise.resolve():loadExploreAsset('./vendor/d3.v7.9.0.min.js'),window.WordPowerExploreModel?Promise.resolve():loadExploreAsset('./explore-model.js?v=2'),window.WordPowerGlobalNetwork?Promise.resolve():loadExploreAsset('./network-global.js?v=2')]);
-  if(!window.WordPowerExplore)await loadExploreAsset('./explore.js?v=2');
+  await Promise.all([loadExploreAsset('./explore.css?v=3',true),window.d3?Promise.resolve():loadExploreAsset('./vendor/d3.v7.9.0.min.js'),window.WordPowerExploreModel?Promise.resolve():loadExploreAsset('./explore-model.js?v=2'),window.WordPowerGlobalNetwork?Promise.resolve():loadExploreAsset('./network-global.js?v=2')]);
+  if(!window.WordPowerExplore)await loadExploreAsset('./explore.js?v=3');
   exploreController=await window.WordPowerExplore.mount(exploration,{data,posHTML,onOpenWord:openWord,onBack:returnToLibrary,
    onState:state=>{lastExploreState=state;if(!exploration.hidden)exploreURL(state)}});
   return exploreController;
@@ -34728,18 +34729,18 @@ function showLibrary(focus=false){
  if(focus)$('explore-entry').focus({preventScroll:true});window.scrollTo({top:libraryScroll,behavior:'instant'});
 }
 function returnToLibrary(){
- closeWord();const url=new URL(location.href);for(const key of ['view','place','focus','scope'])url.searchParams.delete(key);
+ closeWord();const url=new URL(location.href);for(const key of ['view','place','focus','scope','challenge'])url.searchParams.delete(key);
  history.pushState(null,'',url);showLibrary(true);
 }
-function stateFromURL(){const params=new URL(location.href).searchParams;return {view:params.get('view'),place:params.get('place')||lastExploreState.place,focus:params.get('focus')||'',scope:params.get('scope')||'all'}}
+function stateFromURL(){const params=new URL(location.href).searchParams;return {view:params.get('view'),place:params.get('place')||lastExploreState.place,focus:params.get('focus')||'',scope:params.get('scope')||'all',challenge:params.get('challenge')||''}}
 $('explore-entry').onclick=()=>showExplore(lastExploreState,true,true);
 $('explore-entry').disabled=false;
 window.addEventListener('popstate',async()=>{
  const params=new URL(location.href).searchParams,wanted=params.get('word'),token=routeToken+1;closeWord();
- if(['map','network'].includes(params.get('view')))await showExplore(stateFromURL());else showLibrary();
+ if(['map','network','game'].includes(params.get('view')))await showExplore(stateFromURL());else showLibrary();
  if(token===routeToken&&wanted&&lex[wanted])openWord(wanted);
 });
-if(['map','network'].includes(new URL(location.href).searchParams.get('view')))await showExplore(stateFromURL());
+if(['map','network','game'].includes(new URL(location.href).searchParams.get('view')))await showExplore(stateFromURL());
 const initialWord=new URL(location.href).searchParams.get('word');if(initialWord&&lex[initialWord])openWord(initialWord);
 })();
 </script>
