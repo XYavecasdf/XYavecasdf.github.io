@@ -22,6 +22,7 @@
     let width = 0, height = 0, mapTransform = null, graphTransform = null, active = false;
     let globalLayout=null,globalView=null,globalTransform=null,wide=false;
     let game=null,gamePromise=null,gameView=null,gameTransform=null,gameRequest=0;
+    let previewId=null,previewTrigger=null,previewFrame=0,keyboardPreview=false;
     const views=['map','network','game'];
     const positions = new Map();
     host.innerHTML = `
@@ -46,6 +47,7 @@
             <div class="network-tools" id="network-tools" hidden><div class="network-scope" role="group" aria-label="关系网范围"><button type="button" id="network-all" aria-pressed="true">全图</button><button type="button" id="network-local" aria-pressed="false">局部</button></div><button type="button" class="network-wide" id="network-wide" aria-label="全屏查看关系网" aria-pressed="false">⛶</button></div>
           </div>
           <div class="explore-canvas" id="explore-canvas"></div>
+          <section class="word-preview" id="word-preview" role="dialog" aria-modal="false" aria-labelledby="word-preview-title" tabindex="-1" hidden></section>
           <div class="canvas-controls" aria-label="画布控制">
             <button type="button" id="explore-zoom-in" aria-label="放大">+</button>
             <button type="button" id="explore-zoom-out" aria-label="缩小">−</button>
@@ -64,14 +66,50 @@
         <p>底图：${link('https://www.naturalearthdata.com/about/terms-of-use/', 'Natural Earth · 公有领域')} · 当代地理参照。坐标：Wikidata；词源与原书故事见词条。${link('./vendor/README.md', '数据与授权')}</p>
       </details>`;
     const $ = id => host.querySelector('#' + id);
-    const canvas = $('explore-canvas'), card = $('explore-card'), status = $('explore-status');
+    const canvas = $('explore-canvas'), card = $('explore-card'), status = $('explore-status'),preview=$('word-preview');
     const search = $('explore-search'), results = $('explore-results');
     function emit() { options.onState({...state}); }
     function clearSearch() { search.value = ''; results.hidden = true; search.setAttribute('aria-expanded', 'false'); }
+    function previewNode(){return [...canvas.querySelectorAll('[data-node-id]')].find(el=>el.dataset.nodeId===previewId);}
+    function positionPreview(){
+      previewFrame=0;if(preview.hidden)return;
+      if(window.matchMedia('(max-width:760px)').matches){preview.style.removeProperty('left');preview.style.removeProperty('top');return;}
+      const node=previewNode();if(!node){closePreview();return;}
+      const target=node.querySelector('.global-dot,rect')||node,text=node.querySelector('.global-label');
+      let rect=target.getBoundingClientRect();
+      if(text?.getClientRects().length){const label=text.getBoundingClientRect();rect={left:Math.min(rect.left,label.left),right:Math.max(rect.right,label.right),top:Math.min(rect.top,label.top),bottom:Math.max(rect.bottom,label.bottom)};}
+      const chart=canvas.getBoundingClientRect();if(chart.bottom<0||chart.top>innerHeight){closePreview();return;}
+      const box=preview.getBoundingClientRect(),gap=16,pad=12;
+      const right=rect.right+gap,left=rect.left-box.width-gap;
+      const x=Math.max(pad,Math.min(innerWidth-box.width-pad,right+box.width<=innerWidth-pad?right:left>=pad?left:right));
+      const y=Math.max(pad,Math.min(innerHeight-box.height-pad,rect.top-15));
+      preview.style.left=x+'px';preview.style.top=y+'px';
+    }
+    function schedulePreview(){if(!preview.hidden&&!previewFrame)previewFrame=requestAnimationFrame(positionPreview);}
+    function closePreview(restoreFocus=false){
+      if(preview.hidden)return;
+      options.stopPreviewAudio?.();preview.hidden=true;cancelAnimationFrame(previewFrame);previewFrame=0;
+      if(restoreFocus){const target=previewTrigger?.isConnected&&previewTrigger.getClientRects().length?previewTrigger:previewNode();target?.focus({preventScroll:true});}
+      previewId=null;previewTrigger=null;
+    }
+    function showPreview(id,trigger){
+      const node=model.nodes.get(id),word=options.data.lexicon[node?.word];if(!word||state.view!=='network')return;
+      const focusWithKeyboard=keyboardPreview;
+      previewId=id;previewTrigger=trigger;
+      const ipaNote=word.ipa_accent==='UK'?'英式音标':/近似|未.*核验|未找到|推定/.test(word.ipa_source)?'近似音标':'';
+      const analysis=word.components.length?word.components.map(p=>`<span title="${esc(p.zh)}">${esc(p.form)}</span>`).join('<i>+</i>'):word.roots.map(r=>`<span>${esc(r.term)}</span>`).join('<i>·</i>');
+      preview.innerHTML=`<div class="word-preview-top"><h2 id="word-preview-title">${esc(word.word)}</h2><button type="button" class="word-preview-close" id="word-preview-close" aria-label="关闭单词预览">×</button></div><p class="word-preview-definition">${esc(word.zh)} ${options.posHTML(word)}</p><div class="word-preview-ipa"><span>${esc(word.ipa||'暂无音标')}</span>${ipaNote?`<small>${ipaNote}</small>`:''}</div>${options.previewAudioHTML(word)}${analysis?`<div class="word-preview-analysis" aria-label="${word.components.length?'构词':'词源'}">${analysis}</div>`:''}<button type="button" class="word-preview-open" id="word-preview-open">完整词条 ↗</button>`;
+      preview.hidden=false;options.bindPreviewAudio(preview,word);
+      $('word-preview-close').onclick=()=>closePreview(true);
+      $('word-preview-open').onclick=()=>options.onOpenWord(word.word);
+      positionPreview();schedulePreview();
+      if(focusWithKeyboard)queueMicrotask(()=>{if(!preview.hidden&&previewId===id)preview.focus({preventScroll:true});});
+    }
     function resolveFocus(value) {
       return model.nodes.has(value) ? value : nodesByLabel.get(M.norm(value)) || M.wordId('philanthropy');
     }
     function setTab(view, notify = true) {
+      closePreview();
       state.view = views.includes(view) ? view : 'network';
       host.dataset.view = state.view;
       if(state.view==='map'){delete host.dataset.scope;$('network-locate').hidden=true;$('explore-reset').textContent='重置';}
@@ -84,7 +122,7 @@
       host.querySelector('.network-scope').hidden=state.view!=='network';
       host.querySelector('.explore-search').hidden=state.view==='game';
       $('pathfinder-banner').hidden=state.view!=='game';
-      $('explore-operating-help').textContent=state.view==='game'?'每一步沿一条连线前进：单词 → 词根 → 单词。可点击图中节点或右侧选项；点击上方的起点、终点词可查看释义和发音。':state.view==='map'?'拖动画布平移，双指或滚轮缩放；点击地点查看相关单词与词源。':'拖动画布平移，双指或滚轮缩放。全图包含全部单词；放大逐步显示词名，悬停高亮相连节点，双击单词打开词条。搜索可以定位任一单词或词根。';
+      $('explore-operating-help').textContent=state.view==='game'?'每一步沿一条连线前进：单词 → 词根 → 单词。可点击图中节点或右侧选项；点击上方的起点、终点词可查看释义和发音。':state.view==='map'?'拖动画布平移，双指或滚轮缩放；点击地点查看相关单词与词源。':'拖动画布平移，双指或滚轮缩放。单击单词预览释义、词性和发音，双击打开完整词条；悬停高亮关联，搜索可以定位任一单词或词根。';
       $('explore-keyboard-help').textContent=state.view==='game'?'Tab 可聚焦节点和选项，Enter 选择。画布支持方向键平移、+ / − 缩放、0 全览。全屏时按 Escape 返回。':'键盘聚焦画布后可用方向键平移、+ / − 缩放、0 全览；Enter 选择节点，也可用搜索和右侧关联按钮浏览。全屏时按 Escape 返回。';
       $('network-wide').setAttribute('aria-label',wide?'退出全屏':state.view==='game'?'全屏查看图谱寻路':'全屏查看关系网');
       $('network-locate').hidden=state.view!=='network'||state.scope!=='all'||!selected;
@@ -101,6 +139,7 @@
       emit();
     }
     function focusGraph(id,center=true) {
+      const trigger=document.activeElement;closePreview();
       id = id ? resolveFocus(id) : state.scope==='local' ? M.wordId('philanthropy') : null;
       state.focus = id||''; selected = id;
       clearSearch();
@@ -113,6 +152,7 @@
         if (state.view !== 'network') setTab('network', false);else render();
       }
       $('network-locate').hidden=state.scope!=='all'||!id;
+      if(id)showPreview(id,trigger);
       status.textContent = id ? '已选择 '+model.nodes.get(id).label : '全部词库'; emit();
     }
     function selectNode(id,center=false) {
@@ -158,6 +198,7 @@
       };
     }
     function prepare() {
+      closePreview();
       simulation?.stop(); svg?.on('.zoom', null);
       globalView?.dispose();globalView=null;
       gameView?.dispose();gameView=null;
@@ -168,6 +209,7 @@
         .attr('role', 'group').attr('aria-label', state.view === 'map' ? '词源地图，可平移缩放' : state.view==='game'?'图谱寻路，可平移缩放':'词源关系网，可平移缩放');
       svg.on('keydown.pan', event => {
         if (event.target !== svg.node()||!zoom) return;
+        if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown','+','=','-','0'].includes(event.key))closePreview();
         const delta = {ArrowLeft:[55,0],ArrowRight:[-55,0],ArrowUp:[0,55],ArrowDown:[0,-55]}[event.key];
         if (delta) { event.preventDefault(); svg.call(zoom.translateBy, delta[0] / d3.zoomTransform(svg.node()).k, delta[1] / d3.zoomTransform(svg.node()).k); }
         if (['+','=','-','0'].includes(event.key)) { event.preventDefault(); if (event.key === '0') reset(); else svg.call(zoom.scaleBy, event.key === '-' ? 1 / 1.4 : 1.4); }
@@ -241,7 +283,7 @@
         if(!globalLayout)globalLayout=window.WordPowerGlobalNetwork.createLayout(model);
         const saved=globalTransform;
         globalView=window.WordPowerGlobalNetwork.draw({svg,layer,width,height,model,layout:globalLayout,savedTransform:saved,selected,
-          onSelect:selectNode,onOpenWord:options.onOpenWord,onCamera:t=>{globalTransform=t}});
+          onSelect:selectNode,onOpenWord:options.onOpenWord,onCamera:t=>{globalTransform=t;schedulePreview();}});
         zoom=globalView.zoom;
         if(selected&&!saved)globalView.select(selected,{center:true});
         $('viz-count').textContent=Object.keys(options.data.lexicon).length+' 单词 · '+(model.nodes.size-Object.keys(options.data.lexicon).length)+' 词源';
@@ -250,6 +292,7 @@
         drawNetwork();
       }
       renderGraphCard();
+      svg.selectAll('.global-node.word,.graph-node.word').attr('aria-haspopup','dialog').attr('aria-controls','word-preview');
       $('viz-title').textContent = state.scope==='all'?'全部词根关系':'词源关系';
       $('viz-legend').innerHTML = ['word','root','person','place'].map(kind => `<span class="legend-item"><i class="legend-dot ${kind}"></i>${kindName(kind)}</span>`).join('');
     }
@@ -348,6 +391,7 @@
     }
     function render() { if (!active) return; status.textContent=''; state.view === 'map' ? renderMap() : state.view==='game'?renderGame():renderNetwork(); }
     function reset() {
+      closePreview();
       clearSearch();
       if (state.view === 'map') { mapTransform=null; svg.call(zoom.transform,d3.zoomIdentity); }
       else if(state.view==='game'){gameView?.fit();}
@@ -373,19 +417,25 @@
     }
     $('explore-back').onclick=options.onBack;
     function setScope(scope){
+      closePreview();
       state.scope=scope;graph=null;positions.clear();graphTransform=null;
       if(scope==='local'&&!selected){selected=M.wordId('philanthropy');state.focus=selected;}
       if(scope==='all')globalTransform=null;
       renderNetwork();emit();
     }
     function setWide(value){
+      closePreview();
       wide=value;host.classList.toggle('explore-fullscreen',wide);document.body.classList.toggle('explore-wide',wide);
       $('network-wide').setAttribute('aria-pressed',String(wide));$('network-wide').setAttribute('aria-label',wide?'退出全屏':state.view==='game'?'全屏查看图谱寻路':'全屏查看关系网');
     }
     $('network-all').onclick=()=>setScope('all');$('network-local').onclick=()=>setScope('local');
     $('network-wide').onclick=()=>setWide(!wide);
     $('network-locate').onclick=()=>globalView?.select(selected,{center:true});
-    document.addEventListener('keydown',event=>{if(event.key==='Escape'&&wide&&!document.querySelector('#overlay[aria-hidden="false"]'))setWide(false);},true);
+    document.addEventListener('keydown',event=>{
+      if(event.key!=='Escape'||document.querySelector('#overlay[aria-hidden="false"]'))return;
+      if(!preview.hidden){event.preventDefault();event.stopPropagation();closePreview(true);return;}
+      if(wide)setWide(false);
+    },true);
     for (const view of views) $('tab-'+view).onclick=()=>setTab(view);
     host.querySelector('[role=tablist]').onkeydown=event=>{
       if (['ArrowLeft','ArrowRight','Home','End'].includes(event.key)) {
@@ -399,8 +449,18 @@
     search.addEventListener('input',showResults);
     search.onkeydown=event=>{if(event.key==='Escape')clearSearch();if(event.key==='ArrowDown'){event.preventDefault();results.querySelector('button')?.focus();}};
     host.querySelector('form').onsubmit=event=>{event.preventDefault();results.querySelector('button')?.click();};
-    document.addEventListener('pointerdown',event=>{if(!event.target.closest('.explore-search')){results.hidden=true;search.setAttribute('aria-expanded','false');}});
-    const observer=new ResizeObserver(()=>{if(active && (canvas.clientWidth!==width || canvas.clientHeight!==height)){mapTransform=null;graphTransform=null;globalTransform=null;gameTransform=null;positions.clear();render();}});
+    document.addEventListener('pointerdown',event=>{if(!preview.contains(event.target))closePreview();if(!event.target.closest('.explore-search')){results.hidden=true;search.setAttribute('aria-expanded','false');}});
+    canvas.addEventListener('wheel',()=>closePreview(),{passive:true});
+    canvas.addEventListener('keydown',event=>{if(['Enter',' '].includes(event.key)&&event.target.closest('[data-node-id]')?.dataset.nodeId.startsWith('word:')){keyboardPreview=true;setTimeout(()=>{keyboardPreview=false;},0);}},true);
+    preview.addEventListener('toggle',schedulePreview,true);
+    window.addEventListener('scroll',schedulePreview,{capture:true,passive:true});
+    window.addEventListener('resize',schedulePreview,{passive:true});
+    const previewObserver=new ResizeObserver(schedulePreview);previewObserver.observe(preview);
+    const observer=new ResizeObserver(()=>{if(active && (canvas.clientWidth!==width || canvas.clientHeight!==height)){
+      const reopen=!preview.hidden?{id:previewId,trigger:previewTrigger}:null;
+      mapTransform=null;graphTransform=null;globalTransform=null;gameTransform=null;positions.clear();render();
+      if(reopen&&state.view==='network'&&selected===reopen.id)showPreview(reopen.id,reopen.trigger);
+    }});
     observer.observe(canvas);
     return {
       activate(next) {
@@ -412,7 +472,8 @@
         state={view:views.includes(next.view)?next.view:'network',place:placesById.has(next.place)?next.place:state.place,focus:focus||'',scope,challenge:next.challenge??state.challenge};
         active=true;setTab(state.view,false);emit();
       },
-      pause() { active=false;simulation?.stop();globalView?.dispose();globalView=null;gameView?.dispose();gameView=null;setWide(false);clearSearch(); },
+      pause() { closePreview();active=false;simulation?.stop();globalView?.dispose();globalView=null;gameView?.dispose();gameView=null;setWide(false);clearSearch(); },
+      closePreview,
       state:()=>({...state})
     };
   }

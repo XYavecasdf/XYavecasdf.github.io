@@ -34602,36 +34602,38 @@ function storyCopy(x){return storiesFor(x).flatMap(({ref,story})=>[storyKinds[re
 function analysisHTML(x){if(x.components.length){return `<div class="morphemes">${x.components.map((p,i)=>(i?'<span class="plus">+</span>':'')+`<span class="morph"><b>${esc(p.form)}</b><span>${esc(p.zh)}</span></span>`).join('')}</div>`}return '<div class="data-source">暂无可靠拆分</div>'}
 const audioLabels={US:'美音',GA:'美音',GenAm:'美音','General American':'美音','United States':'美音',UK:'英音',RP:'英音','Received Pronunciation':'英音','Southern England':'英音','California':'美音','Texas':'美音','Southern California':'美音','Berkshire,SSB':'英音','Mid-Atlantic US':'美音','Connecticut':'美音','Queensland':'澳音','New Jersey':'美音','Midwestern US':'美音','Northern California':'美音','Canada':'加音','Maryland':'美音','London':'英音','Multicultural British English':'英音','New Mexico':'美音','Southern California with California Vowel Shift':'美音',AU:'澳音',English:'英语原声','-':'英语原声'};
 let audioSession=0, activePronunciation=null;
-function pronunciationHTML(x){const samples=x.pronunciation_audio||[], us=x.american_pronunciation;
+function pronunciationHTML(x,{idPrefix='',compact=false}={}){const samples=x.pronunciation_audio||[], us=x.american_pronunciation;
  const mainIndex=us.kind==='recording'?us.recording_index:-1;
- const primary=`<button type="button" id="play-american" class="control audio-play primary" ${mainIndex>=0?`data-recording="${mainIndex}"`:'data-us-synthetic'} aria-pressed="false" aria-label="播放 ${esc(x.word)} 的美式英语${mainIndex>=0?'真人录音':'合成发音'}">▶ 美音${mainIndex>=0?'':' · 合成'}</button>`;
+ const primary=`<button type="button" id="${idPrefix}play-american" class="control audio-play primary" ${mainIndex>=0?`data-recording="${mainIndex}"`:'data-us-synthetic'} aria-pressed="false" aria-label="播放 ${esc(x.word)} 的美式英语${mainIndex>=0?'真人录音':'合成发音'}">▶ 美音${mainIndex>=0?'':' · 合成'}</button>`;
  const extra=samples.map((s,i)=>i===mainIndex?'':`<button type="button" class="control audio-play" data-recording="${i}" aria-pressed="false" title="${esc(s.accent)}" aria-label="播放 ${esc(x.word)} 的 ${esc(s.accent)} 录音 ${i+1}">▶ ${esc(audioLabels[s.accent]||s.accent)}${samples.filter(t=>(audioLabels[t.accent]||t.accent)===(audioLabels[s.accent]||s.accent)).length>1?' '+(i+1):''}</button>`).join('');
  const syntheticCredit=us.kind==='synthetic'?'<p>美音：CMU Flite · cmu_us_slt（美国英语合成语音，非真人录音）。<a href="./audio/README.md" target="_blank" rel="noopener noreferrer">来源与说明 ↗</a></p>':'';
+ if(compact){const sample=samples[mainIndex];return `<section class="pronunciation preview-pronunciation" aria-label="单词发音"><div class="audio-actions">${primary}<button type="button" class="control" id="${idPrefix}stop-pronunciation" hidden>停止</button><details class="audio-more"><summary>发音来源</summary><div class="audio-credits">${syntheticCredit}${sample?`<p><a href="${esc(sample.file_url)}" target="_blank" rel="noopener noreferrer">${esc(sample.accent)} · ${esc(sample.artist)}</a> · ${sample.license_url?`<a href="${esc(sample.license_url)}" target="_blank" rel="noopener noreferrer">${esc(sample.license)}</a>`:esc(sample.license)} · 未修改</p>`:''}</div></details></div><p id="${idPrefix}audio-status" class="audio-status" role="status" aria-live="polite"></p></section>`;}
  return `<section class="pronunciation" aria-label="单词发音"><div class="audio-actions">${primary}${extra}<button type="button" class="control" id="stop-pronunciation" hidden>停止</button><details class="audio-more"><summary>更多</summary><div class="audio-options"><button type="button" class="control" id="speak-word" aria-pressed="false" aria-label="用美式英语合成语音朗读 ${esc(x.word)}">浏览器美音</button><a class="secondary-link" href="${esc(x.wiktionary_url)}#English" target="_blank" rel="noopener noreferrer">词典发音 ↗</a></div><div class="audio-credits">${syntheticCredit}${samples.map(s=>`<p><a href="${esc(s.file_url)}" target="_blank" rel="noopener noreferrer">${esc(s.accent)} · ${esc(s.artist)}</a> · ${s.license_url?`<a href="${esc(s.license_url)}" target="_blank" rel="noopener noreferrer">${esc(s.license)}</a>`:esc(s.license)} · 未修改</p>`).join('')}</div></details></div><p id="audio-status" class="audio-status" role="status" aria-live="polite"></p></section>`;
 }
 function stopPronunciation(){audioSession++;if(activePronunciation){activePronunciation();activePronunciation=null}}
-function bindPronunciation(x){const status=$('audio-status'), stop=$('stop-pronunciation');
+function bindPronunciation(x,{container=detail,idPrefix='',compact=false}={}){const el=id=>container.querySelector('#'+idPrefix+id),status=el('audio-status'), stop=el('stop-pronunciation');
  function session(button){stopPronunciation();const id=audioSession;let cleanup=()=>{};
   button.setAttribute('aria-pressed','true');stop.hidden=false;
-  activePronunciation=()=>{cleanup();button.setAttribute('aria-pressed','false');stop.hidden=true};
+  activePronunciation=()=>{cleanup();button.setAttribute('aria-pressed','false');stop.hidden=true;if(compact)status.textContent=''};
   return {cleanup:fn=>{cleanup=fn},message:text=>{if(id===audioSession)status.textContent=text},
-   finish:(text,reveal=false)=>{if(id===audioSession){stopPronunciation();status.textContent=text;if(reveal)detail.querySelector('.audio-more').open=true}}};
+   finish:(text,reveal=false)=>{if(id===audioSession){stopPronunciation();status.textContent=text;if(reveal&&!compact)container.querySelector('.audio-more').open=true}}};
  }
  stop.onclick=()=>{stopPronunciation();status.textContent='已停止播放。'};
  function playAudio(sample,button,synthetic=false){if(!sample)return;
   const state=session(button), audio=new Audio();let timer;
   state.cleanup(()=>{clearTimeout(timer);audio.onplaying=null;audio.onended=null;audio.onerror=null;audio.pause();audio.removeAttribute('src');audio.load()});
-  const fail=()=>state.finish((synthetic?'美音':'录音')+'暂时无法播放，请选择下方备用发音。',true);
+  const fail=()=>state.finish(compact?'发音暂时无法播放，请打开完整词条选择备用发音。':(synthetic?'美音':'录音')+'暂时无法播放，请选择下方备用发音。',true);
   audio.preload='none';audio.src=sample.url;
   audio.onplaying=()=>{clearTimeout(timer);state.message(synthetic?'正在播放美音 · 合成语音（非真人录音）':'正在播放真人录音 · '+(audioLabels[sample.accent]||sample.accent))};
   audio.onended=()=>state.finish(synthetic?'美音合成发音播放完毕。':'真人录音播放完毕。');audio.onerror=fail;
   state.message(synthetic?'正在加载美音合成音频…':'正在加载真人录音…');timer=setTimeout(fail,12000);
   try{const playing=audio.play();if(playing?.catch)playing.catch(fail)}catch(e){fail()}
  }
- detail.querySelectorAll('[data-recording]').forEach(button=>button.onclick=()=>playAudio(x.pronunciation_audio[Number(button.dataset.recording)],button));
- const syntheticButton=detail.querySelector('[data-us-synthetic]');if(syntheticButton)syntheticButton.onclick=()=>playAudio(x.american_pronunciation,syntheticButton,true);
- $('speak-word').onclick=()=>{
-  const state=session($('speak-word'));
+ container.querySelectorAll('[data-recording]').forEach(button=>button.onclick=()=>playAudio(x.pronunciation_audio[Number(button.dataset.recording)],button));
+ const syntheticButton=container.querySelector('[data-us-synthetic]');if(syntheticButton)syntheticButton.onclick=()=>playAudio(x.american_pronunciation,syntheticButton,true);
+ const speakButton=el('speak-word');if(!speakButton)return;
+ speakButton.onclick=()=>{
+  const state=session(speakButton);
   const unavailable=()=>state.finish('此设备没有可用的美音朗读，请使用上方「美音」音频按钮。');
   if(!('speechSynthesis' in window)||!('SpeechSynthesisUtterance' in window)){unavailable();return}
   const synth=window.speechSynthesis;let utterance,timer;
@@ -34700,9 +34702,10 @@ function loadExploreAsset(file,style=false){return new Promise((resolve,reject)=
 async function ensureExplore(){
  if(exploreController)return exploreController;
  if(!explorePromise)explorePromise=(async()=>{
-  await Promise.all([loadExploreAsset('./explore.css?v=3',true),window.d3?Promise.resolve():loadExploreAsset('./vendor/d3.v7.9.0.min.js'),window.WordPowerExploreModel?Promise.resolve():loadExploreAsset('./explore-model.js?v=2'),window.WordPowerGlobalNetwork?Promise.resolve():loadExploreAsset('./network-global.js?v=2')]);
-  if(!window.WordPowerExplore)await loadExploreAsset('./explore.js?v=3');
-  exploreController=await window.WordPowerExplore.mount(exploration,{data,posHTML,onOpenWord:openWord,onBack:returnToLibrary,
+  await Promise.all([loadExploreAsset('./explore.css?v=4',true),window.d3?Promise.resolve():loadExploreAsset('./vendor/d3.v7.9.0.min.js'),window.WordPowerExploreModel?Promise.resolve():loadExploreAsset('./explore-model.js?v=2'),window.WordPowerGlobalNetwork?Promise.resolve():loadExploreAsset('./network-global.js?v=2')]);
+  if(!window.WordPowerExplore)await loadExploreAsset('./explore.js?v=4');
+  exploreController=await window.WordPowerExplore.mount(exploration,{data,posHTML,onOpenWord:word=>{exploreController?.closePreview(true);openWord(word);},onBack:returnToLibrary,
+   previewAudioHTML:x=>pronunciationHTML(x,{idPrefix:'preview-',compact:true}),bindPreviewAudio:(container,x)=>bindPronunciation(x,{container,idPrefix:'preview-',compact:true}),stopPreviewAudio:stopPronunciation,
    onState:state=>{lastExploreState=state;if(!exploration.hidden)exploreURL(state)}});
   return exploreController;
  })().catch(error=>{explorePromise=null;throw error});

@@ -160,6 +160,19 @@ fullscreen (Escape to leave) and double-click to open the shared word card.
 The optional **Local** view retains the original neighborhood explorer, with
 at most 20 neighbors per expansion and an explicit remaining count.
 
+Single-clicking a word in either graph view opens an in-place, nonmodal preview:
+definition, parts of speech, IPA, US pronunciation and a compact component hint.
+The full word card remains available from the preview or by double-clicking.
+Desktop previews sit beside the selected node; narrow screens use a bottom card.
+Pointer interaction outside the preview, zoom gestures and view changes dismiss
+it. Escape closes a preview before leaving fullscreen; keyboard node selection
+focuses the preview and closing it restores focus. Resizing preserves its content.
+
+Preview and full-card audio use the same player session, with distinct DOM IDs.
+Opening a preview never autoplays. Changing words, dismissing it or opening the
+full card stops playback. Human-recording attribution and synthetic-voice credits
+remain available in the preview's folded source section.
+
 `places.json` contains eight sourced geographic associations. City coordinates
 are approximate references; Egypt uses the basemap country polygon and records
 the historical misidentification explicitly. Vendor provenance and licenses are
@@ -176,6 +189,7 @@ library retains its in-memory filters, expansion state and scroll position.
 node tests/check-explore-model.cjs
 node tests/explore-browser.cjs --url http://127.0.0.1:8765/word-power/
 node tests/global-network-browser.cjs --url http://127.0.0.1:8765/word-power/
+node tests/word-preview-browser.cjs --url http://127.0.0.1:8765/word-power/
 ```
 
 ## Pathfinder game

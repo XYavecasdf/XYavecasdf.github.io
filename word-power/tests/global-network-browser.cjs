@@ -99,7 +99,7 @@ const hit=(page,id)=>page.locator('.global-node[data-node-id="'+id+'"] .global-h
   assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
   assert.equal(await page.locator('.global-node.word').count(),527);
   await page.screenshot({path:'/tmp/wp-all-words-mobile.png',fullPage:true});
-  await search(page,'egoist');await page.locator('#explore-card .primary').click();
+  await search(page,'egoist');await page.locator('#word-preview-open').click();
   assert.equal(await page.locator('#detail-title').textContent(),'egoist');await page.locator('#close-modal').click();
   await page.emulateMedia({reducedMotion:'reduce'});await page.locator('#network-wide').click();await ready(page);
   assert.equal(await page.locator('.global-node').count(),784);
